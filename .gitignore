@@ -1,0 +1,31 @@
+# Local credentials and machine state
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+.cache/
+.local/
+*.log
+*.pem
+*.key
+
+# Java / Node / Python
+**/target/
+**/node_modules/
+**/dist/
+**/.next/
+/out/
+/frontend/out/
+/services/core-api/siare-core/out/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+*.py[cod]
+*.tsbuildinfo
+coverage/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
