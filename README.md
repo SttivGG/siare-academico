@@ -1,6 +1,6 @@
 # SIARE académico
 
-Sistema Inteligente de Aprendizaje y Refuerzo Educativo. La Fase 1 implementa registro, autenticación JWT RS256 y gestión de materias propias, con una interfaz funcional en Next.js y persistencia MySQL mediante Flyway.
+Sistema Inteligente de Aprendizaje y Refuerzo Educativo. La Fase 1 implementa registro, autenticación JWT RS256 y gestión de materias propias. La Fase 2 añade documentos por materia, originales en MongoDB GridFS y extracción interna con Flask. La interfaz usa Next.js y los usuarios/materias persisten en MySQL mediante Flyway. Consulta el estado de las comprobaciones en [VALIDATION.md](docs/VALIDATION.md).
 
 El proyecto Spring original permanece en `services/core-api/siare-core`; su `pom.xml` conserva Java 21 y Spring Boot 4.1.2. Los contratos Abstract Factory se mantienen intactos. Consulta la [guía de Fase 1 y API](docs/PHASE1.md) y los [resultados ejecutados](docs/VALIDATION.md).
 
@@ -9,6 +9,8 @@ El proyecto Spring original permanece en `services/core-api/siare-core`; su `pom
 Con la composición iniciada, abre <http://127.0.0.1:3100/registro>, crea una cuenta e inicia sesión. Entra en **Mis materias**, selecciona **Crear materia**, indica un nombre y guarda. En el espacio de la materia puedes editar sus datos y archivarla. El filtro **Archivadas** permite consultarla después.
 
 El registro requiere nombre, correo válido y una contraseña de al menos 10 caracteres y hasta 72 bytes UTF-8. Next.js mantiene el JWT en una cookie HttpOnly; el navegador no lo guarda en localStorage. Usa `127.0.0.1` de forma consistente: el BFF compara el origen con `APP_ORIGIN`.
+
+En el espacio de una materia puedes subir PDF, DOCX, PPTX, JPG, JPEG o PNG de hasta 15 MiB y solicitar después su procesamiento. El texto se consulta por página, diapositiva, sección o imagen. El original se conserva ante fallos; las materias archivadas permiten consulta y descarga. La [guía de Fase 2](docs/PHASE2.md) detalla formatos, límites, reintentos y API.
 
 ## Requisitos en Windows
 
@@ -35,6 +37,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Start-Siare.ps1
 
 `Start-Siare.ps1` valida la configuración y la identidad de los recursos, construye los servicios de uno en uno, espera hasta 900 segundos por los healthchecks y ejecuta las verificaciones. No detiene procesos ajenos para liberar puertos. Para un arranque posterior con las mismas imágenes:
 
+Antes de arrancar, el script prepara `CONTENT_SERVICE_TOKEN` para la comunicación Spring/Flask. En una instalación existente, `scripts/Initialize-Phase2.ps1` añade solo esa credencial y conserva las anteriores. `DOCUMENT_MAX_BYTES` y `DOCUMENT_REQUEST_MAX_BYTES` controlan el límite del archivo y del multipart completo.
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Start-Siare.ps1 -SkipBuild
 ```
@@ -48,6 +52,7 @@ El arranque también ejecuta `Initialize-SiareKeys.ps1`: genera una sola vez un 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Siare.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase1.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase2.ps1 -SimulatePythonOutage -RestartContainers
 # Opcional: prueba de persistencia que reinicia exclusivamente los ocho contenedores SIARE.
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase1.ps1 -RestartContainers
 docker compose --env-file .env config --quiet
@@ -97,6 +102,7 @@ siare-academico/
   docs/
     ARCHITECTURE.md
     PHASE1.md
+    PHASE2.md
     VALIDATION.md
   scripts/
     Initialize-Siare.ps1
@@ -170,7 +176,7 @@ La API usa exclusivamente `Authorization: Bearer`; no autentica cookies y mantie
 
 Flask comprueba MongoDB con el usuario de aplicación y Redis con contraseña; Express consulta `system.local` de Cassandra. Sus endpoints devuelven solo servicio y estado. Los errores no devuelven cadenas de conexión. Los healthchecks se ejecutan dentro de los contenedores y `depends_on` espera a que las dependencias estén `healthy` durante el arranque. Esto no sustituye la recuperación de conexiones después de una caída.
 
-Flyway crea `users` y `subjects` en MySQL mediante `V1__users_and_subjects.sql`; Hibernate valida el esquema con `ddl-auto=validate`. El correo tiene una restricción UNIQUE y las materias una clave foránea a su propietario. Las fechas usan UTC. MongoDB conserva su usuario limitado; GridFS y los esquemas de contenido/progreso siguen pendientes. Redis conserva AOF. Cassandra usa un nodo sin autenticación, accesible únicamente desde la red interna de desarrollo. El Compose sigue siendo local: el despliegue de producción necesita TLS, secretos administrados, roles de Cassandra y copias de seguridad.
+Flyway crea `users` y `subjects` en MySQL mediante `V1__users_and_subjects.sql`; Hibernate valida el esquema con `ddl-auto=validate`. El correo tiene una restricción UNIQUE y las materias una clave foránea a su propietario. Las fechas usan UTC. MongoDB conserva su usuario limitado y guarda originales en `fs.files`/`fs.chunks`, metadatos en `document_metadata` y texto en `document_fragments`. Redis conserva AOF. Cassandra usa un nodo sin autenticación, accesible únicamente desde la red interna de desarrollo. El Compose sigue siendo local: el despliegue de producción necesita TLS, secretos administrados, roles de Cassandra y copias de seguridad.
 
 Los usuarios y materias se guardan en MySQL. MongoDB se reserva para documentos y contenidos; Cassandra para intentos y eventos; Redis para caché. La Fase 1 no implementa ML ni actividades educativas.
 
@@ -274,7 +280,7 @@ No ejecutes ese servidor a la vez que el frontend Docker en el puerto 3100. Guni
 ## Próximos pasos
 
 1. Recibir capturas o especificaciones de Nexo antes de adaptar la identidad visual.
-2. Diseñar repositorios MongoDB/GridFS y el modelo de particionado Cassandra para las siguientes fases.
+2. Diseñar el modelo de particionado Cassandra para las siguientes fases.
 3. Desarrollar Quiz y Crossword con sus productos Abstract Factory durante la fase de actividades.
 
 Las decisiones de dependencia y las fuentes oficiales consultadas están en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).

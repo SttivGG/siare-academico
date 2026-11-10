@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param([ValidateRange(120, 3600)][int]$WaitTimeout = 900, [switch]$SkipBuild)
 
+& (Join-Path $PSScriptRoot 'Initialize-Phase2.ps1')
 . (Join-Path $PSScriptRoot 'Common.ps1')
 Assert-SiareDocker
 Assert-SiareOwnership

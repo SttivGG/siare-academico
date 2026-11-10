@@ -13,6 +13,26 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
+    @ExceptionHandler(com.siare.core.domain.document.DocumentException.class)
+    ResponseEntity<ApiError> document(com.siare.core.domain.document.DocumentException ex) {
+        return ResponseEntity.status(ex.status()).body(ApiError.of(ex.status(), ex.code(), ex.getMessage()));
+    }
+
+    @ExceptionHandler(org.springframework.web.multipart.MaxUploadSizeExceededException.class)
+    ResponseEntity<ApiError> oversized(Exception ex) {
+        return ResponseEntity.status(413).body(ApiError.of(413, "FILE_TOO_LARGE", "El archivo o la solicitud supera el límite permitido."));
+    }
+
+    @ExceptionHandler({org.springframework.web.multipart.support.MissingServletRequestPartException.class,
+            org.springframework.web.multipart.MultipartException.class})
+    ResponseEntity<ApiError> multipart(Exception ex) {
+        return ResponseEntity.badRequest().body(ApiError.of(400, "INVALID_FILE", "Envía un archivo en el campo multipart file."));
+    }
+
+    @ExceptionHandler(org.springframework.web.HttpMediaTypeNotSupportedException.class)
+    ResponseEntity<ApiError> media(Exception ex) {
+        return ResponseEntity.status(415).body(ApiError.of(415, "UNSUPPORTED_MEDIA_TYPE", "El tipo de contenido de la solicitud no es válido."));
+    }
     @ExceptionHandler(BusinessException.class)
     ResponseEntity<ApiError> business(BusinessException ex) {
         int status = switch (ex.kind()) {

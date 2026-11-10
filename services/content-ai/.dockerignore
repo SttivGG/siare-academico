@@ -3,5 +3,4 @@ __pycache__
 **/__pycache__
 .env*
 .git
-tests
 *.log

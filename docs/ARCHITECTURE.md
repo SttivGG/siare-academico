@@ -22,6 +22,20 @@ Spring Security 7 usa OAuth2 Resource Server y `NimbusJwtDecoder` con la clave p
 
 La API es stateless y solo autentica cabeceras Bearer, por lo que desactiva CSRF en esa frontera. Solo registro, login y salud son públicos. Next.js aplica la protección CSRF donde sí hay autenticación por cookies. Los errores de seguridad usan el mismo formato que los de negocio; el 401 incluye `WWW-Authenticate: Bearer`. Las respuestas no contienen excepciones SQL, contraseñas ni tokens de diagnóstico.
 
+## Documentos de Fase 2
+
+`DocumentService` implementa los cinco puertos de entrada documentales mediante `SubjectUseCase`, `DocumentRepository`, `DocumentStorage`, `DocumentValidator` y `DocumentProcessor`. El dominio y la aplicación siguen siendo Java puro. Los adaptadores usan GridFsTemplate, colecciones MongoDB y HttpClient; `DocumentConfiguration` compone los objetos y un ejecutor acotado. `DocumentController` transforma los metadatos a DTOs que omiten referencias internas.
+
+La carga valida estructura con PDFBox 3.0.7, ImageIO y parsers ZIP/XML del JDK antes de guardar. GridFS recibe el original por stream; los metadatos contienen SHA-256 y su referencia, sin duplicar el binario. Un fallo posterior de metadatos dispara una compensación sobre GridFS. MySQL sigue resolviendo propiedad de materias; esta operación no usa transacciones distribuidas.
+
+El procesamiento es una segunda petición: MongoDB reserva `PROCESSING` con un UUID y vigencia de 120 segundos, y Spring responde HTTP 202. Un ejecutor admite un trabajo y dos en espera. El worker transmite el original a Flask con credencial interna, timeout y límite de respuesta. Los fragmentos se guardan por documento/operación y el cambio a `READY` exige conservar la reserva. Los fallos mantienen el original y admiten reintento. Una reserva interrumpida por reinicio puede reintentarse después de vencer. Los detalles del contrato, límites e índices están en [PHASE2.md](PHASE2.md).
+
+Flask conserva MVC: el controlador valida la petición interna, el modelo ejecuta el parser en un subproceso terminable y la vista devuelve el contrato JSON. pypdf, python-docx y python-pptx extraen texto; Pillow y Tesseract español procesan imágenes. El subproceso tiene límites de tiempo/recursos. Python recibe bytes y tipo canónico; no recibe una URL o identificador para buscar documentos ni decide permisos estudiantiles. El servicio sigue sin puerto host.
+
+El arranque de Spring configura la caché DNS de su JVM con TTL negativo cero y positivo de cinco segundos, para recuperar la resolución de los servicios Docker después de una caída. El adaptador registra solo la clase de un fallo de transporte o contrato, sin mensajes que puedan contener credenciales o documentos. Gunicorn ejecuta un worker con dos threads y desactiva su socket administrativo; no requiere un directorio home escribible.
+
+Next mantiene la cookie HttpOnly y el límite de 16 KiB para mutaciones JSON. La carga y descarga usan rutas específicas de `/api/files`, límites sobre bytes reales y streams. El multipart pasa por un temporal acotado para poder rechazarlo antes de transmitirlo a Spring. La vista de materia conserva el estilo de Fase 1 e incorpora selección accesible, progreso, estados, reintentos y vista del texto.
+
 ## Abstract Factory de actividades: diseño pendiente de implementación
 
 `ActivityFactory<A, S>` declara los tres métodos `createGenerator()`, `createEvaluator()` y `createFeedbackPolicy()`. Sus productos son `Generator<A>`, `Evaluator<A, S>` y `FeedbackPolicy`.
@@ -39,7 +53,7 @@ Todo el módulo de actividades es un conjunto de contratos. No existen fábricas
 
 Los modelos consultan la disponibilidad de dependencias, los controladores deciden el estado HTTP y las vistas construyen JSON. Las rutas no contienen consultas de datos. Flask usa una fábrica de aplicación; Express separa creación de aplicación y proceso HTTP, permitiendo inyectar modelos de prueba sin conectar a Cassandra.
 
-Flask hace `ping` autenticado a MongoDB y Redis con tiempos de espera acotados. Express consulta la versión en `system.local` con el driver Cassandra, sin crear keyspaces. La caché y los modelos de contenido/progreso se implementarán después.
+Flask hace `ping` autenticado a MongoDB y Redis con tiempos de espera acotados. Su módulo documental procesa únicamente los bytes proporcionados por Spring. Express consulta la versión en `system.local` con el driver Cassandra, sin crear keyspaces. Los modelos de progreso siguen pendientes.
 
 ## Frontend
 
@@ -69,3 +83,8 @@ Las imágenes externas se fijaron por versión y digest del manifiesto multi-pla
 - [Next.js: despliegue standalone](https://nextjs.org/docs/app/api-reference/config/next-config-js/output).
 - [Docker Compose: dependencias y condiciones de salud](https://docs.docker.com/compose/how-tos/startup-order/).
 - [Docker Hub: imágenes oficiales](https://hub.docker.com/u/library) y los registros npm/PyPI para comprobar las versiones fijadas.
+- [GridFsTemplate: almacenamiento y recuperación por stream](https://docs.spring.io/spring-data/data-mongodb/docs/current/api/org/springframework/data/mongodb/gridfs/GridFsTemplate.html).
+- [Apache PDFBox: versión 3.0.7](https://pdfbox.apache.org/download).
+- [pypdf: extracción de texto](https://github.com/py-pdf/pypdf/blob/main/docs/user/extract-text.md).
+- [python-docx: texto](https://python-docx.readthedocs.io/en/latest/user/text.html) y [python-pptx: cuadros de texto](https://python-pptx.readthedocs.io/en/stable/user/text.html).
+- [pytesseract: OCR, idioma y timeout](https://pypi.org/project/pytesseract/).

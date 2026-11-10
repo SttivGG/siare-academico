@@ -12,8 +12,8 @@ export function isAllowedMutation(headers: Headers, configuredOrigin: string): b
 }
 
 export function isAllowedRoute(method: string, path: string): boolean {
-  if (method === "POST") return ["auth/register", "auth/login", "auth/logout", "subjects"].includes(path);
-  if (method === "GET") return ["users/me", "subjects"].includes(path) || /^subjects\/[0-9a-f-]{36}$/i.test(path);
+  if (method === "POST") return ["auth/register", "auth/login", "auth/logout", "subjects"].includes(path) || /^documents\/[0-9a-f-]{36}\/process$/i.test(path);
+  if (method === "GET") return ["users/me", "subjects"].includes(path) || /^subjects\/[0-9a-f-]{36}(\/documents)?$/i.test(path) || /^documents\/[0-9a-f-]{36}(\/text)?$/i.test(path);
   if (method === "PATCH") return /^subjects\/[0-9a-f-]{36}(\/archive)?$/i.test(path);
   return false;
 }

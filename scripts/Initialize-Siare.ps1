@@ -20,7 +20,7 @@ function New-LocalSecret {
 $content = [IO.File]::ReadAllText((Join-Path $repoRoot '.env.example'))
 $content = $content.Replace('COMPOSE_PROJECT_NAME=siare-academico', "COMPOSE_PROJECT_NAME=$ProjectName")
 $content = $content.Replace('SIARE_INSTANCE_ID=', ('SIARE_INSTANCE_ID=' + [Guid]::NewGuid().ToString('N')))
-foreach ($key in @('MYSQL_PASSWORD', 'MYSQL_ROOT_PASSWORD', 'MONGO_PASSWORD', 'MONGO_ROOT_PASSWORD', 'REDIS_PASSWORD')) {
+foreach ($key in @('MYSQL_PASSWORD', 'MYSQL_ROOT_PASSWORD', 'MONGO_PASSWORD', 'MONGO_ROOT_PASSWORD', 'REDIS_PASSWORD', 'CONTENT_SERVICE_TOKEN')) {
     $content = [regex]::Replace($content, "(?m)^${key}=\r?$", ($key + '=' + (New-LocalSecret)))
 }
 # CreateNew also prevents a concurrent initialization from replacing an existing .env.
