@@ -1,5 +1,29 @@
 # Decisiones de arquitectura
 
+## Identidad local H2-A/H2-B1 vigente
+
+H2-A conserva RS256 e incorpora sesiones duraderas en MySQL. `SessionService`
+rota refresh opacos, detecta reutilización y comprueba revocación/inactividad/
+caducidad absoluta en cada API. `AdministrationService` decide permisos por rol,
+ámbito y destinatario; sus cambios de asignación revocan sesiones y se auditan
+en una transacción. Los detalles, contratos y reglas operativas están en
+[H2A_IDENTIDAD.md](H2A_IDENTIDAD.md) y [openapi.json](openapi.json).
+
+`domain/identity` y los servicios/puertos de aplicación son Java puro. JDBC,
+Argon2id/BCrypt, JWT y transacciones Spring son adaptadores de infraestructura.
+Flyway V2 amplía el hash, migra usuarios a USER y añade ámbitos, asignaciones,
+sesiones, refresh, parámetros y auditoría. V1 no cambia; Hibernate valida.
+
+La política de acceso privilegiado H2-B1 exige factor activo y sesión MFA
+persistida y vigente. No hay opción de configuración para omitir MFA ni un flag
+del cliente que habilite ADMIN/SUPERADMIN. Las pruebas recorren autorización real
+con JWT y conservan las pruebas aisladas de límites RBAC de H2-A.
+
+El access dura cinco minutos y exige sid/jti. El BFF conserva HttpOnly, CSRF y
+separa cookies de acceso/renovación. Logout revoca en backend. Las contraseñas
+nuevas usan NFC, mínimo 15 puntos de código y Argon2id; BCrypt previo se migra
+solo después de un login válido. Los JWT anteriores requieren un nuevo login.
+
 ## Hexágono Java
 
 `domain` contiene modelos y contratos Java puros. `application` declara puertos de entrada/salida y servicios de aplicación sin anotaciones Spring. `infrastructure` implementa los adaptadores HTTP, Actuator y la composición de objetos con beans. Las dependencias apuntan hacia el dominio.
@@ -14,7 +38,7 @@ La ubicación, Java 21 y Spring Boot 4.1.2 originales se conservan. El POM incor
 
 Flyway aplica `V1__users_and_subjects.sql` sobre el MySQL existente. El correo normalizado tiene una restricción UNIQUE que resuelve también registros concurrentes. `saveAndFlush` permite transformar esa colisión en HTTP 409. Hibernate usa `validate`, no modifica tablas; las fechas se generan y persisten en UTC.
 
-## Seguridad de Fase 1
+## Seguridad de Fase 1 (antecedente; sustituida por H2-A)
 
 Spring Security 7 usa OAuth2 Resource Server y `NimbusJwtDecoder` con la clave pública local, algoritmo RS256 explícito y validadores de emisor y tiempo. Se requieren `sub` UUID, `iat` y `exp`; el vencimiento no tiene tolerancia adicional. `NimbusJwtEncoder` firma con RS256. El plazo por defecto es `PT30M`, configurable con `JWT_TTL`. El registro usa BCrypt con coste 12 y limita la contraseña a 72 bytes UTF-8 para evitar truncamientos.
 
@@ -63,7 +87,11 @@ La portada mantiene una comprobación dinámica de salud. `server-health.ts` usa
 
 `/api/bff/[...path]` permite solo las rutas y métodos de esta fase. Intercambia el JWT de login por una cookie HttpOnly y elimina el token del cuerpo enviado al cliente. La cookie es `SameSite=Lax`, `Secure` y con prefijo `__Host-` en HTTPS; el Compose HTTP local configura una excepción explícita. El BFF exige `Origin` igual a `APP_ORIGIN`, `Content-Type: application/json`, cabecera `X-SIARE-CSRF: 1` y ausencia de un contexto `cross-site` en mutaciones. No acepta cabeceras Authorization del navegador ni reenvía cookies a Spring. Limita las peticiones a 16 KiB, evita caché y acota las consultas a diez segundos.
 
-El cierre de sesión elimina la cookie. Un JWT copiado conserva su validez hasta la expiración; esta fase no incluye refresh tokens ni revocación. La interfaz usa fuentes del sistema, colores neutros con un acento verde provisional y reglas responsive. No pretende reproducir Nexo sin referencias.
+El cierre de sesión revoca la sesión en Spring antes de eliminar las cookies.
+Un JWT copiado se rechaza tras la revocación. Refresh rota el secreto opaco y
+conserva nivel/plazo MFA; la configuración del factor y su desafío pasan por el
+mismo BFF. La interfaz usa fuentes del sistema, colores neutros con un acento
+verde provisional y reglas responsive. No pretende reproducir Nexo sin referencias.
 
 ## Despliegue local
 
@@ -71,9 +99,39 @@ Los cuatro servicios de aplicación usan Dockerfiles multi-stage y procesos sin 
 
 Las imágenes externas se fijaron por versión y digest del manifiesto multi-plataforma consultado en Docker Hub. Para actualizar una imagen, revisa la nueva versión, sustituye versión y digest juntos, reconstruye y ejecuta `Test-Siare.ps1`. La configuración Cassandra usa nombres y unidades de `cassandra.yaml` 4.1.12. No hay integración automática con servicios Windows/WSL2 preexistentes.
 
+## Identidad H2-A y MFA H2-B1
+
+V2 conserva RBAC por rol/ámbito, Argon2id compatible con BCrypt, sesiones revocables,
+refresh rotatorio y auditoría. V3 añade credenciales MFA con sobres AES-256-GCM,
+semillas pendientes separadas de las activas, códigos offline hasheados, desafíos
+limitados y tokens de recuperación de contraseña hasheados. No se modifican V1/V2.
+MySQL es la autoridad; Redis no decide el estado de autenticación.
+
+`AccountService` deriva a `MfaService` después del primer factor. Una cuenta con
+MFA o con rol administrativo recibe desafío sin JWT. La confirmación o segundo
+factor crea la sesión H2-A con nivel MFA, verificación y límite de doce horas.
+`SessionMfaPolicy` comprueba sesión/factor y `AdministrationService` conserva las
+reglas de rol y ámbito en cada operación. Refresh no cambia nivel ni plazo MFA.
+Los locks siguen usuario, desafío/credencial y sesión; los consumos son atómicos.
+
+`MfaService` implementa Enroll/Confirm/Verify/RecoverMfaUseCase.
+`PasswordResetService` implementa Request/CompletePasswordResetUseCase.
+Los puertos TotpPort, MfaRepository, PasswordResetRepository y SecurityMailPort
+mantienen JDBC, AES/TOTP y SMTP en infraestructura. El correo se procesa en un
+ejecutor acotado fuera de la respuesta pública, con STARTTLS obligatorio y
+timeouts. Sin SMTP no se acredita entrega; las pruebas capturan mensajes en
+memoria sin publicar tokens. La recuperación revoca sesiones y conserva MFA.
+
+El BFF conserva access/refresh/desafío en cookies HttpOnly y verifica CSRF.
+La web genera el QR localmente; semillas y códigos solo permanecen en memoria
+durante su visualización inicial. Los contratos y procedimientos de claves y
+pérdida total están en [H2B1_MFA_RECUPERACION.md](H2B1_MFA_RECUPERACION.md).
+
 ## Referencias oficiales consultadas
 
 - [Spring Boot: endpoints, exposición y seguridad de Actuator](https://docs.spring.io/spring-boot/reference/actuator/endpoints.html).
+- [RFC 6238: TOTP y validación temporal](https://www.rfc-editor.org/rfc/rfc6238.html).
+- [Spring Boot: correo con JavaMailSender](https://docs.spring.io/spring-boot/reference/io/email.html).
 - [Spring Security: validación JWT y algoritmos de firma](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html).
 - [Spring Security 7: NimbusJwtEncoder](https://docs.spring.io/spring-security/reference/7.0/api/java/org/springframework/security/oauth2/jwt/NimbusJwtEncoder.html).
 - [Flyway: dependencia de soporte MySQL](https://documentation.red-gate.com/flyway/reference/database-driver-reference/mysql).

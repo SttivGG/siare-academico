@@ -29,7 +29,7 @@ test("carga, procesamiento, texto y descarga desde la materia", async ({ page, c
   await expect(panel.getByText("Aprender ciencias con SIARE", { exact: true })).toBeVisible();
   await expect(panel.getByRole("heading", { name: "Página 1" })).toBeVisible();
   const downloadEvent = page.waitForEvent("download");
-  await panel.getByRole("link", { name: "Descargar academic.pdf" }).click();
+  await panel.getByRole("button", { name: "Descargar academic.pdf" }).click();
   const download = await downloadEvent;
   expect(download.suggestedFilename()).toBe("academic.pdf");
   expect(readFileSync((await download.path())!)).toEqual(bytes);
@@ -40,5 +40,5 @@ test("carga, procesamiento, texto y descarga desde la materia", async ({ page, c
   await page.getByRole("button", { name: "Confirmar archivo" }).click();
   await expect(panel.getByText("La materia está archivada.", { exact: false })).toBeVisible();
   await expect(panel.getByRole("button", { name: "Subir documento" })).toHaveCount(0);
-  await expect(panel.getByRole("link", { name: "Descargar academic.pdf" })).toBeVisible();
+  await expect(panel.getByRole("button", { name: "Descargar academic.pdf" })).toBeVisible();
 });

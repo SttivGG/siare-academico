@@ -8,7 +8,19 @@ El proyecto Spring original permanece en `services/core-api/siare-core`; su `pom
 
 Con la composición iniciada, abre <http://127.0.0.1:3100/registro>, crea una cuenta e inicia sesión. Entra en **Mis materias**, selecciona **Crear materia**, indica un nombre y guarda. En el espacio de la materia puedes editar sus datos y archivarla. El filtro **Archivadas** permite consultarla después.
 
-El registro requiere nombre, correo válido y una contraseña de al menos 10 caracteres y hasta 72 bytes UTF-8. Next.js mantiene el JWT en una cookie HttpOnly; el navegador no lo guarda en localStorage. Usa `127.0.0.1` de forma consistente: el BFF compara el origen con `APP_ORIGIN`.
+El registro requiere nombre, correo válido y una frase de 15 a 1024 caracteres Unicode, normalizada en NFC, hasta 4096 bytes UTF-8 y fuera del corpus local de contraseñas comunes. Next.js mantiene acceso y renovación en cookies HttpOnly separadas, sin localStorage. Usa `127.0.0.1` de forma consistente: el BFF compara el origen con `APP_ORIGIN`. Las cuentas anteriores conservan login BCrypt y migran a Argon2id al autenticarse.
+
+H2-A añade roles USER/ADMIN/SUPERADMIN, ámbitos MySQL, sesiones renovables y revocables y auditoría. H2-B1 incorpora TOTP, QR local, códigos offline de un solo uso y recuperación de contraseña con SMTP configurable. ADMIN/SUPERADMIN solo obtienen sesión tras verificar MFA; refresh no eleva permisos. En **Seguridad** configuras el factor y en **Sesiones** cierras otros accesos. Consulta [H2B1_MFA_RECUPERACION.md](docs/H2B1_MFA_RECUPERACION.md), [H2B1_VALIDACION.md](docs/H2B1_VALIDACION.md) y [OpenAPI](docs/openapi.json). La entrega real de correo queda pendiente por ausencia de SMTP; el ciclo de tokens se valida con captura en pruebas. OIDC y APK siguen pendientes.
+
+Antes de iniciar esta versión, conserva el archivo AES externo si ya existe.
+Solo para la primera instalación sin factores previos ejecuta
+`./scripts/Initialize-H2B1.ps1 -FirstProvision`; guarda un respaldo cifrado fuera
+de los respaldos MySQL. La ruta Windows predeterminada es
+`%LOCALAPPDATA%/SIARE/identity/totp.key`; `H2B1_MFA_KEY_FILE` admite otra ruta
+absoluta fuera del repositorio (obligatoria en Linux). Nunca generes otra clave
+para reparar una pérdida: restaura la original. Compose monta este archivo solo
+lectura y no lo crea automáticamente. La guía H2B1 documenta las variables SMTP,
+la recuperación controlada de administradores y `Test-H2B1.ps1 -RestartContainers`.
 
 En el espacio de una materia puedes subir PDF, DOCX, PPTX, JPG, JPEG o PNG de hasta 15 MiB y solicitar después su procesamiento. El texto se consulta por página, diapositiva, sección o imagen. El original se conserva ante fallos; las materias archivadas permiten consulta y descarga. La [guía de Fase 2](docs/PHASE2.md) detalla formatos, límites, reintentos y API.
 
@@ -177,9 +189,9 @@ siare-academico/
 
 ## Salud y seguridad de esta fase
 
-Spring permite de forma anónima `GET /health`, `POST /api/v1/auth/register` y `POST /api/v1/auth/login`. La salud devuelve `{"status":"UP"}` o `{"status":"DOWN"}` y HTTP 200 o 503 según JDBC y MongoDB. Spring Security 7 valida la firma RS256, emisor, expiración y sujeto UUID para las rutas privadas. Actuator queda denegado incluso con token. El dominio y la aplicación no importan Spring.
+Spring permite salud, registro y login públicos; la renovación pública exige su refresh como credencial. Spring Security 7 valida RS256, emisor, tiempo, sujeto UUID, sid, jti y la sesión MySQL. Actuator queda denegado incluso con token. Dominio y aplicación no importan Spring. La salud conserva su respuesta UP/DOWN y HTTP 200/503 según JDBC y MongoDB.
 
-La API usa exclusivamente `Authorization: Bearer`; no autentica cookies y mantiene sesiones stateless. Next.js guarda el token en cookie HttpOnly, `SameSite=Lax` y `Secure` en producción. El BFF exige origen exacto, JSON y cabecera `X-SIARE-CSRF` en las mutaciones. `SESSION_COOKIE_SECURE=false` corresponde al HTTP local del Compose; en HTTPS de producción debe ser `true`. El plazo por defecto es 30 minutos (`JWT_TTL=PT30M`) y el emisor `siare-core` (`JWT_ISSUER`).
+La API usa exclusivamente `Authorization: Bearer` y consulta la sesión MySQL en cada solicitud protegida. Next.js usa cookies HttpOnly: acceso SameSite=Lax y renovación SameSite=Strict; ambas Secure en HTTPS. El BFF exige origen exacto, JSON y `X-SIARE-CSRF` en mutaciones. `SESSION_COOKIE_SECURE=false` corresponde al HTTP local; en HTTPS debe ser `true`. El access dura cinco minutos (`H2A_ACCESS_TTL=PT5M` en Compose), la inactividad treinta minutos y la vida absoluta siete días. El emisor sigue siendo `siare-core`. Los JWT anteriores sin `sid`/`jti` requieren volver a iniciar sesión. Logout revoca en backend antes de borrar cookies.
 
 Flask comprueba MongoDB con el usuario de aplicación y Redis con contraseña; Express consulta `system.local` de Cassandra. Sus endpoints devuelven solo servicio y estado. Los errores no devuelven cadenas de conexión. Los healthchecks se ejecutan dentro de los contenedores y `depends_on` espera a que las dependencias estén `healthy` durante el arranque. Esto no sustituye la recuperación de conexiones después de una caída.
 

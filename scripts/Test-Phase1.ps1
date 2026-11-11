@@ -5,14 +5,14 @@ param([switch]$RestartContainers)
 Assert-SiareDocker
 Assert-SiareOwnership
 Invoke-SiareCompose config --quiet
-$sql = 'SELECT COUNT(*) FROM flyway_schema_history WHERE version = ''1'' AND success = 1; SELECT COUNT(*) FROM users WHERE password_hash NOT LIKE ''$2a$12$%'' AND password_hash NOT LIKE ''$2b$12$%'';'
+$sql = 'SELECT COUNT(*) FROM flyway_schema_history WHERE version = ''1'' AND success = 1; SELECT COUNT(*) FROM users WHERE password_hash NOT LIKE ''$2a$12$%'' AND password_hash NOT LIKE ''$2b$12$%'' AND password_hash NOT LIKE ''$argon2id$%'';'
 $probe = @'
 MYSQL_PWD="$MYSQL_PASSWORD" exec mysql --protocol=TCP -h127.0.0.1 -u"$MYSQL_USER" -D"$MYSQL_DATABASE" --batch --skip-column-names
 '@
 $schema = @($sql | & docker compose @script:SiareComposeArgs exec -T mysql sh -ec $probe)
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo consultar el esquema MySQL.' }
-if ($schema.Count -ne 2 -or $schema[0] -ne '1' -or $schema[1] -ne '0') { throw 'La migracion V1 o el almacenamiento BCrypt no son correctos.' }
-Write-Host 'OK: Flyway V1 aplicada en MySQL y contrasenas almacenadas con BCrypt (sin mostrar hashes).'
+if ($schema.Count -ne 2 -or $schema[0] -ne '1' -or $schema[1] -ne '0') { throw 'La migracion V1 o los hashes de contrasena no son correctos.' }
+Write-Host 'OK: Flyway V1 conservada en MySQL; hashes BCrypt previos y Argon2id admitidos (sin mostrarlos).'
 if (!(Get-Command node -ErrorAction SilentlyContinue)) { throw 'Esta prueba necesita Node.js 24 en el host.' }
 $testArgs = @((Join-Path $PSScriptRoot 'test-phase1.mjs'))
 if ($RestartContainers) { $testArgs += '--restart' }

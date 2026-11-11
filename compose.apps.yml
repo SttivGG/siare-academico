@@ -25,12 +25,32 @@ services:
       MONGO_PASSWORD: ${MONGO_PASSWORD:?Required}
       JAVA_TOOL_OPTIONS: -Xms128m -Xmx384m -XX:MaxMetaspaceSize=192m -XX:ActiveProcessorCount=2
       JWT_ISSUER: ${JWT_ISSUER:-siare-core}
-      JWT_TTL: ${JWT_TTL:-PT30M}
+      # H2-A has its own short access lifetime; existing .env is preserved.
+      JWT_TTL: ${H2A_ACCESS_TTL:-PT5M}
+      SIARE_SESSION_IDLE: ${H2A_SESSION_IDLE:-PT30M}
+      SIARE_SESSION_ABSOLUTE: ${H2A_SESSION_ABSOLUTE:-P7D}
+      SIARE_SESSION_MAXIMUM: ${H2A_SESSION_MAXIMUM:-5}
+      SIARE_PASSWORD_MEMORY_KIB: ${H2A_ARGON2_MEMORY_KIB:-19456}
+      SIARE_PASSWORD_ITERATIONS: ${H2A_ARGON2_ITERATIONS:-2}
+      SIARE_PASSWORD_PARALLELISM: ${H2A_ARGON2_PARALLELISM:-1}
+      SIARE_MFA_KEY_FILE: /run/siare-mfa/totp.key
+      SIARE_MAIL_HOST: ${H2B1_SMTP_HOST:-}
+      SIARE_MAIL_PORT: ${H2B1_SMTP_PORT:-587}
+      SIARE_MAIL_USERNAME: ${H2B1_SMTP_USERNAME:-}
+      SIARE_MAIL_PASSWORD: ${H2B1_SMTP_PASSWORD:-}
+      SIARE_MAIL_FROM: ${H2B1_SMTP_FROM:-}
+      SIARE_MAIL_ORIGIN: ${APP_ORIGIN:-http://127.0.0.1:3100}
       CONTENT_SERVICE_TOKEN: ${CONTENT_SERVICE_TOKEN:?Run scripts/Initialize-Phase2.ps1}
       DOCUMENT_MAX_BYTES: ${DOCUMENT_MAX_BYTES:-15728640}
       DOCUMENT_REQUEST_MAX_BYTES: ${DOCUMENT_REQUEST_MAX_BYTES:-15859712}
     volumes:
       - jwt-keys:/run/siare-keys:ro
+      - type: bind
+        source: ${H2B1_MFA_KEY_FILE:-${LOCALAPPDATA}/SIARE/identity/totp.key}
+        target: /run/siare-mfa/totp.key
+        read_only: true
+        bind:
+          create_host_path: false
     ports:
       - "127.0.0.1:8180:8080"
     networks: [edge, data]

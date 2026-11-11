@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
-import { allowedUpload, boundedStream, ByteLimitError, DEFAULT_MAX_BYTES } from "../../../../lib/document-policy";
+import { allowedUpload, boundedStream, boundedUploadStream, ByteLimitError, DEFAULT_MAX_BYTES } from "../../../../lib/document-policy";
 import { sessionName } from "../../../../lib/server-session";
 
 export const runtime = "nodejs";
@@ -24,14 +24,13 @@ export async function POST(request: NextRequest, context: Context) {
   const token = request.cookies.get(sessionName())?.value;
   if (!token) return failure(401, "UNAUTHORIZED", "Inicia sesión para continuar.");
   const maximum = Number(process.env.DOCUMENT_REQUEST_MAX_BYTES ?? Number(process.env.DOCUMENT_MAX_BYTES ?? DEFAULT_MAX_BYTES) + 131072);
-  if (Number(request.headers.get("content-length")) > maximum) return failure(413, "FILE_TOO_LARGE", "La solicitud supera el límite de carga.");
   if (!request.body) return failure(400, "EMPTY_FILE", "Selecciona un archivo.");
   let directory: string | undefined;
   try {
     directory = await mkdtemp(join(tmpdir(), "siare-upload-"));
     const file = join(directory, "multipart.bin");
     // Spooling bounds both RAM and observed bytes before any request reaches Spring.
-    await pipeline(Readable.fromWeb(boundedStream(request.body, maximum) as never), createWriteStream(file, { flags: "wx", mode: 0o600 }),
+    await pipeline(Readable.fromWeb(boundedUploadStream(request.body, maximum) as never), createWriteStream(file, { flags: "wx", mode: 0o600 }),
       { signal: AbortSignal.any([request.signal, AbortSignal.timeout(30_000)]) });
     const size = (await stat(file)).size;
     const upstream = await fetch(`${process.env.CORE_API_URL}/api/v1/${path}`, {

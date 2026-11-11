@@ -1,5 +1,9 @@
 # Fase 1: cuentas, sesión y materias
 
+Esta guía conserva el contrato original de Fase 1. H2-A actualiza contraseñas,
+duración JWT, cookies y logout e incorpora renovación/revocación. Para operar
+la versión actual, consulta [H2A_IDENTIDAD.md](H2A_IDENTIDAD.md) y [OpenAPI](openapi.json).
+
 ## Probar la interfaz
 
 Inicia SIARE con `scripts/Start-Siare.ps1`. Si `.env` no existe, ejecuta primero `scripts/Initialize-Siare.ps1`. La inicialización conserva las credenciales existentes; el arranque prepara las claves RSA persistentes y aplica las migraciones sin reinicializar volúmenes.

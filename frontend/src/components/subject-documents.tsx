@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api } from "../lib/api";
+import { sessionFetch } from "../lib/renew-session";
 import { DEFAULT_MAX_BYTES, uploadError } from "../lib/document-policy";
 
 type Document = { documentId: string; originalFilename: string; contentType: string; sizeBytes: number; createdAt: string;
@@ -33,7 +34,7 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
     catch (err) { setError(err instanceof Error ? err.message : "No se pudo consultar la lista."); }
     finally { setLoading(false); }
   }, [subjectId]);
-  useEffect(() => { void refresh(); fetch("/api/files/limits", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(data => { if (data?.maxBytes > 0) setMaximum(data.maxBytes); }).catch(() => {}); }, [refresh]);
+  useEffect(() => { void refresh(); sessionFetch("/api/files/limits", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(data => { if (data?.maxBytes > 0) setMaximum(data.maxBytes); }).catch(() => {}); }, [refresh]);
   useEffect(() => {
     if (!documents.some(d => d.status === "PROCESSING")) return;
     const interval = setInterval(() => { void refresh(); }, 2500);
@@ -52,6 +53,9 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
     const problem = uploadError(file, maximum); if (problem) { fail(problem); return; }
     setBusy("upload"); setError(""); setNotice(""); setProgress(0);
     try {
+      // Reuse the serialized renewal boundary before a potentially long multipart upload.
+      const check = await sessionFetch("/api/bff/users/me/identity", { cache: "no-store" });
+      if (!check.ok) throw new Error("La sesión ha expirado. Inicia sesión de nuevo.");
       await new Promise<void>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.open("POST", `/api/files/subjects/${subjectId}/documents`); xhr.setRequestHeader("X-SIARE-CSRF", "1"); xhr.timeout = 60_000;
@@ -69,6 +73,17 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
       setNotice("Archivo guardado. Pulsa Procesar para extraer su texto."); await refresh();
     } catch (err) { fail(err instanceof Error ? err.message : "No se pudo cargar el documento."); }
     finally { setBusy(""); setProgress(null); }
+  }
+  async function download(document: Document) {
+    setBusy(document.documentId); setError("");
+    try {
+      const response = await sessionFetch(`/api/files/documents/${document.documentId}/download`, { cache: "no-store" });
+      if (!response.ok) throw new Error("No se pudo descargar el documento. Comprueba tu sesión e inténtalo de nuevo.");
+      const url = URL.createObjectURL(await response.blob());
+      const link = window.document.createElement("a"); link.href = url; link.download = document.originalFilename; link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (e) { fail(e instanceof Error ? e.message : "No se pudo descargar."); }
+    finally { setBusy(""); }
   }
   async function process(document: Document) {
     setBusy(document.documentId); setError(""); setNotice("");
@@ -105,7 +120,7 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
       return <li key={document.documentId}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
         <p className="document-status" role="status">{labels[document.status]}{expired ? " · El trabajo se interrumpió; puedes reintentar." : ""}</p>
         {document.status === "FAILED" && <p className="notice error">{errors[document.errorCode ?? ""] ?? "No se pudo extraer el texto. El original se conserva y puedes reintentar."}</p>}
-        <div className="actions"><a className="button secondary" href={`/api/files/documents/${document.documentId}/download`}>Descargar<span className="sr-only"> {document.originalFilename}</span></a>
+        <div className="actions"><button type="button" className="button secondary" disabled={!!busy} onClick={() => download(document)}>Descargar<span className="sr-only"> {document.originalFilename}</span></button>
           {!archived && (document.status === "UPLOADED" || document.status === "FAILED" || expired) && <button className="button secondary" disabled={!!busy} onClick={() => void process(document)}>{busy === document.documentId ? "Solicitando…" : document.status === "UPLOADED" ? "Procesar" : "Reintentar procesamiento"}</button>}
           {document.status === "READY" && <button className="button secondary" disabled={!!busy} aria-expanded={preview?.id === document.documentId} onClick={() => void showText(document)}>{preview?.id === document.documentId ? "Ocultar texto" : "Ver texto"}</button>}</div>
         {preview?.id === document.documentId && <div className="document-preview" role="region" tabIndex={0} aria-label={`Texto de ${document.originalFilename}`}>

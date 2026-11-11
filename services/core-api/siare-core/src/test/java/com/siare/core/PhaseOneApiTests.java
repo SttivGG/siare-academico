@@ -32,7 +32,7 @@ class PhaseOneApiTests {
     @Autowired java.security.KeyPair keys;
     private static final String PASSWORD = "Una clave segura 123!";
 
-    @BeforeEach void cleanTestDatabase() { subjects.deleteAll(); users.deleteAll(); }
+    @BeforeEach void cleanTestDatabase() { subjects.deleteAll(); users.deleteAll(); jdbc.update("DELETE FROM login_attempts"); }
 
     private String register(String email) throws Exception {
         return mvc.perform(post("/api/v1/auth/register").contentType(MediaType.APPLICATION_JSON)
@@ -57,13 +57,13 @@ class PhaseOneApiTests {
         return mapper.readTree(response).get("id").asText();
     }
 
-    @Test void registrationNormalizesEmailAndStoresBcryptOnly() throws Exception {
+    @Test void registrationNormalizesEmailAndStoresArgon2idOnly() throws Exception {
         var response = register("  ANA@Example.COM  ");
         assertThat(mapper.readTree(response).get("email").asText()).isEqualTo("ana@example.com");
         UUID.fromString(mapper.readTree(response).get("id").asText());
         assertThat(users.count()).isEqualTo(1);
         var stored = jdbc.queryForObject("SELECT password_hash FROM users WHERE email = ?", String.class, "ana@example.com");
-        assertThat(stored != null && stored.startsWith("$2a$12$")).isTrue();
+        assertThat(stored != null && stored.startsWith("$argon2id$")).isTrue();
         assertThat(PASSWORD.equals(stored)).isFalse();
         assertThat(passwords.matches(PASSWORD, stored)).isTrue();
         assertThat(login("ana@example.com")).isNotBlank();
@@ -81,10 +81,10 @@ class PhaseOneApiTests {
                     .andExpect(status().isBadRequest()).andExpect(jsonPath("$.status").value(400));
         }
     }
-    @Test void bcryptByteLimitRejectsMultibytePasswords() throws Exception {
+    @Test void longMultibytePassphrasesAreAccepted() throws Exception {
         mvc.perform(post("/api/v1/auth/register").contentType(MediaType.APPLICATION_JSON)
-                .content(mapper.writeValueAsString(new Credentials("Ana", "ana@example.com", "é".repeat(40)))))
-                .andExpect(status().isBadRequest());
+                .content(mapper.writeValueAsString(new Credentials("Ana", "ana@example.com", "Una frase larga con Unicode é".repeat(4)))))
+                .andExpect(status().isCreated());
     }
     @Test void loginAndMeUseRealSignedToken() throws Exception {
         var token = account("ana@example.com");
@@ -110,6 +110,7 @@ class PhaseOneApiTests {
     @Test void invalidExpiredWrongIssuerMissingExpiryAndTamperedTokensAreRejected() throws Exception {
         var now = Instant.now();
         var valid = account("ana@example.com");
+        var legacy = signed("siare-core", now, now.plusSeconds(300), jdbc.queryForObject("SELECT id FROM users WHERE email=?", String.class, "ana@example.com"));
         var expired = signed("siare-core", now.minusSeconds(300), now.minusSeconds(120), UUID.randomUUID().toString());
         var wrongIssuer = signed("untrusted", now, now.plusSeconds(300), UUID.randomUUID().toString());
         var missingExpiry = signed("siare-core", now, null, UUID.randomUUID().toString());
@@ -117,13 +118,13 @@ class PhaseOneApiTests {
         var parts = valid.split("\\.");
         var tampered = parts[0] + "." + parts[1] + "." + (parts[2].startsWith("A") ? "B" : "A") + parts[2].substring(1);
         var unsigned = "eyJhbGciOiJub25lIn0." + parts[1] + ".";
-        for (var token : new String[]{"invalid", expired, wrongIssuer, missingExpiry, badSubject, tampered, unsigned}) {
+        for (var token : new String[]{"invalid", expired, wrongIssuer, missingExpiry, badSubject, tampered, unsigned, legacy}) {
             mvc.perform(get("/api/v1/users/me").header("Authorization", "Bearer " + token))
                     .andExpect(status().isUnauthorized());
         }
     }
     private String signed(String issuer, Instant issued, Instant expiry, String subject) {
-        var claims = JwtClaimsSet.builder().issuer(issuer).subject(subject).issuedAt(issued);
+        var claims = JwtClaimsSet.builder().issuer(issuer).subject(subject).issuedAt(issued).id(UUID.randomUUID().toString());
         if (expiry != null) claims.expiresAt(expiry);
         return encoder.encode(JwtEncoderParameters.from(JwsHeader.with(SignatureAlgorithm.RS256).build(), claims.build())).getTokenValue();
     }

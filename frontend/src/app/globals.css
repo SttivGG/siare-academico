@@ -63,6 +63,9 @@ h3 { font-size: 1.05rem; font-weight: 600; }
 .section-intro { margin-top: 12px; margin-bottom: 28px; }
 .form-stack { display: grid; gap: 24px; }
 .field { display: grid; gap: 8px; }
+.sessions-list { list-style: none; padding: 0; display: grid; gap: 20px; margin-top: 24px; }
+.identity-id { overflow-wrap: anywhere; }
+input[type="checkbox"] { width: 20px; min-height: 20px; margin: 12px; vertical-align: middle; }
 .field label { font-size: .9375rem; font-weight: 600; }
 input, textarea, select { min-height: 46px; width: 100%; border: 1px solid #8d9b8f; border-radius: 7px; background: var(--surface); padding: 10px 12px; color: var(--color-foreground); }
 textarea { resize: vertical; }
@@ -155,3 +158,11 @@ progress { width: 100%; accent-color: var(--accent); }
   .list-toolbar > span { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+.recovery-shell { min-height: 100dvh; display: grid; place-items: center; padding: 1.5rem; }
+.recovery-shell .auth-card { width: 100%; max-width: 40rem; }
+.security-panel { max-width: 44rem; }
+.mfa-enrollment canvas { display: block; max-width: 100%; margin: 1.5rem auto; }
+.mfa-enrollment input { font-family: monospace; }
+.recovery-codes { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .75rem; padding-left: 1.5rem; }
+.recovery-codes code { overflow-wrap: anywhere; user-select: all; }
+.security-actions { border-top: 1px solid var(--line, #d7dfdb); padding-top: 1.5rem; margin-top: 1.5rem; }

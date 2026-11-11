@@ -19,8 +19,8 @@ export function AuthForm({ register = false }: { register?: boolean }) {
     try {
       const body = { email: String(form.get("email")), password: String(form.get("password")),
         ...(register ? { name: String(form.get("name")) } : {}) };
-      await api(`auth/${register ? "register" : "login"}`, "POST", body);
-      router.replace(register ? "/login?registro=1" : "/inicio");
+      const result = await api<{ mfaRequired?: boolean; enrollmentRequired?: boolean }>(`auth/${register ? "register" : "login"}`, "POST", body);
+      router.replace(register ? "/login?registro=1" : result.mfaRequired ? `/login/mfa${result.enrollmentRequired ? "?configurar=1" : ""}` : "/inicio");
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo continuar.");
@@ -38,9 +38,10 @@ export function AuthForm({ register = false }: { register?: boolean }) {
       {fields.email && <span id="email-error" className="field-error">{fields.email}</span>}</div>
     <div className="field"><label htmlFor="password">Contraseña</label>
       <input id="password" name="password" type="password" autoComplete={register ? "new-password" : "current-password"}
-        required minLength={register ? 10 : 1} maxLength={72} aria-invalid={!!fields.password} aria-describedby="password-help" />
-      <span id="password-help" className={fields.password ? "field-error" : "hint"}>{fields.password ?? (register ? "Al menos 10 caracteres. Máximo 72 bytes (algunos símbolos ocupan más de uno)." : "Usa la contraseña de tu cuenta SIARE.")}</span></div>
+        required minLength={register ? 15 : 1} maxLength={2048} aria-invalid={!!fields.password} aria-describedby="password-help" />
+      <span id="password-help" className={fields.password ? "field-error" : "hint"}>{fields.password ?? (register ? "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes." : "Usa la contraseña de tu cuenta SIARE.")}</span></div>
     <button className="button primary full" disabled={pending} type="submit">{pending ? "Un momento…" : register ? "Crear cuenta" : "Iniciar sesión"}</button>
     <p className="muted">{register ? "¿Ya tienes una cuenta?" : "¿Es tu primera visita?"} <Link href={register ? "/login" : "/registro"}>{register ? "Inicia sesión" : "Crea tu cuenta"}</Link></p>
+    {!register && <Link href="/recuperar">Olvidé mi contraseña</Link>}
   </form>;
 }

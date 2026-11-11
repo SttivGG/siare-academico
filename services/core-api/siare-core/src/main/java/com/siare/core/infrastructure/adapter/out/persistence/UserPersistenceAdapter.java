@@ -10,11 +10,17 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserPersistenceAdapter implements UserRepository {
     private final JpaUsers users;
-    public UserPersistenceAdapter(JpaUsers users) { this.users = users; }
+    private final org.springframework.jdbc.core.JdbcTemplate db;
+    public UserPersistenceAdapter(JpaUsers users, org.springframework.jdbc.core.JdbcTemplate db) { this.users = users; this.db=db; }
     @Override public Optional<User> findByEmail(String email) { return users.findByEmail(email).map(UserEntity::toDomain); }
     @Override public Optional<User> findById(UUID id) { return users.findById(id).map(UserEntity::toDomain); }
-    @Override public User save(User user) {
-        try { return users.saveAndFlush(new UserEntity(user)).toDomain(); }
+    @Override @org.springframework.transaction.annotation.Transactional public User save(User user) {
+        try {
+            var saved=users.saveAndFlush(new UserEntity(user)).toDomain();
+            db.update("INSERT INTO user_access(user_id,scope_id) SELECT ?,? WHERE NOT EXISTS (SELECT 1 FROM user_access WHERE user_id=?)",
+                    user.id().toString(),com.siare.core.domain.identity.AdministrativeScope.COMMUNITY.toString(),user.id().toString());
+            return saved;
+        }
         catch (DataIntegrityViolationException ex) {
             // The unique constraint is authoritative even for concurrent registrations.
             throw new BusinessException(BusinessException.Kind.DUPLICATE_EMAIL, "Ya existe una cuenta con ese correo.");

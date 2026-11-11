@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { api } from "../lib/api";
 
-export function StudentNav() {
+export function StudentNav({ role = "USER" }: { role?: string }) {
   const pathname = usePathname();
   const router = useRouter();
   const [pending, setPending] = useState(false);
@@ -20,6 +20,9 @@ export function StudentNav() {
     <Link className="brand" href="/inicio">SIARE<span className="brand-caption">Mi espacio de aprendizaje</span></Link>
     <div className="nav-links"><Link href="/inicio" aria-current={pathname === "/inicio" ? "page" : undefined}>Inicio</Link>
       <Link href="/materias" aria-current={pathname.startsWith("/materias") ? "page" : undefined}>Mis materias</Link>
+      <Link href="/sesiones" aria-current={pathname === "/sesiones" ? "page" : undefined}>Sesiones</Link>
+      <Link href="/seguridad" aria-current={pathname === "/seguridad" ? "page" : undefined}>Seguridad</Link>
+      {role !== "USER" && <Link href="/administracion" aria-current={pathname === "/administracion" ? "page" : undefined}>Administración</Link>}
       <button type="button" className="button subtle" onClick={logout} disabled={pending}>{pending ? "Cerrando…" : "Cerrar sesión"}</button></div>
   </nav>{error && <p role="alert" className="notice error">{error}</p>}</>;
 }
