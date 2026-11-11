@@ -9,7 +9,7 @@ $sql = 'SELECT COUNT(*) FROM flyway_schema_history WHERE version = ''1'' AND suc
 $probe = @'
 MYSQL_PWD="$MYSQL_PASSWORD" exec mysql --protocol=TCP -h127.0.0.1 -u"$MYSQL_USER" -D"$MYSQL_DATABASE" --batch --skip-column-names
 '@
-$schema = @($sql | & docker compose --project-name $script:SiareProject --project-directory $script:SiareRoot --env-file $script:SiareEnv --file (Join-Path $script:SiareRoot 'compose.yaml') exec -T mysql sh -ec $probe)
+$schema = @($sql | & docker compose @script:SiareComposeArgs exec -T mysql sh -ec $probe)
 if ($LASTEXITCODE -ne 0) { throw 'No se pudo consultar el esquema MySQL.' }
 if ($schema.Count -ne 2 -or $schema[0] -ne '1' -or $schema[1] -ne '0') { throw 'La migracion V1 o el almacenamiento BCrypt no son correctos.' }
 Write-Host 'OK: Flyway V1 aplicada en MySQL y contrasenas almacenadas con BCrypt (sin mostrar hashes).'
