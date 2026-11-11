@@ -5,8 +5,12 @@ param([ValidateRange(120, 3600)][int]$WaitTimeout = 900, [switch]$SkipBuild)
 . (Join-Path $PSScriptRoot 'Common.ps1')
 Assert-SiareDocker
 Assert-SiareOwnership
+Assert-SiareReadyForSplit
+Assert-SiareExclusiveVolumes
+& (Join-Path $PSScriptRoot 'Initialize-H1.ps1')
+& (Join-Path $PSScriptRoot 'Initialize-SiareInfrastructure.ps1')
 & (Join-Path $PSScriptRoot 'Initialize-SiareKeys.ps1')
-Invoke-SiareCompose config --quiet
+Test-SiareComposeFiles
 
 # Existing SIARE containers may already own these ports; unrelated listeners must not be stopped.
 $existing = @(Invoke-SiareCompose ps --status running --quiet)
@@ -27,6 +31,7 @@ try {
             Invoke-SiareCompose build $service
         }
     }
-    Invoke-SiareCompose up --detach --wait --wait-timeout $WaitTimeout
+    Invoke-SiareCompose up --detach --wait --wait-timeout $WaitTimeout @script:SiareDataServices
+    Invoke-SiareCompose up --detach --wait --wait-timeout $WaitTimeout @script:SiareAppServices
 } finally { $env:COMPOSE_PARALLEL_LIMIT = $previousLimit }
 & (Join-Path $PSScriptRoot 'Test-Siare.ps1')

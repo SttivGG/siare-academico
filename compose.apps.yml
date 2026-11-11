@@ -1,0 +1,130 @@
+name: ${COMPOSE_PROJECT_NAME:-siare-academico}
+
+x-common: &common
+  restart: unless-stopped
+  labels:
+    io.siare.instance: ${SIARE_INSTANCE_ID:?Run scripts/Initialize-Siare.ps1}
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+services:
+  core-api:
+    <<: *common
+    image: ${COMPOSE_PROJECT_NAME:-siare-academico}-core-api:0.1.0
+    build:
+      context: ./services/core-api/siare-core
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Required}
+      MYSQL_USER: ${MYSQL_USER:?Required}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Required}
+      MONGO_DATABASE: ${MONGO_DATABASE:?Required}
+      MONGO_USER: ${MONGO_USER:?Required}
+      MONGO_PASSWORD: ${MONGO_PASSWORD:?Required}
+      JAVA_TOOL_OPTIONS: -Xms128m -Xmx384m -XX:MaxMetaspaceSize=192m -XX:ActiveProcessorCount=2
+      JWT_ISSUER: ${JWT_ISSUER:-siare-core}
+      JWT_TTL: ${JWT_TTL:-PT30M}
+      CONTENT_SERVICE_TOKEN: ${CONTENT_SERVICE_TOKEN:?Run scripts/Initialize-Phase2.ps1}
+      DOCUMENT_MAX_BYTES: ${DOCUMENT_MAX_BYTES:-15728640}
+      DOCUMENT_REQUEST_MAX_BYTES: ${DOCUMENT_REQUEST_MAX_BYTES:-15859712}
+    volumes:
+      - jwt-keys:/run/siare-keys:ro
+    ports:
+      - "127.0.0.1:8180:8080"
+    networks: [edge, data]
+    mem_limit: 768m
+    cpus: 1.5
+    stop_grace_period: 30s
+    healthcheck:
+      test: ["CMD", "java", "-Xms8m", "-Xmx32m", "-XX:MaxMetaspaceSize=48m", "-XX:+UseSerialGC", "-cp", "/opt/health", "Healthcheck"]
+      interval: 30s
+      timeout: 20s
+      retries: 8
+      start_period: 90s
+
+  content-ai:
+    <<: *common
+    image: ${COMPOSE_PROJECT_NAME:-siare-academico}-content-ai:0.1.0
+    build:
+      context: ./services/content-ai
+    environment:
+      MONGO_DATABASE: ${MONGO_DATABASE:?Required}
+      MONGO_USER: ${MONGO_USER:?Required}
+      MONGO_PASSWORD: ${MONGO_PASSWORD:?Required}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
+      CONTENT_SERVICE_TOKEN: ${CONTENT_SERVICE_TOKEN:?Run scripts/Initialize-Phase2.ps1}
+      DOCUMENT_MAX_BYTES: ${DOCUMENT_MAX_BYTES:-15728640}
+      OMP_THREAD_LIMIT: "1"
+    networks: [data]
+    mem_limit: 256m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health',timeout=8).close()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  progress-api:
+    <<: *common
+    image: ${COMPOSE_PROJECT_NAME:-siare-academico}-progress-api:0.1.0
+    build:
+      context: ./services/progress-api
+    environment:
+      CLICKHOUSE_URL: http://clickhouse:8123
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:?Required}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?Required}
+      CLICKHOUSE_DB: ${CLICKHOUSE_DB:-siare_analytics}
+      CASSANDRA_HOST: cassandra
+      CASSANDRA_DATACENTER: datacenter1
+      NODE_OPTIONS: --max-old-space-size=128
+    networks: [data]
+    mem_limit: 256m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health',{signal:AbortSignal.timeout(8000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    <<: *common
+    image: ${COMPOSE_PROJECT_NAME:-siare-academico}-frontend:0.1.0
+    build:
+      context: ./frontend
+    environment:
+      CORE_API_URL: http://core-api:8080
+      NODE_OPTIONS: --max-old-space-size=256
+      APP_ORIGIN: ${APP_ORIGIN:-http://127.0.0.1:3100}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
+      DOCUMENT_MAX_BYTES: ${DOCUMENT_MAX_BYTES:-15728640}
+      DOCUMENT_REQUEST_MAX_BYTES: ${DOCUMENT_REQUEST_MAX_BYTES:-15859712}
+    ports:
+      - "127.0.0.1:3100:3000"
+    networks: [edge]
+    mem_limit: 384m
+    cpus: 1.0
+    depends_on:
+      core-api: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health',{signal:AbortSignal.timeout(8000)}).then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+networks:
+  data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_data
+  edge:
+    labels:
+      io.siare.instance: ${SIARE_INSTANCE_ID:?Required}
+
+volumes:
+  jwt-keys:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_jwt-keys

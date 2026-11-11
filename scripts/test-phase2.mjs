@@ -1,12 +1,10 @@
 import assert from "node:assert/strict";
 import { randomUUID, createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
-import { execFileSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { compose } from "./compose-command.mjs";
 import { setTimeout } from "node:timers/promises";
 import { Readable } from "node:stream";
 
-const root = fileURLToPath(new URL("../", import.meta.url));
 const core = "http://127.0.0.1:8180/api/v1/";
 const frontend = "http://127.0.0.1:3100";
 const bff = frontend + "/api/bff/";
@@ -14,11 +12,10 @@ const browser = { Origin: frontend, "X-SIARE-CSRF": "1", "Sec-Fetch-Site": "same
 const password = `Synthetic-${randomUUID()}`;
 const email = `phase2-${randomUUID()}@example.test`;
 let checks = 0;
-function compose(...args) { execFileSync("docker", ["compose", "--project-directory", root, ...args], { cwd: root, stdio: "inherit", timeout: 950_000 }); }
 async function request(base, path, { method = "GET", body, token, headers = {}, expected = 200, duplex } = {}) {
   const response = await fetch(base + path, { method, redirect: "manual", signal: AbortSignal.timeout(60_000),
     headers: { Connection: "close", ...(token ? { Authorization: `Bearer ${token}` } : {}), ...headers }, body,
-    ...(duplex ? { duplex } : {}) });
+    ...(duplex ? { duplex } : {}) }).catch(error => { throw new Error(`${method} ${base}${path}: transport failure`, { cause: error }); });
   assert.equal(response.status, expected, `${method} ${path}: ${response.status}; ${response.status === expected ? "" : await response.text()}`);
   checks++;
   return response;

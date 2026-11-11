@@ -88,3 +88,19 @@ Las imágenes externas se fijaron por versión y digest del manifiesto multi-pla
 - [pypdf: extracción de texto](https://github.com/py-pdf/pypdf/blob/main/docs/user/extract-text.md).
 - [python-docx: texto](https://python-docx.readthedocs.io/en/latest/user/text.html) y [python-pptx: cuadros de texto](https://python-pptx.readthedocs.io/en/stable/user/text.html).
 - [pytesseract: OCR, idioma y timeout](https://pypi.org/project/pytesseract/).
+
+
+## Infraestructura H1
+
+Los datos y las aplicaciones se definen en `compose.datos.yml` y `compose.apps.yml`.
+Los scripts cargan ambos con el mismo proyecto y esperan salud de los cinco motores
+antes de arrancar aplicaciones. Reutilizan la red `${COMPOSE_PROJECT_NAME}_data`,
+externa para Compose e interna para Docker, y declaran por nombre los volúmenes
+externos existentes, incluido RSA. Next/Spring conservan edge y los puertos locales.
+
+ClickHouse es un nodo OLAP independiente con MergeTree `academic_events`, volumen
+persistente, usuario/contraseña de entorno y consulta SQL de salud. Express recibe
+su configuración y una prueba operativa consulta SQL desde su runtime. No existe
+adaptador de negocio, ingesta, endpoint ni dashboard analítico en H1. La matriz de
+pendientes está en [PLAN_ENTREGA_2026_2.md](PLAN_ENTREGA_2026_2.md), y el procedimiento
+con respaldos y recuperación en [MIGRACION_H1.md](MIGRACION_H1.md).

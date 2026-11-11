@@ -1,5 +1,7 @@
 # Validación local de SIARE
 
+El estado posterior a la separación Compose y ClickHouse está en [H1_RESULTADOS.md](H1_RESULTADOS.md). Las secciones siguientes conservan las mediciones históricas de Fases 1 y 2.
+
 ## Fase 2: validación del 10 de noviembre de 2026
 
 El trabajo partió de `main` con el árbol limpio y continúa en `feature/fase2-documentos`, sin commit ni push. Se implementó el módulo documental y se conservaron los contratos Abstract Factory y las pruebas previas. [PHASE2.md](PHASE2.md) documenta los archivos, API, colecciones, configuración y procedimiento de prueba.

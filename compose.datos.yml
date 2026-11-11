@@ -1,0 +1,155 @@
+name: ${COMPOSE_PROJECT_NAME:-siare-academico}
+
+x-common: &common
+  restart: unless-stopped
+  labels:
+    io.siare.instance: ${SIARE_INSTANCE_ID:?Run scripts/Initialize-Siare.ps1}
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+
+services:
+  mysql:
+    <<: *common
+    image: mysql:8.4.13@sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:?Required}
+      MYSQL_USER: ${MYSQL_USER:?Required}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Required}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Required}
+    command: ["--innodb-buffer-pool-size=192M", "--max-connections=40", "--performance-schema=OFF"]
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks: [data]
+    mem_limit: 640m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=\"$$MYSQL_PASSWORD\" mysql --protocol=TCP -h127.0.0.1 -u\"$$MYSQL_USER\" -D\"$$MYSQL_DATABASE\" --connect-timeout=3 --batch --skip-column-names -e 'SELECT 1' | grep -qx 1"]
+      interval: 20s
+      timeout: 5s
+      retries: 10
+      start_period: 90s
+
+  mongo:
+    <<: *common
+    image: mongo:8.0.34@sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:?Required}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?Required}
+      MONGO_DATABASE: ${MONGO_DATABASE:?Required}
+      MONGO_USER: ${MONGO_USER:?Required}
+      MONGO_PASSWORD: ${MONGO_PASSWORD:?Required}
+    command: ["mongod", "--wiredTigerCacheSizeGB", "0.25", "--bind_ip_all"]
+    volumes:
+      - mongo-data:/data/db
+      - mongo-config:/data/configdb
+      - ./docker/mongo/10-app-user.js:/docker-entrypoint-initdb.d/10-app-user.js:ro
+    networks: [data]
+    mem_limit: 768m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "const d=db.getSiblingDB(process.env.MONGO_DATABASE); d.auth(process.env.MONGO_USER,process.env.MONGO_PASSWORD); if(d.runCommand({connectionStatus:1}).authInfo.authenticatedUsers.length!==1 || d.runCommand({ping:1}).ok!==1) quit(1)"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  cassandra:
+    <<: *common
+    image: cassandra:4.1.12@sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e
+    environment:
+      CASSANDRA_CLUSTER_NAME: SIARE-local
+      CASSANDRA_DC: datacenter1
+      CASSANDRA_RACK: rack1
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+      CASSANDRA_NUM_TOKENS: "16"
+      MAX_HEAP_SIZE: 768M
+      HEAP_NEWSIZE: 192M
+      JVM_EXTRA_OPTS: -XX:ActiveProcessorCount=2
+    entrypoint: ["bash", "/opt/siare/entrypoint.sh"]
+    command: ["cassandra", "-f"]
+    volumes:
+      - cassandra-data:/var/lib/cassandra
+      - ./docker/cassandra/entrypoint.sh:/opt/siare/entrypoint.sh:ro
+    networks: [data]
+    mem_limit: 2560m
+    cpus: 2.0
+    stop_grace_period: 90s
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh 127.0.0.1 9042 --connect-timeout=5 --request-timeout=5 -e 'SELECT release_version FROM system.local;' | grep -q '4.1.12'"]
+      interval: 30s
+      timeout: 15s
+      retries: 15
+      start_period: 180s
+
+  redis:
+    <<: *common
+    image: redis:7.4.12-alpine@sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
+    command: ["sh", "-ec", "exec docker-entrypoint.sh redis-server --requirepass \"$$REDIS_PASSWORD\" --appendonly yes --maxmemory 96mb --maxmemory-policy allkeys-lru"]
+    volumes:
+      - redis-data:/data
+    networks: [data]
+    mem_limit: 192m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=\"$$REDIS_PASSWORD\" redis-cli --no-auth-warning ping | grep -qx PONG"]
+      interval: 20s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  clickhouse:
+    <<: *common
+    image: clickhouse/clickhouse-server:26.8.36.3@sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7
+    environment:
+      CLICKHOUSE_DB: ${CLICKHOUSE_DB:-siare_analytics}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER:?Required}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:?Required}
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: "0"
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./docker/clickhouse/limits.xml:/etc/clickhouse-server/config.d/siare.xml:ro
+      - ./docker/clickhouse/users.xml:/etc/clickhouse-server/users.d/siare.xml:ro
+      - ./docker/clickhouse/10-academic.sql:/opt/siare/10-academic.sql:ro
+      - ./docker/clickhouse/10-academic.sh:/docker-entrypoint-initdb.d/10-academic.sh:ro
+    networks: [data]
+    mem_limit: 1024m
+    cpus: 1.0
+    ulimits:
+      nofile: { soft: 65536, hard: 65536 }
+    stop_grace_period: 60s
+    healthcheck:
+      test: ["CMD-SHELL", "clickhouse-client --host 127.0.0.1 --user \"$$CLICKHOUSE_USER\" --password \"$$CLICKHOUSE_PASSWORD\" --database \"$$CLICKHOUSE_DB\" --query 'SELECT 1' | grep -qx 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
+
+networks:
+  data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_data
+
+volumes:
+  mysql-data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_mysql-data
+  mongo-data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_mongo-data
+  mongo-config:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_mongo-config
+  cassandra-data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_cassandra-data
+  redis-data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_redis-data
+  clickhouse-data:
+    external: true
+    name: ${COMPOSE_PROJECT_NAME:-siare-academico}_clickhouse-data

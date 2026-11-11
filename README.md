@@ -1,6 +1,6 @@
 # SIARE académico
 
-Sistema Inteligente de Aprendizaje y Refuerzo Educativo. La Fase 1 implementa registro, autenticación JWT RS256 y gestión de materias propias. La Fase 2 añade documentos por materia, originales en MongoDB GridFS y extracción interna con Flask. La interfaz usa Next.js y los usuarios/materias persisten en MySQL mediante Flyway. Consulta el estado de las comprobaciones en [VALIDATION.md](docs/VALIDATION.md).
+Sistema Inteligente de Aprendizaje y Refuerzo Educativo. La Fase 1 implementa registro, autenticación JWT RS256 y gestión de materias propias. La Fase 2 añade documentos por materia, originales en MongoDB GridFS y extracción interna con Flask. La interfaz usa Next.js y los usuarios/materias persisten en MySQL mediante Flyway. H1 separa datos/aplicaciones y prepara ClickHouse sin ingesta analítica todavía. Consulta [H1_RESULTADOS.md](docs/H1_RESULTADOS.md), la [migración y recuperación](docs/MIGRACION_H1.md) y el [plan de entrega](docs/PLAN_ENTREGA_2026_2.md).
 
 El proyecto Spring original permanece en `services/core-api/siare-core`; su `pom.xml` conserva Java 21 y Spring Boot 4.1.2. Los contratos Abstract Factory se mantienen intactos. Consulta la [guía de Fase 1 y API](docs/PHASE1.md) y los [resultados ejecutados](docs/VALIDATION.md).
 
@@ -30,10 +30,14 @@ Set-Location -LiteralPath 'D:\ITP\Septimo Semestre\Programación Avanzada\siare-
 docker version
 docker compose version
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Initialize-Siare.ps1
+# Solo para un proyecto NUEVO sin volúmenes previos:
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Initialize-SiareInfrastructure.ps1 -NewInstallation
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Start-Siare.ps1
 ```
 
-`Initialize-Siare.ps1` crea `.env` con cinco contraseñas aleatorias independientes y una identidad local. Si el archivo ya existe, lo conserva. `.env.example` deja los secretos vacíos; Compose rechaza su ausencia. No publiques `.env` ni la salida expandida de `docker compose config`, que contiene credenciales.
+Para una instalación existente de Fase 2 ejecuta `scripts/Migrate-Siare.ps1 -SkipBuild`: respalda antes de recrear. No uses `-NewInstallation` en ese caso.
+
+`Initialize-Siare.ps1` crea `.env` con contraseñas aleatorias independientes y una identidad local. Si el archivo ya existe, lo conserva. `.env.example` deja los secretos vacíos; Compose rechaza su ausencia. No publiques `.env` ni la salida expandida de `docker compose config`, que contiene credenciales.
 
 `Start-Siare.ps1` valida la configuración y la identidad de los recursos, construye los servicios de uno en uno, espera hasta 900 segundos por los healthchecks y ejecuta las verificaciones. No detiene procesos ajenos para liberar puertos. Para un arranque posterior con las mismas imágenes:
 
@@ -45,7 +49,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Start-Siare.ps1 -S
 
 Abre <http://127.0.0.1:3100>. La API principal expone `GET http://127.0.0.1:8180/health`. Ambos puertos se vinculan solo a `127.0.0.1`.
 
-El arranque también ejecuta `Initialize-SiareKeys.ps1`: genera una sola vez un par RSA de 3072 bits en el volumen `jwt-keys`, externo al repositorio, y conserva las claves en arranques posteriores. Spring lo monta en modo lectura. El script usa una imagen Node fijada y un contenedor temporal sin red; la composición conserva exactamente ocho servicios. No borres ese volumen: los tokens existentes dependen de esas claves.
+El arranque también ejecuta `Initialize-SiareKeys.ps1`: genera una sola vez un par RSA de 3072 bits en el volumen `jwt-keys`, externo al repositorio, y conserva las claves en arranques posteriores. Spring lo monta en modo lectura. El script usa una imagen Node fijada y un contenedor temporal sin red; la composición conserva exactamente nueve servicios. No borres ese volumen: los tokens existentes dependen de esas claves.
 
 ## Verificar y detener
 
@@ -53,17 +57,17 @@ El arranque también ejecuta `Initialize-SiareKeys.ps1`: genera una sola vez un 
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Siare.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase1.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase2.ps1 -SimulatePythonOutage -RestartContainers
-# Opcional: prueba de persistencia que reinicia exclusivamente los ocho contenedores SIARE.
+# Opcional: prueba de persistencia que reinicia exclusivamente los nueve contenedores SIARE.
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase1.ps1 -RestartContainers
-docker compose --env-file .env config --quiet
-docker compose --env-file .env ps
-docker compose --env-file .env logs --tail 80 core-api content-ai progress-api frontend
+docker compose -f compose.datos.yml -f compose.apps.yml --env-file .env config --quiet
+docker compose -f compose.datos.yml -f compose.apps.yml --env-file .env ps
+docker compose -f compose.datos.yml -f compose.apps.yml --env-file .env logs --tail 80 core-api content-ai progress-api frontend
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Stop-Siare.ps1
 ```
 
-`Test-Siare.ps1` exige los ocho servicios `healthy`, vuelve a ejecutar las consultas de las cuatro bases de datos, consulta los tres backends y comprueba tanto la página como `frontend -> servidor Next.js -> Spring`. También revisa que solo estén publicados los puertos 3100 y 8180 en loopback. `Test-Phase1.ps1` necesita Node.js 24 en el host y crea cuentas sintéticas `@example.test` para comprobar la API, el BFF y CSRF, sin eliminar datos. Un fallo termina el script con error.
+`Test-Siare.ps1` exige los nueve servicios `healthy`, vuelve a ejecutar las consultas de los cinco motores de datos, consulta los tres backends y comprueba tanto la página como `frontend -> servidor Next.js -> Spring`. También revisa que solo estén publicados los puertos 3100 y 8180 en loopback. `Test-Phase1.ps1` necesita Node.js 24 en el host y crea cuentas sintéticas `@example.test` para comprobar la API, el BFF y CSRF, sin eliminar datos. Un fallo termina el script con error.
 
-Para retirar exclusivamente los contenedores y las redes de esta instancia, conservando todos sus volúmenes:
+Para retirar exclusivamente los contenedores de esta instancia, conservando todos sus volúmenes:
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Stop-Siare.ps1 -RemoveContainers
@@ -73,7 +77,7 @@ No ejecutes `docker compose down -v`, `docker system prune` ni comandos globales
 
 ## Servicios y versiones
 
-Las imágenes externas tienen versión completa y digest SHA-256 en los Dockerfiles y en `compose.yaml`. npm conserva archivos `package-lock.json` para `npm ci`; Python usa `requirements.lock` con las dependencias transitivas fijadas. Las dependencias Maven las gestiona el BOM del proyecto existente.
+Las imágenes externas tienen versión completa y digest SHA-256 en los Dockerfiles y en `compose.datos.yml` y `compose.apps.yml`. npm conserva archivos `package-lock.json` para `npm ci`; Python usa `requirements.lock` con las dependencias transitivas fijadas. Las dependencias Maven las gestiona el BOM del proyecto existente.
 
 | Servicio DNS | Tecnología fijada | Puerto interno | Acceso desde Windows |
 | --- | --- | --- | --- |
@@ -85,16 +89,19 @@ Las imágenes externas tienen versión completa y digest SHA-256 en los Dockerfi
 | `mongo` | MongoDB 8.0.34 | 27017 | Sin publicación |
 | `cassandra` | Cassandra 4.1.12 | 9042 | Sin publicación |
 | `redis` | Redis 7.4.12 | 6379 | Sin publicación |
+| `clickhouse` | ClickHouse 26.8.36.3 LTS | 8123 HTTP, 9000 nativo | Sin publicación |
 
 Dentro de Docker se usan los nombres DNS de la tabla. `localhost` dentro de un contenedor identifica ese contenedor, no Windows ni otra base de datos. `CORE_API_URL=http://core-api:8080` se utiliza únicamente en el servidor Next.js, sin prefijo `NEXT_PUBLIC_` y sin CORS abierto.
 
-La red `data` es interna y aloja las bases de datos, Flask, Express y Spring. La red `edge` conecta Next.js con Spring y permite publicar sus dos puertos. Los volúmenes `mysql-data`, `mongo-data`, `mongo-config`, `cassandra-data`, `redis-data` y `jwt-keys` pertenecen al proyecto, sin directorios de datos de Windows o WSL montados.
+La red `data` es externa compartida entre ambos Compose e interna para Docker; el inicializador la crea solo cuando falta. Aloja las bases de datos, Flask, Express y Spring. La red `edge` conecta Next.js con Spring y permite publicar sus dos puertos. Los volúmenes `mysql-data`, `mongo-data`, `mongo-config`, `cassandra-data`, `redis-data`, `jwt-keys` y `clickhouse-data` se declaran externos con nombre explícito y etiquetas del proyecto, sin directorios de datos de Windows o WSL montados.
 
 ## Estructura
 
 ```text
 siare-academico/
-  compose.yaml
+  compose.datos.yml
+  compose.apps.yml
+  compose.yaml                 # guarda: rechaza arranque automático
   .env.example
   .gitignore
   .gitattributes

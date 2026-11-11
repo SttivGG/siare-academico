@@ -1,9 +1,7 @@
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
-import { execFileSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { compose } from "./compose-command.mjs";
 
-const root = fileURLToPath(new URL("../", import.meta.url));
 const core = "http://127.0.0.1:8180/api/v1/";
 const frontend = "http://127.0.0.1:3100";
 const password = `Prueba-${randomBytes(18).toString("hex")}`;
@@ -86,9 +84,9 @@ assert.match(await html.text(), /Hola,/);
 assert.equal((await json(await request(bff, "subjects", "GET", undefined, null, 200, session)))[0].id, bffSubject.id);
 
 if (process.argv.includes("--restart")) {
-  console.log("Reiniciando exclusivamente los ocho contenedores de esta composición; se conservan sus volúmenes.");
-  execFileSync("docker", ["compose", "--project-directory", root, "restart"], { cwd: root, stdio: "inherit", timeout: 300000 });
-  execFileSync("docker", ["compose", "--project-directory", root, "up", "--detach", "--wait", "--wait-timeout", "900"], { cwd: root, stdio: "inherit", timeout: 960000 });
+  console.log("Reiniciando exclusivamente los nueve contenedores de esta composición; se conservan sus volúmenes.");
+  compose("restart");
+  compose("up", "--detach", "--wait", "--wait-timeout", "900");
   // A token issued before restart must still pass RSA verification afterwards.
   assert.equal((await json(await request(core, "users/me", "GET", undefined, token))).id, user.id);
   const persisted = await json(await request(core, `subjects/${subject.id}`, "GET", undefined, token));
@@ -96,7 +94,7 @@ if (process.argv.includes("--restart")) {
   assert.equal(persisted.name, "Materia actualizada");
   assert.equal(persisted.description, null);
   assert.equal((await json(await request(bff, `subjects/${bffSubject.id}`, "GET", undefined, null, 200, session))).id, bffSubject.id);
-  console.log("OK: usuarios, materias, archivo, sesión BFF y firma RSA persisten tras reiniciar los ocho contenedores.");
+  console.log("OK: usuarios, materias, archivo, sesión BFF y firma RSA persisten tras reiniciar los nueve contenedores.");
 }
 const logout = await request(bff, "auth/logout", "POST", {}, null, 200, session);
 assert.ok(/Max-Age=0/i.test(logout.headers.get("set-cookie") ?? ""), "Logout must clear the session cookie");

@@ -3,7 +3,7 @@ param([switch]$RestartContainers, [switch]$SimulatePythonOutage)
 . (Join-Path $PSScriptRoot 'Common.ps1')
 Assert-SiareDocker
 Assert-SiareOwnership
-Invoke-SiareCompose config --quiet
+Test-SiareComposeFiles
 Invoke-SiareCompose exec -T content-ai python tests/fixture_factory.py /tmp/siare-phase2-fixtures
 $fixtures = Join-Path $script:SiareRoot '.cache/phase2-fixtures'
 New-Item -ItemType Directory -Path $fixtures -Force | Out-Null
