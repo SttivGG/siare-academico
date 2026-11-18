@@ -4,9 +4,10 @@ param()
 . (Join-Path $PSScriptRoot 'Common.ps1')
 Assert-SiareDocker
 Assert-SiareOwnership
-Invoke-SiareCompose config --quiet
+Test-SiareComposeFiles
+Assert-SiareExclusiveVolumes
 
-$expected = @('mysql', 'mongo', 'cassandra', 'redis', 'core-api', 'content-ai', 'progress-api', 'frontend')
+$expected = @($script:SiareDataServices + $script:SiareAppServices)
 foreach ($service in $expected) {
     $id = Invoke-SiareCompose ps --quiet $service
     if (!$id) { throw "Servicio ausente: $service" }
@@ -16,7 +17,7 @@ foreach ($service in $expected) {
 }
 
 # Re-run each real DB healthcheck, without printing credentials.
-foreach ($service in @('mysql', 'mongo', 'cassandra', 'redis')) {
+foreach ($service in $script:SiareDataServices) {
     $id = Invoke-SiareCompose ps --quiet $service
     $probeJson = & docker inspect --format '{{json .Config.Healthcheck.Test}}' $id
     if ($LASTEXITCODE -ne 0) { throw "No se pudo obtener el healthcheck: $service" }
@@ -53,4 +54,5 @@ foreach ($service in $expected) {
         }
     }
 }
-Write-Host 'OK: tres backends, cuatro bases de datos, puertos y frontend -> Spring.'
+& (Join-Path $PSScriptRoot 'Test-ClickHouse.ps1')
+Write-Host 'OK: tres backends, cinco motores de datos, puertos y frontend -> Spring.'

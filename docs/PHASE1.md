@@ -70,7 +70,7 @@ El BFF aplica cookies HttpOnly y SameSite=Lax. Las mutaciones requieren origen e
 Desde la raíz:
 
 ```powershell
-docker compose config --quiet
+docker compose -f compose.datos.yml -f compose.apps.yml config --quiet
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase1.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Test-Phase1.ps1 -RestartContainers
 ```
@@ -80,8 +80,8 @@ La segunda variante reinicia únicamente la composición SIARE y verifica con to
 Para compilar Java con JDK 21 y ejecutar las pruebas dentro de Docker:
 
 ```powershell
-docker compose build core-api
-docker compose build frontend
+docker compose -f compose.datos.yml -f compose.apps.yml build core-api
+docker compose -f compose.datos.yml -f compose.apps.yml build frontend
 ```
 
 El build del frontend ejecuta su suite, `next build` y `tsc --noEmit`. Para repetir el flujo de navegador en escritorio y móvil:

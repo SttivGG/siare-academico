@@ -1,5 +1,60 @@
 # Validación local de SIARE
 
+El estado posterior a la separación Compose y ClickHouse está en [H1_RESULTADOS.md](H1_RESULTADOS.md). Las secciones siguientes conservan las mediciones históricas de Fases 1 y 2.
+
+## Fase 2: validación del 10 de noviembre de 2026
+
+El trabajo partió de `main` con el árbol limpio y continúa en `feature/fase2-documentos`, sin commit ni push. Se implementó el módulo documental y se conservaron los contratos Abstract Factory y las pruebas previas. [PHASE2.md](PHASE2.md) documenta los archivos, API, colecciones, configuración y procedimiento de prueba.
+
+| Comprobación ejecutada | Resultado |
+| --- | --- |
+| Maven `clean verify` con Temurin JDK 21.0.13+9 portátil, y `verify` en Docker con Java 21 | 38 pruebas aprobadas en ambos entornos, cero fallos/errores/omisiones. Incluye las 18 de Fase 1. La reconstrucción final con la corrección DNS repitió las 38 en Docker. |
+| Python 3.12, `unittest discover -s tests -v` | Host: 12 aprobadas y OCR real omitido explícitamente. Docker: las 13 aprobadas, incluido Tesseract español en PNG, JPG y JPEG. |
+| Python `pip check` | Sin requisitos incompatibles. Dependencias directas y transitivas fijadas. |
+| Frontend `npm test` | 12 pruebas aprobadas: salud, cookie/CSRF, rutas documentales, formatos y límite de bytes reales. |
+| Next.js `npm run build` | Build aprobado, incluida `/api/files/[...path]`. |
+| Frontend `npm run typecheck` | Aprobado, incluidas las pruebas Playwright nuevas. |
+| Express `npm test` | Compilación TypeScript y tres pruebas aprobadas. |
+| `docker compose config --quiet` y `config --services` | Configuración válida; ocho servicios. Sin salida de secretos. |
+| Construcción y despliegue Docker | Cuatro imágenes construidas; aplicaciones sin root. Flask tiene Tesseract 5.3.0 con idioma `spa`; no publica puerto host. |
+| `Test-Phase2.ps1 -SimulatePythonOutage -RestartContainers` | 165 verificaciones HTTP aprobadas. Se usaron Spring, MySQL, MongoDB/GridFS y Flask reales. |
+| Recuperación y persistencia documental | Caída de Flask, original conservado y reintento exitoso; después, reinicio de los ocho contenedores con originales, texto, metadatos, JWT y cookie anteriores disponibles. |
+| `Test-Phase1.ps1` sobre las imágenes finales | 31 comprobaciones HTTP aprobadas, Flyway V1 y BCrypt correctos. |
+| `npm run test:e2e`, Playwright/Chromium | Seis pruebas aprobadas en 41,3 segundos: Fases 1 y 2 en 1440 px y 375 px, con movimiento reducido en móvil. |
+| `Test-Siare.ps1` y estado final | Ocho servicios `healthy`; consultas reales a las cuatro bases; backends, frontend y puertos correctos. |
+| Scripts PowerShell y script Node de Fase 2 | Parseo/sintaxis correctos. |
+| Frontera hexagonal | Sin imports Spring/MongoDB/Flask en dominio o aplicación. |
+
+Las pruebas Java documentales comprueban carga válida, rechazo de archivos vacíos, antiguos, corruptos, protegidos, MIME falso, nombres inseguros y tamaños excedidos; compensación de GridFS mediante el puerto; autorización en las seis rutas; materia archivada; descargas de adjunto; reserva, cola llena y reintento tras fallo. El adaptador HTTP se prueba contra un servidor HTTP local controlado: transmite bytes/credencial/operación, preserva `NO_EXTRACTABLE_TEXT` y rechaza respuestas excesivas, inválidas o de otra operación.
+
+Las pruebas Python ejecutan pypdf, python-docx y python-pptx sobre fixtures sintéticos, incluyendo tablas, PDF sin texto y protegido. También comprueban paquetes ZIP maliciosos, OCR vacío mediante una dependencia controlada, límite/timeout, y la API Flask con autenticación interna. Una prueba recorre el controlador Flask y su subproceso con un PDF real. El host omite OCR real porque no tiene Tesseract instalado; el build Linux sí lo ejecutó y aprobó.
+
+### Comprobaciones con servicios reales y recursos
+
+El flujo real comprobó los seis formatos, SHA-256 y bytes originales descargados desde GridFS, unidades de origen y consulta del texto guardado. Rechazó archivos vacíos, DOC/PPT antiguos, documentos corruptos/protegidos, MIME falso y tamaño excesivo. Verificó las seis rutas sin autenticación y el acceso de otro estudiante. El BFF rechazó cargas sin origen/CSRF y exceso de bytes tanto con `Content-Length` como con transferencia chunked sin esa cabecera; mantuvo los 16 KiB para JSON.
+
+La prueba detuvo exclusivamente Flask. Spring marcó el trabajo como fallido y siguió entregando el original; el reintento después de recuperar Flask terminó en `READY`. El reinicio posterior de la composición conservó tanto los documentos como las sesiones previas. Las materias archivadas mantuvieron consulta y descarga, y rechazaron carga y procesamiento. Se conservaron 20 metadatos sintéticos, 15 fragmentos de texto, 20 registros `fs.files` y 20 `fs.chunks`, incluidos los datos de la primera ejecución que detectó el fallo DNS. No se borraron datos.
+
+MongoDB confirmó el índice compuesto de propietario/materia/fecha, el de estado/vencimiento y el índice único de fragmentos por documento/operación/posición. Las descargas usaron adjunto y `nosniff`; el navegador mantuvo JWT en cookie HttpOnly. Playwright verificó carga, texto, descarga idéntica al PDF original y consulta tras archivar, además del flujo previo de registro/materias y CSRF. Se inspeccionaron las capturas de escritorio y móvil y no hubo desbordamiento horizontal.
+
+Antes del despliegue, Flask usaba 78,8 MiB sobre 256 MiB. Durante la extracción real, cgroup registró un pico de 204 107 776 bytes (194,65 MiB), con `oom=0`, `oom_kill=0` y límite de 268 435 456 bytes. Se mantuvieron los 256 MiB y todos los límites de los otros servicios. Esta medición usa fixtures pequeños y no dimensiona documentos en el límite ni carga concurrente.
+
+Después de las pruebas, `docker stats --no-stream` registró Spring 317 MiB, Flask 50,76 MiB, Next 71,21 MiB, Express 25,62 MiB, Redis 8,99 MiB, Cassandra 1,09 GiB, MongoDB 219,5 MiB y MySQL 208,7 MiB. Docker informó cuatro CPU y 6 216 531 968 bytes de RAM. Los ocho servicios quedaron saludables.
+
+Las evidencias están en `.cache/phase2-compose-build.log`, `.cache/phase2-core-recovery-build.log`, `.cache/phase2-live-validation.log`, `.cache/phase2-phase1-regression.log`, `.cache/phase2-browser-tests.log` y las capturas `phase2-documents-{desktop,mobile}.png`. Los fixtures se generan en `.cache/phase2-fixtures`. La credencial interna nueva quedó solo en `.env`, ignorado por Git; se conservaron las credenciales existentes. El JDK portátil se descargó de Eclipse Adoptium a `.cache/jdk21` y se verificó mediante SHA-256, sin cambiar Java globalmente.
+
+### Incidencias corregidas en las pruebas
+
+Se adaptó la inspección PDF a la API de PDFBox 3 (`getXrefTable`), se corrigió la comparación del tipo principal PPTX y se admitió exclusivamente el `.bin` de configuración de impresora presente en PPTX válidos. Se mantuvo el rechazo de macros, ActiveX y objetos incrustados. La prueba de timeout Python se ajustó para Windows, donde `os.killpg` no existe; el runtime Linux termina el grupo del parser y Tesseract.
+
+Docker se detuvo al principio con `WSL update required`. Cuando el usuario pidió volver a verificar, Docker ya estaba operativo; se continuó la validación completa. No se ejecutó `wsl --update`, `wsl --shutdown`, limpieza Docker ni borrado de volúmenes.
+
+La primera prueba real de recuperación detectó que el reintento inmediato no llegaba a Flask tras su arranque. Se ajustó la caché DNS de la JVM de Spring (negativa cero, positiva cinco segundos), se añadieron diagnósticos limitados a la clase del error y la repetición completa pasó. También se desactivó el socket administrativo Gunicorn que intentaba usar `/home/siare` y registraba un error de permisos.
+
+No quedan fallos conocidos en el flujo solicitado. No se ejecutó una prueba de carga ni una evaluación con lector de pantalla. El ejecutor no recupera automáticamente trabajos después de un reinicio: el usuario puede reintentarlos al vencer su reserva de 120 segundos. Una doble caída que también impida compensar GridFS puede dejar originales huérfanos; se documenta la necesidad de reconciliación. La fase no incorpora recolector automático, OCR de PDF escaneados ni reconocimiento de texto dentro de imágenes incrustadas en Office.
+
+---
+
 Fecha: 9 de noviembre de 2026, zona America/Bogota. Las horas UTC de los contenedores pueden mostrar el 10 de noviembre. Los comandos se ejecutaron dentro del repositorio local, sin commits, push, acceso a Google Drive ni borrado de volúmenes.
 
 ## Fase 1: resultado actual

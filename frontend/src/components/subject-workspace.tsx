@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { api, type Subject } from "../lib/api";
 import { SubjectForm } from "./subject-form";
+import { SubjectDocuments } from "./subject-documents";
 
 export function SubjectWorkspace({ id }: { id: string }) {
   const [subject, setSubject] = useState<Subject | null>(null);
@@ -29,9 +30,10 @@ export function SubjectWorkspace({ id }: { id: string }) {
     {error && <p className="notice error" role="alert">{error}</p>}
     <div className="workspace-grid"><section className="panel"><h2>Datos de la materia</h2><p className="muted section-intro">Mantén tu espacio organizado.</p>
       {subject.archived ? <p className="notice" role="status">Esta materia está archivada. Sus datos se conservan para que puedas consultarlos.</p> : <SubjectForm subject={subject} onSaved={setSubject} />}</section>
-      <aside className="panel quiet-panel"><span className="eyebrow">Próximas fases</span><h2>Tu aprendizaje empieza aquí</h2><p className="muted">Este espacio ya guarda los datos de tu materia. Los documentos y las actividades educativas estarán disponibles en una fase posterior.</p>
+      <aside className="panel quiet-panel"><span className="eyebrow">Tu espacio</span><h2>Material para aprender</h2><p className="muted">Añade documentos y consulta su texto. Las actividades educativas llegarán en una fase posterior.</p>
         {!subject.archived && <div className="archive-area"><h3>Archivar materia</h3><p className="muted">Dejará de aparecer entre las activas. Sus datos no se eliminarán.</p>
           {confirm ? <div className="confirm-box"><p>¿Quieres archivar «{subject.name}»?</p><div className="actions"><button className="button danger" disabled={pending} onClick={archive}>{pending ? "Archivando…" : "Confirmar archivo"}</button><button className="button secondary" disabled={pending} onClick={() => setConfirm(false)}>Cancelar</button></div></div>
             : <button className="button secondary" onClick={() => setConfirm(true)}>Archivar materia</button>}</div>}</aside></div>
+    <SubjectDocuments subjectId={id} archived={subject.archived} />
   </>;
 }

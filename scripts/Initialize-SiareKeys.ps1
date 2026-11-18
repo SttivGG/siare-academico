@@ -5,8 +5,7 @@ param()
 Assert-SiareDocker
 Assert-SiareOwnership
 $volume = "${script:SiareProject}_jwt-keys"
-& docker volume create --label "com.docker.compose.project=$script:SiareProject" --label 'com.docker.compose.volume=jwt-keys' --label "io.siare.instance=$script:SiareInstance" $volume | Out-Null
-if ($LASTEXITCODE -ne 0) { throw 'No se pudo preparar el volumen de claves RSA.' }
+Assert-SiareVolume $volume
 # Only this project's dedicated key volume is mounted. Keys never enter the repository or image.
 $generator = @'
 const fs = require('node:fs');
