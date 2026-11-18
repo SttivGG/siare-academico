@@ -9,8 +9,9 @@ modificar migraciones ni eliminar identidades o sesiones existentes.
 Configuración y callback: [H2B2_OIDC.md](H2B2_OIDC.md). Las pruebas de esta
 sustitución se registran en [H2B2_GITLAB_VALIDACION.md](H2B2_GITLAB_VALIDACION.md).
 GitLab ya tiene configuración local y arranque del flujo documentados en
-[H2B2_GITLAB_REAL.md](H2B2_GITLAB_REAL.md); el canje y los recorridos completos
-reales siguen pendientes. El estado de esta consolidación se registra en
+[H2B2_GITLAB_REAL.md](H2B2_GITLAB_REAL.md). El 18/11/2026 el usuario reportó
+validación manual exitosa de GitLab OIDC, sin desglose de subcasos ni artefactos
+adicionales. Se registra por separado de las pruebas automatizadas. La evidencia histórica de consolidación se registra en
 [CONSOLIDACION_MAIN.md](CONSOLIDACION_MAIN.md).
 
 ## Evidencia histórica de la entrega inicial

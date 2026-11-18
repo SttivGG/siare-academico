@@ -1,6 +1,15 @@
 # Colaboración en SIARE Académico
 
-La base compartida es `origin/main`. El compañero desarrolla la aplicación React Native en `mobile/`, con su propia cuenta GitHub. No se entrega una implementación móvil en esta consolidación.
+`main` es la rama oficial estable; la base compartida es `origin/main` actualizado. No se trabaja directamente sobre `main`. Los cuatro integrantes desarrollan en ramas independientes con su propia cuenta GitHub y respetan las [responsabilidades y carpetas](EQUIPO_ROLES.md).
+
+| Integrante | Rama futura | Área principal |
+| --- | --- | --- |
+| 1: líder técnico | `feature/core-actividades` | `frontend/`, `services/core-api/` |
+| 2: Android | `feature/mobile-react-native` | `mobile/` |
+| 3: aprendizaje adaptativo | `feature/ai-aprendizaje-adaptativo` | `services/content-ai/` |
+| 4: progreso y analítica | `feature/progress-analytics` | `services/progress-api/` |
+
+Cada integrante crea su rama desde el `main` actualizado cuando comience su desarrollo. El ejemplo siguiente es del integrante 2; los demás sustituyen rama, carpeta y mensaje por los de su módulo. Esta preparación solo publica documentación en `docs/organizacion-equipo-contratos`; no crea las cuatro ramas futuras ni implementa sus funcionalidades.
 
 ```powershell
 git clone https://github.com/SttivGG/siare-academico.git
@@ -19,7 +28,7 @@ Si ya tiene el repositorio, conserve primero sus cambios con commits en su rama.
 
 ## Pull requests y actualización
 
-Los PR se dirigen a `main`, describen problema, comportamiento, pruebas y pendientes. Requieren revisión de un compañero antes de fusionar. Priorizar merge commits para conservar trazabilidad académica y no borrar ramas. No usar force push ni desactivar protecciones de GitHub. La regla de revisión del equipo aplica aunque el repositorio no la imponga técnicamente.
+Los PR se dirigen a `main`, describen problema, comportamiento, pruebas y pendientes. Requieren revisión de un compañero antes de fusionar; el líder técnico revisa integraciones y consistencia visual. Sus propios cambios requieren revisión de otro integrante. Cada autor aporta pruebas y documentación de su módulo. Priorizar merge commits para conservar trazabilidad académica y no borrar ramas. No usar force push ni desactivar protecciones de GitHub. La regla de revisión del equipo aplica aunque el repositorio no la imponga técnicamente.
 
 Para incorporar avances compartidos en una rama con árbol limpio:
 
@@ -34,6 +43,8 @@ git push
 
 No elija `ours`/`theirs` globalmente. Preserve lógica de sesión, roles, MFA, materias y documentos y repita pruebas afectadas. Cambios backend del contrato móvil deben coordinarse en PR con su OpenAPI y documentación; no modificar migraciones Flyway ya aplicadas. Use una migración nueva y preserve datos, claves RSA/AES, nombres de volúmenes e identidad local.
 
+Antes de cambiar rutas, campos JSON, errores o autenticación, coordine con productor, consumidor y líder según [contratos del equipo](CONTRATOS_EQUIPO.md). Evite modificar archivos de otro integrante; cuando sea estrictamente necesario, acuerde el cambio y señálelo en el PR. Los cambios de infraestructura compartida requieren revisión del líder. No comparta `.env`, claves RSA/AES, tokens ni credenciales.
+
 ## Verificación antes de revisar
 
 - Lea [onboarding](ONBOARDING_MOBILE.md) y [contrato móvil](CONTRATO_API_MOBILE.md); distinga rutas entregadas de adaptaciones pendientes.
@@ -43,3 +54,5 @@ No elija `ours`/`theirs` globalmente. Preserve lógica de sesión, roles, MFA, m
 - Compruebe Android emulador y teléfono cuando exista el cliente. No acepte TLS inválido ni reutilice cookies del BFF. Documente pruebas controladas y externas por separado.
 
 Mantenga los commits a nombre de su autor real. Cada desarrollador aprovisiona sus secretos locales y usa su cuenta GitHub; no se comparten credenciales. Los cambios documentales posteriores a una integración también pasan por PR. No crear un tag final de entrega sin una instrucción posterior.
+
+Guías individuales: [móvil](ONBOARDING_MOBILE.md), [AI](ONBOARDING_AI.md) y [analytics](ONBOARDING_ANALYTICS.md); inicio del líder en [roles](EQUIPO_ROLES.md#cómo-empieza-cada-integrante). La [matriz](MATRIZ_REQUISITOS_EQUIPO.md) relaciona responsables, pruebas y evidencias. No atribuya pruebas históricas o reportadas por el usuario a una ejecución propia.

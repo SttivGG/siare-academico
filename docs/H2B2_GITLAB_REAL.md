@@ -1,5 +1,11 @@
 # GitLab.com: configuración local y validación real
 
+## Confirmación manual reportada por el usuario: 18/11/2026
+
+El usuario informó que GitLab OIDC ya fue probado manualmente con éxito. Se registra esa confirmación con fecha de recepción, sin atribuirla a una ejecución del agente ni a la suite automatizada. No se aportaron logs, capturas ni desglose de alta, vinculación, MFA administrativo o logout; esos subcasos no se dan por verificados individualmente. No se crean evidencias adicionales ni se declara implementado OIDC nativo.
+
+Los apartados siguientes conservan la activación y el protocolo manual anteriores a esa confirmación. Sus referencias a recorridos pendientes describen aquel corte histórico; el estado general vigente incorpora la confirmación del usuario. Las pruebas con proveedor controlado siguen documentadas por separado en [validación GitLab](H2B2_GITLAB_VALIDACION.md) y [consolidación](CONSOLIDACION_MAIN.md).
+
 El registro externo de SIARE Académico ya fue creado por el usuario como
 aplicación confidencial, con permisos `openid`, `profile` y `email` y callback:
 
@@ -7,7 +13,7 @@ aplicación confidencial, con permisos `openid`, `profile` y `email` y callback:
 http://127.0.0.1:3100/api/oidc/callback/gitlab
 ```
 
-## Estado verificado de la activación
+## Estado histórico verificado de la activación
 
 El usuario introdujo Application ID y Client Secret en el `.env` local.
 Se activó `GITLAB_OIDC_ENABLED=true`, sin mostrar ni copiar las credenciales
@@ -90,6 +96,4 @@ callback anterior.
 
 El inicio y alta reales con Google ya estaban confirmados por el usuario;
 se conserva esa evidencia en [H2B2_GOOGLE_DIAGNOSTICO.md](H2B2_GOOGLE_DIAGNOSTICO.md).
-El login completo de GitLab requiere que el usuario autentique su cuenta y
-confirme el resultado. No se considera validado por habilitar el proveedor
-o recibir una URL de autorización.
+La activación o una URL de autorización, por sí solas, no acreditan login completo. La confirmación manual posterior del usuario se registra al inicio con su alcance y límites; no amplía automáticamente la cobertura a todos los recorridos de este protocolo.
