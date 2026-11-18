@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "SIARE — Fases 1/2, H2-A, H2-B1 y H2-B2",
-    "version": "0.4.0",
-    "description": "API Bearer SIARE para login local, sesiones rotatorias, MFA, roles, materias y documentos. BFF Next.js con cookies HttpOnly y CSRF. OIDC Google y GitLab.com web, PKCE, vinculación explícita y MFA SIARE. Google login/alta confirmados históricamente; GitLab configurado localmente, canje y recorridos reales pendientes. OIDC nativo requiere adaptación propia; no reutilizar cookies BFF. SMTP real pendiente. Ver docs/CONTRATO_API_MOBILE.md."
+    "title": "SIARE — Fases 1/2, H2 y H3 actividades",
+    "version": "0.5.0",
+    "description": "API Bearer SIARE para login local, sesiones rotatorias, MFA, roles, materias y documentos. BFF Next.js con cookies HttpOnly y CSRF. OIDC Google y GitLab.com web, PKCE, vinculación explícita y MFA SIARE. Google login/alta confirmados históricamente; GitLab configurado localmente, canje y recorridos reales pendientes. OIDC nativo requiere adaptación propia; no reutilizar cookies BFF. SMTP real pendiente. Ver docs/CONTRATO_API_MOBILE.md. H3: generación y evaluación Quiz/Crucigrama con Abstract Factory, bancos revisados, fuentes documentales READY, intentos MySQL idempotentes y outbox durable. Transporte Express y ML pendientes; ver H3_ACTIVIDADES.md."
   },
   "servers": [
     {
@@ -2578,6 +2578,467 @@
           }
         ]
       }
+    },
+    "/api/v1/subjects/{subjectId}/activities": {
+      "post": {
+        "operationId": "createActivity",
+        "summary": "Generar Quiz o Crucigrama de materia propia",
+        "tags": [
+          "Actividades H3"
+        ],
+        "description": "Bearer SIARE vigente y propiedad de la materia obligatorios. Respuestas privadas no-store.",
+        "responses": {
+          "201": {
+            "description": "Operación completada y durable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityView"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "422": {
+            "description": "INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD. No se fabrica contenido de sustitución.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Contenido documental no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityCreate"
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "listActivities",
+        "summary": "Listar actividades propias con cursor",
+        "tags": [
+          "Actividades H3"
+        ],
+        "description": "Orden estable por activityId ascendente; limit predeterminado 20, máximo 100. nextCursor null al terminar. Materias archivadas admiten consulta. El cursor UUID es el último activityId, no concede permisos.",
+        "responses": {
+          "200": {
+            "description": "Consulta autorizada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityPage"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "422": {
+            "description": "INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD. No se fabrica contenido de sustitución.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Contenido documental no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "subjectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/activities/{activityId}": {
+      "get": {
+        "operationId": "getActivity",
+        "summary": "Consultar actividad sin solución",
+        "tags": [
+          "Actividades H3"
+        ],
+        "description": "Bearer SIARE vigente y propiedad de la materia obligatorios. Respuestas privadas no-store.",
+        "responses": {
+          "200": {
+            "description": "Consulta autorizada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityView"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "422": {
+            "description": "INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD. No se fabrica contenido de sustitución.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Contenido documental no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
+      }
+    },
+    "/api/v1/activities/{activityId}/submissions": {
+      "post": {
+        "operationId": "submitActivity",
+        "summary": "Evaluar y persistir un intento idempotente",
+        "tags": [
+          "Actividades H3"
+        ],
+        "description": "HTTP 200 tanto para intento nuevo como repetido. Persiste resultado y evento en la misma transacción antes de responder. No depende de Express. Materia archivada rechaza nuevos intentos; permite repetir una clave ya confirmada. studentId y score enviados son campos desconocidos y se rechazan.",
+        "responses": {
+          "200": {
+            "description": "Operación completada y durable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityAttemptResult"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "422": {
+            "description": "INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD. No se fabrica contenido de sustitución.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Contenido documental no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivitySubmission"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/activities/{activityId}/submissions/{attemptId}": {
+      "get": {
+        "operationId": "getActivityAttempt",
+        "summary": "Consultar resultado propio y errores del intento",
+        "tags": [
+          "Actividades H3"
+        ],
+        "description": "Bearer SIARE vigente y propiedad de la materia obligatorios. Respuestas privadas no-store.",
+        "responses": {
+          "200": {
+            "description": "Consulta autorizada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityAttemptResult"
+                }
+              }
+            },
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado."
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "422": {
+            "description": "INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD. No se fabrica contenido de sustitución.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Contenido documental no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "activityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "attemptId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -3671,6 +4132,837 @@
           "provider",
           "linkedAt"
         ]
+      },
+      "ActivitySource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reference": {
+            "type": "string",
+            "maxLength": 500,
+            "minLength": 1
+          },
+          "fragmentIndex": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1999
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "quote": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 4000,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "reference"
+        ]
+      },
+      "ActivitySourceView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "reference": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "fragmentIndex": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1999
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "reference",
+          "fragmentIndex"
+        ]
+      },
+      "QuizOption": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "text"
+        ]
+      },
+      "QuizBankQuestion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "prompt": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizOption"
+            },
+            "minItems": 2,
+            "maxItems": 6
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "correctOptionId": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ActivitySource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "explanation": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "prompt",
+          "options",
+          "topic",
+          "correctOptionId",
+          "explanation"
+        ]
+      },
+      "CrosswordBankWord": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "answer": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 2,
+            "description": "Se normaliza a 2–25 letras A-Z/Ñ; conserva Ñ, elimina acentos, espacios y guiones."
+          },
+          "clue": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ActivitySource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "answer",
+          "clue",
+          "topic"
+        ]
+      },
+      "ActivityBank": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "validated": {
+            "const": true,
+            "type": "boolean",
+            "description": "Declaración del autor de revisión previa; el servidor valida estructura y evidencia, no certifica veracidad factual."
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizBankQuestion"
+            },
+            "minItems": 0,
+            "maxItems": 50
+          },
+          "words": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrosswordBankWord"
+            },
+            "minItems": 0,
+            "maxItems": 12
+          }
+        },
+        "required": [
+          "validated"
+        ]
+      },
+      "ActivityCreate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "documentId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "bank": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ActivityBank"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "gridSize": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 25
+          }
+        },
+        "required": [
+          "type",
+          "topic",
+          "count",
+          "gridSize"
+        ],
+        "description": "Materia propia activa. Quiz: count preguntas del tema; crucigrama: count 2–12 palabras del tema. Sin bank se requiere un documento READY cuyo texto completo sea JSON ActivityBank. Toda entrada documental exige fuente, fragmentIndex y quote verificables. gridSize obligatorio también para Quiz (se ignora allí)."
+      },
+      "QuizQuestionView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "prompt": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizOption"
+            },
+            "minItems": 2,
+            "maxItems": 6
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ActivitySourceView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "prompt",
+          "options",
+          "topic",
+          "source"
+        ]
+      },
+      "QuizContent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "questions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuizQuestionView"
+            },
+            "minItems": 1,
+            "maxItems": 50
+          }
+        },
+        "required": [
+          "questions"
+        ]
+      },
+      "CrosswordCell": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "row": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "column": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24
+          }
+        },
+        "required": [
+          "row",
+          "column"
+        ]
+      },
+      "CrosswordClue": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "number": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "row": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "column": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "ACROSS",
+              "DOWN"
+            ]
+          },
+          "length": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 25
+          },
+          "clue": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "topic": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ActivitySourceView"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "row",
+          "column",
+          "direction",
+          "length",
+          "clue",
+          "topic",
+          "source"
+        ]
+      },
+      "CrosswordContent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rows": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25
+          },
+          "columns": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 25
+          },
+          "cells": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrosswordCell"
+            },
+            "minItems": 1,
+            "maxItems": 625
+          },
+          "clues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CrosswordClue"
+            },
+            "minItems": 2,
+            "maxItems": 12
+          }
+        },
+        "required": [
+          "rows",
+          "columns",
+          "cells",
+          "clues"
+        ]
+      },
+      "ActivityView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "activityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "documentId": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "status": {
+            "type": "string",
+            "const": "AVAILABLE"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/QuizContent"
+              },
+              {
+                "$ref": "#/components/schemas/CrosswordContent"
+              }
+            ]
+          }
+        },
+        "required": [
+          "activityId",
+          "subjectId",
+          "documentId",
+          "type",
+          "title",
+          "status",
+          "createdAt",
+          "content"
+        ],
+        "description": "Proyección pública sin claves, justificaciones, citas de evidencia ni letras de solución. Coordenadas desde cero. Documento opcional en MongoDB; referencia lógica validada por Spring."
+      },
+      "ActivitySummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "activityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 100
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "activityId",
+          "subjectId",
+          "type",
+          "title",
+          "available"
+        ]
+      },
+      "ActivityPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivitySummary"
+            },
+            "minItems": 0,
+            "maxItems": 100
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "nextCursor"
+        ]
+      },
+      "ActivitySubmission": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "idempotencyKey": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "answers": {
+            "type": "object",
+            "maxProperties": 50,
+            "propertyNames": {
+              "type": "string",
+              "maxLength": 64,
+              "pattern": "^[A-Za-z0-9_-]{1,64}$"
+            },
+            "additionalProperties": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          "durationMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 86400000
+          }
+        },
+        "required": [
+          "idempotencyKey",
+          "answers",
+          "durationMs"
+        ],
+        "description": "answers: questionId -> optionId para QUIZ, wordId -> texto para CROSSWORD. Omisiones cuentan como error; IDs desconocidos u opciones inexistentes producen 400. Mismo idempotencyKey por actividad/usuario y mismo cuerpo devuelve el resultado durable; un cambio de respuestas o duración produce 409. durationMs es una medición declarada por el cliente; score e identidad son de Spring."
+      },
+      "ActivityItemFeedback": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "correct": {
+            "type": "boolean"
+          },
+          "submitted": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "rationale": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "feedback": {
+            "type": "string",
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "id",
+          "correct",
+          "submitted",
+          "expected",
+          "rationale",
+          "feedback"
+        ]
+      },
+      "ActivityAttemptResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "activityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "activityType": {
+            "type": "string",
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "percentage": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "points": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 50
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "durationMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 86400000
+          },
+          "occurredAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "feedback": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityItemFeedback"
+            },
+            "minItems": 1,
+            "maxItems": 50
+          }
+        },
+        "required": [
+          "attemptId",
+          "eventId",
+          "studentId",
+          "subjectId",
+          "activityId",
+          "activityType",
+          "score",
+          "percentage",
+          "points",
+          "total",
+          "durationMs",
+          "occurredAt",
+          "feedback",
+          "items"
+        ],
+        "description": "Disponible después de enviar; expected revela la solución por pregunta/palabra. Promedio no ponderado. studentId se obtiene del Bearer validado; attemptId, eventId y occurredAt los genera Spring. Intentos inmutables."
+      },
+      "EvaluatedAttemptEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "type": "integer",
+            "const": 1
+          },
+          "eventId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "attemptId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "studentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "activityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "activityType": {
+            "type": "string",
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "eventType": {
+            "type": "string",
+            "const": "ATTEMPT_EVALUATED"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "durationMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 86400000
+          },
+          "occurredAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source": {
+            "type": "string",
+            "const": "core-api"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "eventId",
+          "attemptId",
+          "studentId",
+          "subjectId",
+          "activityId",
+          "activityType",
+          "eventType",
+          "score",
+          "durationMs",
+          "occurredAt",
+          "source"
+        ],
+        "description": "Evento durable en outbox MySQL; puerto AttemptEventPublisher. El adaptador HTTP Express aún no está instalado. Contrato propuesto alineado con PR #4, pendiente de aceptación del consumidor. No es endpoint público."
       }
     },
     "responses": {

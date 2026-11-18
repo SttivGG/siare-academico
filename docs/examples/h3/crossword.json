@@ -1,0 +1,53 @@
+{
+  "activityId" : "368e1e11-7668-4f36-88fe-6c169bee46de",
+  "subjectId" : "a156f7f6-d613-4dd9-9ca6-843b8e5f5331",
+  "documentId" : null,
+  "type" : "CROSSWORD",
+  "title" : "Repaso",
+  "status" : "AVAILABLE",
+  "createdAt" : "2026-11-18T23:11:27.440734600Z",
+  "content" : {
+    "rows" : 3,
+    "columns" : 4,
+    "cells" : [ {
+      "row" : 0,
+      "column" : 0
+    }, {
+      "row" : 1,
+      "column" : 0
+    }, {
+      "row" : 2,
+      "column" : 0
+    }, {
+      "row" : 2,
+      "column" : 1
+    }, {
+      "row" : 2,
+      "column" : 2
+    }, {
+      "row" : 2,
+      "column" : 3
+    } ],
+    "clues" : [ {
+      "id" : "w1",
+      "number" : 1,
+      "row" : 0,
+      "column" : 0,
+      "direction" : "DOWN",
+      "length" : 3,
+      "clue" : "Definición revisada de prueba 2",
+      "topic" : "Repaso",
+      "source" : null
+    }, {
+      "id" : "w2",
+      "number" : 2,
+      "row" : 2,
+      "column" : 0,
+      "direction" : "ACROSS",
+      "length" : 4,
+      "clue" : "Definición revisada de prueba 3",
+      "topic" : "Repaso",
+      "source" : null
+    } ]
+  }
+}

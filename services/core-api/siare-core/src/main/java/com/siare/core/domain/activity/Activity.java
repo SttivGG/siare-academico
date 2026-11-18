@@ -1,6 +1,6 @@
 package com.siare.core.domain.activity;
 
-/** Contract only; concrete content models belong to a future iteration. */
+/** Server-side activity. Web adapters must explicitly project a view without solutions. */
 public interface Activity {
     ActivityFamily family();
 }
