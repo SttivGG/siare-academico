@@ -2,6 +2,10 @@
 
 Esta guía prepara el trabajo en `mobile/`; todavía no existe implementación React Native. Lee primero el [contrato HTTP](CONTRATO_API_MOBILE.md) y la [guía de colaboración](GUIA_COLABORACION.md). El contrato completo versionado está en [openapi.json](openapi.json).
 
+El integrante 2 trabajará con React Native, Expo y TypeScript en `feature/mobile-react-native`, creada desde `main` actualizado. Su alcance incluye pantallas/navegación Android, login/MFA, sesiones seguras, materias/documentos, consumo de API y APK instalable con prueba en dispositivo. Debe respetar la guía visual definida por el integrante 1 y someterle la revisión de diseño e integración; no modifica `frontend/`. Consulta [roles](EQUIPO_ROLES.md) y [contratos del equipo](CONTRATOS_EQUIPO.md) para las dependencias con ML y progreso.
+
+Antes de crear Expo en la fase de desarrollo, acuerda con el líder navegación, componentes y estados de error/carga; prepara Android SDK, dispositivo y HTTPS confiable. Después implementa login local/MFA y materias/documentos sobre las API existentes. Las pantallas de actividades, progreso y recomendaciones dependerán de contratos públicos Spring futuros; no llames a Python/Express desde Android. Registra versión de herramientas, pruebas del módulo y procedimiento de construcción/instalación del APK en tus PR. Esta actividad no inicializa el proyecto móvil ni genera un APK.
+
 ## Arquitectura y directorios
 
 SIARE usa nueve servicios. Spring es la autoridad de usuarios, permisos, sesiones, materias y documentos. Next.js sirve la web y su BFF. Flask extrae contenido documental. Express expone salud de Cassandra; todavía no ofrece una API pública de progreso académico. El cliente móvil consumirá Spring directamente con Bearer.
@@ -114,4 +118,4 @@ Las suites HTTP crean cuentas sintéticas `@example.test`, materias y documentos
 
 Desde Spring: `./mvnw.cmd -B -ntp verify` (H2 aislado; excluye `real-stores`). Desde frontend: `npm test`, `npm run build`, `npm run typecheck`, `node --test tests/integration/oidc-bff.mjs` y `npm run test:e2e` con el stack listo. Desde Express: `npm test`. Desde Flask: `python -m unittest discover -s tests -v`; la imagen permite `SIARE_REAL_OCR=1` con Tesseract español instalado. `Test-H2B2.ps1` usa MySQL/Redis reales y un proveedor OIDC controlado: no es login real Google/GitLab.
 
-El estado actual y las limitaciones de cada ejecución de consolidación se registran en [CONSOLIDACION_MAIN.md](CONSOLIDACION_MAIN.md). Las evidencias de noviembre 11 son históricas y no sustituyen las pruebas de esta revisión.
+Los resultados y límites de la consolidación se registran en [CONSOLIDACION_MAIN.md](CONSOLIDACION_MAIN.md). Las evidencias del 11 y 18 de noviembre corresponden a las ejecuciones allí documentadas; esta preparación de equipo no las vuelve a ejecutar. El usuario reportó validación manual exitosa de GitLab OIDC el 18/11/2026: [registro y alcance](H2B2_GITLAB_REAL.md). Se distingue de las pruebas automatizadas y no acredita OIDC nativo.

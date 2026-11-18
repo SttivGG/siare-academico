@@ -1,5 +1,7 @@
 # H2-B2: sustitución de Microsoft por GitLab.com
 
+Actualización de estado recibida el 18/11/2026: el usuario reportó validación manual exitosa de GitLab OIDC, sin detalle de subcasos ni nuevos artefactos. Véase [confirmación y límites](H2B2_GITLAB_REAL.md). Los resultados y pendientes siguientes conservan el corte histórico de esta validación automatizada; no se vuelven a ejecutar en la preparación documental del equipo.
+
 Fecha: 11/11/2026, America/Bogota. Se conserva el trabajo previo de H2-B2 sin
 commit ni push. Microsoft Entra queda fuera del alcance por falta de
 suscripción/configuración de facturación para registrar la aplicación.

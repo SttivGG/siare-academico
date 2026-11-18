@@ -1,5 +1,7 @@
 # Plan de entrega SIARE 2026-2
 
+Actualización documental del 18/11/2026: la distribución vigente de cuatro integrantes está en [roles](EQUIPO_ROLES.md) y la correspondencia de cada requisito con pruebas/evidencias en [matriz del equipo](MATRIZ_REQUISITOS_EQUIPO.md). El plan y sus fechas propuestas siguientes conservan el corte histórico del 11/11; no se declara que esos hitos se hayan cumplido. GitLab OIDC cuenta ahora con [validación manual exitosa reportada por el usuario](H2B2_GITLAB_REAL.md), sin desglose de subcasos ni nuevos artefactos. React Native, ML, progreso y actividades siguen pendientes.
+
 Corte: 11/11/2026. Entrega: **25/11/2026**. Sustentación: **02/12/2026**.
 H0/H1 están implementados y H2-A incorpora identidad local, roles, ámbitos,
 sesiones, auditoría y paneles iniciales. H2-B1 implementa TOTP y habilita permisos

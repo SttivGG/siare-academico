@@ -4,7 +4,8 @@ Diagnóstico posterior del login real, códigos internos y corrección del desfa
 de reloj: [H2B2_GOOGLE_DIAGNOSTICO.md](H2B2_GOOGLE_DIAGNOSTICO.md).
 
 Activación local posterior de GitLab con credenciales aportadas por el usuario,
-verificación y recorridos reales pendientes de completar:
+verificación y confirmación manual exitosa reportada por el usuario el 18/11/2026,
+separada de las pruebas automatizadas y sin detalle de subcasos:
 [H2B2_GITLAB_REAL.md](H2B2_GITLAB_REAL.md).
 
 Implementación en `feature/h2b2-oidc`, sobre Spring Boot 4.1.2 / Spring Security

@@ -1,5 +1,7 @@
 # Consolidación de main — 18/11/2026
 
+Nota posterior al cierre: la consolidación terminó con PR #1, #2 y #3 fusionados y `main` en `035d74e1e953573c24b9f1371cf604ce62b1a98b`. La preparación del [equipo de cuatro integrantes](EQUIPO_ROLES.md) parte de esa base y solo añade documentación mediante otro PR; no repite merges ni pruebas de consolidación. El usuario reportó después validación manual exitosa de GitLab OIDC; su alcance está en [GitLab real](H2B2_GITLAB_REAL.md). Los resultados y el estado de proveedores descritos abajo corresponden al corte anterior a esa confirmación y se conservan como evidencia histórica.
+
 Fecha de ejecución: 18 de noviembre de 2026, America/Bogota. H1, H2-A, H2-B1 y H2-B2 están integrados en [main](https://github.com/SttivGG/siare-academico/tree/main). Las pruebas indicadas terminaron sin fallos críticos. Este documento distingue las verificaciones de esta revisión de las evidencias históricas del 11 de noviembre. La preparación móvil es documental: no se implementó React Native ni se declara entregado OIDC nativo.
 
 ## Historia y preservación
