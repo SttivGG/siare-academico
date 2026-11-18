@@ -17,6 +17,8 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectMapper mapper) {
         http.authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/health").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/auth/oidc/providers").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/oidc/start", "/api/v1/auth/oidc/complete").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/v1/auth/register", "/api/v1/auth/login", "/api/v1/auth/refresh",
                         "/api/v1/auth/mfa/enroll", "/api/v1/auth/mfa/confirm", "/api/v1/auth/mfa/verify", "/api/v1/auth/mfa/recover",
                         "/api/v1/auth/password-reset/request", "/api/v1/auth/password-reset/complete").permitAll()

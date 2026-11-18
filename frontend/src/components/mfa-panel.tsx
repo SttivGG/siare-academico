@@ -7,7 +7,7 @@ import QRCode from "qrcode";
 import { api } from "../lib/api";
 
 type Enrollment = { otpauthUri: string; expiresAt: string };
-type Status = { state: string; pendingReplacement: boolean; recoveryCodesRemaining: number; required: boolean };
+type Status = { state: string; pendingReplacement: boolean; recoveryCodesRemaining: number; required: boolean; localPassword: boolean };
 
 function EnrollmentQr({ enrollment }: { enrollment: Enrollment }) {
   const canvas = useRef<HTMLCanvasElement>(null);
@@ -66,19 +66,19 @@ export function MfaPanel({ challenge = false, enrollRequired = false }: { challe
     });
   }
   function reauthentication(prefix: string, needsCode: boolean) {
-    return <><div className="field"><label htmlFor={`${prefix}-password`}>Contraseña actual</label><input id={`${prefix}-password`} name="password" type="password" autoComplete="current-password" required maxLength={2048} /></div>
+    return <>{status?.localPassword === false ? <p className="hint">Vuelve a iniciar sesión con tu proveedor si han pasado cinco minutos.</p> : <div className="field"><label htmlFor={`${prefix}-password`}>Contraseña actual</label><input id={`${prefix}-password`} name="password" type="password" autoComplete="current-password" required maxLength={2048} /></div>}
       {needsCode && <div className="field"><label htmlFor={`${prefix}-code`}>TOTP actual o código de recuperación sin usar</label><input id={`${prefix}-code`} name="code" autoComplete="one-time-code" required maxLength={22} spellCheck={false} autoCapitalize="none" /></div>}</>;
   }
   return <section className="security-panel form-stack" aria-busy={pending}>
     {error && <div ref={messageRef} role="alert" tabIndex={-1} className="notice error">{error}</div>}
-    {codes ? <div className="form-stack"><h2>Guarda tus códigos de recuperación</h2><p className="notice success" role="status">Cada código se puede usar una sola vez, junto con tu contraseña. No volverán a mostrarse.</p>
+    {codes ? <div className="form-stack"><h2>Guarda tus códigos de recuperación</h2><p className="notice success" role="status">Cada código se puede usar una sola vez, después de verificar tu contraseña o proveedor. No volverán a mostrarse.</p>
       <ul className="recovery-codes" aria-label="Códigos de recuperación">{codes.map(code => <li key={code}><code>{code}</code></li>)}</ul>
       <p>Guárdalos en tu gestor de contraseñas o en un lugar seguro fuera del dispositivo autenticador.</p>
       <Link className="button primary" href={requiresLogin ? "/login" : "/inicio"} onClick={() => { setCodes(undefined); router.refresh(); }}>Ya guardé los códigos · continuar</Link></div>
     : enrollment ? <><EnrollmentQr enrollment={enrollment} /><form className="form-stack" onSubmit={confirm}>
       <div className="field"><label htmlFor="confirmation-code">Código de tu nueva aplicación</label><input id="confirmation-code" name="code" inputMode="numeric" autoComplete="one-time-code" pattern="[0-9]{6}" required minLength={6} maxLength={6} aria-describedby="confirmation-help" /><span id="confirmation-help" className="hint">Escribe o pega los seis dígitos para activar el factor.</span></div>
       <button className="button primary" disabled={pending}>{pending ? "Verificando…" : "Confirmar y activar MFA"}</button></form></>
-    : challenge && !enrollRequired ? <><p>La contraseña fue validada. Completa el segundo factor en cinco minutos para abrir tu sesión.</p><form className="form-stack" onSubmit={verify}>
+    : challenge && !enrollRequired ? <><p>Tu identidad fue validada. Completa el segundo factor en cinco minutos para abrir tu sesión.</p><form className="form-stack" onSubmit={verify}>
       <div className="field"><label htmlFor="login-code">{recovery ? "Código de recuperación" : "Código de tu aplicación autenticadora"}</label><input key={String(recovery)} id="login-code" name="code" autoComplete="one-time-code" inputMode={recovery ? "text" : "numeric"} required pattern={recovery ? "[A-Za-z0-9_-]{22}" : "[0-9]{6}"} maxLength={recovery ? 22 : 6} spellCheck={false} autoCapitalize="none" /></div>
       <button className="button primary" disabled={pending}>{pending ? "Verificando…" : "Verificar segundo factor"}</button>
       <button className="button secondary" type="button" disabled={pending} onClick={() => setRecovery(!recovery)}>{recovery ? "Usar mi aplicación autenticadora" : "Usar un código de recuperación"}</button></form>

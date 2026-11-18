@@ -162,3 +162,11 @@ su configuración y una prueba operativa consulta SQL desde su runtime. No exist
 adaptador de negocio, ingesta, endpoint ni dashboard analítico en H1. La matriz de
 pendientes está en [PLAN_ENTREGA_2026_2.md](PLAN_ENTREGA_2026_2.md), y el procedimiento
 con respaldos y recuperación en [MIGRACION_H1.md](MIGRACION_H1.md).
+
+## H2-B2: federación OIDC
+
+El BFF inicia POST con CSRF, guarda contexto HttpOnly y recibe el callback. Spring usa el proveedor OIDC de Spring Security 7.1.2 para Code + PKCE, JWKS RS256 y validaciones issuer/audience/exp/nonce. Redis guarda flujos por cinco minutos y los consume con GETDEL. No se crean HttpSession ni clientes autorizados persistentes.
+
+`FederatedIdentityUseCase`, `ExternalIdentityRepository` y `ExternalProviderPolicy` aíslan el dominio de Spring. V4 almacena issuer/subject con unicidad binaria en MySQL y serializa las mutaciones con federation_control → user_access. La autenticación resuelve usuario local, USER en altas, y pasa por MfaService antes de emitir sesiones SIARE. El proveedor nunca decide roles; los tokens externos no sirven como Bearer de la API. Las sesiones OIDC conservan rotación, expiración y revocación H2-A.
+
+La vinculación exige sesión reciente y confirmación; no se fusiona por correo. GitLab.com sustituye a Microsoft Entra, con issuer fijo https://gitlab.com y PKCE S256. Solo correos verificados sirven como contacto; si GitLab los omite se usa una cuenta técnica sin recuperación por correo. Google mantiene login y alta reales confirmados. Ver [H2B2_OIDC.md](H2B2_OIDC.md) para el protocolo, límites y configuración; [H2B2_VALIDACION.md](H2B2_VALIDACION.md) separa prueba controlada de integración real.

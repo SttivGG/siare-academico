@@ -12,6 +12,10 @@ import java.time.Duration;
 
 @Configuration(proxyBeanMethods = false)
 public class BusinessConfiguration {
+    @Bean FederatedIdentityUseCase federatedIdentities(ExternalIdentityRepository external,UserRepository users,IdentityRepository identities,
+            SessionRepository repository,IdentityParameterPort parameters,TransactionPort tx,SessionService sessions,MfaService mfa,Clock clock,ExternalProviderPolicy providers) {
+        return new FederatedIdentityService(external,users,identities,repository,parameters,tx,sessions,mfa,clock,providers);
+    }
     @Bean Clock clock() { return Clock.systemUTC(); }
     @Bean PasswordPort passwordPort(@Value("${siare.password.memory-kib:19456}") int memory,
             @Value("${siare.password.iterations:2}") int iterations,@Value("${siare.password.parallelism:1}") int parallelism) {

@@ -28,8 +28,18 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<!-- Real-store tests are explicitly run in the SIARE Docker data network. -->
+		<excludedGroups>real-stores</excludedGroups>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security-oauth2-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>

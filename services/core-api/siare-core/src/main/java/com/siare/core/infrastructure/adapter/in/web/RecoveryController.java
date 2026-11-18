@@ -17,7 +17,7 @@ public class RecoveryController {
     private final MfaService mfa;
     private final PasswordResetService resets;
     public RecoveryController(MfaService mfa,PasswordResetService resets) { this.mfa=mfa; this.resets=resets; }
-    public record Reauthentication(@NotBlank @Size(max=2048) String password,@Size(max=32) String code) {
+    public record Reauthentication(@Size(max=2048) String password,@Size(max=32) String code) {
         @Override public String toString() { return "Reauthentication[REDACTED]"; }
     }
     public record Code(@NotBlank @Size(max=32) String code) {
@@ -40,13 +40,13 @@ public class RecoveryController {
     @GetMapping("/users/me/mfa")
     MfaService.Status status(@AuthenticationPrincipal Jwt jwt) { return mfa.status(actor(jwt)); }
     @PostMapping("/users/me/mfa/enroll")
-    EnrollMfaUseCase.Enrollment enroll(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Reauthentication r) { return mfa.enroll(actor(jwt),r.password(),r.code()); }
+    EnrollMfaUseCase.Enrollment enroll(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Reauthentication r) { return mfa.enrollAuthenticated(actor(jwt),UUID.fromString(jwt.getClaimAsString("sid")),r.password(),r.code()); }
     @PostMapping("/users/me/mfa/confirm")
     ConfirmMfaUseCase.Confirmation confirm(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Code r) { return mfa.confirm(actor(jwt),r.code()); }
     @PostMapping("/users/me/mfa/disable")
-    Map<String,String> disable(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Reauthentication r) { mfa.disable(actor(jwt),r.password(),r.code()); return success(); }
+    Map<String,String> disable(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Reauthentication r) { mfa.disableAuthenticated(actor(jwt),UUID.fromString(jwt.getClaimAsString("sid")),r.password(),r.code()); return success(); }
     @PostMapping("/users/me/mfa/recovery-codes")
-    RecoveryCodes codes(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Reauthentication r) { return new RecoveryCodes(mfa.regenerate(actor(jwt),r.password(),r.code())); }
+    RecoveryCodes codes(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody Reauthentication r) { return new RecoveryCodes(mfa.regenerateAuthenticated(actor(jwt),UUID.fromString(jwt.getClaimAsString("sid")),r.password(),r.code())); }
     @PostMapping("/auth/mfa/enroll")
     EnrollMfaUseCase.Enrollment enrollChallenge(@Valid @RequestBody ChallengeRequest r) { return mfa.enrollChallenge(r.challengeToken()); }
     @PostMapping("/auth/mfa/confirm")

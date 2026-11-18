@@ -32,9 +32,14 @@ public final class MfaService implements EnrollMfaUseCase, ConfirmMfaUseCase, Ve
     private MfaCredential credential(UUID user) { return mfa.credential(user).orElse(new MfaCredential(user,null,null,null,-1)); }
     /** Called only after password verification under the same user_access lock. No JWT is issued here. */
     public AccessToken afterPassword(UUID user) {
+        return afterPrimaryAuthentication(user,false);
+    }
+    /** Invoked only after verified password or OIDC, inside a transaction. */
+    public AccessToken afterPrimaryAuthentication(UUID user) { return afterPrimaryAuthentication(user,true); }
+    private AccessToken afterPrimaryAuthentication(UUID user,boolean federated) {
         var access=identities.lockAccess(user); sessions.requireEnabled(access);
         var c=credential(user);
-        if(access.role()==Role.USER && !c.enabled()) return sessions.open(user);
+        if(access.role()==Role.USER && !c.enabled()) return federated?sessions.openFederated(user):sessions.open(user);
         mfa.invalidateChallenges(user,clock.instant());
         String challenge=opaque(random,32); var expiry=clock.instant().plusSeconds(300);
         mfa.insertChallenge(SessionService.fingerprint(challenge),user,expiry);
@@ -50,7 +55,8 @@ public final class MfaService implements EnrollMfaUseCase, ConfirmMfaUseCase, Ve
         }
     }
     private void enabled(UUID user) { sessions.requireEnabled(identities.lockAccess(user)); }
-    private void password(UUID user,String password) {
+    private void password(UUID user,String password,UUID session) {
+        if("!OIDC".equals(users.findById(user).orElseThrow(this::invalid).passwordHash()) && session!=null) { sessions.requireRecentPrimary(user,session); return; }
         if(password==null || password.length()>2048 || !passwords.matches(password,users.findById(user).orElseThrow(this::invalid).passwordHash())) throw invalid();
     }
     private boolean factor(MfaCredential c,String code,boolean allowRecovery) {
@@ -74,11 +80,12 @@ public final class MfaService implements EnrollMfaUseCase, ConfirmMfaUseCase, Ve
         sessions.event(user,"MFA_ENROLL","identity","PENDING",null);
         return new Enrollment(totp.uri(users.findById(user).orElseThrow(this::invalid).email(),seed),expiry);
     }
-    @Override public Enrollment enroll(UUID actor,String password,String code) {
+    @Override public Enrollment enroll(UUID actor,String password,String code) { return enrollAuthenticated(actor,null,password,code); }
+    public Enrollment enrollAuthenticated(UUID actor,UUID session,String password,String code) {
         reserve(actor);
         var result=tx.required(() -> {
             enabled(actor); var c=credential(actor);
-            try { password(actor,password); } catch(BusinessException ex) { failed(actor,"MFA_REAUTH"); return null; }
+            try { password(actor,password,session); } catch(BusinessException ex) { failed(actor,"MFA_REAUTH"); return null; }
             if(c.enabled() && !factor(c,code,true)) { failed(actor,"MFA_REAUTH"); return null; }
             return pending(actor);
         });
@@ -139,11 +146,12 @@ public final class MfaService implements EnrollMfaUseCase, ConfirmMfaUseCase, Ve
     }
     @Override public AccessToken verify(String challenge,String code) { return finish(challenge,code,false); }
     @Override public AccessToken recover(String challenge,String code) { return finish(challenge,code,true); }
-    @Override public List<String> regenerate(UUID actor,String password,String code) {
+    @Override public List<String> regenerate(UUID actor,String password,String code) { return regenerateAuthenticated(actor,null,password,code); }
+    public List<String> regenerateAuthenticated(UUID actor,UUID session,String password,String code) {
         reserve(actor);
         var result=tx.required(() -> {
             enabled(actor);
-            try { password(actor,password); } catch(BusinessException ex) { failed(actor,"MFA_REAUTH"); return null; }
+            try { password(actor,password,session); } catch(BusinessException ex) { failed(actor,"MFA_REAUTH"); return null; }
             if(!factor(credential(actor),code,true)) { failed(actor,"MFA_REAUTH"); return null; }
             var codes=recovery(actor); mfa.invalidateChallenges(actor,clock.instant());
             sessions.revokeAll(actor);
@@ -151,12 +159,13 @@ public final class MfaService implements EnrollMfaUseCase, ConfirmMfaUseCase, Ve
         });
         if(result==null) throw invalid(); return result;
     }
-    @Override public void disable(UUID actor,String password,String code) {
+    @Override public void disable(UUID actor,String password,String code) { disableAuthenticated(actor,null,password,code); }
+    public void disableAuthenticated(UUID actor,UUID session,String password,String code) {
         reserve(actor);
         boolean result=tx.required(() -> {
             enabled(actor);
             if(identities.access(actor).role()!=Role.USER) throw new BusinessException(BusinessException.Kind.FORBIDDEN,"MFA es obligatorio para administradores; puedes reemplazar el factor.");
-            try { password(actor,password); } catch(BusinessException ex) { failed(actor,"MFA_REAUTH"); return false; }
+            try { password(actor,password,session); } catch(BusinessException ex) { failed(actor,"MFA_REAUTH"); return false; }
             if(!factor(credential(actor),code,true)) { failed(actor,"MFA_REAUTH"); return false; }
             mfa.save(new MfaCredential(actor,null,null,null,-1)); mfa.replaceRecovery(actor,List.of());
             mfa.invalidateChallenges(actor,clock.instant()); sessions.revokeAll(actor);
@@ -164,12 +173,12 @@ public final class MfaService implements EnrollMfaUseCase, ConfirmMfaUseCase, Ve
         });
         if(!result) throw invalid();
     }
-    public record Status(String state,boolean pendingReplacement,int recoveryCodesRemaining,boolean required) {}
+    public record Status(String state,boolean pendingReplacement,int recoveryCodesRemaining,boolean required,boolean localPassword) {}
     public Status status(UUID actor) {
         return tx.required(() -> {
             enabled(actor); var c=credential(actor);
             return new Status(c.enabled()?"ENABLED":c.pending(clock.instant())?"PENDING":"DISABLED",c.enabled() && c.pending(clock.instant()),
-                    mfa.remainingRecovery(actor),identities.access(actor).role()!=Role.USER);
+                    mfa.remainingRecovery(actor),identities.access(actor).role()!=Role.USER,!"!OIDC".equals(users.findById(actor).orElseThrow().passwordHash()));
         });
     }
 }

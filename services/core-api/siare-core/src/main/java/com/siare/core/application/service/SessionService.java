@@ -36,11 +36,17 @@ public final class SessionService implements RefreshSessionUseCase, RevokeSessio
         if (!access.enabled()) throw unauthorized();
     }
     public AccessToken open(UUID userId) {
-        return open(userId,false);
+        return open(userId,false,"PASSWORD");
     }
     /** Application-internal: invoked exclusively after an atomic factor verification. */
-    AccessToken openMfa(UUID userId) { return open(userId,true); }
-    private AccessToken open(UUID userId,boolean mfa) {
+    AccessToken openMfa(UUID userId) { return open(userId,true,"MFA"); }
+    AccessToken openFederated(UUID userId) { return open(userId,false,"OIDC"); }
+    public void requireRecentPrimary(UUID userId,UUID sessionId) {
+        var s=sessions.find(sessionId).orElseThrow(this::unauthorized);
+        if(!s.userId().equals(userId) || !validate(userId,sessionId) || s.createdAt().isBefore(clock.instant().minusSeconds(300))
+                || !Set.of("OIDC","MFA").contains(s.authenticationLevel())) throw new BusinessException(BusinessException.Kind.FORBIDDEN,"Vuelve a iniciar sesión con tu proveedor antes de cambiar MFA (máximo cinco minutos).");
+    }
+    private AccessToken open(UUID userId,boolean mfa,String level) {
         return tx.required(() -> {
             var access=identities.lockAccess(userId); requireEnabled(access);
             if(access.role()!=Role.USER && !mfa) throw new BusinessException(BusinessException.Kind.MFA_REQUIRED,"Se requiere verificar MFA.");
@@ -49,7 +55,7 @@ public final class SessionService implements RefreshSessionUseCase, RevokeSessio
             var active=sessions.list(userId).stream().filter(s -> s.active(now)).toList();
             for (int i=0; i<=active.size()-maximum; i++) revokeInternal(userId,active.get(i).id(),"SESSION_LIMIT");
             var s=new UserSession(UUID.randomUUID(),userId,now,now,now.plus(idle),now.plus(absolute),null,0,
-                    mfa?"MFA":"PASSWORD",mfa?now:null,mfa?now.plus(Duration.ofHours(12)):null);
+                    level,mfa?now:null,mfa?now.plus(Duration.ofHours(12)):null);
             sessions.insert(s);
             return issue(s);
         });

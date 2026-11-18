@@ -67,7 +67,7 @@ async function handle(request: NextRequest, context: Context) {
       headers: { "Content-Type": "application/json", ...(!publicRoute ? { Authorization: `Bearer ${token}` } : {}) },
       body, cache: "no-store", redirect: "error", signal: AbortSignal.timeout(10_000),
     });
-    const data = await upstream.json();
+    const data = upstream.status === 204 ? {} : await upstream.json();
     if (path === "auth/login" && upstream.ok && data.mfaRequired === true) {
       const expires = new Date(data.challengeExpiresAt);
       if (typeof data.challengeToken !== "string" || !/^[A-Za-z0-9_-]{43}$/.test(data.challengeToken) || !Number.isFinite(expires.getTime()) || expires.getTime() <= Date.now()) return failure(502, "UPSTREAM_ERROR", "No se pudo crear el desafío.");
@@ -91,7 +91,7 @@ async function handle(request: NextRequest, context: Context) {
       if (path !== "auth/login" && path !== "auth/refresh") response.cookies.set(challengeName(), "", { ...cookieSettings(secureCookie()), maxAge: 0 });
       return response;
     }
-    const response = NextResponse.json(data, { status: upstream.status, headers: { "Cache-Control": "no-store" } });
+    const response = NextResponse.json(data, { status: upstream.status === 204 ? 200 : upstream.status, headers: { "Cache-Control": "no-store" } });
     if ((path === "auth/refresh" && upstream.status === 401) || (upstream.ok && ["auth/logout", "users/me/sessions/revoke-all", "users/me/mfa/disable", "users/me/mfa/recovery-codes", "auth/password-reset/complete"].includes(path))) {
       for (const name of [sessionName(), refreshName(), challengeName()]) response.cookies.set(name, "", { ...cookieSettings(secureCookie()), maxAge: 0 });
     }

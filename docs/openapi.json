@@ -1,9 +1,9 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "SIARE — Fases 1/2, H2-A y H2-B1",
-    "version": "0.3.0",
-    "description": "Contrato de la API real. Bearer directo; navegador por BFF Next.js con cookies HttpOnly y CSRF exacto. MFA TOTP, recuperación offline y restablecimiento SMTP. OIDC y móvil fuera de H2-B1. Entrega SMTP real requiere validación independiente."
+    "title": "SIARE — Fases 1/2, H2-A, H2-B1 y H2-B2",
+    "version": "0.4.0",
+    "description": "API Bearer SIARE para login local, sesiones rotatorias, MFA, roles, materias y documentos. BFF Next.js con cookies HttpOnly y CSRF. OIDC Google y GitLab.com web, PKCE, vinculación explícita y MFA SIARE. Google login/alta confirmados históricamente; GitLab configurado localmente, canje y recorridos reales pendientes. OIDC nativo requiere adaptación propia; no reutilizar cookies BFF. SMTP real pendiente. Ver docs/CONTRATO_API_MOBILE.md."
   },
   "servers": [
     {
@@ -1701,7 +1701,7 @@
       "post": {
         "operationId": "enrollMfa",
         "summary": "Iniciar alta o reemplazo seguro",
-        "description": "Contraseña obligatoria. Con factor activo exige además TOTP o recuperación sin usar. PENDING por 10 min; el factor anterior permanece activo hasta confirmar. 5 operaciones/cuenta/15 min, compartidas con verificación MFA.",
+        "description": "Contraseña obligatoria para cuentas locales. Con factor activo exige además TOTP o recuperación sin usar. PENDING por 10 min; el factor anterior permanece activo hasta confirmar. 5 operaciones/cuenta/15 min, compartidas con verificación MFA. H2-B2: cuentas sin contraseña usan sesión OIDC/MFA reciente (cinco minutos); el factor existente sigue siendo obligatorio.",
         "tags": [
           "MFA y recuperación"
         ],
@@ -1801,7 +1801,7 @@
       "post": {
         "operationId": "disableMfa",
         "summary": "Desactivar MFA de cuenta USER",
-        "description": "Contraseña + TOTP/recuperación. ADMIN/SUPERADMIN reciben 403; solo pueden reemplazar el factor. Revoca sesiones y desafíos.",
+        "description": "Contraseña + TOTP/recuperación. ADMIN/SUPERADMIN reciben 403; solo pueden reemplazar el factor. Revoca sesiones y desafíos. H2-B2: cuentas sin contraseña usan sesión OIDC/MFA reciente (cinco minutos); el factor existente sigue siendo obligatorio.",
         "tags": [
           "MFA y recuperación"
         ],
@@ -1851,7 +1851,7 @@
       "post": {
         "operationId": "regenerateMfaRecovery",
         "summary": "Regenerar diez códigos de recuperación",
-        "description": "Contraseña + TOTP/recuperación. Invalida códigos anteriores y cierra todas las sesiones. No vuelve a mostrar códigos después de esta respuesta.",
+        "description": "Contraseña + TOTP/recuperación. Invalida códigos anteriores y cierra todas las sesiones. No vuelve a mostrar códigos después de esta respuesta. H2-B2: cuentas sin contraseña usan sesión OIDC/MFA reciente (cinco minutos); el factor existente sigue siendo obligatorio.",
         "tags": [
           "MFA y recuperación"
         ],
@@ -2201,6 +2201,382 @@
             }
           }
         }
+      }
+    },
+    "/api/v1/auth/oidc/providers": {
+      "get": {
+        "operationId": "oidcProviders",
+        "summary": "Disponibilidad independiente de proveedores",
+        "description": "",
+        "tags": [
+          "OIDC"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OidcProvider"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "description": "Servicio no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/oidc/start": {
+      "post": {
+        "operationId": "oidcStart",
+        "summary": "Iniciar Code + PKCE sin sesión web",
+        "description": "Endpoint de servidor para BFF. Redis TTL cinco minutos. Redirect fijo desde configuración; el cliente no puede elegirlo.",
+        "tags": [
+          "OIDC"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OidcAuthorization"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "description": "Servicio no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OidcStart"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/auth/oidc/complete": {
+      "post": {
+        "operationId": "oidcComplete",
+        "summary": "Consumir state y verificar OIDC",
+        "description": "Servidor BFF: vinculado al contexto HttpOnly, GETDEL antireplay. Devuelve credenciales SIARE o desafío MFA existente, nunca tokens externos. Usuario/sesión de vinculación se recuperan del estado, no de la solicitud. Para vinculación exige el mismo Bearer SIARE del inicio; para login no acepta sesión web.",
+        "tags": [
+          "OIDC"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Tokens"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "linked": {
+                          "const": true
+                        }
+                      },
+                      "required": [
+                        "linked"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "description": "Servicio no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OidcComplete"
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/v1/users/me/identities/start": {
+      "post": {
+        "operationId": "oidcLink",
+        "summary": "Iniciar vinculación autenticada y confirmada",
+        "description": "Exige sesión de menos de cinco minutos y confirmed=true; revalida la sesión original al completar.",
+        "tags": [
+          "OIDC"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OidcAuthorization"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "description": "Servicio no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OidcStart"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/identities": {
+      "get": {
+        "operationId": "oidcConnected",
+        "summary": "Consultar identidades propias",
+        "description": "",
+        "tags": [
+          "OIDC"
+        ],
+        "responses": {
+          "200": {
+            "description": "Operación completada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedIdentity"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "description": "Servicio no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users/me/identities/{id}": {
+      "delete": {
+        "operationId": "oidcUnlink",
+        "summary": "Desconectar identidad propia",
+        "description": "Sesión reciente, conserva contraseña u otro proveedor habilitado. Revoca las otras sesiones y registra auditoría.",
+        "tags": [
+          "OIDC"
+        ],
+        "responses": {
+          "204": {
+            "description": "Operación completada."
+          },
+          "400": {
+            "$ref": "#/components/responses/Error400"
+          },
+          "401": {
+            "$ref": "#/components/responses/Error401"
+          },
+          "403": {
+            "$ref": "#/components/responses/Error403"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error404"
+          },
+          "409": {
+            "$ref": "#/components/responses/Error409"
+          },
+          "429": {
+            "$ref": "#/components/responses/Error429"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error500"
+          },
+          "503": {
+            "description": "Servicio no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
       }
     }
   },
@@ -3017,13 +3393,18 @@
           },
           "required": {
             "type": "boolean"
+          },
+          "localPassword": {
+            "type": "boolean",
+            "description": "Si false, los cambios MFA exigen login OIDC/MFA de menos de cinco minutos en lugar de contraseña."
           }
         },
         "required": [
           "state",
           "pendingReplacement",
           "recoveryCodesRemaining",
-          "required"
+          "required",
+          "localPassword"
         ]
       },
       "MfaEnrollment": {
@@ -3049,9 +3430,13 @@
         "additionalProperties": false,
         "properties": {
           "password": {
-            "type": "string",
+            "type": [
+              "string",
+              "null"
+            ],
             "maxLength": 2048,
-            "writeOnly": true
+            "writeOnly": true,
+            "description": "Obligatoria para cuentas locales. Para cuentas sin contraseña se requiere sesión OIDC/MFA de menos de cinco minutos."
           },
           "code": {
             "type": "string",
@@ -3059,9 +3444,7 @@
             "writeOnly": true
           }
         },
-        "required": [
-          "password"
-        ]
+        "required": []
       },
       "MfaCode": {
         "type": "object",
@@ -3167,6 +3550,126 @@
         "required": [
           "token",
           "password"
+        ]
+      },
+      "OidcStart": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "google",
+              "gitlab"
+            ]
+          },
+          "binding": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "writeOnly": true
+          },
+          "confirmed": {
+            "type": "boolean",
+            "description": "Debe ser true para vinculación."
+          }
+        },
+        "required": [
+          "provider",
+          "binding"
+        ]
+      },
+      "OidcComplete": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "google",
+              "gitlab"
+            ]
+          },
+          "binding": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "writeOnly": true
+          },
+          "state": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{43}$",
+            "writeOnly": true
+          },
+          "code": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "provider",
+          "binding",
+          "state",
+          "code"
+        ]
+      },
+      "OidcProvider": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "type": "string",
+            "enum": [
+              "google",
+              "gitlab"
+            ]
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "provider",
+          "enabled"
+        ]
+      },
+      "OidcAuthorization": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "authorizationUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "authorizationUrl"
+        ]
+      },
+      "ConnectedIdentity": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "google",
+              "gitlab"
+            ]
+          },
+          "linkedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "provider",
+          "linkedAt"
         ]
       }
     },
