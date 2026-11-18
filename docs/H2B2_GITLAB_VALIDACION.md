@@ -101,7 +101,12 @@ sesiones y auditoría para probar los adaptadores; esos datos se conservan.
 Las huellas privadas están en `.cache/h2b2-gitlab-{continuity,identity}-{before,activated}.json`
 y `.cache/h2b2-gitlab-external-before.json`. No contienen credenciales externas.
 
-## Registro externo pendiente
+## Registro externo pendiente en esta validación histórica
+
+Este apartado conserva el estado anterior a la activación local posterior.
+El registro de GitLab y la configuración local ya se documentaron en
+[H2B2_GITLAB_REAL.md](H2B2_GITLAB_REAL.md); el recorrido completo real sigue
+pendiente. No debe interpretarse este apartado como estado actual de `.env`.
 
 La URI exacta de desarrollo que recibe Next es:
 

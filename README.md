@@ -4,13 +4,15 @@ Sistema Inteligente de Aprendizaje y Refuerzo Educativo. La Fase 1 implementa re
 
 El proyecto Spring original permanece en `services/core-api/siare-core`; su `pom.xml` conserva Java 21 y Spring Boot 4.1.2. Los contratos Abstract Factory se mantienen intactos. Consulta la [guía de Fase 1 y API](docs/PHASE1.md) y los [resultados ejecutados](docs/VALIDATION.md).
 
+Para colaborar en React Native: [incorporación y Android](docs/ONBOARDING_MOBILE.md), [contrato HTTP móvil y adaptaciones pendientes](docs/CONTRATO_API_MOBILE.md), [ramas y pull requests](docs/GUIA_COLABORACION.md) y [validación de la consolidación](docs/CONSOLIDACION_MAIN.md). El cliente móvil trabajará en `mobile/`; todavía no está implementado. Login local, sesiones, MFA, materias y documentos tienen API Bearer directa. OIDC nativo requiere un contrato propio; las cookies del BFF web no son tokens nativos.
+
 ## Probar el flujo de estudiante
 
 Con la composición iniciada, abre <http://127.0.0.1:3100/registro>, crea una cuenta e inicia sesión. Entra en **Mis materias**, selecciona **Crear materia**, indica un nombre y guarda. En el espacio de la materia puedes editar sus datos y archivarla. El filtro **Archivadas** permite consultarla después.
 
 El registro requiere nombre, correo válido y una frase de 15 a 1024 caracteres Unicode, normalizada en NFC, hasta 4096 bytes UTF-8 y fuera del corpus local de contraseñas comunes. Next.js mantiene acceso y renovación en cookies HttpOnly separadas, sin localStorage. Usa `127.0.0.1` de forma consistente: el BFF compara el origen con `APP_ORIGIN`. Las cuentas anteriores conservan login BCrypt y migran a Argon2id al autenticarse.
 
-H2-A añade roles USER/ADMIN/SUPERADMIN, ámbitos MySQL, sesiones renovables y revocables y auditoría. H2-B1 incorpora TOTP, QR local, códigos offline de un solo uso y recuperación de contraseña con SMTP configurable. ADMIN/SUPERADMIN solo obtienen sesión tras verificar MFA; refresh no eleva permisos. En **Seguridad** configuras el factor y en **Sesiones** cierras otros accesos. Consulta [H2B1_MFA_RECUPERACION.md](docs/H2B1_MFA_RECUPERACION.md), [H2B1_VALIDACION.md](docs/H2B1_VALIDACION.md) y [OpenAPI](docs/openapi.json). La entrega real de correo queda pendiente por ausencia de SMTP; el ciclo de tokens se valida con captura en pruebas. OIDC y APK siguen pendientes.
+H2-A añade roles USER/ADMIN/SUPERADMIN, ámbitos MySQL, sesiones renovables y revocables y auditoría. H2-B1 incorpora TOTP, QR local, códigos offline de un solo uso y recuperación de contraseña con SMTP configurable. ADMIN/SUPERADMIN solo obtienen sesión tras verificar MFA; refresh no eleva permisos. En **Seguridad** configuras el factor y en **Sesiones** cierras otros accesos. Consulta [H2B1_MFA_RECUPERACION.md](docs/H2B1_MFA_RECUPERACION.md), [H2B1_VALIDACION.md](docs/H2B1_VALIDACION.md) y [OpenAPI](docs/openapi.json). La entrega real de correo queda pendiente por ausencia de SMTP; el ciclo de tokens se valida con captura en pruebas. H2-B2 integra Google y GitLab con pruebas de proveedor controlado. Login y alta reales con Google tienen confirmación histórica del usuario; los recorridos completos reales con GitLab siguen pendientes, según [su estado de activación](docs/H2B2_GITLAB_REAL.md). El APK y OIDC nativo todavía no están implementados.
 
 Antes de iniciar esta versión, conserva el archivo AES externo si ya existe.
 Solo para la primera instalación sin factores previos ejecuta
@@ -220,7 +222,7 @@ Si decides limitar WSL2 mediante `%UserProfile%\.wslconfig`, una referencia es `
 
 ## Convivencia con otros proyectos y servicios de Windows/WSL2
 
-No hay `container_name`, redes externas, volúmenes externos, puertos de bases de datos publicados ni enlaces a servicios instalados en el host. MongoDB o Cassandra locales pueden conservar sus puertos y directorios. El nombre Compose prefija contenedores, redes, imágenes de aplicación y volúmenes.
+No hay `container_name`, puertos de bases de datos publicados ni enlaces a servicios instalados en el host. H1 conserva la red de datos y los volúmenes como recursos externos de la instancia, con nombres explícitos y etiquetas de propiedad. MongoDB o Cassandra locales pueden conservar sus puertos y directorios. El nombre Compose prefija contenedores, redes, imágenes de aplicación y volúmenes.
 
 Los scripts comprueban `io.siare.instance` en todos los recursos del nombre Compose antes de arrancar o detener. Si encuentran otra identidad, se niegan a modificarla. Conserva `.env` mientras uses esos volúmenes: regenerar la identidad o cambiar las contraseñas no actualiza automáticamente una base ya inicializada.
 
@@ -303,3 +305,7 @@ No ejecutes ese servidor a la vez que el frontend Docker en el puerto 3100. Guni
 3. Desarrollar Quiz y Crossword con sus productos Abstract Factory durante la fase de actividades.
 
 Las decisiones de dependencia y las fuentes oficiales consultadas están en [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## H2-B2: Google y GitLab.com OIDC
+
+Inicio federado con Authorization Code + PKCE, identidades MySQL, estado efímero Redis y el mismo MFA/sesiones revocables. Configuración independiente y desactivada por defecto. Ver [configuración y callbacks](docs/H2B2_OIDC.md) y [resultados y pendientes](docs/H2B2_VALIDACION.md). Google conserva el login y alta reales confirmados históricamente. GitLab.com sustituye a Microsoft Entra; su configuración local y el inicio del flujo están documentados en [GitLab real](docs/H2B2_GITLAB_REAL.md), pero el recorrido externo completo sigue pendiente. La entrega real SMTP continúa pendiente de H2-B1.
