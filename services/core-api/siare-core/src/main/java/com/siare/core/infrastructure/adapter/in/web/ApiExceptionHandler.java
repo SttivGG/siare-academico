@@ -15,6 +15,10 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class ApiExceptionHandler {
     private final com.siare.core.application.service.SessionService sessions;
     public ApiExceptionHandler(com.siare.core.application.service.SessionService sessions) { this.sessions=sessions; }
+    @ExceptionHandler(com.siare.core.domain.activity.ActivityException.class)
+    ResponseEntity<ApiError> activity(com.siare.core.domain.activity.ActivityException ex) {
+        return ResponseEntity.status(ex.status()).body(ApiError.of(ex.status(), ex.code(), ex.getMessage()));
+    }
     @ExceptionHandler(com.siare.core.domain.document.DocumentException.class)
     ResponseEntity<ApiError> document(com.siare.core.domain.document.DocumentException ex) {
         return ResponseEntity.status(ex.status()).body(ApiError.of(ex.status(), ex.code(), ex.getMessage()));

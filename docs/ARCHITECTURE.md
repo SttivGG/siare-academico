@@ -60,7 +60,7 @@ El arranque de Spring configura la caché DNS de su JVM con TTL negativo cero y 
 
 Next mantiene la cookie HttpOnly y el límite de 16 KiB para mutaciones JSON. La carga y descarga usan rutas específicas de `/api/files`, límites sobre bytes reales y streams. El multipart pasa por un temporal acotado para poder rechazarlo antes de transmitirlo a Spring. La vista de materia conserva el estilo de Fase 1 e incorpora selección accesible, progreso, estados, reintentos y vista del texto.
 
-## Abstract Factory de actividades: diseño pendiente de implementación
+## Abstract Factory de actividades H3
 
 `ActivityFactory<A, S>` declara los tres métodos `createGenerator()`, `createEvaluator()` y `createFeedbackPolicy()`. Sus productos son `Generator<A>`, `Evaluator<A, S>` y `FeedbackPolicy`.
 
@@ -69,9 +69,15 @@ Next mantiene la cookie HttpOnly y el límite de 16 KiB para mutaciones JSON. La
 | Quiz | `QuizFactory` | `Quiz` | `QuizSubmission` |
 | Crossword | `CrosswordFactory` | `Crossword` | `CrosswordSubmission` |
 
-Los genéricos vinculan generador y evaluador al tipo de actividad y respuesta de su familia. `FeedbackPolicy` interpreta una evaluación común. `ActivityFactoryProvider` define el futuro puerto para seleccionar la familia y `GenerateActivityUseCase` el futuro puerto de entrada.
+Los genéricos vinculan generador y evaluador al tipo de actividad y respuesta de su familia. `FeedbackPolicy` interpreta una evaluación común. `RegisteredActivityFactories` implementa `ActivityFactoryProvider` mediante un registro de fábricas. `GenerateActivityService` implementa `GenerateActivityUseCase` y solicita el generador a ese proveedor. `ActivityService` usa el mismo proveedor para construir evaluador, respuesta tipada y política al enviar un intento.
 
-Todo el módulo de actividades es un conjunto de contratos. No existen fábricas concretas, productos concretos, proveedor registrado, servicio de generación, endpoints, persistencia, ML ni generación de crucigramas. La coherencia semántica de las implementaciones se deberá probar cuando se construyan. No hay métodos que devuelvan contenido simulado ni excepciones de funcionalidad ficticia.
+`BankQuizFactory` crea `QuizGenerator`, `QuizEvaluator` y `QuizFeedbackPolicy`. `GridCrosswordFactory` crea `CrosswordGenerator`, `CrosswordEvaluator` y `CrosswordFeedbackPolicy`. El Quiz selecciona y mezcla preguntas/opciones revisadas, conservando sus IDs. El crucigrama usa backtracking acotado, palabras conectadas en ambos sentidos, intersecciones compatibles y pistas numeradas; rechaza cruces imposibles dentro del presupuesto. El dominio y los servicios de aplicación siguen en Java puro.
+
+`ActivityController` expone cinco operaciones Bearer de creación, catálogo, consulta, envío y resultados. `ActivityViews` proyecta contenido público sin soluciones ni citas privadas. `ActivityService` verifica propietario, materia activa y documento READY con texto antes de generar. El banco aportado declara revisión del autor; Spring comprueba estructura y, cuando hay documento, la cita/fragmento y presencia de la respuesta. El texto libre sin banco estructurado produce un error controlado de contenido insuficiente.
+
+Flyway V5 crea `academic_activities`, `academic_attempts` y `academic_attempt_outbox`. JPA guarda la actividad y su snapshot privado de evaluación; JDBC inserta intento y evento dentro de la misma transacción JPA. El lock pesimista sobre la actividad serializa envíos; una restricción UNIQUE por actividad/usuario/clave impide duplicados. La huella incluye respuestas ordenadas y duración; reutilizar la clave con otro cuerpo produce 409. Los IDs y la puntuación autoritativos se generan en Spring.
+
+`AttemptEventPublisher` define la salida futura a Express. `JdbcAttemptOutbox` reserva eventos con leases y actualizaciones condicionales; `AttemptOutboxDispatcher` reintenta con espera creciente y conserva eventId. El mantenimiento publica únicamente si existe un adaptador del puerto. Esta entrega deja los eventos PENDING, con resultado durable disponible para el alumno. Una caída tras la entrega puede repetir el evento: el consumidor debe deduplicar. No se implementa ML, Cassandra ni ingesta ClickHouse. Diagrama, contratos y límites en [H3_ACTIVIDADES.md](H3_ACTIVIDADES.md); evidencia en [H3_VALIDACION.md](H3_VALIDACION.md).
 
 ## MVC de Flask y Express
 
