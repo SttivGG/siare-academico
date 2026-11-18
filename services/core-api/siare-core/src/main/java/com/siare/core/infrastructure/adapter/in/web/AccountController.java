@@ -21,11 +21,11 @@ public class AccountController {
 
     public record RegisterRequest(@NotBlank @Size(max = 100) String name,
                                   @NotBlank @Size(max = 254) String email,
-                                  @NotBlank @Size(min = 10, max = 72) String password) {
+                                  @NotBlank @Size(max = 2048) String password) {
         @Override public String toString() { return "RegisterRequest[REDACTED]"; }
     }
     public record LoginRequest(@NotBlank @Size(max = 254) String email,
-                               @NotBlank @Size(max = 72) String password) {
+                               @NotBlank @Size(max = 2048) String password) {
         @Override public String toString() { return "LoginRequest[REDACTED]"; }
     }
     public record UserResponse(UUID id, String name, String email, Instant createdAt) {

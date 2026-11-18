@@ -13,6 +13,8 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
+    private final com.siare.core.application.service.SessionService sessions;
+    public ApiExceptionHandler(com.siare.core.application.service.SessionService sessions) { this.sessions=sessions; }
     @ExceptionHandler(com.siare.core.domain.document.DocumentException.class)
     ResponseEntity<ApiError> document(com.siare.core.domain.document.DocumentException ex) {
         return ResponseEntity.status(ex.status()).body(ApiError.of(ex.status(), ex.code(), ex.getMessage()));
@@ -34,14 +36,25 @@ public class ApiExceptionHandler {
         return ResponseEntity.status(415).body(ApiError.of(415, "UNSUPPORTED_MEDIA_TYPE", "El tipo de contenido de la solicitud no es válido."));
     }
     @ExceptionHandler(BusinessException.class)
-    ResponseEntity<ApiError> business(BusinessException ex) {
+    ResponseEntity<ApiError> business(BusinessException ex, jakarta.servlet.http.HttpServletRequest request) {
         int status = switch (ex.kind()) {
             case VALIDATION -> 400;
             case DUPLICATE_EMAIL -> 409;
             case UNAUTHORIZED -> 401;
             case FORBIDDEN -> 403;
             case NOT_FOUND -> 404;
+            case CONFLICT -> 409;
+            case RATE_LIMITED -> 429;
+            case MFA_REQUIRED -> 403;
         };
+        if(status==403) {
+            var authentication=org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication();
+            if(authentication!=null && authentication.getPrincipal() instanceof org.springframework.security.oauth2.jwt.Jwt jwt) {
+                Object pattern=request.getAttribute(org.springframework.web.servlet.HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
+                String resource=pattern instanceof String value ? value : "protected-api";
+                sessions.event(java.util.UUID.fromString(jwt.getSubject()),"ACCESS_DENIED",resource.substring(0,Math.min(100,resource.length())),"DENIED",null);
+            }
+        }
         return ResponseEntity.status(status).body(ApiError.of(status, ex.kind().name(), ex.getMessage()));
     }
 

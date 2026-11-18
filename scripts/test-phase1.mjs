@@ -30,7 +30,7 @@ const token = auth.accessToken;
 const [header, claims] = token.split(".").slice(0, 2).map(value => JSON.parse(Buffer.from(value, "base64url").toString()));
 assert.equal(header.alg, "RS256");
 assert.equal(claims.sub, user.id);
-assert.equal(claims.exp - claims.iat, 1800);
+assert.ok(claims.exp - claims.iat > 0 && claims.exp - claims.iat <= 900, "El access token debe durar como máximo quince minutos.");
 assert.equal(auth.tokenType, "Bearer");
 await request(core, "auth/login", "POST", { email, password: "wrong" }, null, 401);
 await request(core, "subjects", "GET", undefined, undefined, 401);

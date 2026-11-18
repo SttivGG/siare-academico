@@ -17,6 +17,19 @@ export function allowedUpload(headers: Headers, origin: string): boolean {
 
 export class ByteLimitError extends Error {}
 
+/** Drain a small bounded overage before rejecting so HTTP can return 413 without resetting a still-writing client. */
+export function boundedUploadStream(source: ReadableStream<Uint8Array>, maximum: number, overage = 2 * 1024 * 1024): ReadableStream<Uint8Array> {
+  let total = 0;
+  return source.pipeThrough(new TransformStream<Uint8Array, Uint8Array>({
+    transform(chunk, controller) {
+      total += chunk.byteLength;
+      if (total > maximum + overage) throw new ByteLimitError("Upload drain limit exceeded");
+      if (total <= maximum) controller.enqueue(chunk);
+    },
+    flush() { if (total > maximum) throw new ByteLimitError("Upload byte limit exceeded"); },
+  }));
+}
+
 /** Count observed bytes, including when Content-Length is absent or untruthful. */
 export function boundedStream(source: ReadableStream<Uint8Array>, maximum: number): ReadableStream<Uint8Array> {
   let total = 0;

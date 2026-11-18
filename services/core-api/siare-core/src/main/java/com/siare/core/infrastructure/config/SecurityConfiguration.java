@@ -11,12 +11,17 @@ import tools.jackson.databind.ObjectMapper;
 import com.siare.core.infrastructure.adapter.in.web.ApiError;
 
 @Configuration(proxyBeanMethods = false)
+@org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication
 public class SecurityConfiguration {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectMapper mapper) {
         http.authorizeHttpRequests(requests -> requests
                 .requestMatchers(HttpMethod.GET, "/health").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/auth/register", "/api/v1/auth/login").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/auth/oidc/providers").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/oidc/start", "/api/v1/auth/oidc/complete").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/auth/register", "/api/v1/auth/login", "/api/v1/auth/refresh",
+                        "/api/v1/auth/mfa/enroll", "/api/v1/auth/mfa/confirm", "/api/v1/auth/mfa/verify", "/api/v1/auth/mfa/recover",
+                        "/api/v1/auth/password-reset/request", "/api/v1/auth/password-reset/complete").permitAll()
                 .requestMatchers("/api/v1/**").authenticated()
                 .anyRequest().denyAll());
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

@@ -41,15 +41,20 @@ public class JwtConfiguration {
                 .algorithm(SignatureAlgorithm.RS256).build();
     }
 
-    @Bean JwtDecoder jwtDecoder(KeyPair pair, @Value("${siare.jwt.issuer}") String issuer) {
+    @Bean JwtDecoder jwtDecoder(KeyPair pair, @Value("${siare.jwt.issuer}") String issuer, com.siare.core.application.service.SessionService sessions, Clock clock) {
         var decoder = NimbusJwtDecoder.withPublicKey((RSAPublicKey) pair.getPublic())
                 .signatureAlgorithm(SignatureAlgorithm.RS256).build();
         OAuth2TokenValidator<Jwt> requiredClaims = jwt -> {
             try {
-                UUID.fromString(jwt.getSubject());
+                var userId=UUID.fromString(jwt.getSubject());
+                var sessionId=UUID.fromString(jwt.getClaimAsString("sid"));
+                UUID.fromString(jwt.getId());
                 if (jwt.getExpiresAt() == null || jwt.getIssuedAt() == null) throw new IllegalArgumentException();
+                if(!clock.instant().isBefore(jwt.getExpiresAt()) || jwt.getIssuedAt().isAfter(clock.instant()) || !issuer.equals(jwt.getClaimAsString("iss")))
+                    throw new IllegalArgumentException();
+                if(!sessions.validate(userId,sessionId)) throw new IllegalArgumentException();
                 return OAuth2TokenValidatorResult.success();
-            } catch (IllegalArgumentException | NullPointerException ex) {
+            } catch (IllegalArgumentException | NullPointerException | com.siare.core.domain.account.BusinessException ex) {
                 return OAuth2TokenValidatorResult.failure(new OAuth2Error("invalid_token", "Token no válido.", null));
             }
         };
@@ -60,15 +65,16 @@ public class JwtConfiguration {
 
     @Bean TokenPort tokenPort(JwtEncoder encoder, Clock clock, @Value("${siare.jwt.issuer}") String issuer,
                               @Value("${siare.jwt.ttl}") Duration ttl) {
-        if (ttl.isNegative() || ttl.isZero() || issuer.isBlank()) throw new IllegalArgumentException("Configuración JWT inválida.");
-        return userId -> {
+        if (ttl.isNegative() || ttl.isZero() || ttl.compareTo(Duration.ofMinutes(15))>0 || issuer.isBlank()) throw new IllegalArgumentException("Configuración JWT inválida (máximo 15 minutos).");
+        return (userId,sessionId,absoluteExpiry) -> {
             var now = clock.instant();
-            var expires = now.plus(ttl);
+            var candidate=now.plus(ttl);
+            var expires=candidate.isBefore(absoluteExpiry)?candidate:absoluteExpiry;
             var claims = JwtClaimsSet.builder().issuer(issuer).subject(userId.toString()).issuedAt(now)
-                    .expiresAt(expires).id(UUID.randomUUID().toString()).build();
+                    .expiresAt(expires).id(UUID.randomUUID().toString()).claim("sid",sessionId.toString()).build();
             var token = encoder.encode(JwtEncoderParameters.from(
                     JwsHeader.with(SignatureAlgorithm.RS256).type("JWT").build(), claims));
-            return new TokenPort.AccessToken(token.getTokenValue(), "Bearer", expires);
+            return new TokenPort.AccessToken(token.getTokenValue(), "Bearer", expires,null,null,sessionId);
         };
     }
 }

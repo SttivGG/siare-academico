@@ -24,8 +24,6 @@ public final class AccountRules {
     }
 
     public static void password(String value) {
-        if (value == null || value.length() < 10 || value.getBytes(StandardCharsets.UTF_8).length > 72) {
-            throw new BusinessException(VALIDATION, "La contraseña debe tener al menos 10 caracteres y como máximo 72 bytes UTF-8.");
-        }
+        com.siare.core.domain.identity.PasswordPolicy.validate(value);
     }
 }

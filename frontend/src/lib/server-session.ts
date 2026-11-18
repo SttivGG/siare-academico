@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 
 export const secureCookie = () => process.env.SESSION_COOKIE_SECURE !== "false";
 export const sessionName = () => secureCookie() ? "__Host-siare_session" : "siare_session";
+export const refreshName = () => secureCookie() ? "__Host-siare_refresh" : "siare_refresh";
+export const challengeName = () => secureCookie() ? "__Host-siare_mfa" : "siare_mfa";
 
 export async function sessionToken() {
   return (await cookies()).get(sessionName())?.value;
@@ -11,14 +13,20 @@ export async function sessionToken() {
 
 export async function requireStudent(): Promise<{ id: string; name: string; email: string }> {
   const token = await sessionToken();
-  if (!token) redirect("/login");
+  if (!token) {
+    if ((await cookies()).has(refreshName())) redirect("/sesion/renovar");
+    redirect("/login?sesion=expirada");
+  }
   let response: Response;
   try {
     response = await fetch(`${process.env.CORE_API_URL}/api/v1/users/me`, {
       headers: { Authorization: `Bearer ${token}` }, cache: "no-store", signal: AbortSignal.timeout(8000),
     });
   } catch { throw new Error("No se pudo conectar con SIARE. Vuelve a intentarlo."); }
-  if (response.status === 401) redirect("/login?sesion=expirada");
+  if (response.status === 401) {
+    if ((await cookies()).has(refreshName())) redirect("/sesion/renovar");
+    redirect("/login?sesion=expirada");
+  }
   if (!response.ok) throw new Error("No se pudo comprobar la sesión. Vuelve a intentarlo.");
   return response.json();
 }

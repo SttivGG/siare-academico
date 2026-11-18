@@ -1,3 +1,5 @@
+import { sessionFetch } from "./renew-session";
+
 export type Student = { id: string; name: string; email: string };
 export type Subject = { id: string; name: string; description: string | null; archived: boolean; createdAt: string; updatedAt: string };
 
@@ -8,7 +10,8 @@ export class ApiError extends Error {
 export async function api<T>(path: string, method = "GET", body?: unknown): Promise<T> {
   let response: Response;
   try {
-    response = await fetch(`/api/bff/${path}`, {
+    const fetcher = path.startsWith("auth/") ? fetch : sessionFetch;
+    response = await fetcher(`/api/bff/${path}`, {
       method, credentials: "same-origin", cache: "no-store",
       headers: { "Content-Type": "application/json", ...(method !== "GET" ? { "X-SIARE-CSRF": "1" } : {}) },
       ...(method !== "GET" ? { body: JSON.stringify(body ?? {}) } : {}),

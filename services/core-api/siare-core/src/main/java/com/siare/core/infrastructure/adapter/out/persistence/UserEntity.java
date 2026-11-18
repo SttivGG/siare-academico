@@ -13,7 +13,7 @@ public class UserEntity {
     @Id @JdbcTypeCode(SqlTypes.CHAR) @Column(length = 36) UUID id;
     @Column(nullable = false, length = 100) String name;
     @Column(nullable = false, unique = true, length = 254) String email;
-    @Column(name = "password_hash", nullable = false, length = 60) String passwordHash;
+    @Column(name = "password_hash", nullable = false, length = 255) String passwordHash;
     @Column(name = "created_at", nullable = false) Instant createdAt;
 
     protected UserEntity() {}

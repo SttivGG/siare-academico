@@ -29,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class DocumentApiTests {
     @Autowired MockMvc mvc;
     @Autowired JwtEncoder encoder;
+    @Autowired com.siare.core.application.port.out.UserRepository users;
+    @Autowired com.siare.core.application.service.SessionService sessions;
     @Autowired DocumentRepository documents;
     @Autowired DocumentStorage storage;
     @MockitoBean SubjectUseCase subjects;
@@ -38,8 +40,8 @@ class DocumentApiTests {
     @BeforeEach void setup() {
         reset(documents, storage);
         var now = Instant.now();
-        token = encoder.encode(JwtEncoderParameters.from(JwsHeader.with(SignatureAlgorithm.RS256).build(),
-                JwtClaimsSet.builder().issuer("siare-core").subject(owner.toString()).issuedAt(now).expiresAt(now.plusSeconds(300)).build())).getTokenValue();
+        users.save(new com.siare.core.domain.account.User(owner,"Document test",owner+"@example.test","unused-test-hash",now));
+        token = sessions.open(owner).accessToken();
         var matter = new Subject(subject, owner, "Ciencias", null, false, now, now);
         when(subjects.get(any(), eq(subject))).thenAnswer(call -> { matter.requireOwner(call.getArgument(0)); return matter; });
         document = new DocumentMetadata(id, subject, owner, "grid-id", "academic.pdf", "application/pdf", 3, "sha256", DocumentStatus.UPLOADED, now, null, null, null, null);

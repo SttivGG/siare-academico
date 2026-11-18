@@ -11,7 +11,11 @@ public class SiareCoreApplication {
 		// those negative answers across an immediate user retry after recovery.
 		java.security.Security.setProperty("networkaddress.cache.negative.ttl", "0");
 		java.security.Security.setProperty("networkaddress.cache.ttl", "5");
-		SpringApplication.run(SiareCoreApplication.class, args);
+		var application = new SpringApplication(SiareCoreApplication.class);
+		if (java.util.Arrays.asList(args).contains("--siare.bootstrap-superadmin=true")) {
+			application.setWebApplicationType(org.springframework.boot.WebApplicationType.NONE);
+			try (var context = application.run(args)) { /* Offline command closes pools on completion. */ }
+		} else application.run(args);
 	}
 
 }
