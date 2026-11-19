@@ -1,0 +1,11 @@
+{
+  "documentId": "00000000-0000-4000-8000-000000000002",
+  "extractionVersion": "operation:00000000-0000-4000-8000-000000000003",
+  "type": "QUIZ",
+  "topic": "Astronomía",
+  "count": 1,
+  "gridSize": 15,
+  "fragmentIndexes": [
+    0
+  ]
+}

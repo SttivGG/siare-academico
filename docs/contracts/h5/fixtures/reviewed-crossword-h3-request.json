@@ -1,0 +1,35 @@
+{
+  "documentId": "00000000-0000-4000-8000-000000000002",
+  "type": "CROSSWORD",
+  "topic": "Astronomía",
+  "count": 2,
+  "gridSize": 15,
+  "bank": {
+    "validated": true,
+    "questions": [],
+    "words": [
+      {
+        "id": "w1",
+        "answer": "SOL",
+        "clue": "Estrella del sistema solar.",
+        "topic": "Astronomía",
+        "source": {
+          "reference": "Página 1",
+          "fragmentIndex": 0,
+          "quote": "El Sol es la estrella del sistema solar."
+        }
+      },
+      {
+        "id": "w2",
+        "answer": "LUNA",
+        "clue": "Satélite natural de la Tierra.",
+        "topic": "Astronomía",
+        "source": {
+          "reference": "Página 1",
+          "fragmentIndex": 0,
+          "quote": "La Luna es el satélite natural de la Tierra."
+        }
+      }
+    ]
+  }
+}
