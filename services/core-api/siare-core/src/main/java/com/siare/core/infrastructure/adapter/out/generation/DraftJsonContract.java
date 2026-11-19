@@ -46,6 +46,18 @@ public final class DraftJsonContract {
         } catch (DraftGenerationException error) { throw error; }
         catch (RuntimeException error) { throw DraftGenerationException.invalidContract(); }
     }
+    /** Same frozen H5 definitions at the public review boundary, without JSON coercion. */
+    public <T> T publicRequest(byte[] bytes, String definition, Class<T> type) {
+        if (!Set.of("ReviseDraftRequest", "PublishDraftRequest").contains(definition)) throw new IllegalArgumentException("Unknown public draft definition");
+        if (bytes.length > RESPONSE_BYTES) throw new com.siare.core.domain.draft.DraftLifecycleException(413, "PAYLOAD_TOO_LARGE");
+        try {
+            JsonNode node = parse(bytes, RESPONSE_BYTES);
+            if (definition.equals("PublishDraftRequest") && (!node.path("reviewConfirmed").isBoolean() || !node.path("reviewConfirmed").asBoolean()))
+                throw new com.siare.core.domain.draft.DraftLifecycleException(400, "REVIEW_REQUIRED");
+            shape(node, definition); return json.treeToValue(node, type);
+        } catch (com.siare.core.domain.draft.DraftLifecycleException ex) { throw ex; }
+        catch (RuntimeException ex) { throw new com.siare.core.domain.draft.DraftLifecycleException(400, "INVALID_DRAFT_REQUEST"); }
+    }
     public DraftGenerationException error(Request request, int status, byte[] bytes, String retryAfter) {
         JsonNode node = parse(bytes, RESPONSE_BYTES); shape(node, "ErrorResponse");
         require(node.path("status").asInt() == status);

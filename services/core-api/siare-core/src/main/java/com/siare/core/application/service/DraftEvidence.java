@@ -46,11 +46,17 @@ public final class DraftEvidence {
         var checks = response.quality().checks();
         require(checks != null && checks.evidenceSupported() && checks.answerSupported() && checks.explanationSupported()
                 && checks.unambiguous() && checks.topicAligned() && checks.noDuplicates());
+        bank(request, response.draft());
+    }
+    /** Revalidate edited content without assigning producer quality claims to it. */
+    public static void bank(Request request, Bank bank) {
+        request(request);
+        require(bank != null && !bank.validated());
         var fragments = new HashMap<Integer, Fragment>(); request.fragments().forEach(f -> fragments.put(f.index(), f));
         Set<String> ids = new HashSet<>(), content = new HashSet<>();
         if (request.type().name().equals("QUIZ")) {
-            require(response.draft().questions().size() == request.count() && response.draft().words().isEmpty());
-            for (var question : response.draft().questions()) {
+            require(bank.questions().size() == request.count() && bank.words().isEmpty());
+            for (var question : bank.questions()) {
                 id(question.id()); require(ids.add(question.id())); text(question.prompt(), 2000);
                 require(content.add(ActivityRules.normalize(question.prompt())) && request.topic().equals(question.topic()));
                 text(question.explanation(), 2000); require(question.options().size() >= 2 && question.options().size() <= 6);
@@ -63,8 +69,8 @@ public final class DraftEvidence {
                 require(answer != null); evidence(question.source(), answer, fragments);
             }
         } else {
-            require(response.draft().words().size() == request.count() && response.draft().questions().isEmpty());
-            for (var word : response.draft().words()) {
+            require(bank.words().size() == request.count() && bank.questions().isEmpty());
+            for (var word : bank.words()) {
                 id(word.id()); text(word.answer(), 100); text(word.clue(), 2000); text(word.explanation(), 2000);
                 String answer = ActivityRules.normalize(word.answer());
                 require(ids.add(word.id()) && content.add(answer) && answer.matches("[A-ZÑ]{2,25}") && request.topic().equals(word.topic()));

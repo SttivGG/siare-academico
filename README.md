@@ -313,3 +313,7 @@ Las decisiones de dependencia y las fuentes oficiales consultadas están en [doc
 ## H2-B2: Google y GitLab.com OIDC
 
 Inicio federado con Authorization Code + PKCE, identidades MySQL, estado efímero Redis y el mismo MFA/sesiones revocables. Configuración independiente y desactivada por defecto. Ver [configuración y callbacks](docs/H2B2_OIDC.md) y [resultados y pendientes](docs/H2B2_VALIDACION.md). Google conserva el login y alta reales confirmados históricamente. GitLab.com sustituye a Microsoft Entra y tiene validación manual exitosa reportada por el usuario el 18/11/2026, con alcance documentado en [GitLab real](docs/H2B2_GITLAB_REAL.md). La entrega real SMTP continúa pendiente de H2-B1.
+
+## H5-D: borradores académicos
+
+Persistencia MySQL, revisión privada y publicación idempotente mediante H3 en rama de desarrollo. ML y creación HTTP continúan deshabilitados; V6 no se aplica a la instalación habitual sin autorización. Ver [ciclo de vida](docs/H5_D_BORRADORES.md) y [pruebas y preservación](docs/H5_D_VALIDACION_20261119.md).

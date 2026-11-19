@@ -1,0 +1,40 @@
+CREATE TABLE academic_drafts (
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    owner_id CHAR(36) NOT NULL,
+    subject_id CHAR(36) NOT NULL,
+    document_id CHAR(36) NOT NULL,
+    family VARCHAR(16) NOT NULL,
+    topic VARCHAR(100) NOT NULL,
+    item_count INT NOT NULL,
+    grid_size INT NOT NULL,
+    extraction_version VARCHAR(46) NOT NULL,
+    extraction_fingerprint CHAR(64) NOT NULL,
+    fragment_indexes_json TEXT NOT NULL,
+    private_response_json MEDIUMTEXT NOT NULL,
+    generator_version VARCHAR(128) NOT NULL,
+    validation_json TEXT NOT NULL,
+    quality_revision INT NOT NULL DEFAULT 1,
+    revision INT NOT NULL,
+    status VARCHAR(24) NOT NULL,
+    review_confirmed BOOLEAN NOT NULL DEFAULT FALSE,
+    created_at TIMESTAMP(6) NOT NULL,
+    updated_at TIMESTAMP(6) NOT NULL,
+    expires_at TIMESTAMP(6) NOT NULL,
+    published_activity_id CHAR(36),
+    publication_key CHAR(36),
+    publication_fingerprint CHAR(64),
+    CONSTRAINT fk_draft_owner FOREIGN KEY (owner_id) REFERENCES users(id),
+    CONSTRAINT fk_draft_subject FOREIGN KEY (subject_id) REFERENCES subjects(id),
+    CONSTRAINT fk_draft_activity FOREIGN KEY (published_activity_id) REFERENCES academic_activities(id),
+    CONSTRAINT uk_draft_activity UNIQUE (published_activity_id),
+    CONSTRAINT ck_draft_family CHECK (family IN ('QUIZ','CROSSWORD')),
+    CONSTRAINT ck_draft_count CHECK ((family='QUIZ' AND item_count BETWEEN 1 AND 50) OR (family='CROSSWORD' AND item_count BETWEEN 2 AND 12)),
+    CONSTRAINT ck_draft_grid CHECK (grid_size BETWEEN 5 AND 25),
+    CONSTRAINT ck_draft_revision CHECK (revision BETWEEN 1 AND 2147483646 AND quality_revision=1),
+    CONSTRAINT ck_draft_status CHECK (status IN ('AWAITING_REVIEW','PUBLISHED')),
+    CONSTRAINT ck_draft_publication CHECK (
+        (status='AWAITING_REVIEW' AND review_confirmed=FALSE AND published_activity_id IS NULL AND publication_key IS NULL AND publication_fingerprint IS NULL)
+        OR (status='PUBLISHED' AND review_confirmed=TRUE AND published_activity_id IS NOT NULL AND publication_key IS NOT NULL AND publication_fingerprint IS NOT NULL))
+);
+CREATE INDEX ix_draft_owner_expiry ON academic_drafts(owner_id,expires_at);
+CREATE INDEX ix_draft_document ON academic_drafts(document_id);

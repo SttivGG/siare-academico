@@ -15,6 +15,18 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 public class ApiExceptionHandler {
     private final com.siare.core.application.service.SessionService sessions;
     public ApiExceptionHandler(com.siare.core.application.service.SessionService sessions) { this.sessions=sessions; }
+    @ExceptionHandler(com.siare.core.domain.draft.DraftLifecycleException.class)
+    ResponseEntity<ApiError> draft(com.siare.core.domain.draft.DraftLifecycleException ex) {
+        var fields = ex.activityId() == null ? java.util.Map.<String,String>of() : java.util.Map.of("activityId", ex.activityId().toString());
+        return ResponseEntity.status(ex.status()).cacheControl(CacheControl.noStore())
+                .body(new ApiError(Instant.now(), ex.status(), ex.code(), ex.getMessage(), fields));
+    }
+    @ExceptionHandler(com.siare.core.domain.draft.DraftGenerationException.class)
+    ResponseEntity<ApiError> draftGeneration(com.siare.core.domain.draft.DraftGenerationException ex) {
+        var response = ResponseEntity.status(ex.status()).cacheControl(CacheControl.noStore());
+        if (ex.retryAfter() != null) response.header("Retry-After", ex.retryAfter().toString());
+        return response.body(ApiError.of(ex.status(), ex.code(), ex.getMessage()));
+    }
     @ExceptionHandler(com.siare.core.domain.activity.ActivityException.class)
     ResponseEntity<ApiError> activity(com.siare.core.domain.activity.ActivityException ex) {
         return ResponseEntity.status(ex.status()).body(ApiError.of(ex.status(), ex.code(), ex.getMessage()));
