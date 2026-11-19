@@ -10,7 +10,12 @@ import java.security.*;
 import java.util.*;
 
 public final class GenerateAcademicDraftService implements GenerateAcademicDraftUseCase {
-    private record Snapshot(DocumentMetadata metadata, ExtractedContent content, String fingerprint) {}
+    public record Snapshot(DocumentMetadata metadata, ExtractedContent content, String fingerprint) {
+        @Override public String toString() { return "DraftSnapshot[REDACTED]"; }
+    }
+    public record Generated(Request request, Response response, String fingerprint) {
+        @Override public String toString() { return "GeneratedDraft[REDACTED]"; }
+    }
     private final IdentityRepository identities;
     private final SubjectUseCase subjects;
     private final DocumentRepository documents;
@@ -23,6 +28,9 @@ public final class GenerateAcademicDraftService implements GenerateAcademicDraft
         this.generator = generator; this.admission = admission;
     }
     @Override public Response generate(UUID owner, UUID subject, Selection selection) {
+        return generateCaptured(owner, subject, selection).response();
+    }
+    public Generated generateCaptured(UUID owner, UUID subject, Selection selection) {
         authorize(owner, subject);
         if (selection == null || selection.documentId() == null || selection.fragmentIndexes() == null
                 || selection.fragmentIndexes().isEmpty() || selection.fragmentIndexes().size() > 32
@@ -54,10 +62,10 @@ public final class GenerateAcademicDraftService implements GenerateAcademicDraft
                 throw changed();
             }
             if (!before.fingerprint().equals(after.fingerprint())) throw changed();
-            return result;
+            return new Generated(request, result, before.fingerprint());
         }
     }
-    private void authorize(UUID owner, UUID subject) {
+    public void authorize(UUID owner, UUID subject) {
         if (owner == null) throw new DraftGenerationException(401, "UNAUTHORIZED");
         var access = identities.access(owner);
         if (access == null || !owner.equals(access.userId()) || !access.enabled()) throw new DraftGenerationException(403, "FORBIDDEN");
@@ -65,7 +73,12 @@ public final class GenerateAcademicDraftService implements GenerateAcademicDraft
         if (!owner.equals(found.userId())) throw new DraftGenerationException(403, "FORBIDDEN");
         if (found.archived()) throw new DraftGenerationException(409, "SUBJECT_ARCHIVED");
     }
-    private Snapshot snapshot(UUID owner, UUID subject, UUID id) {
+    /** Publication follows the existing identity lock order and prevents mid-commit account disable. */
+    public void lockIdentity(UUID owner) {
+        var access = identities.lockAccess(owner);
+        if (access == null || !owner.equals(access.userId()) || !access.enabled()) throw new DraftGenerationException(403, "FORBIDDEN");
+    }
+    public Snapshot snapshot(UUID owner, UUID subject, UUID id) {
         var metadata = documents.find(id).orElseThrow(() -> new DraftGenerationException(404, "NOT_FOUND"));
         if (!owner.equals(metadata.ownerId()) || !subject.equals(metadata.subjectId())) throw new DraftGenerationException(403, "FORBIDDEN");
         if (metadata.status() != DocumentStatus.READY || metadata.operationId() == null) throw new DraftGenerationException(409, "TEXT_NOT_READY");

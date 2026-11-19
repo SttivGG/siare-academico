@@ -13,8 +13,12 @@ public class AcademicDraftConfiguration {
     @Bean AcademicDraftGenerator academicDraftGenerator() {
         return request -> { throw new DraftGenerationException(503, "GENERATION_DISABLED"); };
     }
-    @Bean GenerateAcademicDraftUseCase generateAcademicDraft(IdentityRepository identities, SubjectUseCase subjects,
+    @Bean GenerateAcademicDraftService generateAcademicDraft(IdentityRepository identities, SubjectUseCase subjects,
             DocumentRepository documents, AcademicDraftGenerator generator, Clock clock) {
         return new GenerateAcademicDraftService(identities, subjects, documents, generator, new DraftAdmission(clock));
+    }
+    @Bean AcademicDraftUseCase academicDrafts(GenerateAcademicDraftService generation, AcademicDraftRepository drafts,
+            ActivityUseCase activities, TransactionPort tx, Clock clock) {
+        return new AcademicDraftService(generation, drafts, activities, tx, clock);
     }
 }

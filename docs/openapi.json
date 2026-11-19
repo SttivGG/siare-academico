@@ -2,8 +2,8 @@
   "openapi": "3.1.0",
   "info": {
     "title": "SIARE — Fases 1/2, H2 y H3 actividades",
-    "version": "0.5.0",
-    "description": "API Bearer SIARE para login local, sesiones rotatorias, MFA, roles, materias y documentos. BFF Next.js con cookies HttpOnly y CSRF. OIDC Google y GitLab.com web, PKCE, vinculación explícita y MFA SIARE. Google login/alta confirmados históricamente; GitLab configurado localmente, canje y recorridos reales pendientes. OIDC nativo requiere adaptación propia; no reutilizar cookies BFF. SMTP real pendiente. Ver docs/CONTRATO_API_MOBILE.md. H3: generación y evaluación Quiz/Crucigrama con Abstract Factory, bancos revisados, fuentes documentales READY, intentos MySQL idempotentes y outbox durable. Transporte Express y ML pendientes; ver H3_ACTIVIDADES.md."
+    "version": "0.6.0",
+    "description": "API Bearer SIARE para login local, sesiones rotatorias, MFA, roles, materias y documentos. BFF Next.js con cookies HttpOnly y CSRF. OIDC Google y GitLab.com web, PKCE, vinculación explícita y MFA SIARE. Google login/alta confirmados históricamente; GitLab configurado localmente, canje y recorridos reales pendientes. OIDC nativo requiere adaptación propia; no reutilizar cookies BFF. SMTP real pendiente. Ver docs/CONTRATO_API_MOBILE.md. H3: generación y evaluación Quiz/Crucigrama con Abstract Factory, bancos revisados, fuentes documentales READY, intentos MySQL idempotentes y outbox durable. Transporte Express y ML pendientes; ver H3_ACTIVIDADES.md. H5-D: persistencia, revisión y publicación transaccional de borradores propios, pendiente de despliegue autorizado. La creación desde documentos no está expuesta por HTTP; generador ML deshabilitado. Ver H5_D_BORRADORES.md."
   },
   "servers": [
     {
@@ -16,7 +16,722 @@
       "bearer": []
     }
   ],
+  "x-disabled-operations": [
+    {
+      "method": "POST",
+      "path": "/api/v1/subjects/{subjectId}/activity-drafts",
+      "implemented": false,
+      "reason": "Sin generador Python aprobado; no existe ruta HTTP de creación ni entrada sintética."
+    }
+  ],
   "paths": {
+    "/api/v1/activity-drafts/{draftId}": {
+      "get": {
+        "operationId": "getAcademicDraft",
+        "summary": "Consultar borrador privado propio",
+        "tags": [
+          "Borradores H5-D"
+        ],
+        "description": "Implementado en rama H5-D; pendiente de integración y despliegue autorizado. Bearer vigente, propietario y no-store. ML deshabilitado y sin ruta BFF. qualityAppliesToRevision=1 conserva las declaraciones originales; las revisiones editadas requieren revisión humana propia.",
+        "parameters": [
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Borrador pendiente de revisión.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/H5PublicDraftView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_DRAFT_REQUEST o REVIEW_REQUIRED.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Se requiere sesión vigente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Sin acceso al borrador, materia o documento.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso ausente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "DRAFT_REVISION_CONFLICT, DRAFT_ALREADY_PUBLISHED (fields.activityId), IDEMPOTENCY_CONFLICT, EXTRACTION_CHANGED, TEXT_NOT_READY o SUBJECT_ARCHIVED.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "DRAFT_EXPIRED. Vigencia inicial 24 horas.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "INVALID_DRAFT_CONTENT, INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error seguro; transacción MySQL revertida.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "reviseAcademicDraft",
+        "summary": "Confirmar una edición con revisión optimista",
+        "tags": [
+          "Borradores H5-D"
+        ],
+        "description": "Implementado en rama H5-D; pendiente de integración y despliegue autorizado. Bearer vigente, propietario y no-store. ML deshabilitado y sin ruta BFF. qualityAppliesToRevision=1 conserva las declaraciones originales; las revisiones editadas requieren revisión humana propia.",
+        "parameters": [
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Revisión incrementada, validated:false.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/H5PublicDraftView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_DRAFT_REQUEST o REVIEW_REQUIRED.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Se requiere sesión vigente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Sin acceso al borrador, materia o documento.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso ausente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "DRAFT_REVISION_CONFLICT, DRAFT_ALREADY_PUBLISHED (fields.activityId), IDEMPOTENCY_CONFLICT, EXTRACTION_CHANGED, TEXT_NOT_READY o SUBJECT_ARCHIVED.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "DRAFT_EXPIRED. Vigencia inicial 24 horas.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "INVALID_DRAFT_CONTENT, INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error seguro; transacción MySQL revertida.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "PAYLOAD_TOO_LARGE, máximo 2 MiB UTF-8 observado.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Se requiere application/json.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/H5ReviseDraftRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/activity-drafts/{draftId}/publish": {
+      "post": {
+        "operationId": "publishAcademicDraft",
+        "summary": "Publicar revisión confirmada mediante H3 Abstract Factory",
+        "tags": [
+          "Borradores H5-D"
+        ],
+        "description": "Implementado en rama H5-D; pendiente de integración y despliegue autorizado. Bearer vigente, propietario y no-store. ML deshabilitado y sin ruta BFF. qualityAppliesToRevision=1 conserva las declaraciones originales; las revisiones editadas requieren revisión humana propia.",
+        "parameters": [
+          {
+            "name": "draftId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Actividad real creada y borrador publicado en la misma transacción MySQL.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              },
+              "Location": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "/api/v1/activities/{activityId}"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityView"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Recuperación idempotente autorizada de la actividad existente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              },
+              "Location": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "/api/v1/activities/{activityId}"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "INVALID_DRAFT_REQUEST o REVIEW_REQUIRED.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Se requiere sesión vigente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Sin acceso al borrador, materia o documento.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso ausente.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "DRAFT_REVISION_CONFLICT, DRAFT_ALREADY_PUBLISHED (fields.activityId), IDEMPOTENCY_CONFLICT, EXTRACTION_CHANGED, TEXT_NOT_READY o SUBJECT_ARCHIVED.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "410": {
+            "description": "DRAFT_EXPIRED. Vigencia inicial 24 horas.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "INVALID_DRAFT_CONTENT, INSUFFICIENT_CONTENT, UNSUPPORTED_SOURCE o INVALID_CROSSWORD.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error seguro; transacción MySQL revertida.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "PAYLOAD_TOO_LARGE, máximo 2 MiB UTF-8 observado.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Se requiere application/json.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                },
+                "description": "Contenido privado, incluidos errores."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/H5PublishDraftRequest"
+              }
+            }
+          }
+        }
+      }
+    },
     "/health": {
       "get": {
         "operationId": "health",
@@ -3050,6 +3765,460 @@
       }
     },
     "schemas": {
+      "H5PublicDraftView": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "draftId",
+          "subjectId",
+          "documentId",
+          "extractionVersion",
+          "type",
+          "topic",
+          "count",
+          "gridSize",
+          "draftRevision",
+          "expiresAt",
+          "status",
+          "draft",
+          "quality",
+          "qualityAppliesToRevision",
+          "warnings",
+          "generatorVersion"
+        ],
+        "properties": {
+          "draftId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "subjectId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "documentId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "extractionVersion": {
+            "type": "string",
+            "pattern": "^operation:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "type": {
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "\\S"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 50
+          },
+          "gridSize": {
+            "type": "integer",
+            "minimum": 5,
+            "maximum": 25
+          },
+          "draftRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483646
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "Z$"
+          },
+          "status": {
+            "const": "AWAITING_REVIEW"
+          },
+          "draft": {
+            "$ref": "#/components/schemas/H5ActivityBankDraft"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/H5Quality"
+          },
+          "qualityAppliesToRevision": {
+            "const": 1
+          },
+          "warnings": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 3,
+            "items": {
+              "enum": [
+                "OCR_APPLIED",
+                "PROVENANCE_UNVERIFIED",
+                "ASSOCIATED_FILES_IGNORED"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "generatorVersion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "\\S"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "CROSSWORD"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 2,
+                  "maximum": 12
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "QUIZ"
+                }
+              },
+              "required": [
+                "type"
+              ]
+            },
+            "then": {
+              "properties": {
+                "draft": {
+                  "properties": {
+                    "questions": {
+                      "minItems": 1
+                    },
+                    "words": {
+                      "maxItems": 0
+                    }
+                  }
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "draft": {
+                  "properties": {
+                    "questions": {
+                      "maxItems": 0
+                    },
+                    "words": {
+                      "minItems": 2
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "H5ActivityBankDraft": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "validated",
+          "questions",
+          "words"
+        ],
+        "properties": {
+          "validated": {
+            "const": false
+          },
+          "questions": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 50,
+            "items": {
+              "$ref": "#/components/schemas/H5Question"
+            }
+          },
+          "words": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 12,
+            "items": {
+              "$ref": "#/components/schemas/H5Word"
+            }
+          }
+        }
+      },
+      "H5Question": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "prompt",
+          "options",
+          "correctOptionId",
+          "topic",
+          "source",
+          "explanation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "prompt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "\\S"
+          },
+          "options": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 6,
+            "items": {
+              "$ref": "#/components/schemas/H5Option"
+            }
+          },
+          "correctOptionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "\\S"
+          },
+          "source": {
+            "$ref": "#/components/schemas/H5Source"
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "\\S"
+          }
+        }
+      },
+      "H5Option": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "text"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "pattern": "\\S"
+          }
+        }
+      },
+      "H5Source": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reference",
+          "fragmentIndex",
+          "unitType",
+          "unitNumber",
+          "quote"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "pattern": "\\S"
+          },
+          "fragmentIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1999
+          },
+          "unitType": {
+            "enum": [
+              "page",
+              "slide",
+              "section",
+              "image"
+            ]
+          },
+          "unitNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2000
+          },
+          "quote": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000,
+            "pattern": "\\S"
+          }
+        }
+      },
+      "H5Word": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "answer",
+          "clue",
+          "topic",
+          "source",
+          "explanation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "pattern": "^[A-Za-z0-9_-]{1,64}$"
+          },
+          "answer": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "\\S"
+          },
+          "clue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "\\S"
+          },
+          "topic": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "\\S"
+          },
+          "source": {
+            "$ref": "#/components/schemas/H5Source"
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000,
+            "pattern": "\\S"
+          }
+        }
+      },
+      "H5Quality": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requiresHumanReview",
+          "checks"
+        ],
+        "properties": {
+          "requiresHumanReview": {
+            "const": true
+          },
+          "checks": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "evidenceSupported",
+              "answerSupported",
+              "explanationSupported",
+              "unambiguous",
+              "topicAligned",
+              "noDuplicates"
+            ],
+            "properties": {
+              "evidenceSupported": {
+                "const": true
+              },
+              "answerSupported": {
+                "const": true
+              },
+              "explanationSupported": {
+                "const": true
+              },
+              "unambiguous": {
+                "const": true
+              },
+              "topicAligned": {
+                "const": true
+              },
+              "noDuplicates": {
+                "const": true
+              }
+            }
+          }
+        }
+      },
+      "H5ReviseDraftRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "draftRevision",
+          "draft"
+        ],
+        "properties": {
+          "draftRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483646
+          },
+          "draft": {
+            "$ref": "#/components/schemas/H5ActivityBankDraft"
+          }
+        }
+      },
+      "H5PublishDraftRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "draftRevision",
+          "reviewConfirmed",
+          "idempotencyKey"
+        ],
+        "properties": {
+          "draftRevision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483646
+          },
+          "reviewConfirmed": {
+            "const": true
+          },
+          "idempotencyKey": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          }
+        }
+      },
       "Error": {
         "type": "object",
         "additionalProperties": false,

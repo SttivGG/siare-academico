@@ -36,7 +36,7 @@ public final class ActivityService implements ActivityUseCase {
             validateSources(bank,content);
         }
         var generated=generator.generate(family,new GenerationRequest(subject.toString(),topic,bank,count,gridSize));
-        var saved=new SavedActivity(UUID.randomUUID(),subject,document,topic.strip(),clock.instant(),"AVAILABLE",generated);
+        var saved=new SavedActivity(UUID.randomUUID(),subject,document,topic.strip(),clock.instant().truncatedTo(java.time.temporal.ChronoUnit.MICROS),"AVAILABLE",generated);
         return tx.required(()->{ writable(owner,subject); activities.insert(saved); return saved; });
     }
     private void validateSources(ActivityBank bank,ExtractedContent content) {

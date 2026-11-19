@@ -139,7 +139,10 @@ class AcademicDraftServiceTests {
         new ApplicationContextRunner().withUserConfiguration(AcademicDraftConfiguration.class)
                 .withPropertyValues("siare.generation.enabled=true", "siare.generation.url=http://localhost:1")
                 .withBean(IdentityRepository.class, () -> identities).withBean(SubjectUseCase.class, () -> subjects)
-                .withBean(DocumentRepository.class, () -> documents).withBean(Clock.class, () -> clock).run(context -> {
+                .withBean(DocumentRepository.class, () -> documents).withBean(Clock.class, () -> clock)
+                .withBean(AcademicDraftRepository.class, () -> mock(AcademicDraftRepository.class))
+                .withBean(ActivityUseCase.class, () -> mock(ActivityUseCase.class))
+                .withBean(TransactionPort.class, () -> mock(TransactionPort.class)).run(context -> {
                     assertThat(context).hasNotFailed().hasSingleBean(AcademicDraftGenerator.class);
                     assertFailure(() -> context.getBean(AcademicDraftGenerator.class).generate(fixture), 503, "GENERATION_DISABLED");
                     assertThat(context.getBeansOfType(com.siare.core.infrastructure.adapter.out.generation.HttpAcademicDraftGenerator.class)).isEmpty();

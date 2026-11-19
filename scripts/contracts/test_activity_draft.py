@@ -302,7 +302,14 @@ class ActivityDraftContractTests(unittest.TestCase):
                     visit(item)
         visit(api)
         production = json.loads((ROOT / 'docs' / 'openapi.json').read_text(encoding='utf-8'))
-        self.assertFalse(any('activity-drafts' in path or 'activity-bank-drafts' in path for path in production['paths']))
+        # H5-D exposes only implemented review/publication operations. ML creation stays absent.
+        draft_paths = {path: set(methods) for path, methods in production['paths'].items()
+                       if 'activity-drafts' in path or 'activity-bank-drafts' in path}
+        self.assertEqual({
+            '/api/v1/activity-drafts/{draftId}': {'get', 'put'},
+            '/api/v1/activity-drafts/{draftId}/publish': {'post'},
+        }, draft_paths)
+        self.assertNotIn('/api/v1/subjects/{subjectId}/activity-drafts', production['paths'])
 
 
 if __name__ == '__main__':
