@@ -5,7 +5,7 @@ import { api } from "../lib/api";
 import { sessionFetch } from "../lib/renew-session";
 import { DEFAULT_MAX_BYTES, uploadError } from "../lib/document-policy";
 
-type Document = { documentId: string; originalFilename: string; contentType: string; sizeBytes: number; createdAt: string;
+export type Document = { documentId: string; originalFilename: string; contentType: string; sizeBytes: number; createdAt: string;
   status: "UPLOADED" | "PROCESSING" | "READY" | "FAILED"; errorCode: string | null; leaseUntil: string | null };
 type Text = { fragments: { index: number; unitType: string; unitNumber: number; text: string }[]; warnings: string[] };
 const labels = { UPLOADED: "Cargado", PROCESSING: "Procesando", READY: "Texto disponible", FAILED: "Procesamiento fallido" };
@@ -16,7 +16,7 @@ const errors: Record<string, string> = { NO_EXTRACTABLE_TEXT: "No se encontró t
   OCR_UNAVAILABLE: "El reconocimiento de imágenes no está disponible. Puedes reintentar más tarde.",
   UNSAFE_DOCUMENT: "El archivo excede los límites de procesamiento o contiene contenido no permitido." };
 
-export function SubjectDocuments({ subjectId, archived }: { subjectId: string; archived: boolean }) {
+export function SubjectDocuments({ subjectId, archived, selectedId, onSelect }: { subjectId: string; archived: boolean; selectedId?: string; onSelect?: (document: Document | null) => void }) {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -30,7 +30,7 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
   const input = useRef<HTMLInputElement>(null);
   const alert = useRef<HTMLParagraphElement>(null);
   const refresh = useCallback(async () => {
-    try { setDocuments(await api<Document[]>(`subjects/${subjectId}/documents`)); }
+    try { setDocuments((await api<Document[]>(`subjects/${subjectId}/documents`)).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt))); }
     catch (err) { setError(err instanceof Error ? err.message : "No se pudo consultar la lista."); }
     finally { setLoading(false); }
   }, [subjectId]);
@@ -100,6 +100,7 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
   }
   return <section className="panel document-panel" aria-labelledby="documents-title"><h2 id="documents-title">Documentos de la materia</h2>
     <p className="muted section-intro">Guarda tus apuntes y extrae su texto para consultarlo aquí.</p>
+    {selectedId && onSelect && <button type="button" className="button secondary" onClick={() => onSelect(null)}>Quitar selección de fuente</button>}
     {error && <p className="notice error" role="alert" tabIndex={-1} ref={alert}>{error}</p>}
     {notice && <p className="notice success" role="status">{notice}</p>}
     {archived ? <p className="notice">La materia está archivada. Sus documentos y textos siguen disponibles para consulta y descarga.</p>
@@ -120,12 +121,12 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
       return <li key={document.documentId}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
         <p className="document-status" role="status">{labels[document.status]}{expired ? " · El trabajo se interrumpió; puedes reintentar." : ""}</p>
         {document.status === "FAILED" && <p className="notice error">{errors[document.errorCode ?? ""] ?? "No se pudo extraer el texto. El original se conserva y puedes reintentar."}</p>}
-        <div className="actions"><button type="button" className="button secondary" disabled={!!busy} onClick={() => download(document)}>Descargar<span className="sr-only"> {document.originalFilename}</span></button>
+        <div className="actions">{document.status === "READY" && onSelect && !archived && <button type="button" className="button primary" aria-pressed={selectedId === document.documentId} disabled={!!busy} onClick={() => onSelect(document)}>{selectedId === document.documentId ? "Fuente seleccionada" : "Usar como fuente"}<span className="sr-only"> {document.originalFilename}</span></button>}<button type="button" className="button secondary" disabled={!!busy} onClick={() => download(document)}>Descargar<span className="sr-only"> {document.originalFilename}</span></button>
           {!archived && (document.status === "UPLOADED" || document.status === "FAILED" || expired) && <button className="button secondary" disabled={!!busy} onClick={() => void process(document)}>{busy === document.documentId ? "Solicitando…" : document.status === "UPLOADED" ? "Procesar" : "Reintentar procesamiento"}</button>}
           {document.status === "READY" && <button className="button secondary" disabled={!!busy} aria-expanded={preview?.id === document.documentId} onClick={() => void showText(document)}>{preview?.id === document.documentId ? "Ocultar texto" : "Ver texto"}</button>}</div>
         {preview?.id === document.documentId && <div className="document-preview" role="region" tabIndex={0} aria-label={`Texto de ${document.originalFilename}`}>
           {preview.text.warnings.map((warning, i) => <p className="notice" key={i}>{warning}</p>)}
-          {preview.text.fragments.map(fragment => <section key={fragment.index}><h4>{unitLabels[fragment.unitType] ?? "Sección"} {fragment.unitNumber}</h4><p className="preserve-lines">{fragment.text}</p></section>)}
+          {preview.text.fragments.map(fragment => <section key={fragment.index}><h4>{unitLabels[fragment.unitType] ?? "Sección"} {fragment.unitNumber}</h4><p className="hint">Fragmento {fragment.index}</p><p className="preserve-lines">{fragment.text}</p></section>)}
         </div>}
       </li>;
     })}</ul>}

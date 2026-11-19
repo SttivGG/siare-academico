@@ -12,7 +12,8 @@
     "start": "next start --hostname 127.0.0.1 --port 3100",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:integration:activities": "node --test tests/integration/activities-bff.mjs"
   },
   "dependencies": {
     "next": "16.4.6",

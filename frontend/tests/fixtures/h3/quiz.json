@@ -1,0 +1,36 @@
+{
+  "activityId" : "fe4718b4-5eb5-422e-a801-2066563ff81c",
+  "subjectId" : "678e45e5-10d2-4c9d-b13b-923418257748",
+  "documentId" : null,
+  "type" : "QUIZ",
+  "title" : "Repaso",
+  "status" : "AVAILABLE",
+  "createdAt" : "2026-11-18T23:11:28.410582100Z",
+  "content" : {
+    "questions" : [ {
+      "id" : "q1",
+      "prompt" : "¿Cuánto es 2 + 2?",
+      "options" : [ {
+        "id" : "b",
+        "text" : "5"
+      }, {
+        "id" : "a",
+        "text" : "4"
+      } ],
+      "topic" : "Repaso",
+      "source" : null
+    }, {
+      "id" : "q2",
+      "prompt" : "¿Cuánto es 3 + 3?",
+      "options" : [ {
+        "id" : "b",
+        "text" : "7"
+      }, {
+        "id" : "a",
+        "text" : "6"
+      } ],
+      "topic" : "Repaso",
+      "source" : null
+    } ]
+  }
+}

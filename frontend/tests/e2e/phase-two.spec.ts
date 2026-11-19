@@ -5,7 +5,7 @@ import { test, expect } from "@playwright/test";
 test("carga, procesamiento, texto y descarga desde la materia", async ({ page, context }, testInfo) => {
   const email = `documents-browser-${randomUUID()}@example.test`;
   const password = `Synthetic-${randomUUID()}`;
-  const headers = { Origin: "http://127.0.0.1:3100", "X-SIARE-CSRF": "1" };
+  const headers = { Origin: process.env.E2E_BASE_URL ?? "http://127.0.0.1:3100", "X-SIARE-CSRF": "1" };
   const registration = await page.request.post("/api/bff/auth/register", { headers, data: { name: "Documentos de prueba", email, password } });
   expect(registration.status()).toBe(201);
   const login = await page.request.post("/api/bff/auth/login", { headers, data: { email, password } });
