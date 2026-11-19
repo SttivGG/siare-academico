@@ -1,9 +1,12 @@
-# Verificación de H5-B y consolidación preparada
+# Verificación de H5-B y main consolidado
 
 19/11/2026, America/Bogota. Rama `feat/h5-b-generation-port`.
-Base preparada `3792e5fee2d7dfc7cbd491c5b3c281051611d68c`, árbol igual al integrado
-`697621ee8a6a450c551bbf6f13ffda6fc2beab18`. Main conserva
-`6c3a742abd7c344c1810af699ba4ff10d0678c35`; no hay fusión pública autorizada.
+Main consolidado `c8f934492f0cc7809282657270df34b4474915ca`, árbol igual al
+preparado `3792e5fee2d7dfc7cbd491c5b3c281051611d68c` y al integrado/desplegado
+`697621ee8a6a450c551bbf6f13ffda6fc2beab18`. Tras autorización explícita del usuario,
+#6 se fusionó mediante `fe2f39d6f2235533f70bf8219e8f26ebc3a219b6`; #7 se actualizó
+a `a5810a23a78556fd321ba695fe82ac79302c396f` y se fusionó mediante `c8f9344`.
+El main anterior `6c3a742` permanece como ancestro. No se reescribió el historial.
 El commit de implementación y enlace del PR quedan identificados por la cabecera
 de su PR y el historial de esta rama; este informe no se atribuye un SHA propio.
 
@@ -16,6 +19,7 @@ de su PR y el historial de esta rama; este informe no se atribuye un SHA propio.
 | Spring final con H5 y PDF original optativo | Maven offline verify: 230 tests, cero fallos/errores, uno omitido |
 | H5 dentro de Spring final | 63 tests: 50 contrato/HTTP y 13 caso de uso/admisión/configuración |
 | Frontend integrado, sin cambios nuevos de diseño | 31 pruebas unitarias/componentes, todas pasadas |
+| Frontend antes del merge autorizado #7 | 31/31 repetidas; árbol idéntico al revisado y desplegado |
 | Regresión documental HTTP contra instalación habitual | 227 comprobaciones pasadas, sin restart ni outage |
 | Chromium real, http://127.0.0.1:3100 | 22/22, escritorio 1440×1000 y móvil 375×812; 1,8 minutos |
 | Controles oficiales scripts/Test-Siare.ps1 | Nueve healthy, cinco motores consultados con autenticación, tres backends y Next/Spring correctos |
@@ -116,6 +120,27 @@ volúmenes ni redes; se conservaron .env y archivos de claves por huella. Los da
 sintéticos creados por las regresiones permanecen en la instalación. No se
 modificaron React Native, Express, ClickHouse, MFA/OIDC ni migraciones en el delta H5.
 
+## Cierre de las fusiones autorizadas
+
+Se volvieron a comprobar estado, HEAD, base, revisiones y checks antes de cada
+merge público. Las fusiones se ejecutaron con `gh pr merge --merge
+--match-head-commit`, sin omitir protecciones ni borrar ramas. #6 conserva los
+padres `6c3a742` y `acba280`; #7 conserva `fe2f39d` y `a5810a2`.
+Main local avanzó exclusivamente por fast-forward.
+
+Main tiene árbol `ad029248b4b9e7eed0461aed147edc2d123e4ca1`, idéntico al ya
+desplegado. El merge `24b2c2e` que incorporó main a H5 tiene el mismo árbol que
+`252f694`, revisión H5 probada; las únicas ediciones siguientes son estos dos
+informes. No se repitieron las suites amplias por cambios de historial y
+documentación; se repitieron las 31 pruebas de frontend antes de #7 y los
+controles oficiales de salud al cierre. Los resultados anteriores corresponden
+al mismo código ejecutable.
+
+No hay cambios nuevos respecto al código H4/documental ya ejecutado en las
+imágenes habituales. H5 sigue fuera de esas imágenes y deshabilitado. Por ello
+la consolidación Git no requiere build/recreación ni cambio de etiquetas OCI:
+la revisión `697621e` de la imagen desplegada sigue describiendo su fuente real.
+
 ## Evidencia privada local
 
 `.local/h5-consolidation-20261119/` contiene manifiestos, patch del checkout previo,
@@ -123,5 +148,9 @@ logs Spring/H5/HTTP/Chromium/salud, snapshots antes/después y resultado de
 preservación. No se publican logs, tokens, credenciales ni el PDF original en el PR.
 Las capturas de las pruebas permanecen en la caché del worktree H4 integrado.
 
-La condición Git pendiente y el acuerdo necesario con ML están detallados en
+El cierre autorizado tiene evidencia adicional en
+`.local/h5-consolidation-final-20261119/`: merges/HEAD esperados, descripción de
+#7 actualizada, prueba frontend repetida, salud y snapshots de preservación.
+
+El estado Git consolidado y el acuerdo pendiente con ML están detallados en
 [H5_B_IMPLEMENTACION.md](H5_B_IMPLEMENTACION.md).
