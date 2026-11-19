@@ -4,6 +4,7 @@ import com.siare.core.application.port.in.*;
 import com.siare.core.application.port.out.*;
 import com.siare.core.domain.document.*;
 import java.io.*;
+import java.nio.file.*;
 import java.security.*;
 import java.time.*;
 import java.util.*;
@@ -37,19 +38,23 @@ public final class DocumentService implements UploadDocumentUseCase, ListDocumen
         var type = DocumentType.fromFilename(filename);
         if (declaredMime != null && !declaredMime.isBlank() && !declaredMime.equalsIgnoreCase("application/octet-stream")
                 && !declaredMime.equalsIgnoreCase(type.contentType())) throw new DocumentException(415, "MIME_MISMATCH", "El tipo MIME no coincide con la extensión del archivo.");
+        Path snapshot = null;
         try {
-            try (var input = source.get()) { validator.validate(input, type); }
+            snapshot = Files.createTempFile("siare-upload-", ".bin");
             var digest = MessageDigest.getInstance("SHA-256");
             long actual = 0;
-            try (var input = source.get()) {
+            // Freeze exactly one supplier read: validation, checksum and GridFS see identical bytes.
+            try (var input = source.get(); var output = Files.newOutputStream(snapshot)) {
                 byte[] buffer = new byte[8192]; int count;
                 while ((count = input.read(buffer)) != -1) {
                     actual += count; DocumentRules.size(actual, maximum); digest.update(buffer, 0, count);
+                    output.write(buffer, 0, count);
                 }
             }
             if (actual != size) throw new DocumentException(400, "INVALID_SIZE", "El tamaño real no coincide con el archivo recibido.");
+            try (var input = Files.newInputStream(snapshot)) { validator.validateForStorage(input, type); }
             String gridId;
-            try (var input = source.get()) { gridId = storage.store(input, filename, type.contentType()); }
+            try (var input = Files.newInputStream(snapshot)) { gridId = storage.store(input, filename, type.contentType()); }
             var metadata = new DocumentMetadata(UUID.randomUUID(), subject, owner, gridId, filename, type.contentType(),
                     actual, HexFormat.of().formatHex(digest.digest()), DocumentStatus.UPLOADED, clock.instant(), null, null, null, null);
             try { documents.insert(metadata); }
@@ -59,6 +64,7 @@ public final class DocumentService implements UploadDocumentUseCase, ListDocumen
             }
             return metadata;
         } catch (IOException | NoSuchAlgorithmException error) { throw new DocumentException(503, "STORAGE_ERROR", "No se pudo guardar el documento. Vuelve a intentarlo."); }
+        finally { if (snapshot != null) try { Files.deleteIfExists(snapshot); } catch (IOException ignored) { /* temporary OS cleanup */ } }
     }
     @Override public List<DocumentMetadata> list(UUID owner, UUID subject) {
         subjects.get(owner, subject); return documents.list(owner, subject);
@@ -70,7 +76,11 @@ public final class DocumentService implements UploadDocumentUseCase, ListDocumen
         return document;
     }
     @Override public Download download(UUID owner, UUID id) {
-        var document = get(owner, id); return new Download(document, storage.open(document.gridfsId()));
+        var document = get(owner, id);
+        // UPLOADED/PROCESSING/FAILED are private quarantine states. Authorize before checking status.
+        if (document.status() != DocumentStatus.READY)
+            throw new DocumentException(409, "DOCUMENT_QUARANTINED", "El original está en cuarentena hasta completar su procesamiento seguro.");
+        return new Download(document, storage.open(document.gridfsId()));
     }
     @Override public ExtractedContent text(UUID owner, UUID id) {
         var document = get(owner, id);
@@ -91,12 +101,29 @@ public final class DocumentService implements UploadDocumentUseCase, ListDocumen
         return claimed.get();
     }
     private void run(DocumentMetadata document, UUID operation) {
-        try (var source = storage.open(document.gridfsId())) {
-            var result = processor.extract(document, operation, source);
-            documents.complete(document.documentId(), operation, result, clock.instant());
+        Path snapshot = null;
+        try {
+            snapshot = Files.createTempFile("siare-process-", ".bin");
+            var digest = MessageDigest.getInstance("SHA-256");
+            long actual = 0;
+            try (var source = storage.open(document.gridfsId()); var output = Files.newOutputStream(snapshot)) {
+                byte[] buffer = new byte[8192]; int count;
+                while ((count = source.read(buffer)) != -1) {
+                    actual += count;
+                    if (actual > maximum) throw new DocumentException(422, "CHECKSUM_MISMATCH", "No se pudo comprobar la integridad del original.");
+                    digest.update(buffer, 0, count); output.write(buffer, 0, count);
+                }
+            }
+            if (actual != document.sizeBytes() || !MessageDigest.isEqual(HexFormat.of().parseHex(document.checksum()), digest.digest()))
+                throw new DocumentException(422, "CHECKSUM_MISMATCH", "No se pudo comprobar la integridad del original.");
+            try (var source = Files.newInputStream(snapshot)) {
+                var result = processor.extract(document, operation, source);
+                documents.complete(document.documentId(), operation, result, clock.instant());
+            }
         } catch (Exception error) {
             String code = error instanceof DocumentException de ? de.code() : "PROCESSING_ERROR";
             documents.fail(document.documentId(), operation, code, clock.instant());
         }
+        finally { if (snapshot != null) try { Files.deleteIfExists(snapshot); } catch (IOException ignored) { /* temporary OS cleanup */ } }
     }
 }

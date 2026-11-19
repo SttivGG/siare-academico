@@ -65,6 +65,22 @@ class DocumentApiTests {
                     .andExpect(status().is(expected)).andExpect(jsonPath("$.timestamp").exists()).andExpect(jsonPath("$.code").exists()).andExpect(jsonPath("$.fields").exists());
         }
     }
+    @Test void potentiallyUnsafePdfIsStoredPrivatelyAndCannotBeDownloadedBeforeProcessing() throws Exception {
+        when(storage.store(any(), anyString(), anyString())).thenReturn("grid-id");
+        for (boolean active : new boolean[]{false, true}) {
+            byte[] bytes = PdfSecurityTests.fixture(doc -> {
+                PdfSecurityTests.attachment(doc, true, 32);
+                if (active) doc.getDocumentCatalog().getCOSObject().setString(org.apache.pdfbox.cos.COSName.getPDFName("JS"), "blocked");
+            });
+            mvc.perform(multipart("/api/v1/subjects/" + subject + "/documents")
+                    .file(new MockMultipartFile("file", "provenance.pdf", "application/pdf", bytes))
+                    .header("Authorization", "Bearer " + token))
+                    .andExpect(status().isCreated()).andExpect(jsonPath("$.status").value("UPLOADED"));
+        }
+        mvc.perform(get("/api/v1/documents/" + id + "/download").header("Authorization", "Bearer " + token))
+                .andExpect(status().isConflict()).andExpect(jsonPath("$.code").value("DOCUMENT_QUARANTINED"));
+        verify(storage, never()).open(anyString());
+    }
     @Test void foreignStudentCannotReadDownloadProcessTextListOrUpload() throws Exception {
         var matter = new Subject(subject, UUID.randomUUID(), "Ajena", null, false, Instant.now(), Instant.now());
         when(subjects.get(any(), eq(subject))).thenAnswer(call -> { matter.requireOwner(call.getArgument(0)); return matter; });
@@ -75,6 +91,7 @@ class DocumentApiTests {
         verifyNoInteractions(storage);
     }
     @Test void downloadIsAttachmentWithNoSniffAndExactBytes() throws Exception {
+        when(documents.find(id)).thenReturn(Optional.of(new DocumentMetadata(id, subject, owner, "grid-id", "academic.pdf", "application/pdf", 3, "sha256", DocumentStatus.READY, Instant.now(), Instant.now(), null, UUID.randomUUID(), null)));
         when(storage.open("grid-id")).thenReturn(new ByteArrayInputStream(new byte[]{1,2,3}));
         mvc.perform(get("/api/v1/documents/" + id + "/download").header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk()).andExpect(header().string("X-Content-Type-Options", "nosniff"))

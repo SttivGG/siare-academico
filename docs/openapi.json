@@ -1606,7 +1606,7 @@
       "get": {
         "operationId": "downloadDocument",
         "summary": "Descargar original propio",
-        "description": "Requiere sesión activa persistida. La autoridad procede de MySQL; los IDs del cuerpo nunca autorizan al actor.",
+        "description": "Requiere sesión activa persistida y documento READY. Otros estados responden 409 DOCUMENT_QUARANTINED sin abrir GridFS. La autoridad procede de MySQL; los IDs del cuerpo nunca autorizan al actor.",
         "tags": [
           "Documentos"
         ],
