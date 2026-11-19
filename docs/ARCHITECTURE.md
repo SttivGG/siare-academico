@@ -96,8 +96,9 @@ La portada mantiene una comprobación dinámica de salud. `server-health.ts` usa
 El cierre de sesión revoca la sesión en Spring antes de eliminar las cookies.
 Un JWT copiado se rechaza tras la revocación. Refresh rota el secreto opaco y
 conserva nivel/plazo MFA; la configuración del factor y su desafío pasan por el
-mismo BFF. La interfaz usa fuentes del sistema, colores neutros con un acento
-verde provisional y reglas responsive. No pretende reproducir Nexo sin referencias.
+mismo BFF. El espacio de materia H4 adopta tres paneles responsive y los tokens
+Nexo verificados: Urbanist local, acento naranja, vidrio y tarjetas pastel. Las
+demás pantallas mantienen sus estilos existentes. Ver [H4](H4_FRONTEND.md).
 
 ## Despliegue local
 

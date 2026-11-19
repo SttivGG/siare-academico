@@ -36,6 +36,8 @@ test("carga, procesamiento, texto y descarga desde la materia", async ({ page, c
   await panel.getByRole("button", { name: "Subir documento" }).click();
   await expect(panel.getByRole("heading", { name: "academic.pdf" })).toBeVisible();
   await expect(panel.getByText("Archivo guardado.", { exact: false })).toBeVisible();
+  await expect(panel.getByRole("button", { name: "Descargar academic.pdf" })).toHaveCount(0);
+  await expect(panel.getByRole("button", { name: /Usar como fuente/ })).toHaveCount(0);
   await panel.getByRole("button", { name: "Procesar", exact: true }).click();
   await expect(panel.getByText("Texto disponible", { exact: true })).toBeVisible({ timeout: 60_000 });
   await panel.getByRole("button", { name: "Ver texto", exact: true }).click();
@@ -54,12 +56,17 @@ test("carga, procesamiento, texto y descarga desde la materia", async ({ page, c
     const row = panel.getByRole("listitem").filter({ has: page.getByRole("heading", { name, exact: true }) });
     await expect(row.getByText("Original conservado en cuarentena.", { exact: false })).toBeVisible();
     await expect(row.getByRole("button", { name: "Descargar", exact: false })).toHaveCount(0);
+    await expect(row.getByRole("button", { name: /Usar como fuente/ })).toHaveCount(0);
     await row.getByRole("button", { name: "Procesar", exact: true }).click();
     await expect(row.getByText("Texto disponible", { exact: true })).toBeVisible({ timeout: 60_000 });
+    await row.getByRole("button", { name: /Usar como fuente/ }).click();
+    await expect(row.getByRole("button", { name: /Fuente seleccionada/ })).toHaveAttribute("aria-pressed", "true");
+    await expect(panel.locator(".document-list > li > h3")).toHaveText([name, "academic.pdf"]);
     await row.getByRole("button", { name: "Ver texto", exact: true }).click();
     await expect(row.getByText("Su firma y su procedencia no han sido verificadas.", { exact: false })).toBeVisible();
     await expect(row.getByRole("heading", { name: "Página 13", exact: true })).toBeVisible();
     await expect(row.locator(".document-preview")).toContainText(/aggregate/i);
+    await expect(row.locator("iframe, object, embed")).toHaveCount(0);
     const pendingDownload = page.waitForEvent("download");
     await row.getByRole("button", { name: `Descargar ${name}` }).click();
     const saved = await pendingDownload;

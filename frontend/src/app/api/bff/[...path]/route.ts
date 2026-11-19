@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { activityRoute, activityQuery, bodyLimit } from "../../../../lib/activity-policy";
 import { cookieSettings, isAllowedMutation, isAllowedRoute } from "../../../../lib/session-policy";
 import { secureCookie, sessionName, refreshName, challengeName } from "../../../../lib/server-session";
 
@@ -13,7 +14,9 @@ function failure(status: number, code: string, message: string) {
 
 async function handle(request: NextRequest, context: Context) {
   const path = (await context.params).path.join("/");
-  if (!isAllowedRoute(request.method, path)) return failure(404, "NOT_FOUND", "Ruta no encontrada.");
+  if (!isAllowedRoute(request.method, path) && !activityRoute(request.method, path)) return failure(404, "NOT_FOUND", "Ruta no encontrada.");
+  const activityParams = activityQuery(path, request.nextUrl.searchParams);
+  if (!activityParams) return failure(400, "VALIDATION", "Cursor o límite de página inválido.");
   const mutation = request.method !== "GET";
   if (mutation && !isAllowedMutation(request.headers, process.env.APP_ORIGIN ?? "http://127.0.0.1:3100")) {
     return failure(403, "CSRF", "La solicitud no tiene un origen válido. Recarga la página e inténtalo de nuevo.");
@@ -31,7 +34,7 @@ async function handle(request: NextRequest, context: Context) {
         const chunk = await reader.read();
         if (chunk.done) break;
         size += chunk.value.byteLength;
-        if (size > 16_384) {
+        if (size > bodyLimit(request.method, path)) {
           await reader.cancel();
           return failure(413, "PAYLOAD_TOO_LARGE", "La solicitud es demasiado grande.");
         }
@@ -57,7 +60,7 @@ async function handle(request: NextRequest, context: Context) {
     body = JSON.stringify({ challengeToken, ...(typeof input.code === "string" ? { code: input.code } : {}) });
   }
   try {
-    const query = new URLSearchParams();
+    const query = activityParams;
     for (const key of ["limit", "offset"]) {
       const value = request.nextUrl.searchParams.get(key);
       if (value !== null && /^\d{1,6}$/.test(value)) query.set(key, value);
