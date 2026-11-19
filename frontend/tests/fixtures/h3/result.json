@@ -1,0 +1,30 @@
+{
+  "attemptId" : "28466693-ceb3-4a86-ab38-3b14129b5e4c",
+  "eventId" : "50e7db1d-adb6-411f-8e9a-652abe062f4c",
+  "studentId" : "4c881032-3bd4-49b6-8584-adb854fb0a9b",
+  "subjectId" : "678e45e5-10d2-4c9d-b13b-923418257748",
+  "activityId" : "fe4718b4-5eb5-422e-a801-2066563ff81c",
+  "activityType" : "QUIZ",
+  "score" : 0.5,
+  "percentage" : 50.0,
+  "points" : 1,
+  "total" : 2,
+  "durationMs" : 45000,
+  "occurredAt" : "2026-11-18T23:11:28.610926500Z",
+  "feedback" : "Revisa las opciones incorrectas y sus justificaciones.",
+  "items" : [ {
+    "id" : "q1",
+    "correct" : true,
+    "submitted" : "a",
+    "expected" : "a",
+    "rationale" : "2 + 2 = 4.",
+    "feedback" : "Opciones correctas. Revisa la justificación de cada pregunta."
+  }, {
+    "id" : "q2",
+    "correct" : false,
+    "submitted" : "b",
+    "expected" : "a",
+    "rationale" : "3 + 3 = 6.",
+    "feedback" : "Revisa las opciones incorrectas y sus justificaciones."
+  } ]
+}
