@@ -9,26 +9,26 @@ La materia incorpora carga de originales, extracción de texto, consulta y desca
 3. Abre una materia activa en `http://127.0.0.1:3100/materias`.
 4. En **Documentos de la materia**, selecciona un archivo o arrástralo al área de carga. Pulsa **Subir documento**.
 5. Cuando aparezca como **Cargado**, pulsa **Procesar**. Puedes salir de la página: Spring continúa el trabajo.
-6. La lista actualiza el estado mientras haya trabajos en curso. **Ver texto** muestra el contenido por página, diapositiva, sección o imagen. **Descargar** entrega el original.
+6. La lista actualiza el estado mientras haya trabajos en curso. **Ver texto** muestra el contenido por página, diapositiva, sección o imagen. Al alcanzar `READY`, **Descargar** entrega el original íntegro.
 
-Una extracción fallida conserva el archivo y muestra **Reintentar procesamiento**. Archivar la materia permite seguir consultando documentos, texto y originales; impide cargas y procesamiento.
+Una extracción fallida conserva el archivo en cuarentena, sin descarga ni vista previa, y muestra **Reintentar procesamiento**. Archivar la materia permite seguir consultando documentos, texto y originales `READY`; impide cargas y procesamiento.
 
 ## Formatos y límites
 
 | Entrada | Extracción | Restricciones |
 | --- | --- | --- |
-| PDF | pypdf, por página | Hasta 500 páginas; un PDF escaneado sin texto produce `NO_EXTRACTABLE_TEXT`. |
+| PDF | pypdf, por página; Poppler/Tesseract para páginas sin texto | Hasta 500 páginas; OCR sujeto al plazo total y a 4 MP por página. |
 | DOCX | python-docx, por sección | Incluye párrafos y texto de tablas del cuerpo. |
 | PPTX | python-pptx, por diapositiva | Incluye cuadros de texto, tablas y grupos. |
 | JPG, JPEG, PNG | Pillow y Tesseract `spa` | Hasta 4 millones de píxeles; imagen vacía de texto produce `NO_EXTRACTABLE_TEXT`. |
 
 El límite inicial es 15 MiB (15 728 640 bytes). `DOCUMENT_MAX_BYTES` configura el mismo límite en Spring, Flask y el BFF. `DOCUMENT_REQUEST_MAX_BYTES` limita el multipart completo; su valor inicial añade 128 KiB al archivo. Al cambiar el límite, ajusta ambas variables y reconstruye/recrea los servicios afectados. La interfaz consulta el límite al servidor.
 
-Spring valida nombre, tamaño observado, extensión, MIME declarado y estructura real antes de guardar. Un MIME genérico `application/octet-stream` pasa a la validación estructural; el servidor determina el MIME definitivo. DOC y PPT antiguos producen HTTP 415 con un mensaje explícito. Los documentos Office cifrados y PDF protegidos se rechazan. Las descargas usan `attachment`, `nosniff` y `no-store`.
+Spring valida nombre, tamaño observado, extensión, MIME declarado y envoltura binaria antes de guardar en almacenamiento privado. Congela una sola lectura para validación, SHA-256 y GridFS. El worker aislado evalúa estructura y seguridad durante el procesamiento; los documentos cifrados, activos o malformados no alcanzan `READY`. DOC y PPT antiguos producen HTTP 415. Las descargas requieren `READY` y usan `attachment`, `nosniff`, CSP restrictiva y `no-store`.
 
-Los paquetes Office admiten hasta 1000 entradas, 16 MiB por entrada, 48 MiB expandidos y una relación máxima de compresión de 100:1. Se comprueban CRC, XML sin DTD/entidades externas, tipos de contenido y relación al documento principal. Se rechazan rutas inseguras, duplicados, macros, ActiveX y objetos incrustados. Se permite el binario de configuración de impresora que incluyen los PPTX normales; se trata como bytes y no se interpreta. Los hipervínculos externos se conservan como texto; ningún parser los visita. Spring también inspecciona acciones y contenido activo de PDF.
+Los paquetes Office admiten hasta 1000 entradas, 16 MiB por entrada, 48 MiB expandidos y una relación máxima de compresión de 100:1. Se comprueban CRC, XML sin DTD/entidades externas, tipos de contenido y relación al documento principal. Se rechazan rutas inseguras, duplicados, macros, ActiveX y objetos incrustados. Se permite el binario de configuración de impresora que incluyen los PPTX normales; se trata como bytes y no se interpreta. Los hipervínculos externos solo admiten HTTP, HTTPS y mailto; ningún parser los visita. El worker también inspecciona acciones, referencias y asociaciones de PDF. C2PA reconocible puede procesarse con advertencias sin verificación criptográfica; otros datos asociados requieren clasificación de contenido. Véase la [política y evidencia de compatibilidad](DOCUMENT_COMPATIBILITY_FIX.md).
 
-La extracción tiene un máximo de un millón de caracteres, 2000 fragmentos y 60 000 caracteres por fragmento. Un proceso Python separado ejecuta cada parser, con 25 segundos de tiempo total y 12 segundos para Tesseract. En Linux tiene límites adicionales de CPU, espacio de direcciones y tamaño de archivos temporales. Los archivos temporales se eliminan al terminar la petición. Una terminación forzada del contenedor puede dejar temporales hasta que se recree el contenedor.
+La extracción tiene un máximo de un millón de caracteres, 2000 fragmentos y 60 000 caracteres por fragmento. Un proceso Python separado ejecuta cada parser, con 25 segundos de tiempo total y 12 segundos para Tesseract. Requiere Linux con Landlock ABI 3 y seccomp: bloquea red, lectura de estado de otros procesos y escritura fuera del trabajo, además de limitar CPU, memoria, procesos y temporales. Si falta el aislamiento, mantiene la cuarentena. Los archivos temporales se eliminan al terminar la petición; `/tmp` vive en memoria limitada.
 
 ## API pública
 
@@ -39,7 +39,7 @@ Todas las rutas requieren JWT RS256 válido. Spring comprueba la propiedad de la
 | POST | `/api/v1/subjects/{subjectId}/documents` | Multipart con un campo `file`. HTTP 201 y metadatos `UPLOADED`. |
 | GET | `/api/v1/subjects/{subjectId}/documents` | Array de documentos propios, más recientes primero. |
 | GET | `/api/v1/documents/{documentId}` | Metadatos y estado actual. |
-| GET | `/api/v1/documents/{documentId}/download` | Streaming del original desde GridFS. |
+| GET | `/api/v1/documents/{documentId}/download` | Streaming del original `READY`; HTTP 409 `DOCUMENT_QUARANTINED` en otros estados. |
 | POST | `/api/v1/documents/{documentId}/process` | Reserva el trabajo; HTTP 202 si está en curso. |
 | GET | `/api/v1/documents/{documentId}/text` | Texto y fragmentos; HTTP 409 mientras no esté `READY`. |
 

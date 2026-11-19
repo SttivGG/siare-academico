@@ -18,11 +18,15 @@ class ExtractionTests(unittest.TestCase):
     def setUpClass(cls):
         cls.files = fixtures()
 
-    def parse(self, name, kind):
+    def parse(self, name, kind, worker=False):
         with tempfile.TemporaryDirectory() as directory:
             path = os.path.join(directory, name)
             with open(path, "wb") as file:
                 file.write(self.files[name])
+            if worker:
+                payload = ExtractionModel().extract(path, kind)
+                self.assertIn("result", payload)
+                return payload["result"]
             return extract(path, kind)
 
     def test_pdf_docx_and_pptx_real_text_and_source_units(self):
@@ -35,7 +39,7 @@ class ExtractionTests(unittest.TestCase):
                 self.assertEqual(result["extractionStatus"], "READY")
 
     def test_scanned_pdf_and_password_have_explicit_errors(self):
-        for name, code in (("scanned.pdf", "NO_EXTRACTABLE_TEXT"), ("protected.pdf", "PASSWORD_PROTECTED")):
+        for name, code in (("blank.pdf", "NO_EXTRACTABLE_TEXT"), ("protected.pdf", "PASSWORD_PROTECTED")):
             with self.assertRaises(ExtractionError) as error:
                 self.parse(name, "PDF")
             self.assertEqual(error.exception.code, code)
@@ -55,7 +59,8 @@ class ExtractionTests(unittest.TestCase):
         if os.environ.get("SIARE_REAL_OCR") != "1":
             self.skipTest("Real Tesseract Spanish OCR runs in Docker, not the host unit suite")
         for name, kind in (("academic.png", "PNG"), ("academic.jpg", "JPEG"), ("academic.jpeg", "JPEG")):
-            self.assertIn("ciencias", self.parse(name, kind)["text"].lower())
+            self.assertIn("ciencias", self.parse(name, kind, worker=True)["text"].lower())
+        self.assertIn("ciencias", self.parse("scanned.pdf", "PDF", worker=True)["text"].lower())
 
     def test_zip_bomb_traversal_active_and_malformed_packages(self):
         for name, data in (("word/bomb.xml", b"a" * 1_000_000), ("../escape.xml", b"x"), ("word/vbaProject.bin", b"x"), ("word/document.xml", b"<broken")):

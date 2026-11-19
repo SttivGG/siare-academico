@@ -46,9 +46,11 @@ class DocumentProcessorHttpTests {
         assertThat(receivedOperation).isEqualTo(operation.toString());
     }
     @Test void explicitExtractionFailureIsPreserved() {
-        responseStatus = 422; response = "{\"operationId\":\"" + operation + "\",\"errorCode\":\"NO_EXTRACTABLE_TEXT\"}";
-        assertThatThrownBy(() -> processor.extract(metadata, operation, new ByteArrayInputStream(new byte[3])))
-                .isInstanceOfSatisfying(DocumentException.class, e -> assertThat(e.code()).isEqualTo("NO_EXTRACTABLE_TEXT"));
+        for (String code : List.of("NO_EXTRACTABLE_TEXT", "ACTIVE_CONTENT", "ATTACHMENTS_NOT_ALLOWED", "DOCUMENT_LIMIT_EXCEEDED", "SANDBOX_UNAVAILABLE")) {
+            responseStatus = 422; response = "{\"operationId\":\"" + operation + "\",\"errorCode\":\"" + code + "\"}";
+            assertThatThrownBy(() -> processor.extract(metadata, operation, new ByteArrayInputStream(new byte[3])))
+                    .isInstanceOfSatisfying(DocumentException.class, e -> assertThat(e.code()).isEqualTo(code));
+        }
     }
     @Test void mismatchedOperationAndInconsistentTextAreRejected() {
         String valid = response;
