@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "requestId": "00000000-0000-4000-8000-000000000001",
+  "status": 422,
+  "code": "INSUFFICIENT_CONTENT",
+  "message": "No se puede generar la cantidad solicitada con evidencia suficiente.",
+  "details": {
+    "reasonCodes": [
+      "NOT_ENOUGH_EVIDENCE"
+    ],
+    "availableCount": 0
+  }
+}

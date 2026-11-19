@@ -1,0 +1,1104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:siare:h5:activity-draft:v1",
+  "title": "H5 activity draft v1 - PROPOSED, NOT IMPLEMENTED",
+  "$comment": "Select a $defs contract; cross-field and UTF-16 rules are in the shared verifier.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/DraftRequest"
+    },
+    {
+      "$ref": "#/$defs/DraftResponse"
+    },
+    {
+      "$ref": "#/$defs/ErrorResponse"
+    }
+  ],
+  "$defs": {
+    "Fragment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "index",
+        "reference",
+        "unitType",
+        "unitNumber",
+        "text"
+      ],
+      "properties": {
+        "index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1999
+        },
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "\\S"
+        },
+        "unitType": {
+          "enum": [
+            "page",
+            "slide",
+            "section",
+            "image"
+          ]
+        },
+        "unitNumber": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100000,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "fragmentIndex",
+        "unitType",
+        "unitNumber",
+        "quote"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "\\S"
+        },
+        "fragmentIndex": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1999
+        },
+        "unitType": {
+          "enum": [
+            "page",
+            "slide",
+            "section",
+            "image"
+          ]
+        },
+        "unitNumber": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2000
+        },
+        "quote": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4000,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "Option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "text"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "Question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "prompt",
+        "options",
+        "correctOptionId",
+        "topic",
+        "source",
+        "explanation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "\\S"
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/Option"
+          }
+        },
+        "correctOptionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "Word": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "answer",
+        "clue",
+        "topic",
+        "source",
+        "explanation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9_-]{1,64}$"
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "clue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "\\S"
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        },
+        "explanation": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "ActivityBankDraft": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "validated",
+        "questions",
+        "words"
+      ],
+      "properties": {
+        "validated": {
+          "const": false
+        },
+        "questions": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 50,
+          "items": {
+            "$ref": "#/$defs/Question"
+          }
+        },
+        "words": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/Word"
+          }
+        }
+      }
+    },
+    "Quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requiresHumanReview",
+        "checks"
+      ],
+      "properties": {
+        "requiresHumanReview": {
+          "const": true
+        },
+        "checks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "evidenceSupported",
+            "answerSupported",
+            "explanationSupported",
+            "unambiguous",
+            "topicAligned",
+            "noDuplicates"
+          ],
+          "properties": {
+            "evidenceSupported": {
+              "const": true
+            },
+            "answerSupported": {
+              "const": true
+            },
+            "explanationSupported": {
+              "const": true
+            },
+            "unambiguous": {
+              "const": true
+            },
+            "topicAligned": {
+              "const": true
+            },
+            "noDuplicates": {
+              "const": true
+            }
+          }
+        }
+      }
+    },
+    "DraftRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "documentId",
+        "extractionVersion",
+        "type",
+        "topic",
+        "count",
+        "gridSize",
+        "language",
+        "extractionWarnings",
+        "fragments"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "documentId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "extractionVersion": {
+          "type": "string",
+          "pattern": "^operation:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "type": {
+          "enum": [
+            "QUIZ",
+            "CROSSWORD"
+          ]
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "gridSize": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 25
+        },
+        "language": {
+          "const": "es"
+        },
+        "extractionWarnings": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "OCR_APPLIED",
+              "PROVENANCE_UNVERIFIED",
+              "ASSOCIATED_FILES_IGNORED"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "fragments": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/Fragment"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CROSSWORD"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 12
+              }
+            }
+          }
+        }
+      ]
+    },
+    "DraftResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "documentId",
+        "extractionVersion",
+        "type",
+        "topic",
+        "count",
+        "status",
+        "generatorVersion",
+        "draft",
+        "warnings",
+        "quality"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "documentId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "extractionVersion": {
+          "type": "string",
+          "pattern": "^operation:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "type": {
+          "enum": [
+            "QUIZ",
+            "CROSSWORD"
+          ]
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "status": {
+          "const": "DRAFT"
+        },
+        "generatorVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "\\S"
+        },
+        "draft": {
+          "$ref": "#/$defs/ActivityBankDraft"
+        },
+        "warnings": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "OCR_APPLIED",
+              "PROVENANCE_UNVERIFIED",
+              "ASSOCIATED_FILES_IGNORED"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "quality": {
+          "$ref": "#/$defs/Quality"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CROSSWORD"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 12
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "QUIZ"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "draft": {
+                "properties": {
+                  "questions": {
+                    "minItems": 1
+                  },
+                  "words": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "draft": {
+                "properties": {
+                  "questions": {
+                    "maxItems": 0
+                  },
+                  "words": {
+                    "minItems": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "requestId",
+        "status",
+        "code",
+        "message",
+        "details"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "status": {
+          "enum": [
+            400,
+            401,
+            403,
+            413,
+            422,
+            429,
+            500,
+            503,
+            504
+          ]
+        },
+        "code": {
+          "enum": [
+            "INVALID_DRAFT_REQUEST",
+            "UNSUPPORTED_SCHEMA_VERSION",
+            "UNAUTHORIZED",
+            "FORBIDDEN",
+            "PAYLOAD_TOO_LARGE",
+            "INSUFFICIENT_CONTENT",
+            "CONTENT_QUALITY_FAILED",
+            "GENERATOR_BUSY",
+            "GENERATOR_ERROR",
+            "GENERATOR_UNAVAILABLE",
+            "GENERATION_TIMEOUT"
+          ]
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300,
+          "pattern": "\\S"
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [],
+          "properties": {
+            "availableCount": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 50
+            },
+            "reasonCodes": {
+              "type": "array",
+              "minItems": 0,
+              "maxItems": 8,
+              "items": {
+                "enum": [
+                  "EMPTY_TEXT",
+                  "TOPIC_NOT_FOUND",
+                  "NOT_ENOUGH_EVIDENCE",
+                  "OCR_UNREADABLE",
+                  "AMBIGUOUS_QUESTION",
+                  "UNSUPPORTED_EXPLANATION",
+                  "DUPLICATE_CONTENT"
+                ]
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 400
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "INVALID_DRAFT_REQUEST",
+                  "UNSUPPORTED_SCHEMA_VERSION"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 401
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "UNAUTHORIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 403
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "FORBIDDEN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 413
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "PAYLOAD_TOO_LARGE"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 422
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "INSUFFICIENT_CONTENT",
+                  "CONTENT_QUALITY_FAILED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 429
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "GENERATOR_BUSY"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 500
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "GENERATOR_ERROR"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 503
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "GENERATOR_UNAVAILABLE"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": 504
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "code": {
+                "enum": [
+                  "GENERATION_TIMEOUT"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "PublicDraftRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "documentId",
+        "extractionVersion",
+        "type",
+        "topic",
+        "count",
+        "gridSize",
+        "fragmentIndexes"
+      ],
+      "properties": {
+        "documentId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "extractionVersion": {
+          "type": "string",
+          "pattern": "^operation:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "type": {
+          "enum": [
+            "QUIZ",
+            "CROSSWORD"
+          ]
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "gridSize": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 25
+        },
+        "fragmentIndexes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1999
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CROSSWORD"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 12
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ReviseDraftRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "draftRevision",
+        "draft"
+      ],
+      "properties": {
+        "draftRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483646
+        },
+        "draft": {
+          "$ref": "#/$defs/ActivityBankDraft"
+        }
+      }
+    },
+    "PublishDraftRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "draftRevision",
+        "reviewConfirmed",
+        "idempotencyKey"
+      ],
+      "properties": {
+        "draftRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483646
+        },
+        "reviewConfirmed": {
+          "const": true
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        }
+      }
+    },
+    "PublicDraftView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "draftId",
+        "subjectId",
+        "documentId",
+        "extractionVersion",
+        "type",
+        "topic",
+        "count",
+        "gridSize",
+        "draftRevision",
+        "expiresAt",
+        "status",
+        "draft",
+        "quality",
+        "qualityAppliesToRevision",
+        "warnings",
+        "generatorVersion"
+      ],
+      "properties": {
+        "draftId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "subjectId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "documentId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "extractionVersion": {
+          "type": "string",
+          "pattern": "^operation:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "type": {
+          "enum": [
+            "QUIZ",
+            "CROSSWORD"
+          ]
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "gridSize": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 25
+        },
+        "draftRevision": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483646
+        },
+        "expiresAt": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "Z$"
+        },
+        "status": {
+          "const": "AWAITING_REVIEW"
+        },
+        "draft": {
+          "$ref": "#/$defs/ActivityBankDraft"
+        },
+        "quality": {
+          "$ref": "#/$defs/Quality"
+        },
+        "qualityAppliesToRevision": {
+          "const": 1
+        },
+        "warnings": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "OCR_APPLIED",
+              "PROVENANCE_UNVERIFIED",
+              "ASSOCIATED_FILES_IGNORED"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "generatorVersion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "\\S"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CROSSWORD"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "count": {
+                "type": "integer",
+                "minimum": 2,
+                "maximum": 12
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "QUIZ"
+              }
+            },
+            "required": [
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "draft": {
+                "properties": {
+                  "questions": {
+                    "minItems": 1
+                  },
+                  "words": {
+                    "maxItems": 0
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "draft": {
+                "properties": {
+                  "questions": {
+                    "maxItems": 0
+                  },
+                  "words": {
+                    "minItems": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
