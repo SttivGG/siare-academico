@@ -3,18 +3,23 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { api } from "../lib/api";
 import { sessionFetch } from "../lib/renew-session";
-import { DEFAULT_MAX_BYTES, uploadError } from "../lib/document-policy";
+import { DEFAULT_MAX_BYTES, DOCUMENT_ERROR_MESSAGES, documentErrorMessage, uploadError } from "../lib/document-policy";
 
 type Document = { documentId: string; originalFilename: string; contentType: string; sizeBytes: number; createdAt: string;
   status: "UPLOADED" | "PROCESSING" | "READY" | "FAILED"; errorCode: string | null; leaseUntil: string | null };
 type Text = { fragments: { index: number; unitType: string; unitNumber: number; text: string }[]; warnings: string[] };
 const labels = { UPLOADED: "Cargado", PROCESSING: "Procesando", READY: "Texto disponible", FAILED: "Procesamiento fallido" };
 const unitLabels: Record<string, string> = { page: "Página", slide: "Diapositiva", section: "Sección", image: "Imagen" };
-const errors: Record<string, string> = { NO_EXTRACTABLE_TEXT: "No se encontró texto reconocible. Los PDF escaneados necesitan una versión con texto seleccionable.",
+const errors: Record<string, string> = { NO_EXTRACTABLE_TEXT: "No se encontró texto reconocible, incluso después del reconocimiento de las páginas escaneadas.",
   PROCESSOR_UNAVAILABLE: "El procesador no está disponible. El original se conserva; puedes reintentar.",
   EXTRACTION_TIMEOUT: "Se agotó el tiempo de extracción. Prueba con un documento más pequeño.",
   OCR_UNAVAILABLE: "El reconocimiento de imágenes no está disponible. Puedes reintentar más tarde.",
-  UNSAFE_DOCUMENT: "El archivo excede los límites de procesamiento o contiene contenido no permitido." };
+  ...DOCUMENT_ERROR_MESSAGES };
+const warnings: Record<string, string> = {
+  PROVENANCE_UNVERIFIED: "Este documento contiene credenciales de procedencia C2PA. Su firma y su procedencia no han sido verificadas.",
+  ASSOCIATED_FILES_IGNORED: "Los archivos asociados se conservaron en el original y se omitieron al extraer el texto.",
+  OCR_APPLIED: "Se reconoció texto de páginas escaneadas. Puede contener errores de reconocimiento.",
+};
 
 export function SubjectDocuments({ subjectId, archived }: { subjectId: string; archived: boolean }) {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -63,7 +68,7 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
         xhr.onload = () => {
           if (xhr.status === 401) window.location.assign("/login?sesion=expirada");
           let data; try { data = JSON.parse(xhr.responseText); } catch { reject(new Error("No se pudo cargar el documento.")); return; }
-          if (xhr.status >= 200 && xhr.status < 300) resolve(); else reject(new Error(data.message ?? "No se pudo cargar el documento."));
+          if (xhr.status >= 200 && xhr.status < 300) resolve(); else reject(new Error(documentErrorMessage(data?.code)));
         };
         xhr.onerror = () => reject(new Error("No se pudo conectar. Vuelve a intentarlo."));
         xhr.ontimeout = () => reject(new Error("La carga tardó demasiado. Vuelve a intentarlo."));
@@ -120,11 +125,12 @@ export function SubjectDocuments({ subjectId, archived }: { subjectId: string; a
       return <li key={document.documentId}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
         <p className="document-status" role="status">{labels[document.status]}{expired ? " · El trabajo se interrumpió; puedes reintentar." : ""}</p>
         {document.status === "FAILED" && <p className="notice error">{errors[document.errorCode ?? ""] ?? "No se pudo extraer el texto. El original se conserva y puedes reintentar."}</p>}
-        <div className="actions"><button type="button" className="button secondary" disabled={!!busy} onClick={() => download(document)}>Descargar<span className="sr-only"> {document.originalFilename}</span></button>
+        {document.status !== "READY" && <p className="hint">Original conservado en cuarentena. La descarga se habilita después del procesamiento seguro.</p>}
+        <div className="actions">{document.status === "READY" && <button type="button" className="button secondary" disabled={!!busy} onClick={() => download(document)}>Descargar<span className="sr-only"> {document.originalFilename}</span></button>}
           {!archived && (document.status === "UPLOADED" || document.status === "FAILED" || expired) && <button className="button secondary" disabled={!!busy} onClick={() => void process(document)}>{busy === document.documentId ? "Solicitando…" : document.status === "UPLOADED" ? "Procesar" : "Reintentar procesamiento"}</button>}
           {document.status === "READY" && <button className="button secondary" disabled={!!busy} aria-expanded={preview?.id === document.documentId} onClick={() => void showText(document)}>{preview?.id === document.documentId ? "Ocultar texto" : "Ver texto"}</button>}</div>
         {preview?.id === document.documentId && <div className="document-preview" role="region" tabIndex={0} aria-label={`Texto de ${document.originalFilename}`}>
-          {preview.text.warnings.map((warning, i) => <p className="notice" key={i}>{warning}</p>)}
+          {preview.text.warnings.map((warning, i) => <p className="notice" key={i}>{warnings[warning] ?? "El documento se procesó con advertencias."}</p>)}
           {preview.text.fragments.map(fragment => <section key={fragment.index}><h4>{unitLabels[fragment.unitType] ?? "Sección"} {fragment.unitNumber}</h4><p className="preserve-lines">{fragment.text}</p></section>)}
         </div>}
       </li>;

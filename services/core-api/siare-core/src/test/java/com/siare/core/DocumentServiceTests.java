@@ -29,14 +29,14 @@ class DocumentServiceTests {
     }
     DocumentService service(Executor executor) { return new DocumentService(subjects, documents, storage, validator, processor, executor, Clock.fixed(now, ZoneOffset.UTC), 1024); }
     DocumentMetadata metadata(DocumentStatus status, UUID operation) {
-        return new DocumentMetadata(id, subject, owner, "grid-id", "academic.pdf", "application/pdf", 3, "checksum", status, now, null, null, operation, null);
+        return new DocumentMetadata(id, subject, owner, "grid-id", "academic.pdf", "application/pdf", 3, "039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81", status, now, null, null, operation, null);
     }
     @Test void uploadStoresOriginalChecksumAndMetadataWithoutBinary() {
         when(storage.store(any(), eq("academic.pdf"), eq("application/pdf"))).thenReturn("grid-id");
         var result = service.upload(owner, subject, "academic.pdf", "application/pdf", 3, () -> new ByteArrayInputStream(new byte[]{1,2,3}));
         assertThat(result.status()).isEqualTo(DocumentStatus.UPLOADED);
         assertThat(result.checksum()).isEqualTo("039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81");
-        verify(documents).insert(result); verify(validator).validate(any(), eq(DocumentType.PDF));
+        verify(documents).insert(result); verify(validator).validateForStorage(any(), eq(DocumentType.PDF));
     }
     @Test void metadataFailureCompensatesGridFs() {
         when(storage.store(any(), anyString(), anyString())).thenReturn("grid-id");
@@ -67,7 +67,7 @@ class DocumentServiceTests {
         UUID operation = UUID.randomUUID();
         when(documents.find(id)).thenReturn(Optional.of(metadata(DocumentStatus.UPLOADED, null)));
         when(documents.claim(eq(id), eq(operation), eq(now), any())).thenReturn(Optional.of(metadata(DocumentStatus.PROCESSING, operation)));
-        when(storage.open("grid-id")).thenReturn(new ByteArrayInputStream(new byte[3]));
+        when(storage.open("grid-id")).thenAnswer(call -> new ByteArrayInputStream(new byte[]{1,2,3}));
         when(processor.extract(any(), eq(operation), any())).thenThrow(new DocumentException(503, "PROCESSOR_UNAVAILABLE", "offline"));
         service.process(owner, id, operation);
         verify(documents).fail(id, operation, "PROCESSOR_UNAVAILABLE", now); verify(storage, never()).delete(any());
@@ -94,5 +94,37 @@ class DocumentServiceTests {
         assertThatThrownBy(() -> service(r -> { throw new RejectedExecutionException(); }).process(owner, id, operation)).isInstanceOf(DocumentException.class);
         verify(documents).fail(id, operation, "PROCESSOR_BUSY", now);
         assertThatThrownBy(() -> service.text(owner, id)).isInstanceOf(DocumentException.class);
+    }
+    @Test void quarantineBlocksDownloadForEveryUnprocessedStateBeforeOpeningGridFs() {
+        for (var status : List.of(DocumentStatus.UPLOADED, DocumentStatus.PROCESSING, DocumentStatus.FAILED)) {
+            when(documents.find(id)).thenReturn(Optional.of(metadata(status, UUID.randomUUID())));
+            assertThatThrownBy(() -> service.download(owner, id)).isInstanceOfSatisfying(DocumentException.class,
+                    error -> assertThat(error.code()).isEqualTo("DOCUMENT_QUARANTINED"));
+        }
+        verifyNoInteractions(storage);
+        when(documents.find(id)).thenReturn(Optional.of(metadata(DocumentStatus.READY, UUID.randomUUID())));
+        when(storage.open("grid-id")).thenReturn(new ByteArrayInputStream(new byte[]{1,2,3}));
+        assertThat(service.download(owner, id).stream()).isNotNull();
+    }
+    @Test void uploadFreezesOneReadForValidationChecksumAndGridFs() throws Exception {
+        var calls = new java.util.concurrent.atomic.AtomicInteger();
+        when(storage.store(any(), anyString(), anyString())).thenAnswer(call -> {
+            assertThat(((InputStream) call.getArgument(0)).readAllBytes()).containsExactly(1,2,3);
+            return "grid-id";
+        });
+        var result = service.upload(owner, subject, "academic.pdf", "application/pdf", 3,
+                () -> new ByteArrayInputStream(calls.incrementAndGet() == 1 ? new byte[]{1,2,3} : new byte[]{4,5,6}));
+        assertThat(calls.get()).isEqualTo(1);
+        assertThat(result.checksum()).isEqualTo("039058c6f2c0cb492c533b0a4d14ef77cc0f78abccced5287d84a1a2011cfb81");
+    }
+    @Test void corruptedGridFsNeverReachesTheProcessorOrPublishesText() {
+        UUID operation = UUID.randomUUID();
+        when(documents.find(id)).thenReturn(Optional.of(metadata(DocumentStatus.UPLOADED, null)));
+        when(documents.claim(eq(id), eq(operation), any(), any())).thenReturn(Optional.of(metadata(DocumentStatus.PROCESSING, operation)));
+        when(storage.open("grid-id")).thenReturn(new ByteArrayInputStream(new byte[]{4,5,6}));
+        service.process(owner, id, operation);
+        verify(documents).fail(id, operation, "CHECKSUM_MISMATCH", now);
+        verifyNoInteractions(processor);
+        verify(storage, never()).delete(any());
     }
 }

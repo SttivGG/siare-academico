@@ -6,7 +6,7 @@ from docx import Document
 from pptx import Presentation
 from pptx.util import Inches
 from pypdf import PdfWriter
-from pypdf.generic import DictionaryObject, NameObject, DecodedStreamObject
+from pypdf.generic import DictionaryObject, NameObject, DecodedStreamObject, TextStringObject
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -39,8 +39,17 @@ def fixtures():
         if Path(path).is_file():
             font = ImageFont.truetype(path, 48); break
     ImageDraw.Draw(image).text((30, 70), "Aprender ciencias con SIARE", fill="black", font=font or ImageFont.load_default(size=48))
+    scan = io.BytesIO(); image.save(scan, format="PDF", resolution=110)
     result = {"academic.pdf": pdf_bytes(), "academic.docx": docx.getvalue(), "academic.pptx": pptx.getvalue(),
-              "scanned.pdf": pdf_bytes(False), "protected.pdf": pdf_bytes(password=True)}
+              "blank.pdf": pdf_bytes(False), "scanned.pdf": scan.getvalue(), "protected.pdf": pdf_bytes(password=True)}
+    for name in ("active.pdf", "unknown-associated.pdf"):
+        writer = PdfWriter(clone_from=io.BytesIO(pdf_bytes()))
+        if name == "active.pdf":
+            writer._root_object[NameObject("/OpenAction")] = DictionaryObject({NameObject("/S"): NameObject("/JavaScript"), NameObject("/JS"): TextStringObject("blocked fixture")})
+        else:
+            writer.add_attachment("payload.exe", b"MZ" + bytes(128))
+        output = io.BytesIO(); writer.write(output); result[name] = output.getvalue()
+    result["broken-structure.pdf"] = b"%PDF-1.7\nmalformed structure\n%%EOF\n"
     for ext, format in (("png", "PNG"), ("jpg", "JPEG"), ("jpeg", "JPEG")):
         output = io.BytesIO(); image.save(output, format=format); result["academic." + ext] = output.getvalue()
     return result

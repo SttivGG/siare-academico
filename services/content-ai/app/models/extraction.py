@@ -1,12 +1,17 @@
 """Parsers run in a killable subprocess, never execute or fetch document content."""
 import re
+import os
+import subprocess
+import tempfile
 import warnings
 import zipfile
 from pathlib import PurePosixPath
+from urllib.parse import urlsplit
 
 from defusedxml import ElementTree
 from PIL import Image, ImageOps
 from pypdf import PdfReader
+from app.models.pdf_policy import inspect_pdf
 from docx import Document
 from pptx import Presentation
 import pytesseract
@@ -77,8 +82,11 @@ def validate_office(path: str, kind: str) -> None:
             if lower.endswith(".rels"):
                 for node in root:
                     rel = node.attrib.get("Type", "")
-                    if node.attrib.get("TargetMode") == "External" and not rel.endswith("/hyperlink"):
-                        raise ExtractionError("UNSAFE_DOCUMENT")
+                    if node.attrib.get("TargetMode") == "External":
+                        target = node.attrib.get("Target", "")
+                        if (not rel.endswith("/hyperlink") or urlsplit(target).scheme.lower() not in {"http", "https", "mailto"}
+                                or any(ord(c) < 32 for c in target)):
+                            raise ExtractionError("UNSAFE_DOCUMENT")
                     if name == "_rels/.rels" and rel.endswith("/officeDocument") and node.attrib.get("Target") == main:
                         has_root = True
         if not (has_main and has_type and has_root):
@@ -88,6 +96,7 @@ def validate_office(path: str, kind: str) -> None:
 def extract(path: str, kind: str) -> dict:
     try:
         fragments: list[dict] = []
+        notices: list[str] = []
         total = 0
 
         def add(text: str, unit_type: str, number: int) -> None:
@@ -110,40 +119,24 @@ def extract(path: str, kind: str) -> dict:
             pdf = PdfReader(path, strict=True)
             if pdf.is_encrypted:
                 raise ExtractionError("PASSWORD_PROTECTED")
-            # Defense in depth if this internal parser is called independently of Spring.
-            seen = set()
-
-            def inspect(node, depth=0):
-                if depth > 100 or len(seen) > 200_000:
-                    raise ExtractionError("UNSAFE_DOCUMENT")
-                if id(node) in seen:
-                    return
-                seen.add(id(node))
-                if hasattr(node, "get_object"):
-                    resolved = node.get_object()
-                    if resolved is not node:
-                        inspect(resolved, depth + 1)
-                        return
-                if isinstance(node, dict):
-                    if set(node) & {"/JS", "/JavaScript", "/OpenAction", "/AA", "/EmbeddedFiles", "/RichMedia", "/XFA"}:
-                        raise ExtractionError("UNSAFE_DOCUMENT")
-                    if node.get("/S") in ("/JavaScript", "/Launch", "/SubmitForm", "/ImportData", "/GoToR"):
-                        raise ExtractionError("UNSAFE_DOCUMENT")
-                    for value in node.values():
-                        inspect(value, depth + 1)
-                elif isinstance(node, (list, tuple)):
-                    for value in node:
-                        inspect(value, depth + 1)
-
-            inspect(pdf.trailer)
+            notices.extend(inspect_pdf(pdf, ExtractionError))
             count = len(pdf.pages)
             if not 1 <= count <= MAX_UNITS:
                 raise ExtractionError("UNSAFE_DOCUMENT")
+            expanded = 0
             for index, page in enumerate(pdf.pages, 1):
                 content = page.get_contents()
-                if content is not None and len(content.get_data()) > 8 * 1024 * 1024:
-                    raise ExtractionError("UNSAFE_DOCUMENT")
-                add(page.extract_text() or "", "page", index)
+                if content is not None:
+                    size = len(content.get_data())
+                    expanded += size
+                    if size > 8 * 1024 * 1024 or expanded > 48 * 1024 * 1024:
+                        raise ExtractionError("DOCUMENT_LIMIT_EXCEEDED")
+                text = page.extract_text() or ""
+                if not text.strip():
+                    text = ocr_pdf_page(path, index)
+                    if "OCR_APPLIED" not in notices:
+                        notices.append("OCR_APPLIED")
+                add(text, "page", index)
         elif kind in ("DOCX", "PPTX"):
             validate_office(path, kind)
             if kind == "DOCX":
@@ -200,7 +193,7 @@ def extract(path: str, kind: str) -> dict:
         if not fragments:
             raise ExtractionError("NO_EXTRACTABLE_TEXT")
         return {"fileType": kind, "text": "\n\n".join(part["text"] for part in fragments),
-                "fragments": fragments, "unitCount": count, "warnings": [], "extractionStatus": "READY"}
+                "fragments": fragments, "unitCount": count, "warnings": notices, "extractionStatus": "READY"}
     except ExtractionError:
         raise
     except pytesseract.TesseractNotFoundError:
@@ -213,3 +206,22 @@ def extract(path: str, kind: str) -> dict:
         raise ExtractionError("UNSAFE_DOCUMENT") from None
     except Exception:
         raise ExtractionError("CORRUPT_DOCUMENT") from None
+
+
+def ocr_pdf_page(path: str, number: int) -> str:
+    # Poppler has no JavaScript interpreter; no attachment-export switches are used.
+    # One raster at a time, 4 MP maximum, inherited Landlock/seccomp and process limits.
+    with tempfile.TemporaryDirectory(prefix="page-") as directory:
+        prefix = os.path.join(directory, "page")
+        try:
+            subprocess.run(["pdftoppm", "-f", str(number), "-l", str(number), "-singlefile",
+                            "-scale-to", "2000", "-png", path, prefix], check=True,
+                           stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=8)
+        except FileNotFoundError:
+            raise ExtractionError("OCR_UNAVAILABLE") from None
+        except subprocess.TimeoutExpired:
+            raise ExtractionError("EXTRACTION_TIMEOUT") from None
+        with Image.open(prefix + ".png") as image:
+            if image.width * image.height > Image.MAX_IMAGE_PIXELS:
+                raise ExtractionError("DOCUMENT_LIMIT_EXCEEDED")
+            return pytesseract.image_to_string(image.convert("RGB"), lang="spa", config="--psm 6", timeout=12)

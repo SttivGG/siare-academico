@@ -30,7 +30,7 @@ public final class HttpDocumentProcessor implements DocumentProcessor {
             if (!operation.toString().equals(json.path("operationId").asText())) throw new IOException("operation mismatch");
             if (response.statusCode() != 200) {
                 String code = json.path("errorCode").asText();
-                var permitted = Set.of("NO_EXTRACTABLE_TEXT", "CORRUPT_DOCUMENT", "PASSWORD_PROTECTED", "UNSAFE_DOCUMENT", "EXTRACTION_TIMEOUT", "TEXT_LIMIT", "OCR_UNAVAILABLE", "PROCESSOR_BUSY");
+                var permitted = Set.of("NO_EXTRACTABLE_TEXT", "CORRUPT_DOCUMENT", "PASSWORD_PROTECTED", "UNSAFE_DOCUMENT", "EXTRACTION_TIMEOUT", "TEXT_LIMIT", "OCR_UNAVAILABLE", "PROCESSOR_BUSY", "ACTIVE_CONTENT", "ATTACHMENTS_NOT_ALLOWED", "DOCUMENT_LIMIT_EXCEEDED", "SANDBOX_UNAVAILABLE");
                 throw new DocumentException(422, permitted.contains(code) ? code : "PROCESSOR_UNAVAILABLE", "No se pudo extraer el contenido. Puedes reintentar el procesamiento.");
             }
             var result = mapper.treeToValue(json.get("result"), ExtractedContent.class);

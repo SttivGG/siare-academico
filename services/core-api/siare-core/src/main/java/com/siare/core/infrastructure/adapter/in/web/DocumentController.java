@@ -59,6 +59,7 @@ public class DocumentController {
         var result = downloads.download(UUID.fromString(jwt.getSubject()), documentId);
         return ResponseEntity.ok().cacheControl(CacheControl.noStore())
                 .header("X-Content-Type-Options", "nosniff")
+                .header("Content-Security-Policy", "sandbox; default-src 'none'")
                 .header(HttpHeaders.CONTENT_DISPOSITION, ContentDisposition.attachment().filename(result.metadata().originalFilename(), StandardCharsets.UTF_8).build().toString())
                 .contentType(MediaType.parseMediaType(result.metadata().contentType())).contentLength(result.metadata().sizeBytes())
                 .body(new InputStreamResource(result.stream()));
