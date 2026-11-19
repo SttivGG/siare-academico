@@ -20,6 +20,10 @@ class ExtractionModel:
                 output = os.path.join(directory, "result.json")
                 process = subprocess.Popen([sys.executable, "-m", "app.models.extraction_worker", path, kind, output],
                                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                                           cwd="/app", close_fds=True,
+                                           env={"PATH": "/usr/local/bin:/usr/bin:/bin", "LANG": "C.UTF-8",
+                                                "PYTHONDONTWRITEBYTECODE": "1", "OMP_THREAD_LIMIT": "1",
+                                                "TMPDIR": directory, "HOME": directory},
                                            start_new_session=sys.platform != "win32")
                 try:
                     process.wait(timeout=25)

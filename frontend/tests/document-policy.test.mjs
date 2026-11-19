@@ -1,11 +1,19 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { allowedUpload, boundedStream, ByteLimitError, uploadError } from "../src/lib/document-policy.ts";
+import { allowedUpload, boundedStream, ByteLimitError, documentErrorMessage, uploadError } from "../src/lib/document-policy.ts";
 import { isAllowedRoute } from "../src/lib/session-policy.ts";
 
 test("upload policy offers all six extensions and rejects empty, legacy and oversized files", () => {
   for (const extension of ["PDF", "docx", "pptx", "jpg", "jpeg", "png"]) assert.equal(uploadError({ name: `fixture.${extension}`, size: 10 }, 20), null);
   for (const file of [{ name: "a.pdf", size: 0 }, { name: "a.doc", size: 10 }, { name: "a.ppt", size: 10 }, { name: "a.pdf", size: 21 }]) assert.equal(typeof uploadError(file, 20), "string");
+});
+
+test("document errors distinguish active content, attachments, provenance, corruption and limits without internal messages", () => {
+  const codes = ["ACTIVE_CONTENT", "ATTACHMENTS_NOT_ALLOWED", "DOCUMENT_QUARANTINED", "CORRUPT_DOCUMENT", "FILE_TOO_LARGE", "DOCUMENT_LIMIT_EXCEEDED", "PASSWORD_PROTECTED"];
+  assert.equal(new Set(codes.map(documentErrorMessage)).size, codes.length);
+  assert.match(documentErrorMessage("DOCUMENT_QUARANTINED"), /cuarentena/);
+  for (const code of [undefined, null, {}, "internal.exception", "__proto__", "constructor"])
+    assert.equal(documentErrorMessage(code), "No se pudo cargar el documento. Vuelve a intentarlo.");
 });
 
 test("multipart requires same origin, CSRF and a bounded valid boundary", () => {
