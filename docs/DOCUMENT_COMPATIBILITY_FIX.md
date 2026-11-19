@@ -92,7 +92,7 @@ La prueba `frontend/tests/e2e/phase-two.spec.ts`, con `SIARE_TEST_PDF`, ejercita
 
 ## Alcance y límites conocidos
 
-No se modifica React Native, modelos ML, analítica, credenciales, MFA/OIDC ni migraciones históricas. H3 queda en la base de la rama correctiva y mantiene sus pruebas. Los endpoints, enumeraciones y formas JSON se conservan; descargar un documento que todavía no está `READY` pasa a responder `409 DOCUMENT_QUARANTINED` por la política solicitada.
+No se modifica React Native, modelos ML, analítica, credenciales, MFA/OIDC ni migraciones históricas. H3 ya está integrado en `main` y mantiene sus commits y pruebas intactos. Los endpoints, enumeraciones y formas JSON se conservan; descargar un documento que todavía no está `READY` pasa a responder `409 DOCUMENT_QUARANTINED` por la política solicitada.
 
 La representación de estudio es texto organizado por páginas/fragmentos; no ofrece un facsímil gráfico del documento. Los PDF escaneados grandes o complejos pueden quedar en cuarentena por el plazo total. Asociaciones de otros formatos o C2PA fuera de los límites definidos requieren ampliar la clasificación y sus pruebas, sin abrir un permiso general. La procedencia sigue sin verificar.
 
@@ -107,4 +107,6 @@ Consulté la skill `modern-web-guidance` para avisos de validación. La copia of
 - Frontend: `subject-documents.tsx`, `document-policy.ts`, su prueba unitaria y `phase-two.spec.ts`.
 - Operación y documentación: `compose.apps.yml`, `scripts/test-phase2.mjs`, `Test-DocumentCompatibility.ps1`, `scripts/docker/document-browser.Dockerfile`, `docs/PHASE2.md`, descripción de descarga en `docs/openapi.json` y este informe.
 
-La base del PR es `feature/core-actividades`, que contiene H3; así el diff correctivo no vuelve a proponer H3 ni lo elimina. Los cambios de rutas BFF y el diagnóstico anterior no forman parte de esta corrección y permanecen sin commit.
+La base del PR es `main`. Se comprobó que el commit H3 `75f74bc` ya es antecesor de `main`, integrado mediante el PR #5 (`2799014`). No hay dependencia de commits H3 pendientes ni se modifica su historial. La integración virtual con `main` (`6c3a742`) terminó sin conflictos: los archivos de implementación y pruebas resultantes son idénticos a los ya validados; las diferencias adicionales de `main` corresponden a su documentación de equipo. No se incorporan esas diferencias como cambios del PR.
+
+La revisión previa a publicación comprobó los 31 archivos del diff contra `main`: todos son texto de código, pruebas, configuración o documentación de la corrección. No se incluyen PDF, imágenes, capturas, logs, datos personales identificados, claves, secretos, archivos temporales ni contenido de `.cache`. El patch completo volvió a pasar Gitleaks sin hallazgos; las contraseñas y el token constantes de los tests son exclusivamente sintéticos. Los cambios preexistentes de rutas BFF y el diagnóstico anterior siguen fuera del commit. La comprobación no lee ni modifica datos persistentes.
