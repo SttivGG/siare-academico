@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useSyncExternalStore } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { api, type Student, type Subject } from '../lib/api';
 import { hasWork } from '../lib/academic-state';
 import type { RecoveryRecord } from '../lib/academic-recovery';
@@ -13,6 +13,8 @@ export function AcademicRecovery({ subjectId }: { subjectId: string }) {
   const status = useSyncExternalStore(recovery.subscribe, recovery.getSnapshot, recovery.getSnapshot);
   const [action, setAction] = useState<'enable' | 'unlock' | 'discard' | null>(null);
   const [phrase, setPhrase] = useState(''); const [consent, setConsent] = useState(false); const [pending, setPending] = useState(false); const [error, setError] = useState('');
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  const submitting = useRef(false);
   useEffect(() => { void recovery.discover(); }, [recovery]);
   async function authorize(record?: RecoveryRecord) {
     const me = await api<Student>('users/me');
@@ -24,14 +26,14 @@ export function AcademicRecovery({ subjectId }: { subjectId: string }) {
   }
   function close() { if (pending) return; setAction(null); setPhrase(''); setConsent(false); setError(''); }
   async function execute(e: React.FormEvent) {
-    e.preventDefault(); if (pending) return; setPending(true); setError('');
+    e.preventDefault(); if (submitting.current) return; submitting.current = true; setPending(true); setError('');
     try {
       if (action === 'enable') { if (!consent) throw new Error('Autoriza la copia cifrada para habilitarla.'); await recovery.enable(phrase, () => authorize()); }
       else if (action === 'unlock') { if (hasWork(controller.getSnapshot()) && !consent) throw new Error('Confirma que quieres reemplazar el trabajo actual por la copia.'); await recovery.unlock(phrase, authorize, (id, attempt) => api<Evaluation>(`activities/${id}/submissions/${attempt}`)); }
       else await recovery.discard();
       setAction(null); setPhrase(''); setConsent(false);
-    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo completar. El trabajo sigue en memoria.'); }
-    finally { setPending(false); }
+    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo completar. El trabajo sigue en memoria.'); requestAnimationFrame(() => errorRef.current?.focus()); }
+    finally { submitting.current = false; setPending(false); }
   }
   return <div className="academic-recovery"><p role="status" className={status.mode === 'error' ? 'notice error' : 'hint'}>{status.message}</p><div className="actions">
     {!status.enabled && <button className="button subtle" onClick={() => { setError(''); setAction(status.exists ? 'unlock' : 'enable'); }}>{status.exists ? 'Recuperar copia cifrada' : 'Habilitar recuperación local'}</button>}
@@ -44,6 +46,6 @@ export function AcademicRecovery({ subjectId }: { subjectId: string }) {
       <div className="field"><label htmlFor="recovery-phrase">Frase local de recuperación</label><input id="recovery-phrase" type="password" autoComplete="off" minLength={12} maxLength={512} required value={phrase} onChange={e => setPhrase(e.target.value)} /></div>
       {action === 'enable' && <label className="review-checkbox"><input type="checkbox" required checked={consent} onChange={e => setConsent(e.target.checked)} />Autorizo una copia local cifrada en este dispositivo.</label>}
       {action === 'unlock' && hasWork(controller.getSnapshot()) && <label className="review-checkbox"><input type="checkbox" required checked={consent} onChange={e => setConsent(e.target.checked)} />Reemplazar el trabajo actual por la copia recuperada.</label>}</>}
-      {error && <p role="alert" className="notice error">{error}</p>}<div className="actions"><button className="button primary" type="submit" disabled={pending}>{pending ? 'Comprobando…' : action === 'discard' ? 'Eliminar copia cifrada' : action === 'unlock' ? 'Desbloquear y recuperar' : 'Habilitar copia cifrada'}</button><button className="button secondary" type="button" disabled={pending} onClick={close}>Cancelar</button></div>
+      {error && <p ref={errorRef} tabIndex={-1} role="alert" className="notice error">{error}</p>}<div className="actions"><button className="button primary" type="submit" aria-busy={pending || undefined} disabled={pending}>{pending ? 'Comprobando…' : action === 'discard' ? 'Eliminar copia cifrada' : action === 'unlock' ? 'Desbloquear y recuperar' : 'Habilitar copia cifrada'}</button><button className="button secondary" type="button" disabled={pending} onClick={close}>Cancelar</button></div>
     </form></Dialog></div>;
 }

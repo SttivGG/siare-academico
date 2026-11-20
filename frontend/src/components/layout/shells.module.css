@@ -46,6 +46,10 @@
 .workspaceColumns :global(.activity-player h4) { font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
 .workspaceColumns :global(.catalog-picker) { margin-block-start: 12px; }
 .workspaceNavigation { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .workspaceColumns > section { animation: panel-reveal var(--duration) var(--ease); }
+  @keyframes panel-reveal { from { opacity: .65; } to { opacity: 1; } }
+}
 .authShell { min-block-size: 100dvh; display: grid; grid-template-columns: minmax(280px, 42%) minmax(0, 1fr); gap: 16px; padding: 16px; max-inline-size: 1800px; margin-inline: auto; }
 .authAside { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; border: 1px solid var(--border); border-radius: var(--radius-rail); background: var(--glass); box-shadow: var(--shadow); padding: clamp(24px, 4vw, 64px); }
 .authAside h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3.5rem); margin-block-end: 20px; }

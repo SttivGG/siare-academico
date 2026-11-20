@@ -26,6 +26,11 @@ export function ActivityPanel({ subjectId, archived, document, onResult, onActiv
   const [history, setHistory] = useState<Evaluation[]>([]);
   const opening = useRef(0);
   const listBusy = useRef(false);
+  const lookupBusy = useRef(false);
+  const panelRef = useRef<HTMLElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  const [invalidIds, setInvalidIds] = useState(false);
+  function focusPlayer() { requestAnimationFrame(() => panelRef.current?.querySelector<HTMLElement>('.activity-player > h3')?.focus()); }
   const load = useCallback(async (next?: string) => {
     if (listBusy.current) return;
     listBusy.current = true; setBusy(true); setError('');
@@ -46,24 +51,28 @@ export function ActivityPanel({ subjectId, archived, document, onResult, onActiv
   }, []);
   async function open(id: string) {
     const request = ++opening.current; setBusy(true); setError('');
-    try { const value = await api<Activity>(`activities/${id}`); if (opening.current === request) { controller.open(value); setCatalogExpanded(false); setResult(null); setActivityId(id); onActivity(value); } }
+    try { const value = await api<Activity>(`activities/${id}`); if (opening.current === request) { controller.open(value); setCatalogExpanded(false); setResult(null); setActivityId(id); onActivity(value); focusPlayer(); } }
     catch (e) { setError(e instanceof Error ? e.message : 'No se pudo abrir la actividad.'); }
     finally { if (opening.current === request) setBusy(false); }
   }
   async function lookup(e: React.FormEvent) {
-    e.preventDefault(); setError(''); setResult(null);
-    if (!UUID.test(activityId) || !UUID.test(attemptId)) { setError('Indica UUID válidos de actividad e intento.'); return; }
+    e.preventDefault(); if (lookupBusy.current) return; setError(''); setResult(null); setInvalidIds(false);
+    if (!UUID.test(activityId) || !UUID.test(attemptId)) {
+      setInvalidIds(true); setError('Indica UUID válidos de actividad e intento.');
+      requestAnimationFrame(() => panelRef.current?.querySelector<HTMLInputElement>('[aria-invalid=true]')?.focus()); return;
+    }
+    lookupBusy.current = true;
     setBusy(true);
     try {
       const value = await api<Evaluation>(`activities/${activityId}/submissions/${attemptId}`);
       if (value.subjectId !== subjectId) throw new Error('El resultado pertenece a otra materia. Abre su espacio para consultarlo.');
       setResult(value); receive(value);
-    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo consultar el intento.'); }
-    finally { setBusy(false); }
+    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo consultar el intento.'); requestAnimationFrame(() => errorRef.current?.focus()); }
+    finally { lookupBusy.current = false; setBusy(false); }
   }
-  return <section className="activities-panel" aria-labelledby="activities-title"><h2 id="activities-title">{tab === 'reading' ? 'Lectura documental' : tab === 'bank' ? 'Banco manual' : tab === 'attempt' ? 'Tus intentos' : 'Actividades'}</h2>
+  return <section ref={panelRef} className="activities-panel" aria-labelledby="activities-title"><h2 id="activities-title">{tab === 'reading' ? 'Lectura documental' : tab === 'bank' ? 'Banco manual' : tab === 'attempt' ? 'Tus intentos' : 'Actividades'}</h2>
     {archived && <p className="notice">Materia archivada: puedes consultar actividades y resultados guardados.</p>}
-    {error && <p role="alert" className="notice error">{error}</p>}
+    {error && <p ref={errorRef} tabIndex={-1} role="alert" className="notice error">{error}</p>}
     {tab === 'bank' && !archived && <ActivityBankEditor subjectId={subjectId} document={document} onCreated={value => { controller.open(value); setCatalogExpanded(false); setActivityId(value.activityId); setTab('catalog'); onActivity(value); void load(); }} />}
     {tab === 'catalog' && <>
       <details className="catalog-picker" open={!activity || catalogExpanded} onToggle={event => setCatalogExpanded(event.currentTarget.open)}><summary>{activity ? 'Cambiar actividad' : 'Explorar catálogo'}</summary>
@@ -77,7 +86,7 @@ export function ActivityPanel({ subjectId, archived, document, onResult, onActiv
     </>}
     {tab === 'reading' && <AcademicReading document={document} />}
     {tab === 'attempt' && <div className="form-stack"><h3>Consultar resultado guardado</h3><p className="hint">Usa los IDs de un intento anterior. H3 permite consultar un intento propio por ID; el listado completo de intentos aún no está disponible.</p>
-      <form className="form-stack" onSubmit={lookup}><div className="field"><label htmlFor="lookup-activity">ID de actividad</label><input id="lookup-activity" required value={activityId} onChange={e => setActivityId(e.target.value.trim())} /></div><div className="field"><label htmlFor="lookup-attempt">ID de intento</label><input id="lookup-attempt" required value={attemptId} onChange={e => setAttemptId(e.target.value.trim())} /></div><button className="button primary" disabled={busy}>Consultar evaluación</button></form>
+      <form className="form-stack" onSubmit={lookup} aria-busy={busy}><div className="field"><label htmlFor="lookup-activity">ID de actividad</label><input id="lookup-activity" aria-invalid={invalidIds && !UUID.test(activityId) || undefined} aria-describedby={invalidIds && !UUID.test(activityId) ? "lookup-activity-error" : undefined} required value={activityId} onChange={e => setActivityId(e.target.value.trim())} />{invalidIds && !UUID.test(activityId) && <span className="field-error" id="lookup-activity-error">Escribe el UUID de la actividad.</span>}</div><div className="field"><label htmlFor="lookup-attempt">ID de intento</label><input id="lookup-attempt" aria-invalid={invalidIds && !UUID.test(attemptId) || undefined} aria-describedby={invalidIds && !UUID.test(attemptId) ? "lookup-attempt-error" : undefined} required value={attemptId} onChange={e => setAttemptId(e.target.value.trim())} />{invalidIds && !UUID.test(attemptId) && <span className="field-error" id="lookup-attempt-error">Escribe el UUID del intento.</span>}</div><button className="button primary" disabled={busy}>Consultar evaluación</button></form>
       {history.length > 0 && <section><h3>Consultados en esta sesión de pantalla</h3><ul>{history.map(value => <li key={value.attemptId}><a className="text-link identity-id" href={`?activity=${value.activityId}&attempt=${value.attemptId}`}>{value.attemptId}</a></li>)}</ul></section>}
       {result && <EvaluationView result={result} />}
     </div>}
