@@ -1,28 +1,41 @@
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useAcademic } from './academic-provider';
+import { INITIAL_BANK, newDraft, sourceKey } from '../lib/academic-state';
 import { api } from '../lib/api';
 import { parseBank, validateGeneration, type Activity, type ActivityType, type Bank, type DocumentSource, type Fragment } from '../lib/activities';
 
-const initial = JSON.stringify({ validated: false, questions: [], words: [] }, null, 2);
 export function ActivityBankEditor({ subjectId, document, onCreated }: { subjectId: string; document: DocumentSource | null; onCreated: (activity: Activity) => void }) {
-  const [raw, setRaw] = useState(initial);
-  const [bank, setBank] = useState<Bank | null>(null);
-  const [reviewed, setReviewed] = useState(false);
-  const [type, setType] = useState<ActivityType>('QUIZ');
-  const [topic, setTopic] = useState('');
-  const [count, setCount] = useState(1);
-  const [gridSize, setGridSize] = useState(15);
+  const { state, controller } = useAcademic(subjectId);
+  const key = sourceKey(document), draft = state.drafts[key] ?? newDraft();
+  const { raw, bank, reviewed, type, topic, count, gridSize } = draft;
+  const setRaw = (raw: string) => controller.draft(key, { raw });
+  const setBank = (bank: Bank | null) => controller.draft(key, { bank }, false);
+  const setReviewed = (reviewed: boolean) => controller.draft(key, { reviewed }, false);
+  const setType = (type: ActivityType) => controller.draft(key, { type });
+  const setTopic = (topic: string) => controller.draft(key, { topic });
+  const setCount = (count: number) => controller.draft(key, { count });
+  const setGridSize = (gridSize: number) => controller.draft(key, { gridSize });
+  const publishing = useRef(false);
   const [fragments, setFragments] = useState<Fragment[] | null>(null);
   const [error, setError] = useState('');
   const [sourceError, setSourceError] = useState('');
-  const [pending, setPending] = useState(false);
+  const pending = draft.publishing;
+  const setPending = (publishing: boolean) => controller.draft(key, { publishing, dirty: controller.getSnapshot().drafts[key]?.dirty ?? false }, false);
   const [sourceRetry, setSourceRetry] = useState(0);
   useEffect(() => {
-    let active = true; setFragments(null); setReviewed(false); setBank(null); setSourceError('');
-    if (document) api<{ fragments: Fragment[] }>(`documents/${document.documentId}/text`).then(data => { if (active) setFragments(data.fragments); }).catch(e => { if (active) setSourceError(e.message); });
+    let active = true; setFragments(null); setSourceError('');
+    if (document) api<{ fragments: Fragment[] }>(`documents/${document.documentId}/text`).then(async data => {
+      const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(data.fragments)));
+      const fingerprint = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, '0')).join('');
+      if (active) {
+        setFragments(data.fragments);
+        if (controller.getSnapshot().drafts[key]?.sourceFingerprint !== fingerprint) controller.draft(key, { sourceFingerprint: fingerprint, dirty: controller.getSnapshot().drafts[key]?.dirty ?? false }, true);
+      }
+    }).catch(e => { if (active) setSourceError(e.message); });
     return () => { active = false; };
-  }, [document, sourceRetry]);
+  }, [document?.documentId, sourceRetry, controller, key]);
   function edit(value: string) { setRaw(value); setBank(null); setReviewed(false); setError(''); }
   async function importFile(file?: File) {
     if (!file) return;
@@ -37,15 +50,16 @@ export function ActivityBankEditor({ subjectId, document, onCreated }: { subject
     } catch (e) { setError(e instanceof Error ? e.message : 'JSON inválido.'); }
   }
   async function publish(e: React.FormEvent) {
-    e.preventDefault(); if (!bank || !reviewed || pending) return;
+    e.preventDefault(); if (!bank || !reviewed || publishing.current || controller.getSnapshot().drafts[key]?.publishing) return;
+    publishing.current = true;
     setPending(true); setError('');
     try {
       validateGeneration(bank, type, topic.trim(), count, gridSize, document ? fragments! : undefined);
       const body = { type, topic: topic.trim(), count, gridSize, ...(document ? { documentId: document.documentId } : {}), bank: { ...bank, validated: true } };
       if (new TextEncoder().encode(JSON.stringify(body)).byteLength > 4 * 1024 * 1024) throw new Error('El banco completo supera 4 MiB.');
-      const activity = await api<Activity>(`subjects/${subjectId}/activities`, 'POST', body); edit(initial); onCreated(activity);
+      const activity = await api<Activity>(`subjects/${subjectId}/activities`, 'POST', body); controller.draft(key, { ...newDraft(), dirty: false }, false); onCreated(activity);
     } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo crear la actividad.'); }
-    finally { setPending(false); }
+    finally { publishing.current = false; setPending(false); }
   }
   function addEntry() {
     try {
