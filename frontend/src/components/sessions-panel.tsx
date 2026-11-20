@@ -38,7 +38,7 @@ export function SessionsPanel() {
     finally { submitting.current = false; setPending(false); setConfirmation(undefined); }
   }
   return <Surface className={styles.stack} aria-busy={pending}>
-    <div className={styles.header}><div><h2>Controla tus accesos</h2><p className="muted">Cada entrada corresponde a una sesión registrada en el servidor.</p></div><StatusBadge>{sessions.length} sesiones consultadas</StatusBadge></div>
+    <div className={styles.header}><div><h2>Controla tus accesos</h2><p className="muted">Cada entrada corresponde a una sesión registrada en el servidor.</p></div>{!pending && !error && <StatusBadge>{sessions.length} sesiones consultadas</StatusBadge>}</div>
     <div className="actions"><Button variant="secondary" disabled={pending} onClick={() => setConfirmation({ path: "users/me/sessions/revoke-others", method: "POST", title: "Cerrar otras sesiones", detail: "Continuarás en esta sesión. Los otros dispositivos deberán volver a iniciar sesión." })}>Cerrar otras sesiones</Button>
       <Button variant="danger" disabled={pending} onClick={() => setConfirmation({ path: "users/me/sessions/revoke-all", method: "POST", title: "Cerrar todas las sesiones", detail: "También saldrás de este dispositivo. Se eliminarán las copias académicas locales de esta cuenta y el trabajo en memoria.", all: true })}>Cerrar todas las sesiones</Button></div>
     {pending && <LoadingState>Actualizando sesiones…</LoadingState>}

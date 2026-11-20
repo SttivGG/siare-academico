@@ -16,7 +16,7 @@ test("enrolls using local QR, keeps challenge HttpOnly, recovers once and preser
   expect((await page.request.post("/api/bff/auth/register",{headers,data:{...credentials,name:"Seguridad MFA"}})).status()).toBe(201);
   expect((await page.request.post("/api/bff/auth/login",{headers,data:credentials})).status()).toBe(200);
   await page.goto("/seguridad");
-  await expect(page.getByRole("status")).toContainText("sin configurar");
+  await expect(page.getByRole("status").filter({hasText:"Estado MFA:"})).toContainText("sin configurar");
   await page.getByLabel("Contraseña actual",{exact:true}).fill(credentials.password);
   await page.getByRole("button",{name:"Configurar aplicación autenticadora"}).click();
   await expect(page.getByRole("img",{name:"QR para agregar SIARE a tu aplicación autenticadora"})).toBeVisible();
@@ -45,7 +45,7 @@ test("enrolls using local QR, keeps challenge HttpOnly, recovers once and preser
   expect((await page.request.get("/api/bff/admin/users")).status()).toBe(403);
   expect((await page.request.post("/api/bff/users/me/mfa/disable",{data:{password:credentials.password,code:codes[1]}})).status()).toBe(403);
   await page.goto("/seguridad");
-  await expect(page.getByRole("status")).toContainText("Códigos disponibles: 9");
+  await expect(page.getByRole("status").filter({hasText:"Estado MFA:"})).toContainText("Códigos disponibles: 9");
   expect(await page.locator("body").evaluate(el=>el.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:`../.cache/h2b1-security-${test.info().project.name}.png`,fullPage:true});
   await openAccount(page);

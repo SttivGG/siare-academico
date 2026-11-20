@@ -143,7 +143,7 @@ test('Nexo semantic contrast, keyboard focus, reduced motion and forced colors',
       const rgb = (color: string) => color.match(/[\d.]+/g)!.map(Number);
       const blend = (front: number[], back: number[]) => front.slice(0,3).map((v,i) => v * (front[3] ?? 1) + back[i] * (1 - (front[3] ?? 1)));
       const luminance = (color: number[]) => color.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((total,v,i) => total + v * [.2126,.7152,.0722][i],0);
-      const pairs: [string,string,number][] = [['on-brand','brand',4.5],['text','surface',4.5],['muted','surface',4.5],['link','surface',4.5],['text','glass',4.5],['muted','glass',4.5],['danger','danger-bg',4.5],['success','success-bg',4.5],['warning','warning-bg',4.5],['info','info-bg',4.5],['focus','input',3],['control','input',3]];
+      const pairs: [string,string,number][] = [['on-brand','brand',4.5],['text','surface',4.5],['muted','surface',4.5],['text','rose',4.5],['muted','rose',4.5],['text','mint',4.5],['muted','mint',4.5],['text','cream',4.5],['muted','cream',4.5],['text','blue-pastel',4.5],['muted','blue-pastel',4.5],['link','surface',4.5],['text','glass',4.5],['muted','glass',4.5],['danger','danger-bg',4.5],['success','success-bg',4.5],['warning','warning-bg',4.5],['info','info-bg',4.5],['focus','input',3],['control','input',3]];
       return pairs.flatMap(([front,back,target]) => ['canvas','wash-a','wash-b'].map(base => {
         const background = blend(rgb(read('background-color',back)),rgb(read('background-color',base)));
         const a = luminance(blend(rgb(read('color',front)),background)), b = luminance(background);

@@ -143,15 +143,15 @@ test('recovery: session expiry preserves a locked copy for the same authenticate
   expect((await page.request.post('/api/bff/auth/login', { headers: headers(baseURL!), data: { email: credentials.email, password: credentials.password } })).status()).toBe(200); await page.goto(`/materias/${id}`); await unlock(page); await expect(page.getByRole('dialog')).toHaveCount(0); await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"sesión":"recuperar"}');
 });
 
-test('visual A: eight academic states in both themes at all five requested sizes', async ({ page, baseURL }, info) => {
+test('visual A: eight academic states in both themes at all eight requested sizes', async ({ page, baseURL }, info) => {
   test.setTimeout(240_000);
-  const output = `../docs/design/evidencias/h6-3/${info.project.name}`; await mkdir(output, { recursive: true });
+  const output = `${process.env.ACADEMIC_EVIDENCE_DIR ?? "../docs/design/evidencias/h6-3"}/${info.project.name}`; await mkdir(output, { recursive: true });
   const checks: object[] = [], errors: string[] = []; page.on('pageerror', e => errors.push(e.message));
   const { id, create } = await setup(page, baseURL!); await page.goto(`/materias/${id}`);
   async function captures(state: string, visiblePanel: 'Fuentes' | 'Aprendizaje' = 'Aprendizaje') {
     for (const theme of ['light', 'dark']) {
       await page.locator('summary').filter({ hasText: /^Tema$/ }).click(); await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption(theme); await page.keyboard.press('Escape');
-      for (const [width, height] of [[1440, 900], [1920, 1080], [768, 1024], [390, 844], [320, 844]]) {
+      for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768], [1024, 768], [768, 1024], [390, 844], [375, 812], [320, 812]]) {
         await page.setViewportSize({ width, height }); await panel(page, visiblePanel); await page.evaluate(() => document.fonts.ready); expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${state} ${theme} ${width}`).toBe(true);
         await page.screenshot({ path: `${output}/${state}-${theme}-${width}x${height}.png`, fullPage: true }); checks.push({ state, theme, width, height });
       }
@@ -165,7 +165,7 @@ test('visual A: eight academic states in both themes at all five requested sizes
   await open(page, a.activityId); await page.getByRole('button', { name: 'Enviar respuestas', exact: true }).click(); await expect(page.getByRole('region', { name: 'Evaluación de Spring' })).toBeVisible(); await captures('evaluacion');
   // Recovery modal capture uses no phrase and no secrets. Underlying academic state remains real.
   await page.getByRole('button', { name: 'Habilitar recuperación local', exact: true }).click();
-  for (const theme of ['light', 'dark']) { await page.evaluate(mode => { document.documentElement.dataset.theme = mode; }, theme); for (const [width, height] of [[1440, 900], [1920, 1080], [768, 1024], [390, 844], [320, 844]]) { await page.setViewportSize({ width, height }); await expect(page.getByRole('dialog')).toBeVisible(); await page.screenshot({ path: `${output}/recuperacion-${theme}-${width}x${height}.png` }); checks.push({ state: 'recuperacion', theme, width, height }); } }
+  for (const theme of ['light', 'dark']) { await page.evaluate(mode => { document.documentElement.dataset.theme = mode; }, theme); for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768], [1024, 768], [768, 1024], [390, 844], [375, 812], [320, 812]]) { await page.setViewportSize({ width, height }); await expect(page.getByRole('dialog')).toBeVisible(); await page.screenshot({ path: `${output}/recuperacion-${theme}-${width}x${height}.png` }); checks.push({ state: 'recuperacion', theme, width, height }); } }
   await page.getByRole('dialog').getByRole('button', { name: 'Cancelar', exact: true }).click();
   await page.setViewportSize({ width: 768, height: 1024 }); await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; }); expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true); await page.keyboard.press('Tab'); expect(await page.evaluate(() => document.activeElement !== document.body)).toBe(true);
   expect(errors).toEqual([]); await writeFile(`${output}/validacion.json`, JSON.stringify({ origin: baseURL, browser: page.context().browser()?.version(), documentId: doc.documentId, checks, errors, zoom: 'font scaling 200%; physical mobile keyboard and browser zoom remain manual' }, null, 2));
@@ -188,5 +188,5 @@ test('documental: uploaded quarantine becomes FAILED safely and offers an explic
   await page.goto(`/materias/${id}`); await panel(page, 'Fuentes'); const row = page.locator('.document-list > li').filter({ hasText: 'sin-texto-h6.pdf' });
   await expect(row.getByText('Cargado', { exact: true })).toBeVisible(); await expect(row).toContainText('cuarentena'); await expect(row.getByRole('button', { name: /Descargar|Usar como fuente/ })).toHaveCount(0);
   await row.getByRole('button', { name: 'Procesar', exact: true }).click(); await expect(row.getByText('Procesamiento fallido', { exact: true })).toBeVisible({ timeout: 60_000 }); await expect(row.getByRole('button', { name: 'Reintentar procesamiento', exact: true })).toBeEnabled(); await expect(row.getByRole('button', { name: /Descargar|Usar como fuente/ })).toHaveCount(0); await expect(row).toContainText('No se encontró texto reconocible');
-  await page.screenshot({ path: `../docs/design/evidencias/h6-3/${info.project.name}/fuente-failed.png`, fullPage: true });
+  await page.screenshot({ path: `${process.env.ACADEMIC_EVIDENCE_DIR ?? "../docs/design/evidencias/h6-3"}/${info.project.name}/fuente-failed.png`, fullPage: true });
 });
