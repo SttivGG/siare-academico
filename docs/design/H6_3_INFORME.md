@@ -7,6 +7,7 @@ La recuperación durable es opcional y usa IndexedDB con AES-GCM y una frase loc
 ## Revisión y alcance
 
 - Rama: `feat/h6-3-cuaderno-abierto`.
+- [PR #11 draft](https://github.com/SttivGG/siare-academico/pull/11), dirigido a H6-2; sin fusionar.
 - Base verificada del PR #10: `371e93efed315492683d2bcb2a793446384c6eb3`, rama `feat/h6-2-nexo-global`, abierto hacia `main`.
 - Commit de implementación: `4442b69064a116b820051a5470ec188383e585aa`.
 - Preview aislada: `http://127.0.0.1:3107`, proyecto `siare-h6-3-validation`, servicio `frontend-h6`.
