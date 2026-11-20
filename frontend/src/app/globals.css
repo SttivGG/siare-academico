@@ -107,6 +107,11 @@ input[aria-invalid=true], textarea[aria-invalid=true] { border-color: var(--dang
 .document-preview section + section { margin-top: 20px; }
 .document-preview h4 { margin: 0 0 12px; }
 progress { width: 100%; accent-color: var(--accent); }
+/* Determinate native progress keeps its semantics and the Nexo palette. */
+progress[value] { appearance: none; border: 0; block-size: 8px; border-radius: var(--radius-sm); overflow: hidden; background: var(--raised); color: var(--accent); }
+progress[value]::-webkit-progress-bar { background: var(--raised); border-radius: var(--radius-sm); }
+progress[value]::-webkit-progress-value { background: var(--accent); border-radius: var(--radius-sm); }
+progress[value]::-moz-progress-bar { background: var(--accent); border-radius: var(--radius-sm); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media (max-width: 900px) {
   .subject-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -225,6 +230,10 @@ input::placeholder, textarea::placeholder { color: var(--faint); opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .button { transition: none; } }
 @media (forced-colors: active) { .button, .panel, .subject-card, .badge, input, textarea, select { border-color: CanvasText; box-shadow: none; } :focus-visible { outline-color: Highlight; } }
 @media (forced-colors: active) {
+  progress[value] { forced-color-adjust: none; background: Canvas; color: Highlight; border: 1px solid CanvasText; }
+  progress[value]::-webkit-progress-bar { background: Canvas; }
+  progress[value]::-webkit-progress-value { background: Highlight; }
+  progress[value]::-moz-progress-bar { background: Highlight; }
   .button[aria-pressed=true], .activity-card[aria-pressed=true], .quiz-options label.selected, .clue-button[aria-current=true], .crossword-cell[data-active-word=true] input, .document-list > li[data-selected=true] { outline: 2px solid Highlight; outline-offset: -3px; }
   .quiz-options label:has(:focus-visible) { outline: 3px solid Highlight; outline-offset: 3px; }
 }

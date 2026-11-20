@@ -59,6 +59,8 @@ try {
     for (const theme of ['light', 'dark']) {
       await page.evaluate(value => { document.documentElement.dataset.theme = value; localStorage.setItem('siare-theme', value); }, theme);
       await page.evaluate(() => document.fonts.ready);
+      // Capture final theme/disclosure states, not a frame partway through 140/220ms.
+      await page.evaluate(() => Promise.all(document.getAnimations().filter(animation => animation.effect?.getTiming().iterations !== Infinity).map(animation => animation.finished.catch(() => {}))));
       const file = `${name}-${theme}.png`;
       await page.screenshot({ path: `${out}/${file}`, fullPage: true, mask: [page.locator('.mfa-enrollment'), page.locator('.recovery-codes'), page.locator('input[type=password]')] });
       captures.push({ name, theme, file });
