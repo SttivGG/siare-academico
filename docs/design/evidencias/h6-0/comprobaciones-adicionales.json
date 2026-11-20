@@ -1,0 +1,99 @@
+{
+  "catalogItemKeys": [
+    "activityId",
+    "subjectId",
+    "type",
+    "title",
+    "available"
+  ],
+  "catalogDates": [
+    {
+      "type": "QUIZ",
+      "createdAt": null
+    },
+    {
+      "type": "CROSSWORD",
+      "createdAt": null
+    }
+  ],
+  "keyboard": [
+    {
+      "tag": "A",
+      "text": "Saltar al contenido",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "A",
+      "text": "SIAREMi espacio de aprendizaje",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "A",
+      "text": "Inicio",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "A",
+      "text": "Mis materias",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "A",
+      "text": "Sesiones",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "A",
+      "text": "Seguridad",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Cerrar sesión",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    {
+      "tag": "A",
+      "text": "← Mis materias",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Actualizar lista",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Datos de la materia",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "TEXTAREA",
+      "text": "Datos sintéticos exclusivos de la auditoría visual. No representan ren",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Guardar cambios",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Archivar materia",
+      "outline": "rgb(156, 67, 18) solid 3px"
+    }
+  ],
+  "ready": "READY",
+  "noOriginalEmbed": true,
+  "cancelArchivePreserved": true
+}

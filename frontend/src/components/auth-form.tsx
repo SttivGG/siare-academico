@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Button, Field } from "./ui/primitives";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { api, ApiError } from "../lib/api";
@@ -30,17 +31,10 @@ export function AuthForm({ register = false }: { register?: boolean }) {
   }
   return <form onSubmit={submit} className="form-stack" aria-busy={pending}>
     {error && <div ref={errorRef} tabIndex={-1} className="notice error" role="alert">{error}</div>}
-    {register && <div className="field"><label htmlFor="name">Nombre</label>
-      <input id="name" name="name" autoComplete="name" required maxLength={100} aria-invalid={!!fields.name} aria-describedby={fields.name ? "name-error" : undefined} />
-      {fields.name && <span id="name-error" className="field-error">{fields.name}</span>}</div>}
-    <div className="field"><label htmlFor="email">Correo electrónico</label>
-      <input id="email" name="email" type="email" autoComplete="email" required maxLength={254} aria-invalid={!!fields.email} aria-describedby={fields.email ? "email-error" : undefined} />
-      {fields.email && <span id="email-error" className="field-error">{fields.email}</span>}</div>
-    <div className="field"><label htmlFor="password">Contraseña</label>
-      <input id="password" name="password" type="password" autoComplete={register ? "new-password" : "current-password"}
-        required minLength={register ? 15 : 1} maxLength={2048} aria-invalid={!!fields.password} aria-describedby="password-help" />
-      <span id="password-help" className={fields.password ? "field-error" : "hint"}>{fields.password ?? (register ? "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes." : "Usa la contraseña de tu cuenta SIARE.")}</span></div>
-    <button className="button primary full" disabled={pending} type="submit">{pending ? "Un momento…" : register ? "Crear cuenta" : "Iniciar sesión"}</button>
+    {register && <Field label="Nombre" id="name" name="name" autoComplete="name" required maxLength={100} error={fields.name} />}
+    <Field label="Correo electrónico" id="email" name="email" type="email" autoComplete="email" required maxLength={254} error={fields.email} />
+    <Field label="Contraseña" id="password" name="password" type="password" autoComplete={register ? "new-password" : "current-password"} required minLength={register ? 15 : 1} maxLength={2048} error={fields.password} hint={register ? "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes." : "Usa la contraseña de tu cuenta SIARE."} />
+    <Button className="full" busy={pending} type="submit">{pending ? "Un momento…" : register ? "Crear cuenta" : "Iniciar sesión"}</Button>
     <p className="muted">{register ? "¿Ya tienes una cuenta?" : "¿Es tu primera visita?"} <Link href={register ? "/login" : "/registro"}>{register ? "Inicia sesión" : "Crea tu cuenta"}</Link></p>
     {!register && <Link href="/recuperar">Olvidé mi contraseña</Link>}
   </form>;

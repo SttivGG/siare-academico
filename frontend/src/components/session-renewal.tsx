@@ -16,7 +16,7 @@ export function SessionRenewal() {
     }).catch(() => { if (live) setError("No se pudo conectar. Recarga la página para volver a intentarlo."); });
     return () => { live = false; };
   }, [router]);
-  return <section className="auth-card"><h1>Comprobando tu sesión</h1>
+  return <section aria-label="Comprobación de sesión">
     {error ? <><p className="notice error" role="alert">{error}</p><Link href="/login?sesion=expirada" className="button primary">Ir a iniciar sesión</Link></>
       : <p role="status" aria-live="polite">Renovando la sesión…</p>}</section>;
 }

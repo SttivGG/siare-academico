@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-11-20T00:27:16.543967+00:00",
+  "files": [
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\src\\styles\\tokens.css",
+      "sha256": "51503b1ba6ce88911b724a090db1c3af3efa8cb923510302e941c49c7efe400b",
+      "bytes": 5986
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\src\\styles\\layout.css",
+      "sha256": "f160794b9d145e3054254caaebb16338d2b50c3e9977ad58094f125d64abc850",
+      "bytes": 20507
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\src\\styles\\responsive.css",
+      "sha256": "b4ae34ab5b4e4e62005ee18dbb894325747ba1abeb00d1e33f30edf759359ec8",
+      "bytes": 13260
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\src\\styles\\components.css",
+      "sha256": "cf956d8ef8db59c4c5f4b0c5c2eb1d92ee6594a29ad506d6e316f7629ca3c1dd",
+      "bytes": 21891
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\src\\components\\ui.tsx",
+      "sha256": "fac79835abb07dde8dc308268197eb787ee08a448dd40d494ca59451593688ac",
+      "bytes": 8587
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\src\\appearance.tsx",
+      "sha256": "413b372f1f4f971c919969ee1db408f62ee37d32032fdb860753bfaffab68098",
+      "bytes": 2192
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\package.json",
+      "sha256": "6dbfa503846a1e0602b0676a07f2428437e13955e6632c5acc36da409ab5b23b",
+      "bytes": 1295
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\public\\fonts\\urbanist-latin.woff2",
+      "sha256": "7981ef90c246352c7c217081b8d9337b9c95e9d17ae126bf56b0d3753d1e5ffb",
+      "bytes": 27752
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\frontend\\public\\fonts\\OFL-Urbanist.txt",
+      "sha256": "701954706522139355e4ce4032e771ed1c265fa2c7f41f53f24dcaefd6402562",
+      "bytes": 4384
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\docs\\capturas\\fase6a1\\nexo-despues.png",
+      "copy": "nexo-claro-original.png",
+      "sha256": "e0be1a152d48554127592f4bb85701690282eb2c1484a78ea644c3e2837d5274",
+      "bytes": 689596
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\docs\\capturas\\fase8b\\demo-dark-desktop.png",
+      "copy": "nexo-oscuro-original.png",
+      "sha256": "4053ed91704d78ed6ac0088f985c59e0850e82af3845634f67f20bbc50b4b01d",
+      "bytes": 394650
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\docs\\capturas\\fase6a1\\nexo-formulario.png",
+      "copy": "nexo-formulario-original.png",
+      "sha256": "1fe4453bc1e97659656c44cf85884f7b84bb7c9e0e3dff3cb92bf07c55518a79",
+      "bytes": 258546
+    },
+    {
+      "source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\corte3\\facturacion-hexagonal\\docs\\capturas\\fase6a1\\nexo-movil.png",
+      "copy": "nexo-movil-original.png",
+      "sha256": "8874536825e76e0ecdda5ae87bef481553722ff5e55b351172d2fbe459dc7df0",
+      "bytes": 295407
+    },
+    {
+      "source": "C:\\Users\\Daniel Giraldo\\Pictures\\Screenshots\\NBML\\Captura de pantalla 2026-11-18 183847.png",
+      "copy": "notebooklm-original-1.png",
+      "sha256": "24bd03c05182829a5cf7225a827d6c9b3e433b4803bf42e46bf00790cee68cec",
+      "bytes": 217347
+    },
+    {
+      "source": "C:\\Users\\Daniel Giraldo\\Pictures\\Screenshots\\NBML\\Captura de pantalla 2026-11-18 184837.png",
+      "copy": "notebooklm-original-2.png",
+      "sha256": "c16a96855aa26b7576dc3f26fb390c041c5bf0ff6ee45ca357b3f710e65cedf7",
+      "bytes": 198972
+    },
+    {
+      "source": "C:\\Users\\Daniel Giraldo\\Pictures\\Screenshots\\NBML\\Captura de pantalla 2026-11-19 123101.png",
+      "copy": "notebooklm-original-3.png",
+      "sha256": "76f8fcc6ce31b328c672764a1b79d4487d92d306d1f6b49249dcb3b9d3edf47f",
+      "bytes": 199619
+    }
+  ]
+}

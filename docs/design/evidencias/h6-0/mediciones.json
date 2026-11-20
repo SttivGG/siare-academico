@@ -1,0 +1,622 @@
+{
+  "capturedAt": "2026-11-20T00:16:49.730Z",
+  "baseURL": "http://127.0.0.1:3100",
+  "browser": "153.0.8010.12",
+  "synthetic": true,
+  "pages": [
+    {
+      "file": "bienvenida-1440.png",
+      "path": "/",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "login-1440.png",
+      "path": "/login",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "registro-1440.png",
+      "path": "/registro",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "recuperar-1440.png",
+      "path": "/recuperar",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "inicio-1440.png",
+      "path": "/inicio",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "materias-1440.png",
+      "path": "/materias",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "nueva-materia-1440.png",
+      "path": "/materias/nueva",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "seguridad-1440.png",
+      "path": "/seguridad",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "sesiones-1440.png",
+      "path": "/sesiones",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "administracion-user-1440.png",
+      "path": "/administracion",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "workspace-vacio-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "documento-cuarentena-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "workspace-1920x1080.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-1440x900.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-1366x768.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-1024x768.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-768x1024.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-390x844.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-375x812.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 375,
+        "height": 812
+      },
+      "fullPage": false
+    },
+    {
+      "file": "workspace-320x812.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 320,
+        "height": 812
+      },
+      "fullPage": false
+    },
+    {
+      "file": "banco-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "quiz-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "evaluacion-spring-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "crucigrama-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "intentos-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": true
+    },
+    {
+      "file": "login-390.png",
+      "path": "/login",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true
+    },
+    {
+      "file": "materias-390.png",
+      "path": "/materias",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true
+    },
+    {
+      "file": "seguridad-390.png",
+      "path": "/seguridad",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true
+    },
+    {
+      "file": "workspace-390.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "fullPage": true
+    },
+    {
+      "file": "preferencia-oscura-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    },
+    {
+      "file": "foco-teclado-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    },
+    {
+      "file": "texto-200-1440.png",
+      "path": "/materias/[id]",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "fullPage": false
+    }
+  ],
+  "measurements": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "documentWidth": 1920,
+      "documentHeight": 1849,
+      "columns": "487.328px 573.328px 659.328px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1920,
+        "height": 100.578125
+      },
+      "sources": {
+        "x": 84,
+        "y": 361.40625,
+        "width": 487.328125,
+        "height": 678.421875
+      },
+      "center": {
+        "x": 587.328125,
+        "y": 361.40625,
+        "width": 573.328125,
+        "height": 1355.15625
+      },
+      "study": {
+        "x": 1176.65625,
+        "y": 361.40625,
+        "width": 659.328125,
+        "height": 499.40625
+      },
+      "upload": {
+        "x": 109,
+        "y": 522.875,
+        "width": 437.328125,
+        "height": 236.375
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "documentWidth": 1440,
+      "documentHeight": 1975,
+      "columns": "385.328px 453.328px 521.344px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 100.578125
+      },
+      "sources": {
+        "x": 24,
+        "y": 354.484375,
+        "width": 385.328125,
+        "height": 760.015625
+      },
+      "center": {
+        "x": 425.328125,
+        "y": 354.484375,
+        "width": 453.328125,
+        "height": 1488.578125
+      },
+      "study": {
+        "x": 894.65625,
+        "y": 354.484375,
+        "width": 521.34375,
+        "height": 499.40625
+      },
+      "upload": {
+        "x": 49,
+        "y": 541.546875,
+        "width": 335.328125,
+        "height": 236.375
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "documentWidth": 1366,
+      "documentHeight": 2000,
+      "columns": "364.359px 428.672px 492.953px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1366,
+        "height": 100.578125
+      },
+      "sources": {
+        "x": 24,
+        "y": 353.421875,
+        "width": 364.359375,
+        "height": 782.40625
+      },
+      "center": {
+        "x": 404.359375,
+        "y": 353.421875,
+        "width": 428.671875,
+        "height": 1514.171875
+      },
+      "study": {
+        "x": 849.03125,
+        "y": 353.421875,
+        "width": 492.953125,
+        "height": 499.40625
+      },
+      "upload": {
+        "x": 49,
+        "y": 540.484375,
+        "width": 314.359375,
+        "height": 258.765625
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "documentWidth": 1024,
+      "documentHeight": 2495,
+      "columns": "480px 480px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 1024,
+        "height": 100.578125
+      },
+      "sources": {
+        "x": 24,
+        "y": 408.484375,
+        "width": 480,
+        "height": 678.421875
+      },
+      "center": {
+        "x": 520,
+        "y": 408.484375,
+        "width": 480,
+        "height": 1438.984375
+      },
+      "study": {
+        "x": 24,
+        "y": 1863.46875,
+        "width": 976,
+        "height": 499.40625
+      },
+      "upload": {
+        "x": 49,
+        "y": 569.953125,
+        "width": 430,
+        "height": 236.375
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "documentWidth": 768,
+      "documentHeight": 2615,
+      "columns": "352px 352px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 100.578125
+      },
+      "sources": {
+        "x": 24,
+        "y": 404.8125,
+        "width": 352,
+        "height": 782.40625
+      },
+      "center": {
+        "x": 392,
+        "y": 404.8125,
+        "width": 352,
+        "height": 1562.15625
+      },
+      "study": {
+        "x": 24,
+        "y": 1982.96875,
+        "width": 720,
+        "height": 499.40625
+      },
+      "upload": {
+        "x": 49,
+        "y": 591.875,
+        "width": 302,
+        "height": 258.765625
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "documentWidth": 390,
+      "documentHeight": 3495,
+      "columns": "366px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 189.390625
+      },
+      "sources": {
+        "x": 12,
+        "y": 548.140625,
+        "width": 366,
+        "height": 747.203125
+      },
+      "center": {
+        "x": 12,
+        "y": 1311.34375,
+        "width": 366,
+        "height": 1523.75
+      },
+      "study": {
+        "x": 12,
+        "y": 2851.09375,
+        "width": 366,
+        "height": 508.984375
+      },
+      "upload": {
+        "x": 30.59375,
+        "y": 728.796875,
+        "width": 328.8125,
+        "height": 236.375
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "documentWidth": 375,
+      "documentHeight": 3543,
+      "columns": "351px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 189.390625
+      },
+      "sources": {
+        "x": 12,
+        "y": 548.140625,
+        "width": 351,
+        "height": 769.59375
+      },
+      "center": {
+        "x": 12,
+        "y": 1333.734375,
+        "width": 351,
+        "height": 1549.34375
+      },
+      "study": {
+        "x": 12,
+        "y": 2899.078125,
+        "width": 351,
+        "height": 508.984375
+      },
+      "upload": {
+        "x": 30.59375,
+        "y": 728.796875,
+        "width": 313.8125,
+        "height": 258.765625
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    },
+    {
+      "width": 320,
+      "height": 812,
+      "documentWidth": 320,
+      "documentHeight": 3799,
+      "columns": "296px",
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 189.390625
+      },
+      "sources": {
+        "x": 12,
+        "y": 625.734375,
+        "width": 296,
+        "height": 769.59375
+      },
+      "center": {
+        "x": 12,
+        "y": 1411.328125,
+        "width": 296,
+        "height": 1607.578125
+      },
+      "study": {
+        "x": 12,
+        "y": 3034.90625,
+        "width": 296,
+        "height": 628.96875
+      },
+      "upload": {
+        "x": 30.59375,
+        "y": 806.390625,
+        "width": 258.8125,
+        "height": 258.765625
+      },
+      "font": "Urbanist, system-ui, sans-serif"
+    }
+  ],
+  "checks": {
+    "quarantineDownloadHidden": true,
+    "readySourceSelected": true,
+    "bankDraftSurvivesTabSwitch": false,
+    "quizAnswerSurvivesTabSwitch": false,
+    "evaluationFromSpringVisible": true,
+    "systemDarkChangesWorkspace": false,
+    "firstKeyboardFocus": {
+      "text": "Saltar al contenido",
+      "outline": "rgb(40, 84, 59) solid 3px"
+    },
+    "text200Overflow": false,
+    "text200IsBrowserZoom": false,
+    "health": {
+      "service": "frontend",
+      "status": "UP"
+    },
+    "cookiesHttpOnly": true
+  },
+  "errors": []
+}

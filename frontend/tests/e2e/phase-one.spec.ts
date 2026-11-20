@@ -1,3 +1,4 @@
+import { openAccount, navigateGlobal } from "./navigation";
 import { randomUUID } from "node:crypto";
 import { test, expect } from "@playwright/test";
 
@@ -48,6 +49,7 @@ test("registro, login, creación, edición, archivo y cierre de sesión desde la
   await page.getByRole("link", { name: "← Mis materias", exact: true }).click();
   await page.getByLabel("Mostrar").selectOption("archived");
   await expect(page.getByRole("link", { name: `${subject} actualizada`, exact: true })).toBeVisible();
+  await openAccount(page);
   await page.getByRole("button", { name: "Cerrar sesión" }).click();
   await expect(page).toHaveURL(/\/login$/);
   expect((await context.cookies()).some(cookie => cookie.name === "siare_session")).toBe(false);
