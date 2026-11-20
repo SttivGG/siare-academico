@@ -8,10 +8,12 @@ import { Button } from "./ui/primitives";
 import { Icon } from "./ui/icon";
 import { ThemeControl } from "./ui/theme-control";
 import styles from "./layout/navigation.module.css";
+import { useAcademicSession } from './academic-provider';
 
 export function StudentNav({ role = "USER", user }: { role?: string; user: { name: string; email: string } }) {
   const pathname = usePathname();
   const router = useRouter();
+  const academic = useAcademicSession();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const submitting = useRef(false);
@@ -37,7 +39,7 @@ export function StudentNav({ role = "USER", user }: { role?: string; user: { nam
   async function logout() {
     if (submitting.current) return; submitting.current = true;
     setPending(true); setError("");
-    try { await api("auth/logout", "POST"); router.replace("/login"); router.refresh(); }
+    try { await api("auth/logout", "POST"); let cleared = true; try { await academic?.clear(); } catch { cleared = false; } router.replace(cleared ? "/login" : "/login?copia=error-al-eliminar"); router.refresh(); }
     catch { setError("No se pudo cerrar la sesión. Inténtalo de nuevo."); }
     finally { submitting.current = false; setPending(false); }
   }

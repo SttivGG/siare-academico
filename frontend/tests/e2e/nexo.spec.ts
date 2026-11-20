@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { openAccount } from './navigation';
 
-const output = '../docs/design/evidencias/h6-2';
+const output = '../.cache/h6-3-regression-nexo';
 const sizes = [[1920,1080],[1440,900],[1366,768],[1024,768],[768,1024],[390,844],[375,812],[320,812]];
 async function createStudent(page: Page, origin: string) {
   const headers = { Origin: origin, 'X-SIARE-CSRF': '1' };
@@ -75,6 +75,7 @@ test('theme, account and responsive navigation preserve the live form, academic 
   }
   let archived = 0;
   page.on('request', request => { if (request.method() === 'PATCH' && request.url().endsWith('/archive')) archived++; });
+  if (!(await page.locator('.subject-settings').getAttribute('open'))) await page.getByText('Datos de la materia', { exact: true }).click();
   await page.getByRole('button', { name: 'Archivar materia', exact: true }).click();
   const dialog = page.getByRole('dialog', { name: 'Archivar materia' });
   await expect(dialog).toBeVisible();
@@ -94,6 +95,7 @@ test('theme, account and responsive navigation preserve the live form, academic 
   if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/W13-light-1440x900.png` });
   await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
   // H6-2 must not introduce remounts. Switching academic tools remains an H6-3 blocker.
+  page.once('dialog', dialog => dialog.accept());
   await page.goto('/materias/nueva');
   await page.getByLabel('Nombre de la materia').fill('Formulario en curso');
   await openAccount(page);

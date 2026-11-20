@@ -1,5 +1,6 @@
 import { AppShell } from "../../components/layout/app-shell";
 import { requireStudent, sessionToken } from "../../lib/server-session";
+import { AcademicProvider } from "../../components/academic-provider";
 
 export const dynamic = "force-dynamic";
 
@@ -10,5 +11,5 @@ export default async function StudentLayout({ children }: { children: React.Reac
   });
   if (!identity.ok) throw new Error("No se pudo comprobar la identidad de la sesión.");
   const access = await identity.json();
-  return <AppShell role={access.role} user={{ name: user.name, email: user.email }}>{children}</AppShell>;
+  return <AcademicProvider key={user.id} userId={user.id}><AppShell role={access.role} user={{ name: user.name, email: user.email }}>{children}</AppShell></AcademicProvider>;
 }

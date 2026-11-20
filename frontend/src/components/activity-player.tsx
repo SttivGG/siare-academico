@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useAcademic } from './academic-provider';
 import { api } from '../lib/api';
 import { clueCells, crosswordAnswers, freezeSubmission, normalize, type Activity, type CrosswordActivity, type Evaluation, type Submission } from '../lib/activities';
 
@@ -8,14 +9,13 @@ export function EvaluationView({ result }: { result: Evaluation }) {
   return <section aria-label="Evaluación de Spring" className="evaluation">
     <h3>Resultado del intento</h3><p className="result-score">{result.percentage}% <span>{result.points} de {result.total} aciertos</span></p>
     <p>{result.feedback}</p><p className="hint identity-id">Intento: {result.attemptId}</p>
-    <p className="hint">{new Date(result.occurredAt).toLocaleString('es-CO')}</p>
+    <p className="hint">{Number.isFinite(Date.parse(result.occurredAt)) ? new Date(result.occurredAt).toLocaleString('es-CO', { timeZone: 'America/Bogota' }) : 'Fecha no disponible'}</p>
     <ul className="feedback-list">{result.items.map(item => <li key={item.id}><strong>{item.id}: {item.correct ? 'Correcta' : 'Por repasar'}</strong>
       <p>Tu respuesta: {item.submitted || 'Sin respuesta'}</p><p>Respuesta esperada: {item.expected}</p><p>{item.rationale}</p><p className="hint">{item.feedback}</p></li>)}</ul>
   </section>;
 }
 
-function CrosswordGrid({ activity, cells, onChange, locked }: { activity: CrosswordActivity; cells: Record<string, string>; onChange: (cells: Record<string, string>) => void; locked: boolean }) {
-  const [direction, setDirection] = useState<'ACROSS' | 'DOWN'>('ACROSS');
+function CrosswordGrid({ activity, cells, onChange, locked, direction, setDirection }: { activity: CrosswordActivity; cells: Record<string, string>; onChange: (cells: Record<string, string>) => void; locked: boolean; direction: 'ACROSS' | 'DOWN'; setDirection: (direction: 'ACROSS' | 'DOWN') => void }) {
   const refs = useRef<Record<string, HTMLInputElement | null>>({});
   const { rows, columns, clues } = activity.content;
   const available = new Set(activity.content.cells.map(c => `${c.row}:${c.column}`));
@@ -53,31 +53,24 @@ function CrosswordGrid({ activity, cells, onChange, locked }: { activity: Crossw
   </div>;
 }
 
-export function ActivityPlayer({ activity, archived, onResult, onPending }: { activity: Activity; archived: boolean; onResult: (result: Evaluation) => void; onPending: (pending: boolean) => void }) {
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [cells, setCells] = useState<Record<string, string>>({});
-  const [index, setIndex] = useState(0);
-  const [pending, setPending] = useState(false);
-  const [locked, setLocked] = useState(false);
-  const [result, setResult] = useState<Evaluation | null>(null);
-  const [error, setError] = useState('');
-  const startedAt = useRef(Date.now());
-  const envelope = useRef<Submission | null>(null);
+export function ActivityPlayer({ activity, archived }: { activity: Activity; archived: boolean }) {
+  const { state, controller, recovery } = useAcademic(activity.subjectId);
+  const attempt = state.attempts[activity.activityId];
+  const { answers, cells, index, result, error, direction } = attempt;
+  const pending = attempt.status === 'sending', locked = !!attempt.frozen;
+  const setAnswers = (answers: Record<string, string>) => controller.attempt(activity.activityId, { answers });
+  const setCells = (cells: Record<string, string>) => controller.attempt(activity.activityId, { cells });
+  const setIndex = (index: number) => controller.attempt(activity.activityId, { index });
+  const setDirection = (direction: 'ACROSS' | 'DOWN') => controller.attempt(activity.activityId, { direction });
   const heading = useRef<HTMLHeadingElement>(null);
   async function submit(e: React.FormEvent) {
-    e.preventDefault(); if (pending) return;
-    envelope.current ??= freezeSubmission(activity.type === 'QUIZ' ? answers : crosswordAnswers(activity.content.clues, cells), startedAt.current);
-    setLocked(true); setPending(true); onPending(true); setError('');
-    try {
-      const evaluation = await api<Evaluation>(`activities/${activity.activityId}/submissions`, 'POST', envelope.current);
-      setResult(evaluation); onResult(evaluation); onPending(false);
-    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo enviar.'); }
-    finally { setPending(false); }
+    e.preventDefault();
+    await controller.submit(activity.activityId, body => api<Evaluation>(`activities/${activity.activityId}/submissions`, 'POST', body), recovery.getSnapshot().enabled ? recovery.flush : undefined);
   }
   function navigate(next: number) { setIndex(next); requestAnimationFrame(() => heading.current?.focus()); }
   return <div className="activity-player">
     <h3>{activity.type === 'QUIZ' ? 'Quiz' : 'Crucigrama'} · {activity.title}</h3>
-    {result ? <><EvaluationView result={result} />{!archived && <button className="button secondary" onClick={() => { envelope.current = null; setResult(null); setAnswers({}); setCells({}); setIndex(0); setLocked(false); startedAt.current = Date.now(); }}>Nuevo intento</button>}</>
+    {result ? <><EvaluationView result={result} />{!archived && <button className="button secondary" onClick={() => { controller.restart(activity.activityId); }}>Nuevo intento</button>}</>
       : <form onSubmit={submit}>
         {activity.type === 'QUIZ' ? (() => { const question = activity.content.questions[index]; return <>
           <p className="hint">Pregunta {index + 1} de {activity.content.questions.length} · {Object.keys(answers).length} respondidas</p>
@@ -88,7 +81,7 @@ export function ActivityPlayer({ activity, archived, onResult, onPending }: { ac
           </fieldset>{question.source && <p className="hint">Fuente: {question.source.reference} · fragmento {question.source.fragmentIndex}</p>}
           <div className="actions"><button type="button" className="button secondary" disabled={index === 0} onClick={() => navigate(index - 1)}>Anterior</button>
             <button type="button" className="button secondary" disabled={index === activity.content.questions.length - 1} onClick={() => navigate(index + 1)}>Siguiente</button></div>
-        </>; })() : <CrosswordGrid activity={activity} cells={cells} onChange={setCells} locked={locked || archived} />}
+        </>; })() : <CrosswordGrid activity={activity} direction={direction} setDirection={setDirection} cells={cells} onChange={setCells} locked={locked || archived} />}
         <p className="hint">Spring evaluará las respuestas al enviar. Las omisiones cuentan como error.</p>
         {error && <p className="notice error" role="alert">{error} Reintenta el envío; se conservarán la clave y las respuestas originales.</p>}
         {locked && !pending && <p className="notice">Envío pendiente de confirmación. Las respuestas permanecen bloqueadas para poder reintentar exactamente el mismo intento.</p>}
