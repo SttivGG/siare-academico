@@ -1,0 +1,440 @@
+[
+  {
+    "name": "login",
+    "theme": "light",
+    "file": "login-light.png",
+    "phase": "before",
+    "path": "before/login-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "login",
+    "theme": "dark",
+    "file": "login-dark.png",
+    "phase": "before",
+    "path": "before/login-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "registro",
+    "theme": "light",
+    "file": "registro-light.png",
+    "phase": "before",
+    "path": "before/registro-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "registro",
+    "theme": "dark",
+    "file": "registro-dark.png",
+    "phase": "before",
+    "path": "before/registro-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "inicio",
+    "theme": "light",
+    "file": "inicio-light.png",
+    "phase": "before",
+    "path": "before/inicio-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "inicio",
+    "theme": "dark",
+    "file": "inicio-dark.png",
+    "phase": "before",
+    "path": "before/inicio-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "materias",
+    "theme": "light",
+    "file": "materias-light.png",
+    "phase": "before",
+    "path": "before/materias-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "materias",
+    "theme": "dark",
+    "file": "materias-dark.png",
+    "phase": "before",
+    "path": "before/materias-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "recuperacion",
+    "theme": "light",
+    "file": "recuperacion-light.png",
+    "phase": "before",
+    "path": "before/recuperacion-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "recuperacion",
+    "theme": "dark",
+    "file": "recuperacion-dark.png",
+    "phase": "before",
+    "path": "before/recuperacion-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "seguridad",
+    "theme": "light",
+    "file": "seguridad-light.png",
+    "phase": "before",
+    "path": "before/seguridad-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "seguridad",
+    "theme": "dark",
+    "file": "seguridad-dark.png",
+    "phase": "before",
+    "path": "before/seguridad-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "sesiones",
+    "theme": "light",
+    "file": "sesiones-light.png",
+    "phase": "before",
+    "path": "before/sesiones-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "sesiones",
+    "theme": "dark",
+    "file": "sesiones-dark.png",
+    "phase": "before",
+    "path": "before/sesiones-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "administracion-user",
+    "theme": "light",
+    "file": "administracion-user-light.png",
+    "phase": "before",
+    "path": "before/administracion-user-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "administracion-user",
+    "theme": "dark",
+    "file": "administracion-user-dark.png",
+    "phase": "before",
+    "path": "before/administracion-user-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "cuaderno",
+    "theme": "light",
+    "file": "cuaderno-light.png",
+    "phase": "before",
+    "path": "before/cuaderno-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "cuaderno",
+    "theme": "dark",
+    "file": "cuaderno-dark.png",
+    "phase": "before",
+    "path": "before/cuaderno-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "quiz-seleccion",
+    "theme": "light",
+    "file": "quiz-seleccion-light.png",
+    "phase": "before",
+    "path": "before/quiz-seleccion-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "quiz-seleccion",
+    "theme": "dark",
+    "file": "quiz-seleccion-dark.png",
+    "phase": "before",
+    "path": "before/quiz-seleccion-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "crucigrama-pista",
+    "theme": "light",
+    "file": "crucigrama-pista-light.png",
+    "phase": "before",
+    "path": "before/crucigrama-pista-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "crucigrama-pista",
+    "theme": "dark",
+    "file": "crucigrama-pista-dark.png",
+    "phase": "before",
+    "path": "before/crucigrama-pista-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "menu-movil",
+    "theme": "light",
+    "file": "menu-movil-light.png",
+    "phase": "before",
+    "path": "before/menu-movil-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "menu-movil",
+    "theme": "dark",
+    "file": "menu-movil-dark.png",
+    "phase": "before",
+    "path": "before/menu-movil-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "login",
+    "theme": "light",
+    "file": "login-light.png",
+    "phase": "after",
+    "path": "after/login-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "login",
+    "theme": "dark",
+    "file": "login-dark.png",
+    "phase": "after",
+    "path": "after/login-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "registro",
+    "theme": "light",
+    "file": "registro-light.png",
+    "phase": "after",
+    "path": "after/registro-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "registro",
+    "theme": "dark",
+    "file": "registro-dark.png",
+    "phase": "after",
+    "path": "after/registro-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "inicio",
+    "theme": "light",
+    "file": "inicio-light.png",
+    "phase": "after",
+    "path": "after/inicio-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "inicio",
+    "theme": "dark",
+    "file": "inicio-dark.png",
+    "phase": "after",
+    "path": "after/inicio-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "materias",
+    "theme": "light",
+    "file": "materias-light.png",
+    "phase": "after",
+    "path": "after/materias-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "materias",
+    "theme": "dark",
+    "file": "materias-dark.png",
+    "phase": "after",
+    "path": "after/materias-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "recuperacion",
+    "theme": "light",
+    "file": "recuperacion-light.png",
+    "phase": "after",
+    "path": "after/recuperacion-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "recuperacion",
+    "theme": "dark",
+    "file": "recuperacion-dark.png",
+    "phase": "after",
+    "path": "after/recuperacion-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "seguridad",
+    "theme": "light",
+    "file": "seguridad-light.png",
+    "phase": "after",
+    "path": "after/seguridad-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "seguridad",
+    "theme": "dark",
+    "file": "seguridad-dark.png",
+    "phase": "after",
+    "path": "after/seguridad-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "sesiones",
+    "theme": "light",
+    "file": "sesiones-light.png",
+    "phase": "after",
+    "path": "after/sesiones-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "sesiones",
+    "theme": "dark",
+    "file": "sesiones-dark.png",
+    "phase": "after",
+    "path": "after/sesiones-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "administracion-user",
+    "theme": "light",
+    "file": "administracion-user-light.png",
+    "phase": "after",
+    "path": "after/administracion-user-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "administracion-user",
+    "theme": "dark",
+    "file": "administracion-user-dark.png",
+    "phase": "after",
+    "path": "after/administracion-user-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "cuaderno",
+    "theme": "light",
+    "file": "cuaderno-light.png",
+    "phase": "after",
+    "path": "after/cuaderno-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "cuaderno",
+    "theme": "dark",
+    "file": "cuaderno-dark.png",
+    "phase": "after",
+    "path": "after/cuaderno-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "quiz-seleccion",
+    "theme": "light",
+    "file": "quiz-seleccion-light.png",
+    "phase": "after",
+    "path": "after/quiz-seleccion-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "quiz-seleccion",
+    "theme": "dark",
+    "file": "quiz-seleccion-dark.png",
+    "phase": "after",
+    "path": "after/quiz-seleccion-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "crucigrama-pista",
+    "theme": "light",
+    "file": "crucigrama-pista-light.png",
+    "phase": "after",
+    "path": "after/crucigrama-pista-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "crucigrama-pista",
+    "theme": "dark",
+    "file": "crucigrama-pista-dark.png",
+    "phase": "after",
+    "path": "after/crucigrama-pista-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "menu-movil",
+    "theme": "light",
+    "file": "menu-movil-light.png",
+    "phase": "after",
+    "path": "after/menu-movil-light.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "name": "menu-movil",
+    "theme": "dark",
+    "file": "menu-movil-dark.png",
+    "phase": "after",
+    "path": "after/menu-movil-dark.png",
+    "kind": "real Next/Spring; synthetic USER"
+  },
+  {
+    "path": "controlled/admin-ambito-light-1440x900.png",
+    "kind": "production Next + controlled HTTP upstream; no real privileged identity",
+    "theme": "light",
+    "name": "admin-ambito"
+  },
+  {
+    "path": "controlled/admin-ambito-dark-1440x900.png",
+    "kind": "production Next + controlled HTTP upstream; no real privileged identity",
+    "theme": "dark",
+    "name": "admin-ambito"
+  },
+  {
+    "path": "controlled/admin-confirmacion-light-1440x900.png",
+    "kind": "production Next + controlled HTTP upstream; no real privileged identity",
+    "theme": "light",
+    "name": "admin-confirmacion"
+  },
+  {
+    "path": "controlled/admin-confirmacion-dark-1440x900.png",
+    "kind": "production Next + controlled HTTP upstream; no real privileged identity",
+    "theme": "dark",
+    "name": "admin-confirmacion"
+  },
+  {
+    "path": "controlled/superadmin-light-1440x900.png",
+    "kind": "production Next + controlled HTTP upstream; no real privileged identity",
+    "theme": "light",
+    "name": "superadmin"
+  },
+  {
+    "path": "controlled/superadmin-dark-1440x900.png",
+    "kind": "production Next + controlled HTTP upstream; no real privileged identity",
+    "theme": "dark",
+    "name": "superadmin"
+  },
+  {
+    "path": "habitual-3100.png",
+    "kind": "read-only browser; habitual frontend"
+  },
+  {
+    "path": "recovery/recuperacion-light-1440x900.png",
+    "kind": "real recovery dialog; synthetic USER; phrase input empty, no secrets present",
+    "theme": "light"
+  },
+  {
+    "path": "recovery/recuperacion-dark-1440x900.png",
+    "kind": "real recovery dialog; synthetic USER; phrase input empty, no secrets present",
+    "theme": "dark"
+  },
+  {
+    "path": "X06-forced-colors-reduced-motion.png",
+    "kind": "Chromium forced-colors and reduced-motion emulation; real browser, not physical device"
+  }
+]

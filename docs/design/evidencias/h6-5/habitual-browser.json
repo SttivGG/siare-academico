@@ -1,0 +1,25 @@
+{
+  "origin": "http://127.0.0.1:3100",
+  "browser": "157.0.8103.79",
+  "readOnly": true,
+  "checks": [
+    {
+      "route": "/",
+      "status": 200,
+      "heading": "Un lugar para empezar.Una materia a la vez."
+    },
+    {
+      "route": "/login",
+      "status": 200,
+      "heading": "Qué bueno verte de nuevo"
+    },
+    {
+      "route": "/api/health",
+      "status": 200,
+      "body": {
+        "service": "frontend",
+        "status": "UP"
+      }
+    }
+  ]
+}

@@ -104,3 +104,27 @@ test('H6-5: lookup errors identify the field, focus it and retain both values',a
   await expect(activity).toHaveValue('actividad-incompleta');await expect(attempt).toHaveValue('intento-incompleto');
   await expect(page.locator('#lookup-activity-error')).toBeVisible();await expect(page.locator('#lookup-attempt-error')).toBeVisible();
 });
+
+test('H6-5: controlled source metadata distinguishes selection and a filter with no matches',async({page,baseURL})=>{
+  const {id}=await setup(page,baseURL!); const documentId=randomUUID();
+  // Only the metadata/text transport is controlled; no real document is made READY.
+  await page.route(`**/api/bff/subjects/${id}/documents`,route=>route.fulfill({json:[{documentId,originalFilename:'fuente-sintetica.pdf',contentType:'application/pdf',sizeBytes:1024,createdAt:'2026-11-20T15:00:00Z',status:'READY',errorCode:null,leaseUntil:null}]}));
+  await page.route(`**/api/bff/documents/${documentId}/text`,route=>route.fulfill({json:{fragments:[{index:0,unitType:'page',unitNumber:1,text:'Texto sintético de interacción.'}],warnings:[]}}));
+  await page.goto(`/materias/${id}`);
+  for(const theme of ['light','dark']){
+    await page.evaluate(value=>{document.documentElement.dataset.theme=value;},theme);
+    for(const [width,height] of sizes){
+      await page.setViewportSize({width,height});
+      const nav=page.getByRole('navigation',{name:'Paneles del cuaderno'});
+      if(await nav.isVisible())await nav.getByRole('button',{name:'Fuentes',exact:true}).click();
+      const search=page.getByRole('searchbox',{name:'Buscar documentos'});await search.fill('sin-coincidencia');
+      await expect(page.getByRole('status').filter({hasText:'No hay documentos que coincidan'})).toBeVisible();
+      await search.fill('');
+      const source=page.getByRole('button',{name:/Usar como fuente/});
+      if(await source.count())await source.click();
+      if(await nav.isVisible())await nav.getByRole('button',{name:'Fuentes',exact:true}).click();
+      await expect(page.locator('.document-list > li[data-selected=true]')).toBeVisible();
+      expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    }
+  }
+});

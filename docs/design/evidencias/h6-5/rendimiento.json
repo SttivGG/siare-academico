@@ -1,0 +1,640 @@
+{
+  "before": {
+    "phase": "before",
+    "origin": "http://127.0.0.1:3107",
+    "browser": "157.0.8103.79",
+    "node": "v24.14.0",
+    "viewport": "1440x900",
+    "conditions": "Chromium headless; production Next Docker 1 CPU/384MiB; system no-preference; 6 sequential hard navigations per route, first excluded from warm median; no CPU/network throttling; 500ms observation after fonts/heading; synthetic USER and same subject both phases. Route bytes include prefetched chunks; no React Profiler in production.",
+    "measurements": [
+      {
+        "route": "/login",
+        "sample": 0,
+        "cache": "cold-context",
+        "dclMs": 420.4000000022352,
+        "loadMs": 486.6000000014901,
+        "responseMs": 70.90000000223517,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 1,
+        "cache": "warm",
+        "dclMs": 73.19999999925494,
+        "loadMs": 88,
+        "responseMs": 18.300000000745058,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 2,
+        "cache": "warm",
+        "dclMs": 83.39999999850988,
+        "loadMs": 87.10000000149012,
+        "responseMs": 23.699999999254942,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 3,
+        "cache": "warm",
+        "dclMs": 82,
+        "loadMs": 90.90000000223517,
+        "responseMs": 17.600000001490116,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 4,
+        "cache": "warm",
+        "dclMs": 73.30000000074506,
+        "loadMs": 75.90000000223517,
+        "responseMs": 24.5,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 5,
+        "cache": "warm",
+        "dclMs": 55.100000001490116,
+        "loadMs": 67.19999999925494,
+        "responseMs": 15.400000002235174,
+        "cls": 0,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 0,
+        "cache": "cold-context",
+        "dclMs": 180.79999999701977,
+        "loadMs": 203.29999999701977,
+        "responseMs": 96.09999999776483,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 1,
+        "cache": "warm",
+        "dclMs": 117.60000000149012,
+        "loadMs": 130.10000000149012,
+        "responseMs": 78.5,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 2,
+        "cache": "warm",
+        "dclMs": 102.10000000149012,
+        "loadMs": 120.5,
+        "responseMs": 65.90000000223517,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 3,
+        "cache": "warm",
+        "dclMs": 100,
+        "loadMs": 114.79999999701977,
+        "responseMs": 60.29999999701977,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 4,
+        "cache": "warm",
+        "dclMs": 115,
+        "loadMs": 119.39999999850988,
+        "responseMs": 59.30000000074506,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 5,
+        "cache": "warm",
+        "dclMs": 115.5,
+        "loadMs": 129.80000000074506,
+        "responseMs": 79.89999999850988,
+        "cls": 0,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 0,
+        "cache": "cold-context",
+        "dclMs": 108.30000000074506,
+        "loadMs": 134.30000000074506,
+        "responseMs": 64.60000000149012,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 1,
+        "cache": "warm",
+        "dclMs": 103,
+        "loadMs": 118.40000000223517,
+        "responseMs": 56.900000002235174,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 2,
+        "cache": "warm",
+        "dclMs": 89.20000000298023,
+        "loadMs": 101.40000000223517,
+        "responseMs": 47.400000002235174,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 3,
+        "cache": "warm",
+        "dclMs": 104.80000000074506,
+        "loadMs": 117.60000000149012,
+        "responseMs": 56.100000001490116,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 4,
+        "cache": "warm",
+        "dclMs": 102.90000000223517,
+        "loadMs": 115.10000000149012,
+        "responseMs": 56.5,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 5,
+        "cache": "warm",
+        "dclMs": 95.30000000074506,
+        "loadMs": 104.5,
+        "responseMs": 53.099999997764826,
+        "cls": 0.005027542746377744,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      }
+    ],
+    "errors": [],
+    "idle": {
+      "phase": "before",
+      "browser": "157.0.8103.79",
+      "method": "CDP Performance metrics and MutationObserver after 750ms settling; 2s idle. These are DOM/layout/task observations, not React commit counts or a CPU benchmark.",
+      "results": [
+        {
+          "route": "/inicio",
+          "idleMs": 2000,
+          "mutations": 0,
+          "runningAnimations": 0,
+          "delta": {
+            "LayoutCount": 0,
+            "RecalcStyleCount": 0,
+            "ScriptDuration": 0.0014870000000000022,
+            "TaskDuration": 0.0065329999999999555,
+            "JSHeapUsedSize": 6672
+          }
+        },
+        {
+          "route": "/materias/:id crossword",
+          "idleMs": 2000,
+          "mutations": 0,
+          "runningAnimations": 0,
+          "delta": {
+            "LayoutCount": 0,
+            "RecalcStyleCount": 0,
+            "ScriptDuration": 0.0016439999999999927,
+            "TaskDuration": 0.05057600000000001,
+            "JSHeapUsedSize": 9876
+          }
+        }
+      ]
+    }
+  },
+  "after": {
+    "phase": "after",
+    "origin": "http://127.0.0.1:3107",
+    "browser": "157.0.8103.79",
+    "node": "v24.14.0",
+    "viewport": "1440x900",
+    "conditions": "Chromium headless; production Next Docker 1 CPU/384MiB; system no-preference; 6 sequential hard navigations per route, first excluded from warm median; no CPU/network throttling; 500ms observation after fonts/heading; synthetic USER and same subject both phases. Route bytes include prefetched chunks; no React Profiler in production.",
+    "measurements": [
+      {
+        "route": "/login",
+        "sample": 0,
+        "cache": "cold-context",
+        "dclMs": 213.80000000074506,
+        "loadMs": 295.19999999925494,
+        "responseMs": 30.300000000745058,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 1,
+        "cache": "warm",
+        "dclMs": 107.80000000074506,
+        "loadMs": 112.10000000149012,
+        "responseMs": 31.700000002980232,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 2,
+        "cache": "warm",
+        "dclMs": 71,
+        "loadMs": 74.80000000074506,
+        "responseMs": 17.800000000745058,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 3,
+        "cache": "warm",
+        "dclMs": 66,
+        "loadMs": 78.89999999850988,
+        "responseMs": 24.899999998509884,
+        "cls": 0,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 4,
+        "cache": "warm",
+        "dclMs": 57.600000001490116,
+        "loadMs": 73.10000000149012,
+        "responseMs": 17.5,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/login",
+        "sample": 5,
+        "cache": "warm",
+        "dclMs": 55.29999999701977,
+        "loadMs": 70.19999999925494,
+        "responseMs": 16.699999999254942,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062,
+        "jsRequests": 10,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 0,
+        "cache": "cold-context",
+        "dclMs": 157.89999999850988,
+        "loadMs": 173,
+        "responseMs": 73.39999999850988,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 1,
+        "cache": "warm",
+        "dclMs": 136.5,
+        "loadMs": 151.5,
+        "responseMs": 92.39999999850988,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 2,
+        "cache": "warm",
+        "dclMs": 123.19999999925494,
+        "loadMs": 137.30000000074506,
+        "responseMs": 83.69999999925494,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 3,
+        "cache": "warm",
+        "dclMs": 128.69999999925494,
+        "loadMs": 144.60000000149012,
+        "responseMs": 83.19999999925494,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 4,
+        "cache": "warm",
+        "dclMs": 174.19999999925494,
+        "loadMs": 175.89999999850988,
+        "responseMs": 112.09999999776483,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/inicio",
+        "sample": 5,
+        "cache": "warm",
+        "dclMs": 112.60000000149012,
+        "loadMs": 116.20000000298023,
+        "responseMs": 65.80000000074506,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042,
+        "jsRequests": 11,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 0,
+        "cache": "cold-context",
+        "dclMs": 140.89999999850988,
+        "loadMs": 146.39999999850988,
+        "responseMs": 70,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 1,
+        "cache": "warm",
+        "dclMs": 134.30000000074506,
+        "loadMs": 136.5,
+        "responseMs": 78.69999999925494,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 2,
+        "cache": "warm",
+        "dclMs": 111.30000000074506,
+        "loadMs": 113.10000000149012,
+        "responseMs": 56.400000002235174,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 3,
+        "cache": "warm",
+        "dclMs": 109,
+        "loadMs": 122.80000000074506,
+        "responseMs": 61.100000001490116,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 4,
+        "cache": "warm",
+        "dclMs": 135.39999999850988,
+        "loadMs": 137.79999999701977,
+        "responseMs": 66,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      },
+      {
+        "route": "/materias/:id",
+        "sample": 5,
+        "cache": "warm",
+        "dclMs": 115.70000000298023,
+        "loadMs": 117.40000000223517,
+        "responseMs": 59.70000000298023,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914,
+        "jsRequests": 13,
+        "finiteAnimations": 0
+      }
+    ],
+    "errors": [],
+    "idle": {
+      "phase": "after",
+      "browser": "157.0.8103.79",
+      "method": "CDP Performance metrics and MutationObserver after 750ms settling; 2s idle. These are DOM/layout/task observations, not React commit counts or a CPU benchmark.",
+      "results": [
+        {
+          "route": "/inicio",
+          "idleMs": 2000,
+          "mutations": 0,
+          "runningAnimations": 0,
+          "delta": {
+            "LayoutCount": 0,
+            "RecalcStyleCount": 0,
+            "ScriptDuration": 0.0013179999999999997,
+            "TaskDuration": 0.0036730000000000373,
+            "JSHeapUsedSize": 6672
+          }
+        },
+        {
+          "route": "/materias/:id crossword",
+          "idleMs": 2000,
+          "mutations": 0,
+          "runningAnimations": 0,
+          "delta": {
+            "LayoutCount": 0,
+            "RecalcStyleCount": 0,
+            "ScriptDuration": 0.0015620000000000078,
+            "TaskDuration": 0.04985899999999999,
+            "JSHeapUsedSize": 15744
+          }
+        }
+      ]
+    }
+  },
+  "bundle": {
+    "before": {
+      "types": [
+        {
+          "type": ".js",
+          "count": 25,
+          "bytes": 803001,
+          "gzip": 260014
+        },
+        {
+          "type": ".css",
+          "count": 2,
+          "bytes": 46325,
+          "gzip": 10661
+        }
+      ]
+    },
+    "after": {
+      "types": [
+        {
+          "type": ".js",
+          "count": 25,
+          "bytes": 805438,
+          "gzip": 260647
+        },
+        {
+          "type": ".css",
+          "count": 2,
+          "bytes": 50165,
+          "gzip": 11429
+        }
+      ]
+    }
+  },
+  "summary": {
+    "before": {
+      "/inicio": {
+        "dclMs": 115,
+        "loadMs": 120.5,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 159891,
+        "jsDecodedBytes": 524430
+      },
+      "/login": {
+        "dclMs": 73.30000000074506,
+        "loadMs": 87.10000000149012,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062
+      },
+      "/materias/:id": {
+        "dclMs": 102.90000000223517,
+        "loadMs": 115.10000000149012,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 174407,
+        "jsDecodedBytes": 570477
+      }
+    },
+    "after": {
+      "/inicio": {
+        "dclMs": 128.69999999925494,
+        "loadMs": 144.60000000149012,
+        "cls": 0.0008713260603539737,
+        "jsEncodedBytes": 160056,
+        "jsDecodedBytes": 525042
+      },
+      "/login": {
+        "dclMs": 66,
+        "loadMs": 74.80000000074506,
+        "cls": 0.00019697145061728393,
+        "jsEncodedBytes": 153246,
+        "jsDecodedBytes": 504062
+      },
+      "/materias/:id": {
+        "dclMs": 115.70000000298023,
+        "loadMs": 122.80000000074506,
+        "cls": 0.00483978644895619,
+        "jsEncodedBytes": 175040,
+        "jsDecodedBytes": 572914
+      }
+    }
+  }
+}
