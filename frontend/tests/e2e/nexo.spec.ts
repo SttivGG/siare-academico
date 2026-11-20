@@ -71,6 +71,19 @@ test('theme, account and responsive navigation preserve the live form, academic 
     await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"borrador":"sin publicar"}');
     await expect(page.getByLabel('Tema exacto del banco', { exact: true })).toHaveValue('Borrador que conserva su propietario');
   }
+  let archived = 0;
+  page.on('request', request => { if (request.method() === 'PATCH' && request.url().endsWith('/archive')) archived++; });
+  await page.getByRole('button', { name: 'Archivar materia', exact: true }).click();
+  const dialog = page.getByRole('dialog', { name: 'Archivar materia' });
+  await expect(dialog).toBeVisible();
+  expect(await dialog.evaluate(el => el.contains(document.activeElement))).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(page.getByRole('button', { name: 'Archivar materia', exact: true })).toBeFocused();
+  await page.getByRole('button', { name: 'Archivar materia', exact: true }).click();
+  await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
+  expect(archived).toBe(0);
+  await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"borrador":"sin publicar"}');
   // H6-2 must not introduce remounts. Switching academic tools remains an H6-3 blocker.
   await page.goto('/materias/nueva');
   await page.getByLabel('Nombre de la materia').fill('Formulario en curso');
