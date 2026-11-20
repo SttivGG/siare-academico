@@ -2,7 +2,7 @@
 
 H6-5 refina la navegación por teclado, la selección y el movimiento de los componentes existentes. La preview usa `http://127.0.0.1:3107`; la instalación habitual de 3100 conserva sus nueve contenedores, imágenes y montajes. El historial de aceptación H6-4 se mantiene en la matriz de 50 casos, con columnas específicas para la verificación H6-5.
 
-La rama `feat/h6-5-nexo-interactions` parte de `56687c678a3260a9f0ceaa24a8101986043de6b1`, HEAD del PR #12 abierto/draft. La implementación inicial está en `e473f95`; `06000f6ec47fc0bfe467de05456c5e25ca9cce76` incorpora el progreso Nexo y es la revisión del runtime final. Los commits posteriores contienen pruebas y documentación. El PR draft H6-5 se dirige a `feat/h6-4-nexo-integral`; no se fusiona ni modifica #8–#12.
+La rama `feat/h6-5-nexo-interactions` parte de `56687c678a3260a9f0ceaa24a8101986043de6b1`, HEAD del PR #12 abierto/draft. La implementación inicial está en `e473f95`; `06000f6ec47fc0bfe467de05456c5e25ca9cce76` incorpora el progreso Nexo y es la revisión del runtime final. Los commits posteriores contienen pruebas y documentación. El [PR #13 draft](https://github.com/SttivGG/siare-academico/pull/13) se dirige a `feat/h6-4-nexo-integral`; no se fusiona ni modifica #8–#12.
 
 ## Cambios comprobables
 
