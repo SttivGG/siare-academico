@@ -126,7 +126,7 @@ export function SubjectDocuments({ subjectId, archived, selectedId, onSelect, co
     <div className="field"><label htmlFor="source-search">Buscar documentos</label><input id="source-search" type="search" value={search} onChange={e => setSearch(e.target.value)} /></div>
     {loading ? <p role="status">Cargando documentos…</p> : documents.length === 0 ? <p className="notice">Todavía no hay documentos en esta materia.</p> : <ul className="document-list">{documents.filter(d => d.originalFilename.toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))).map(document => {
       const expired = document.status === "PROCESSING" && document.leaseUntil && Date.parse(document.leaseUntil) <= Date.now();
-      return <li key={document.documentId}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
+      return <li key={document.documentId} data-selected={selectedId === document.documentId || undefined}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
         <p className="document-status" role="status">{labels[document.status]}{expired ? " · El trabajo se interrumpió; puedes reintentar." : ""}</p>
         {document.status === "FAILED" && <p className="notice error">{errors[document.errorCode ?? ""] ?? "No se pudo extraer el texto. El original se conserva y puedes reintentar."}</p>}
         {document.status !== "READY" && <p className="hint">Original conservado en cuarentena. La descarga se habilita después del procesamiento seguro.</p>}
@@ -139,5 +139,6 @@ export function SubjectDocuments({ subjectId, archived, selectedId, onSelect, co
         </div>}
       </li>;
     })}</ul>}
+    {!loading && documents.length > 0 && !documents.some(document => document.originalFilename.toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))) && <p role="status" className="hint">No hay documentos que coincidan con la búsqueda. Prueba con otro nombre.</p>}
   </section>;
 }

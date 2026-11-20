@@ -25,6 +25,18 @@
 .mobileLinks { display: grid; gap: 8px; }
 .mobileLinks .navLink { justify-content: start; padding: 8px 12px; }
 .logoutError { position: absolute; inset: calc(100% + 8px) 0 auto; }
+.navLink, .header summary, .menu > a { transition: background-color var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease), border-color var(--duration-fast) var(--ease); }
+.header details[open] > summary { background: var(--selected); border-color: var(--accent); }
+.menu { max-block-size: calc(100dvh - 120px); overflow-y: auto; overscroll-behavior: contain; overflow-wrap: anywhere; }
+.header details:not([open]) .menu { pointer-events: none; }
+/* Progressive enhancement: unsupported browsers retain immediate native disclosure. */
+@supports selector(details::details-content) {
+  @media (prefers-reduced-motion: no-preference) {
+    .header details::details-content { opacity: 0; transition: opacity var(--duration-fast) var(--ease), content-visibility var(--duration-fast); transition-behavior: allow-discrete; }
+    /* Never defer visibility on entry: a quick Tab must enter the disclosed links. */
+    .header details[open]::details-content { opacity: 1; content-visibility: visible; transition-property: opacity; }
+  }
+}
 @media (max-width: 1199px) { .railLinks .navLink span { position: absolute; clip-path: inset(50%); inline-size: 1px; block-size: 1px; overflow: hidden; } .rail { inset-block-start: 12px; block-size: calc(100dvh - 24px); padding-inline: 6px; } }
 @media (max-width: 700px) {
   .rail { display: none; }
