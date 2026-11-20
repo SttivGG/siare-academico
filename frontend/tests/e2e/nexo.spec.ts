@@ -19,6 +19,7 @@ test('Nexo global: route captures, both themes, eight viewports and real USER au
   test.skip(info.project.name !== 'desktop', 'La matriz interna ya incluye móvil y tableta.');
   test.setTimeout(240_000); await mkdir(output, { recursive: true });
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
+  page.on('console', message => { if (message.type() === 'error' && /hydrat/i.test(message.text())) errors.push(message.text()); });
   const captures: object[] = [], checks: object[] = [];
   const publicRoutes = [['R01','/'],['R02','/login'],['R03','/registro'],['R04','/recuperar'],['R05','/recuperar/confirmar'],['R06','/login/mfa'],['R07','/sesion/renovar'],['X02','/no-existe-h6']];
   await page.goto('/login');
@@ -30,6 +31,7 @@ test('Nexo global: route captures, both themes, eight viewports and real USER au
         await expect(page.locator('main h1').first()).toBeVisible();
         await expect(page.locator('html')).toHaveAttribute('data-theme', mode);
         await page.evaluate(() => document.fonts.ready);
+        for (const text of ['Consultando actividades…', 'Cargando documentos…', 'Cargando identidades…', 'Actualizando sesiones…']) await expect(page.getByText(text, { exact: true })).toHaveCount(0);
         await expect(page.locator('main')).toHaveCount(1);
         for (const [width,height] of sizes) {
           await page.setViewportSize({ width,height });
@@ -77,6 +79,7 @@ test('theme, account and responsive navigation preserve the live form, academic 
   const dialog = page.getByRole('dialog', { name: 'Archivar materia' });
   await expect(dialog).toBeVisible();
   expect(await dialog.evaluate(el => el.contains(document.activeElement))).toBe(true);
+  if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/W13-dark-1440x900.png` });
   await page.keyboard.press('Escape');
   await expect(dialog).not.toBeVisible();
   await expect(page.getByRole('button', { name: 'Archivar materia', exact: true })).toBeFocused();
@@ -84,10 +87,18 @@ test('theme, account and responsive navigation preserve the live form, academic 
   await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
   expect(archived).toBe(0);
   await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"borrador":"sin publicar"}');
+  await page.locator('summary').filter({ hasText: /^Tema$/ }).click();
+  await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption('light');
+  await page.keyboard.press('Escape');
+  await page.getByRole('button', { name: 'Archivar materia', exact: true }).click();
+  if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/W13-light-1440x900.png` });
+  await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
   // H6-2 must not introduce remounts. Switching academic tools remains an H6-3 blocker.
   await page.goto('/materias/nueva');
   await page.getByLabel('Nombre de la materia').fill('Formulario en curso');
-  await openAccount(page); await page.keyboard.press('Escape');
+  await openAccount(page);
+  if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/I01-light-1440x900.png` });
+  await page.keyboard.press('Escape');
   await expect(page.locator('summary[aria-label="Menú de cuenta"]')).toBeFocused();
   await expect(page.getByLabel('Nombre de la materia')).toHaveValue('Formulario en curso');
   await page.setViewportSize({ width: 390, height: 844 });
