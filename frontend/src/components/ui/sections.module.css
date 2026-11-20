@@ -1,0 +1,31 @@
+.stack { display: grid; gap: 24px; min-inline-size: 0; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.header { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 12px; }
+.header p { margin-block-start: 8px; max-inline-size: 65ch; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.row { padding: 20px; border: 1px solid var(--border); border-radius: 16px; background: var(--surface); min-inline-size: 0; overflow-wrap: anywhere; }
+.row h3 { font-size: 1.125rem; }
+.row .meta { margin-block: 12px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 12px; margin: 0; }
+.meta dt { font-size: .8125rem; color: var(--muted); }
+.meta dd { margin: 4px 0 0; overflow-wrap: anywhere; }
+.check { display: flex; gap: 12px; align-items: start; cursor: pointer; min-block-size: 44px; }
+.check input[type=checkbox] { flex: 0 0 20px; margin: 3px 0; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 16px; align-items: end; }
+.toolbar > :first-child { flex: 1 1 16rem; }
+.toolbar > :nth-child(2) { flex: 0 1 12rem; }
+.pastel { background: var(--mint); border: 1px solid var(--border); padding: 24px; border-radius: var(--radius-panel); }
+.pastel p { margin-block-start: 12px; }
+.account { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: center; gap: 20px; }
+.avatar { display: grid; place-items: center; inline-size: 56px; block-size: 56px; flex: 0 0 56px; border-radius: 18px; background: var(--rose); color: var(--text); font-size: 1.5rem; }
+.account div { min-inline-size: 0; flex: 1; overflow-wrap: anywhere; }
+.account h2 { font-size: 1.25rem; }
+.operations { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.operations > * { min-inline-size: 0; }
+.divider { border-block-start: 1px solid var(--border); padding-block-start: 24px; }
+.list :global(form) { min-inline-size: 0; }
+.list :global(fieldset) { border: 0; padding: 0; margin: 0; min-inline-size: 0; }
+.list :global(legend) { font-weight: 600; margin-block-end: 16px; overflow-wrap: anywhere; }
+.list :global(.notice) { margin: 0; }
+@media (max-width: 1000px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .operations { grid-template-columns: minmax(0, 1fr); } .row { padding: 16px; } .toolbar > :nth-child(2) { flex: 1 1 100%; } .account { grid-template-columns: 56px minmax(0, 1fr); } .account > a { grid-column: 1 / -1; } }

@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { openAccount } from './navigation';
 
-const output = '../.cache/h6-3-regression-nexo';
+const output = process.env.NEXO_EVIDENCE_DIR ?? '../.cache/h6-3-regression-nexo';
 const sizes = [[1920,1080],[1440,900],[1366,768],[1024,768],[768,1024],[390,844],[375,812],[320,812]];
 async function createStudent(page: Page, origin: string) {
   const headers = { Origin: origin, 'X-SIARE-CSRF': '1' };

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { renewSession } from "../lib/renew-session";
+import { LoadingState } from "./ui/primitives";
 
 export function SessionRenewal() {
   const router = useRouter();
@@ -18,5 +19,5 @@ export function SessionRenewal() {
   }, [router]);
   return <section aria-label="Comprobación de sesión">
     {error ? <><p className="notice error" role="alert">{error}</p><Link href="/login?sesion=expirada" className="button primary">Ir a iniciar sesión</Link></>
-      : <p role="status" aria-live="polite">Renovando la sesión…</p>}</section>;
+      : <LoadingState>Renovando la sesión…</LoadingState>}</section>;
 }

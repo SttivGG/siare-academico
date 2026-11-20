@@ -12,7 +12,7 @@ export function Dialog({ open, title, children, actions, busy = false, onClose }
     if (open && dialog && !dialog.open) dialog.showModal();
     if (!open && dialog?.open) dialog.close();
   }, [open]);
-  return <dialog ref={ref} className={styles.dialog} aria-labelledby={titleId} aria-busy={busy} onCancel={event => { event.preventDefault(); if (!busy) onClose(); }} onClose={() => { if (open && !busy) onClose(); }}>
+  return <dialog ref={ref} {...{ closedby: busy ? "none" : "closerequest" }} className={styles.dialog} aria-labelledby={titleId} aria-busy={busy} onCancel={event => { event.preventDefault(); if (!busy) onClose(); }} onClose={() => { if (open && !busy) onClose(); }}>
     <h2 id={titleId}>{title}</h2>{children}<div className="actions">{actions ?? <Button variant="secondary" disabled={busy} onClick={onClose}>Cerrar</Button>}</div>
   </dialog>;
 }
