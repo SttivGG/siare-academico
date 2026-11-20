@@ -58,6 +58,7 @@ export class RecoverySession {
   }
   async unlock(phrase: string, authorize: (record: RecoveryRecord) => Promise<RecoveryAccess>, lookup?: (activity: string, attempt: string) => Promise<Evaluation>) {
     try {
+      this.controller.assertRestorable();
       const generation = this.generation;
       const record = await findRecovery(this.controller.userId, this.controller.subjectId);
       if (!record) throw new Error('No hay una copia vigente para recuperar.');
@@ -70,6 +71,7 @@ export class RecoverySession {
       const encrypted = await encryptRecovery(restored, this.controller.userId, this.controller.subjectId, key, record.salt);
       if (generation !== this.generation) return;
       await this.claim();
+      this.controller.assertRestorable();
       const revision = await writeRecovery(encrypted, this.owner, record.revision, !!this.releaseLock);
       if (generation !== this.generation) return;
       this.controller.restore(restored); this.key = key; this.salt = record.salt; this.diskRevision = revision; this.savedStateRevision = this.controller.getSnapshot().revision;

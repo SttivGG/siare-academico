@@ -106,3 +106,12 @@ test('ST-10: destroying an authenticated controller drops work and ignores a lat
   await Promise.resolve(); controller.destroy(); release({ activityId: quiz.activityId, subjectId: quiz.subjectId }); await request;
   assert.deepEqual(controller.getSnapshot().attempts, {});
 });
+test('an unresolved original attempt cannot be replaced by recovery, including a late-response window', async () => {
+  const { controller, quiz } = await setup(); let release;
+  const response = controller.submit(quiz.activityId, () => new Promise(resolve => { release = resolve; }));
+  const originalKey = controller.getSnapshot().attempts[quiz.activityId].frozen.idempotencyKey;
+  assert.throws(() => controller.restore(new AcademicController(user, quiz.subjectId).getSnapshot()), /Resuelve el envío pendiente/);
+  assert.equal(controller.getSnapshot().attempts[quiz.activityId].frozen.idempotencyKey, originalKey);
+  await Promise.resolve(); release({ ...await fixture('result'), activityId: quiz.activityId, subjectId: quiz.subjectId }); await response;
+  assert.equal(controller.getSnapshot().attempts[quiz.activityId].status, 'received');
+});

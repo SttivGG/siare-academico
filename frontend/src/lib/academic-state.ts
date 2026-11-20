@@ -62,12 +62,16 @@ export class AcademicController {
       const result = await send(frozen);
       if (result.activityId !== id || result.subjectId !== this.subjectId) throw new Error('La evaluación no corresponde al intento enviado.');
       const current = this.state.attempts[id];
+      if (!this.alive || current?.frozen?.idempotencyKey !== frozen.idempotencyKey) return;
       this.update({ attempts: { ...this.state.attempts, [id]: { ...current, status: 'received', result, error: '' } } });
     } catch (error) {
       const current = this.state.attempts[id];
       this.update({ attempts: { ...this.state.attempts, [id]: { ...current, status: 'unresolved', error: error instanceof Error ? error.message : 'No se pudo enviar.' } } });
     }
   }
-  restore(state: AcademicState) { this.update(state); }
+  assertRestorable() {
+    if (Object.values(this.state.attempts).some(a => a.status === 'sending' || a.status === 'unresolved')) throw new Error('Resuelve el envío pendiente antes de reemplazar el cuaderno por una copia. Conservamos sus respuestas y su clave en memoria.');
+  }
+  restore(state: AcademicState) { this.assertRestorable(); this.update(state); }
   destroy() { this.state = newAcademicState(); this.alive = false; this.listeners.forEach(fn => fn()); this.listeners.clear(); }
 }
