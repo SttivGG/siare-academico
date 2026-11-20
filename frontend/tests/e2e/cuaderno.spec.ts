@@ -189,4 +189,12 @@ test('documental: uploaded quarantine becomes FAILED safely and offers an explic
   await expect(row.getByText('Cargado', { exact: true })).toBeVisible(); await expect(row).toContainText('cuarentena'); await expect(row.getByRole('button', { name: /Descargar|Usar como fuente/ })).toHaveCount(0);
   await row.getByRole('button', { name: 'Procesar', exact: true }).click(); await expect(row.getByText('Procesamiento fallido', { exact: true })).toBeVisible({ timeout: 60_000 }); await expect(row.getByRole('button', { name: 'Reintentar procesamiento', exact: true })).toBeEnabled(); await expect(row.getByRole('button', { name: /Descargar|Usar como fuente/ })).toHaveCount(0); await expect(row).toContainText('No se encontró texto reconocible');
   await page.screenshot({ path: `${process.env.ACADEMIC_EVIDENCE_DIR ?? "../docs/design/evidencias/h6-3"}/${info.project.name}/fuente-failed.png`, fullPage: true });
+  for (const theme of ['light','dark']) {
+    await page.evaluate(value=>{document.documentElement.dataset.theme=value;},theme);
+    for (const [width,height] of [[1440,900],[390,844]]) {
+      await page.setViewportSize({width,height}); await panel(page,'Fuentes');
+      await page.screenshot({path:`${process.env.ACADEMIC_EVIDENCE_DIR ?? "../docs/design/evidencias/h6-3"}/${info.project.name}/fuente-failed-${theme}-${width}x${height}.png`,fullPage:true});
+    }
+  }
+
 });

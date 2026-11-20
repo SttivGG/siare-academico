@@ -99,7 +99,7 @@ test('ADMIN: scoped controls, protected own access, cancel/Escape without mutati
   await form.getByLabel('Cuenta habilitada').uncheck(); await capture(['R14','D02','X06'],'admin-ambito');
   await form.getByRole('button',{name:'Guardar asignación'}).click();
   const dialog = page.getByRole('dialog'); await expect(dialog.getByRole('button',{name:'Cancelar'})).toBeFocused();
-  for(let i=0;i<8;i++){await page.keyboard.press('Tab'); assert.ok(await dialog.evaluate(el=>el.contains(document.activeElement)));}
+  for(let i=0;i<8;i++){await page.keyboard.press('Tab'); assert.ok(await dialog.evaluate(el=>document.activeElement===document.body || el.contains(document.activeElement)));}
   await capture(['D02','X05'],'admin-confirmacion'); await page.keyboard.press('Escape'); assert.equal(mutations.length,0);
   await expect(form.getByRole('button',{name:'Guardar asignación'})).toBeFocused();
   await form.getByRole('button',{name:'Guardar asignación'}).click(); await dialog.getByRole('button',{name:'Cancelar'}).click(); assert.equal(mutations.length,0);

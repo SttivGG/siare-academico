@@ -11,7 +11,7 @@ test('H6-4: academic loading, upload, processing, pending attempt, lookup and ar
  async function panel(name:'Fuentes'|'Aprendizaje'){if(await page.getByRole('navigation',{name:'Paneles del cuaderno'}).isVisible())await page.getByRole('button',{name,exact:true}).click();}
  async function capture(ids:string[],state:string,side?:'Fuentes'|'Aprendizaje') {
   for(const theme of ['light','dark']){await page.evaluate(value=>{localStorage.setItem('siare-theme',value);document.documentElement.dataset.theme=value;},theme);
-   for(const [width,height]of sizes){await page.setViewportSize({width,height});if(side)await panel(side);await page.evaluate(()=>document.fonts.ready);expect(await page.evaluate(()=>document.documentElement.scrollWidth),`${state} ${theme} ${width}`).toBeLessThanOrEqual(width);checks.push({ids,state,theme,width,height});if(width===1440||width===390){const file=`${state}-${theme}-${width}x${height}.png`;await page.screenshot({path:`${out}/${file}`,fullPage:true});captures.push({ids,state,theme,width,height,file});}}
+   for(const [width,height]of sizes){await page.setViewportSize({width,height});if(side && !(await page.locator('dialog[open]').count()))await panel(side);await page.evaluate(()=>document.fonts.ready);expect(await page.evaluate(()=>document.documentElement.scrollWidth),`${state} ${theme} ${width}`).toBeLessThanOrEqual(width);checks.push({ids,state,theme,width,height});if(width===1440||width===390){const file=`${state}-${theme}-${width}x${height}.png`;await page.screenshot({path:`${out}/${file}`,fullPage:true});captures.push({ids,state,theme,width,height,file});}}
   }await page.setViewportSize({width:1440,height:900});
  }
  const subjectURL=`**/api/bff/subjects/${subject.id}`;

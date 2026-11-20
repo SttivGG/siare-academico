@@ -99,13 +99,25 @@ test('theme, account and responsive navigation preserve the live form, academic 
   await page.goto('/materias/nueva');
   await page.getByLabel('Nombre de la materia').fill('Formulario en curso');
   await openAccount(page);
-  if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/I01-light-1440x900.png` });
+  if (info.project.name === 'desktop') {
+    await page.screenshot({ path: `${output}/I01-light-1440x900.png` });
+    await page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; });
+    await page.screenshot({ path: `${output}/I01-dark-1440x900.png` });
+    await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
+  }
   await page.keyboard.press('Escape');
   await expect(page.locator('summary[aria-label="Menú de cuenta"]')).toBeFocused();
   await expect(page.getByLabel('Nombre de la materia')).toHaveValue('Formulario en curso');
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('summary[aria-label="Abrir navegación"]').click();
   await expect(page.getByRole('navigation', { name: 'Navegación móvil' })).toBeVisible();
+  if (info.project.name === 'desktop') {
+    for (const theme of ['light','dark']) {
+      await page.evaluate(value => { document.documentElement.dataset.theme = value; }, theme);
+      await page.screenshot({ path: `${output}/X04-menu-${theme}-390x844.png`, fullPage: true });
+    }
+    await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
+  }
   await page.keyboard.press('Escape');
   await expect(page.locator('summary[aria-label="Abrir navegación"]')).toBeFocused();
   expect(errors).toEqual([]);

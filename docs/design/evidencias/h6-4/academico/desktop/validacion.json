@@ -1,0 +1,777 @@
+{
+  "origin": "http://127.0.0.1:3107",
+  "browser": "157.0.8103.79",
+  "documentId": "36a88a49-8f1a-4b6c-a483-1780ba92cd1e",
+  "checks": [
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "vacio",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "vacio",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "documento-seleccionado",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "lectura",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "lectura",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "quiz",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "quiz",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "crucigrama",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "crucigrama",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "banco-revision",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "banco-revision",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "evaluacion",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "evaluacion",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "recuperacion",
+      "theme": "light",
+      "width": 320,
+      "height": 812
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 1024,
+      "height": 768
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 375,
+      "height": 812
+    },
+    {
+      "state": "recuperacion",
+      "theme": "dark",
+      "width": 320,
+      "height": 812
+    }
+  ],
+  "errors": [],
+  "zoom": "font scaling 200%; physical mobile keyboard and browser zoom remain manual"
+}
