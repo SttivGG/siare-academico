@@ -49,6 +49,9 @@ test('ST-06/07: synchronous lock, lost response and late evaluation retain one e
   controller.restart(quiz.activityId); controller.attempt(quiz.activityId, { answers: { q1: 'a' } });
   await controller.submit(quiz.activityId, async body => { bodies.push(JSON.stringify(body)); throw Error('respuesta perdida'); });
   const frozen = controller.getSnapshot().attempts[quiz.activityId].frozen;
+  controller.attempt(quiz.activityId, { index: 1 });
+  assert.equal(controller.getSnapshot().attempts[quiz.activityId].index, 1, 'a pending envelope still permits reading another question');
+  assert.deepEqual(controller.getSnapshot().attempts[quiz.activityId].frozen, frozen);
   controller.attempt(quiz.activityId, { answers: { q1: 'b' } }); controller.show('bank');
   await controller.submit(quiz.activityId, async body => { bodies.push(JSON.stringify(body)); return result; });
   assert.equal(bodies[1], bodies[2]); assert.equal(JSON.parse(bodies[2]).idempotencyKey, frozen.idempotencyKey);

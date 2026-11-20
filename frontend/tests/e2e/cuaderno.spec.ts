@@ -109,7 +109,7 @@ test('ST-10: logout purges account A copies and memory before account B enters',
 });
 test('recovery: logout reports a denied purge while closing the server session', async ({ page, baseURL }) => {
   const { id } = await setup(page, baseURL!); await page.goto(`/materias/${id}`); await tool(page, 'Preparar banco'); await page.getByLabel('Editar banco JSON').fill('{"cierre":"error de almacenamiento"}'); await enable(page); await save(page);
-  await page.evaluate(() => { Object.defineProperty(indexedDB, 'open', { configurable: true, value: () => { throw new DOMException('denied', 'SecurityError'); } }); }); await openAccount(page); await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click(); await expect(page).toHaveURL(/\/login\?copia=error-al-eliminar/); await expect(page.getByRole('alert')).toContainText('La sesión está cerrada'); expect((await page.context().cookies()).some(c => c.name === 'siare_session' || c.name === 'siare_refresh')).toBe(false);
+  await page.evaluate(() => { Object.defineProperty(indexedDB, 'open', { configurable: true, value: () => { throw new DOMException('denied', 'SecurityError'); } }); }); await openAccount(page); await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click(); await expect(page).toHaveURL(/\/login\?copia=error-al-eliminar/); await expect(page.getByRole('alert').filter({ hasText: 'La sesión está cerrada' })).toContainText('La sesión está cerrada'); expect((await page.context().cookies()).some(c => c.name === 'siare_session' || c.name === 'siare_refresh')).toBe(false);
 });
 
 test('recovery: competing tabs cannot overwrite a saved copy', async ({ page, context, baseURL }) => {
@@ -179,4 +179,14 @@ test('documental: scanned READY source displays its OCR warning in the central r
   await page.goto(`/materias/${id}`); await panel(page, 'Fuentes'); await page.getByRole('button', { name: 'Ver texto', exact: true }).click();
   await expect(page.locator('.academic-reading')).toContainText('Se aplicó reconocimiento OCR.');
   await expect(page.locator('.academic-reading iframe, .academic-reading object, .academic-reading embed')).toHaveCount(0);
+});
+
+test('documental: uploaded quarantine becomes FAILED safely and offers an explicit retry', async ({ page, baseURL }, info) => {
+  const { id } = await setup(page, baseURL!);
+  const buffer = await readFile(new URL('../../../.cache/phase2-fixtures/blank.pdf', import.meta.url));
+  const response = await page.request.post(`/api/files/subjects/${id}/documents`, { headers: headers(baseURL!), multipart: { file: { name: 'sin-texto-h6.pdf', mimeType: 'application/pdf', buffer } } }); expect(response.status()).toBe(201);
+  await page.goto(`/materias/${id}`); await panel(page, 'Fuentes'); const row = page.locator('.document-list > li').filter({ hasText: 'sin-texto-h6.pdf' });
+  await expect(row.getByText('Cargado', { exact: true })).toBeVisible(); await expect(row).toContainText('cuarentena'); await expect(row.getByRole('button', { name: /Descargar|Usar como fuente/ })).toHaveCount(0);
+  await row.getByRole('button', { name: 'Procesar', exact: true }).click(); await expect(row.getByText('Procesamiento fallido', { exact: true })).toBeVisible({ timeout: 60_000 }); await expect(row.getByRole('button', { name: 'Reintentar procesamiento', exact: true })).toBeEnabled(); await expect(row.getByRole('button', { name: /Descargar|Usar como fuente/ })).toHaveCount(0); await expect(row).toContainText('No se encontró texto reconocible');
+  await page.screenshot({ path: `../docs/design/evidencias/h6-3/${info.project.name}/fuente-failed.png`, fullPage: true });
 });

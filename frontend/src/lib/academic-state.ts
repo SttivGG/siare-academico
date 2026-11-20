@@ -40,10 +40,11 @@ export class AcademicController {
     if (activity.subjectId !== this.subjectId) throw new Error('La actividad pertenece a otra materia.');
     this.update({ activities: { ...this.state.activities, [activity.activityId]: activity }, attempts: { ...this.state.attempts, [activity.activityId]: this.state.attempts[activity.activityId] ?? newAttempt() }, selectedActivity: activity.activityId, tool: 'catalog', panel: 'learning', editedAt: this.state.attempts[activity.activityId] ? this.state.editedAt : Date.now() });
   }
-  attempt(id: string, patch: Partial<Attempt>) {
+  attempt(id: string, patch: Partial<Pick<Attempt, 'answers' | 'cells' | 'index' | 'direction'>>) {
     const current = this.state.attempts[id];
-    if (!current || current.frozen || current.status === 'received') return;
-    this.update({ editedAt: Date.now(), attempts: { ...this.state.attempts, [id]: { ...current, ...patch } } });
+    const contentEdit = patch.answers !== undefined || patch.cells !== undefined;
+    if (!current || current.status === 'received' || current.frozen && contentEdit) return;
+    this.update({ editedAt: contentEdit ? Date.now() : this.state.editedAt, attempts: { ...this.state.attempts, [id]: { ...current, ...patch } } });
   }
   restart(id: string) {
     if (this.state.attempts[id]?.status !== 'received') return;
