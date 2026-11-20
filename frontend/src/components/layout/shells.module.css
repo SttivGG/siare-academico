@@ -1,0 +1,54 @@
+.appShell { display: grid; grid-template-columns: var(--rail-width) minmax(0, 1fr); grid-template-rows: auto 1fr; gap: 16px; padding: 16px; min-block-size: 100dvh; max-inline-size: 2000px; margin-inline: auto; }
+.appBody { min-inline-size: 0; grid-column: 2; grid-row: 2; display: flex; flex-direction: column; }
+.appFooter { color: var(--muted); font-size: .75rem; padding: 16px 2px; margin-block-start: auto; }
+.workspace { min-inline-size: 0; --workspace-sources: 256px; --workspace-study: 240px; }
+.workspaceColumns { display: grid; grid-template-columns: var(--workspace-sources, 256px) minmax(0, 1fr) var(--workspace-study, 240px); gap: 16px; align-items: start; }
+.workspaceColumns > section { min-inline-size: 0; }
+.workspaceNavigation { display: none; }
+.authShell { min-block-size: 100dvh; display: grid; grid-template-columns: minmax(280px, 42%) minmax(0, 1fr); gap: 16px; padding: 16px; max-inline-size: 1800px; margin-inline: auto; }
+.authAside { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; border: 1px solid var(--border); border-radius: var(--radius-rail); background: var(--glass); box-shadow: var(--shadow); padding: clamp(24px, 4vw, 64px); }
+.authAside h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3.5rem); margin-block-end: 20px; }
+.authAside p { max-inline-size: 38ch; }
+.wordmark { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.mark { display: grid; place-items: center; background: var(--brand); color: var(--on-brand); border-radius: 14px; inline-size: 44px; block-size: 44px; }
+.notebook { padding: 24px; border: 1px solid var(--border); border-radius: var(--radius-panel); background: var(--mint); margin-block-start: 32px; display: grid; gap: 16px; }
+.notebook strong { font-size: clamp(1.75rem, 1.3rem + 1vw, 2.5rem); line-height: 1.2; letter-spacing: -.03em; }
+.notebook span { font-size: .75rem; color: var(--muted); }
+.authMain { min-inline-size: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding: 8px clamp(16px, 4vw, 64px) 24px; }
+.authTools { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.authTools .back-link { margin: 0; }
+.authCard { inline-size: 100%; max-inline-size: 460px; margin: 16px auto 32px; background: var(--glass); border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: var(--radius-panel); padding: clamp(20px, 3vw, 36px); }
+.authCard h1 { font-size: clamp(1.65rem, 1.4rem + .7vw, 2.1rem); margin-block-end: 24px; }
+.authCard hr { margin-block: 24px; border-color: var(--border); }
+.authCard, .authAside { backdrop-filter: blur(var(--blur)); }
+.authCard input { font-size: 1rem; }
+.publicShell { max-inline-size: 1400px; margin-inline: auto; min-block-size: 100dvh; padding: 16px; display: flex; flex-direction: column; }
+.publicShell > main { flex: 1; padding-inline: clamp(8px, 4vw, 64px); }
+.publicHeader { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--glass); box-shadow: var(--shadow); border: 1px solid var(--border); border-radius: var(--radius-rail); padding: 16px 24px; }
+.publicFooter { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 24px; color: var(--muted); font-size: .8125rem; }
+@media (max-width: 1199px) { .appShell { --rail-width: 64px; gap: 12px; padding: 12px; } }
+@media (min-width: 701px) and (max-width: 1199px) {
+  .workspaceColumns { grid-template-columns: 224px minmax(0, 1fr); }
+  .workspaceColumns > section:nth-child(3) { display: none; }
+  .workspaceColumns[data-panel=study] { grid-template-columns: minmax(0, 1fr) 240px; }
+  .workspaceColumns[data-panel=study] > section:first-child { display: none; }
+  .workspaceColumns[data-panel=study] > section:nth-child(3) { display: block; }
+  .workspaceNavigation { display: flex; gap: 8px; margin-block-end: 16px; }
+}
+@media (max-width: 700px) {
+  .appShell { display: flex; flex-direction: column; padding: 10px 12px; gap: 0; }
+  .authShell { display: block; padding: 12px; }
+  .authAside { display: none; }
+  .authMain { padding: 0; min-block-size: calc(100dvh - 24px); }
+  .authCard { margin-block: 8px 24px; }
+  .authTools { align-items: end; }
+  .publicHeader { padding: 16px; }
+  .publicHeader > div { inline-size: 100%; justify-content: space-between; }
+  .publicShell { padding: 12px; }
+  .workspaceColumns { display: block; padding-block-end: calc(80px + env(safe-area-inset-bottom)); }
+  .workspaceColumns > section { display: none; }
+  .workspaceColumns[data-panel=sources] > section:first-child, .workspaceColumns[data-panel=learning] > section:nth-child(2), .workspaceColumns[data-panel=study] > section:nth-child(3) { display: block; }
+  .workspaceNavigation { display: flex; gap: 8px; position: fixed; inset: auto 0 0; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); z-index: 15; background: var(--surface); border-block-start: 1px solid var(--border); }
+  .workspaceNavigation > button { flex: 1; padding-inline: 4px; font-size: .8125rem; }
+}
+@supports not (backdrop-filter: blur(1px)) { .authCard, .authAside, .publicHeader { background: var(--surface); } }

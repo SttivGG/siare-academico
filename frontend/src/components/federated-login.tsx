@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { ProviderButton } from "./ui/primitives";
 import { api } from "../lib/api";
 import type { Provider } from "../lib/oidc-policy";
 import { diagnosticCode } from "../lib/oidc-policy";
@@ -30,9 +31,9 @@ export function FederatedLogin({ link = false }: { link?: boolean }) {
     {error && <p ref={errorRef} tabIndex={-1} className="notice error" role="alert">{error}</p>}
     {link && <label className="hint"><input type="checkbox" checked={confirmed} onChange={e => setConfirmed(e.target.checked)} /> Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.</label>}
     {(["google", "gitlab"] as Provider[]).map(provider => <div key={provider}>
-      <button className="button secondary full" type="button" disabled={!loaded || pending || !available.includes(provider) || link && !confirmed}
+      <ProviderButton disabled={!loaded || pending || !available.includes(provider) || link && !confirmed}
         aria-describedby={`${link ? "link" : "login"}-${provider}-status`} onClick={() => start(provider)}>
-        {link ? "Vincular" : "Continuar con"} {provider === "google" ? "Google" : "GitLab"}</button>
+        {link ? "Vincular" : "Continuar con"} {provider === "google" ? "Google" : "GitLab"}</ProviderButton>
       <p id={`${link ? "link" : "login"}-${provider}-status`} className="hint">{!loaded ? "Consultando disponibilidad…" : available.includes(provider) ? link ? "Requiere haber iniciado sesión en los últimos cinco minutos." : "Selecciona tu cuenta para continuar." : "Proveedor no configurado."}</p>
     </div>)}
   </div>;

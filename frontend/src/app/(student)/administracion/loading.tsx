@@ -1,1 +1,2 @@
-export default function Loading() { return <p role="status">Comprobando autorización administrativa…</p>; }
+import { LoadingState } from "../../../components/ui/primitives";
+export default function Loading() { return <LoadingState>Comprobando autorización administrativa…</LoadingState>; }

@@ -1,3 +1,4 @@
+import { openAccount, navigateGlobal } from "./navigation";
 import { test, expect } from "@playwright/test";
 import { createHmac, randomUUID } from "node:crypto";
 
@@ -26,6 +27,7 @@ test("enrolls using local QR, keeps challenge HttpOnly, recovers once and preser
   const codes=await page.locator(".recovery-codes code").allTextContents(); expect(codes).toHaveLength(10);
   await page.getByRole("link",{name:"Ya guardé los códigos · continuar"}).click();
   await expect(page).toHaveURL(/\/inicio/);
+  await openAccount(page);
   await page.getByRole("button",{name:"Cerrar sesión",exact:true}).click();
   await page.getByLabel("Correo electrónico",{exact:true}).fill(credentials.email);
   await page.getByLabel("Contraseña",{exact:true}).fill(credentials.password);
@@ -46,6 +48,7 @@ test("enrolls using local QR, keeps challenge HttpOnly, recovers once and preser
   await expect(page.getByRole("status")).toContainText("Códigos disponibles: 9");
   expect(await page.locator("body").evaluate(el=>el.scrollWidth<=window.innerWidth)).toBe(true);
   await page.screenshot({path:`../.cache/h2b1-security-${test.info().project.name}.png`,fullPage:true});
+  await openAccount(page);
   await page.getByRole("button",{name:"Cerrar sesión",exact:true}).click();
   await page.getByLabel("Correo electrónico",{exact:true}).fill(credentials.email);
   await page.getByLabel("Contraseña",{exact:true}).fill(credentials.password);
