@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-20T00:26:55.5382550Z",
+  "officialCommand": "powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\Test-Siare.ps1",
+  "officialExitCode": 0,
+  "containers": [
+    {
+      "name": "siare-academico-frontend-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-core-api-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-content-ai-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-progress-api-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-mysql-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-cassandra-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-redis-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-clickhouse-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "siare-academico-mongo-1",
+      "unchanged": true,
+      "healthy": true
+    }
+  ],
+  "rebuilt": false,
+  "recreated": false
+}
