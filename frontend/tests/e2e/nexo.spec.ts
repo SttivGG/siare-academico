@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { openAccount } from './navigation';
 
-const output = '../.cache/h6-3-regression-nexo';
+const output = process.env.NEXO_EVIDENCE_DIR ?? '../.cache/h6-3-regression-nexo';
 const sizes = [[1920,1080],[1440,900],[1366,768],[1024,768],[768,1024],[390,844],[375,812],[320,812]];
 async function createStudent(page: Page, origin: string) {
   const headers = { Origin: origin, 'X-SIARE-CSRF': '1' };
@@ -99,13 +99,25 @@ test('theme, account and responsive navigation preserve the live form, academic 
   await page.goto('/materias/nueva');
   await page.getByLabel('Nombre de la materia').fill('Formulario en curso');
   await openAccount(page);
-  if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/I01-light-1440x900.png` });
+  if (info.project.name === 'desktop') {
+    await page.screenshot({ path: `${output}/I01-light-1440x900.png` });
+    await page.evaluate(() => { document.documentElement.dataset.theme = 'dark'; });
+    await page.screenshot({ path: `${output}/I01-dark-1440x900.png` });
+    await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
+  }
   await page.keyboard.press('Escape');
   await expect(page.locator('summary[aria-label="Menú de cuenta"]')).toBeFocused();
   await expect(page.getByLabel('Nombre de la materia')).toHaveValue('Formulario en curso');
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('summary[aria-label="Abrir navegación"]').click();
   await expect(page.getByRole('navigation', { name: 'Navegación móvil' })).toBeVisible();
+  if (info.project.name === 'desktop') {
+    for (const theme of ['light','dark']) {
+      await page.evaluate(value => { document.documentElement.dataset.theme = value; }, theme);
+      await page.screenshot({ path: `${output}/X04-menu-${theme}-390x844.png`, fullPage: true });
+    }
+    await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
+  }
   await page.keyboard.press('Escape');
   await expect(page.locator('summary[aria-label="Abrir navegación"]')).toBeFocused();
   expect(errors).toEqual([]);
@@ -143,7 +155,7 @@ test('Nexo semantic contrast, keyboard focus, reduced motion and forced colors',
       const rgb = (color: string) => color.match(/[\d.]+/g)!.map(Number);
       const blend = (front: number[], back: number[]) => front.slice(0,3).map((v,i) => v * (front[3] ?? 1) + back[i] * (1 - (front[3] ?? 1)));
       const luminance = (color: number[]) => color.map(v => v / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4).reduce((total,v,i) => total + v * [.2126,.7152,.0722][i],0);
-      const pairs: [string,string,number][] = [['on-brand','brand',4.5],['text','surface',4.5],['muted','surface',4.5],['link','surface',4.5],['text','glass',4.5],['muted','glass',4.5],['danger','danger-bg',4.5],['success','success-bg',4.5],['warning','warning-bg',4.5],['info','info-bg',4.5],['focus','input',3],['control','input',3]];
+      const pairs: [string,string,number][] = [['on-brand','brand',4.5],['text','surface',4.5],['muted','surface',4.5],['text','rose',4.5],['muted','rose',4.5],['text','mint',4.5],['muted','mint',4.5],['text','cream',4.5],['muted','cream',4.5],['text','blue-pastel',4.5],['muted','blue-pastel',4.5],['link','surface',4.5],['text','glass',4.5],['muted','glass',4.5],['danger','danger-bg',4.5],['success','success-bg',4.5],['warning','warning-bg',4.5],['info','info-bg',4.5],['focus','input',3],['control','input',3]];
       return pairs.flatMap(([front,back,target]) => ['canvas','wash-a','wash-b'].map(base => {
         const background = blend(rgb(read('background-color',back)),rgb(read('background-color',base)));
         const a = luminance(blend(rgb(read('color',front)),background)), b = luminance(background);

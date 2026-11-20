@@ -12,9 +12,11 @@ export function AuthForm({ register = false }: { register?: boolean }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
   const [fields, setFields] = useState<Record<string, string>>({});
+  const submitting = useRef(false);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting.current) return; submitting.current = true;
     const form = new FormData(event.currentTarget);
     setPending(true); setError(""); setFields({});
     try {
@@ -27,12 +29,12 @@ export function AuthForm({ register = false }: { register?: boolean }) {
       setError(err instanceof Error ? err.message : "No se pudo continuar.");
       if (err instanceof ApiError) setFields(err.fields);
       requestAnimationFrame(() => errorRef.current?.focus());
-    } finally { setPending(false); }
+    } finally { submitting.current = false; setPending(false); }
   }
   return <form onSubmit={submit} className="form-stack" aria-busy={pending}>
-    {error && <div ref={errorRef} tabIndex={-1} className="notice error" role="alert">{error}</div>}
+    {error && <div ref={errorRef} tabIndex={-1} className="notice error" role="alert"><p>{error}</p>{Object.entries(fields).some(([, message]) => message) && <ul>{Object.entries(fields).filter(([, message]) => message).map(([field, message]) => <li key={field}><a href={`#${field}`}>{message}</a></li>)}</ul>}{register && /registro público.*cerrado/i.test(error) && <Link href="/login">Entrar con una cuenta existente</Link>}</div>}
     {register && <Field label="Nombre" id="name" name="name" autoComplete="name" required maxLength={100} error={fields.name} />}
-    <Field label="Correo electrónico" id="email" name="email" type="email" autoComplete="email" required maxLength={254} error={fields.email} />
+    <Field label="Correo electrónico" id="email" name="email" type="email" autoComplete="email" autoCapitalize="none" spellCheck={false} required maxLength={254} error={fields.email} onChange={() => setFields(previous => ({ ...previous, email: "" }))} />
     <Field label="Contraseña" id="password" name="password" type="password" autoComplete={register ? "new-password" : "current-password"} required minLength={register ? 15 : 1} maxLength={2048} error={fields.password} hint={register ? "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes." : "Usa la contraseña de tu cuenta SIARE."} />
     <Button className="full" busy={pending} type="submit">{pending ? "Un momento…" : register ? "Crear cuenta" : "Iniciar sesión"}</Button>
     <p className="muted">{register ? "¿Ya tienes una cuenta?" : "¿Es tu primera visita?"} <Link href={register ? "/login" : "/registro"}>{register ? "Inicia sesión" : "Crea tu cuenta"}</Link></p>

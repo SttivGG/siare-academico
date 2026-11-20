@@ -27,7 +27,8 @@ test("renews from HttpOnly refresh cookie, enforces admin denial and revokes oth
     await expect(page.getByRole("heading", { name: "Sesiones activas" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Cerrar esta sesión", exact: true })).toHaveCount(2);
     await page.getByRole("button", { name: "Cerrar otras sesiones" }).click();
-    await expect(page.getByRole("status")).toContainText("se han cerrado");
+    await page.getByRole("dialog").getByRole("button", { name: "Confirmar cierre" }).click();
+    await expect(page.getByRole("status").filter({hasText:"se han cerrado"})).toBeVisible();
     await expect(page.getByRole("button", { name: "Cerrar esta sesión", exact: true })).toHaveCount(1);
     expect((await second.request.get("/api/bff/users/me")).status()).toBe(401);
     expect((await second.request.post("/api/bff/auth/refresh", { headers, data: {} })).status()).toBe(401);
