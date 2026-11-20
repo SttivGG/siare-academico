@@ -236,5 +236,14 @@
   "previewHealth": {
     "service": "frontend",
     "status": "UP"
+  },
+  "finalVerifiedAt": "2026-11-20T19:48:03.782335+00:00",
+  "officialFinalCheck": {
+    "command": "scripts/Test-Siare.ps1",
+    "result": "passed after complete Playwright suite and final capture repeats",
+    "previewHealth": "UP",
+    "previewContainer": "80207a58551610ac29a2540020a0cb6539dfd11af17e3fa579cb85475f3ef78c",
+    "habitualServicesHealthy": 9,
+    "pullRequest": "https://github.com/SttivGG/siare-academico/pull/12"
   }
 }

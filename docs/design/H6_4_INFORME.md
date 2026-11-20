@@ -8,7 +8,7 @@ La implementación visual está disponible para revisión. Las operaciones privi
 
 - Rama `feat/h6-4-nexo-integral`, creada desde `731bad0e9d890d2072d05bd3755e02cc8761e85f`, HEAD verificado del PR #11 abierto y draft.
 - Implementación inicial `cb6372f`; imagen final construida desde `cc6cd704a4f93227123afc796f3682315aba862f`. Los commits posteriores contienen pruebas y documentación; no cambian el código ejecutable de esa imagen.
-- PR H6-4 draft dirigido a `feat/h6-3-cuaderno-abierto`. No se fusiona ni se modifica el historial de main; #8, #9, #10 y #11 permanecen independientes.
+- [PR #12 draft](https://github.com/SttivGG/siare-academico/pull/12) dirigido a `feat/h6-3-cuaderno-abierto`. No se fusiona ni se modifica el historial de main; #8, #9, #10 y #11 permanecen independientes.
 - [Matriz de 50 casos](H6_MATRIZ_ACEPTACION.csv), [galería por caso y estado](evidencias/h6-4/README.md), [comparación con Nexo](H6_4_COMPARACION_NEXO.md), [pruebas por caso](evidencias/h6-4/pruebas.json), [runtime](evidencias/h6-4/runtime.json) e [integridad de capturas](evidencias/h6-4/capturas.json).
 
 La entrega contiene 575 PNG con manifiesto SHA-256. Las 50 filas añaden componentes implementados, accesibilidad comprobada, omisiones y pendientes; cada captura enlazada existe.
