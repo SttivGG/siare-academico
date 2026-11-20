@@ -1,0 +1,48 @@
+{
+  "base": "371e93efed315492683d2bcb2a793446384c6eb3",
+  "implementationCommit": "4442b69064a116b820051a5470ec188383e585aa",
+  "protectedPaths": [
+    "services",
+    "compose.apps.yml",
+    "compose.datos.yml",
+    "compose.yaml",
+    "frontend/package-lock.json",
+    "docs/design/h6-1",
+    "docs/design/evidencias/h6-0",
+    "docs/design/evidencias/h6-1",
+    "docs/design/evidencias/h6-2"
+  ],
+  "protectedDelta": "",
+  "rootHead": "acba2808ad0908ff05d6852cedb6eba5cb281171",
+  "rootBranch": "fix/document-compatibility-isolation",
+  "rootChangesPreserved": [
+    "M frontend/src/app/api/bff/[...path]/route.ts",
+    " M frontend/src/app/api/files/[...path]/route.ts",
+    "?? AGENTS.md",
+    "?? docs/CLICKHOUSE_DIAGNOSTICO.md",
+    "?? docs/H4_DESPLIEGUE_20261119.md",
+    "?? docs/H5_CONTRATO_GENERACION_ML.md",
+    "?? docs/H5_INTEGRACION_DOCUMENTOS.md",
+    "?? docs/H5_VALIDACION.md",
+    "?? docs/PDF_UPLOAD_DIAGNOSTICO.md",
+    "?? docs/contracts/",
+    "?? frontend/src/lib/document-route-diagnostics.ts",
+    "?? frontend/tests/document-route-diagnostics.test.mjs",
+    "?? scripts/contracts/"
+  ],
+  "otherPRs": {
+    "8": {
+      "state": "OPEN",
+      "head": "ca27a80bf3d398286016ec871fa7cdc4fc64403f"
+    },
+    "9": {
+      "state": "OPEN",
+      "head": "ff104c2d4d6f6f7ebea7daeebdb36720620a1dca"
+    }
+  },
+  "matrix": {
+    "rows": 50,
+    "changedRows": 14,
+    "otherRowsUnchanged": true
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "origin": "http://127.0.0.1:3100",
+  "browser": "157.0.8103.79",
+  "health": {
+    "service": "frontend",
+    "status": "UP"
+  },
+  "login": true,
+  "privateRedirect": true,
+  "errors": []
+}

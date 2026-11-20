@@ -1,0 +1,204 @@
+{
+  "branch": "feat/h6-3-cuaderno-abierto",
+  "implementationCommit": "4442b69064a116b820051a5470ec188383e585aa",
+  "baseCommit": "371e93efed315492683d2bcb2a793446384c6eb3",
+  "capturedAt": "2026-11-20T13:57:37.5084775Z",
+  "habitualBefore": [
+    {
+      "Id": "eae9ae80e3c14891bd844a492afbae59e920812b44de53c11915fda63c92829d",
+      "Image": "sha256:c67d08bd4d4ef8e405f1d886ed3fec4c9fdb62f06be117184a8ff68c7c9ff5b0",
+      "Name": "/siare-academico-frontend-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "27138d454210d5aacd9b8181efe5d8a02c5f09f9a4bdd15f15188fa4e7cd7bfe",
+      "Image": "sha256:ecff70dea3a1061462ec103d81fed5f6729a2b8cee1113670afc87f814642e84",
+      "Name": "/siare-academico-core-api-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "8a7f97dc46a985c054b278bffb4369bfcf13f92199650b6e1de3742073347189",
+      "Image": "sha256:212a8df4b6896d98ad607d66db4c7f03d562fa871dffa8f8e9bae93d17f36ba4",
+      "Name": "/siare-academico-content-ai-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "c5ee706867eb29119d33d4129fb05a39d34ab59de9c6219e16e56ff1a2a50927",
+      "Image": "sha256:cb222edc168be4ff9e50af43555eebc1e9d95f358b5f61b3d4829138f0fadcc0",
+      "Name": "/siare-academico-progress-api-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "a874a4f0ab4620d5266b85d7b7ed32953d97059808e6452209d1f25762f543f6",
+      "Image": "sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902",
+      "Name": "/siare-academico-mysql-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "274b64b24986140c696397d8130f04a33934e2334ef6abfb6468cca549338c0d",
+      "Image": "sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e",
+      "Name": "/siare-academico-cassandra-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "d7b516acd286898e0dcc1270da802640116b701f40c0fb701ba4020833ada141",
+      "Image": "sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7",
+      "Name": "/siare-academico-redis-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "f93db5993ddbbeb5f734654b3aec4f307955f44b0471815addc2c245b9c99f8b",
+      "Image": "sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7",
+      "Name": "/siare-academico-clickhouse-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "c11e8984ca8be9e21bd9080475bd3d3c41d59ea5429335d018ab25a4d1cef566",
+      "Image": "sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142",
+      "Name": "/siare-academico-mongo-1",
+      "Health": "healthy"
+    }
+  ],
+  "habitualAfter": [
+    {
+      "Id": "eae9ae80e3c14891bd844a492afbae59e920812b44de53c11915fda63c92829d",
+      "Image": "sha256:c67d08bd4d4ef8e405f1d886ed3fec4c9fdb62f06be117184a8ff68c7c9ff5b0",
+      "Name": "/siare-academico-frontend-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "27138d454210d5aacd9b8181efe5d8a02c5f09f9a4bdd15f15188fa4e7cd7bfe",
+      "Image": "sha256:ecff70dea3a1061462ec103d81fed5f6729a2b8cee1113670afc87f814642e84",
+      "Name": "/siare-academico-core-api-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "8a7f97dc46a985c054b278bffb4369bfcf13f92199650b6e1de3742073347189",
+      "Image": "sha256:212a8df4b6896d98ad607d66db4c7f03d562fa871dffa8f8e9bae93d17f36ba4",
+      "Name": "/siare-academico-content-ai-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "c5ee706867eb29119d33d4129fb05a39d34ab59de9c6219e16e56ff1a2a50927",
+      "Image": "sha256:cb222edc168be4ff9e50af43555eebc1e9d95f358b5f61b3d4829138f0fadcc0",
+      "Name": "/siare-academico-progress-api-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "a874a4f0ab4620d5266b85d7b7ed32953d97059808e6452209d1f25762f543f6",
+      "Image": "sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902",
+      "Name": "/siare-academico-mysql-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "274b64b24986140c696397d8130f04a33934e2334ef6abfb6468cca549338c0d",
+      "Image": "sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e",
+      "Name": "/siare-academico-cassandra-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "d7b516acd286898e0dcc1270da802640116b701f40c0fb701ba4020833ada141",
+      "Image": "sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7",
+      "Name": "/siare-academico-redis-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "f93db5993ddbbeb5f734654b3aec4f307955f44b0471815addc2c245b9c99f8b",
+      "Image": "sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7",
+      "Name": "/siare-academico-clickhouse-1",
+      "Health": "healthy"
+    },
+    {
+      "Id": "c11e8984ca8be9e21bd9080475bd3d3c41d59ea5429335d018ab25a4d1cef566",
+      "Image": "sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142",
+      "Name": "/siare-academico-mongo-1",
+      "Health": "healthy"
+    }
+  ],
+  "preserved": [
+    {
+      "name": "/siare-academico-frontend-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-core-api-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-content-ai-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-progress-api-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-mysql-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-cassandra-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-redis-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-clickhouse-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-mongo-1",
+      "sameContainer": true,
+      "sameImage": true,
+      "healthy": true
+    }
+  ],
+  "preview": {
+    "project": "siare-h6-3-validation",
+    "service": "frontend-h6",
+    "container": "0caf99e7c492b34ea7a16d919f4312453cd9d904b4d2978b9d47247eb1a4dda7",
+    "image": "sha256:5e0f6c0df4ccfaa0f829d2a1c2a2a6b9082a9aae0c32fdb5e49da49ee4b3b790",
+    "health": "healthy",
+    "revision": "4442b69064a116b820051a5470ec188383e585aa",
+    "origin": "http://127.0.0.1:3107",
+    "memoryBytes": 402653184,
+    "nanoCpus": 1000000000,
+    "rollbackImage": "sha256:3954bd77f2eb979fe493da65cf57139dc8cea7871c4a0c9397fe0f581cb314a7",
+    "originalPreviewContainer": "22fc60a3c40a",
+    "originalPreviewWasStopped": true
+  },
+  "health3100": {
+    "service": "frontend",
+    "status": "UP"
+  },
+  "health3107": {
+    "service": "frontend",
+    "status": "UP"
+  },
+  "officialChecks": {
+    "script": "scripts/Test-Siare.ps1",
+    "passed": true,
+    "authenticatedDatabaseChecks": 5,
+    "backendsHealthy": 3,
+    "habitualFrontendBrowser": true,
+    "noOriginalRecreation": true
+  }
+}
