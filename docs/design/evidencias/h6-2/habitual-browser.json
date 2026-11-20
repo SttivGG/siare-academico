@@ -1,0 +1,12 @@
+{
+  "origin": "http://127.0.0.1:3100/login",
+  "browser": "153.0.8010.12",
+  "title": "Iniciar sesión · SIARE",
+  "font": "Arial, Helvetica, sans-serif",
+  "themeControls": 0,
+  "health": {
+    "service": "frontend",
+    "status": "UP"
+  },
+  "conclusion": "Habitual H4 runtime remains active; this capture is not H6 deployment evidence."
+}
