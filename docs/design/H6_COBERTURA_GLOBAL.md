@@ -1,5 +1,7 @@
 # H6: inventario y cobertura global Nexo
 
+Actualización vigente de Apariencia, 21 de noviembre de 2026: **15 rutas de pantalla, 5 manejadores técnicos y 43 casos internos/transversales**, 58 filas en la matriz. R15 es `/configuracion/apariencia`; AP01–AP07 cubren navegación y preferencias. El inventario de 14 rutas que figura más abajo corresponde a la base histórica del 19 de noviembre. Ver [informe de Apariencia](H6_APARIENCIA_INFORME.md).
+
 Fecha de revisión: 19 de noviembre de 2026, America/Bogota. Rama de trabajo: `feat/h6-design-audit`, base `c8f934492f0cc7809282657270df34b4474915ca`.
 
 Esta entrega presenta la cobertura antes de implementar, conforme a la última solicitud: «Antes de continuar con implementaciones masivas, presentar el inventario de pantallas y la estrategia de cobertura para verificar que no se omita ninguna ruta». La implementación H6-2 a H6-7 sigue pendiente; las capturas de H6-0 y del prototipo no acreditan pantallas productivas rediseñadas.
@@ -12,7 +14,7 @@ Se enumeraron los archivos de `frontend/src/app` tanto en el checkout habitual c
 
 Las referencias consultadas son [inventario H6-0](H6_INVENTARIO.md), [auditoría H6-0](H6_AUDITORIA_UX.md), [sistema H6-1](H6_1_SISTEMA_DISENO.md), [alternativa A](H6_1_ALTERNATIVAS.md), [riesgos](H6_1_RIESGOS_Y_REGRESIONES.md), [tokens del prototipo](h6-1/tokens.json) y [adaptación SIARE de DakaDesing](H6_SKILLS_SIARE.md). Se inspeccionó la captura A clara en escritorio. La identidad se contrastó con los [tokens originales de Nexo](https://github.com/SttivGG/Facturacion-hexagonal/blob/main/frontend/src/styles/tokens.css).
 
-No hay rutas independientes de perfil, apariencia, documentos, Quiz, Crucigramas o resultados. El perfil se cubrirá con nombre/correo ya disponibles desde la identidad autenticada y acceso a `/seguridad`; las preferencias visuales, mediante un control compartido de tema. No se añadirá edición de datos personales sin contrato existente. Documentos y actividades son vistas de `/materias/[id]` y se inventarían por separado más abajo.
+Actualmente existe `/configuracion/apariencia`. No hay rutas independientes de edición de perfil, documentos, Quiz, Crucigramas o resultados. El perfil se cubrirá con nombre/correo ya disponibles desde la identidad autenticada y acceso a `/seguridad`; las preferencias visuales, mediante un control compartido de tema. No se añadirá edición de datos personales sin contrato existente. Documentos y actividades son vistas de `/materias/[id]` y se inventarían por separado más abajo.
 
 ## Composiciones compartidas
 
@@ -26,7 +28,7 @@ Los nombres siguientes describen componentes previstos, todavía no implementado
 | `WorkspaceShell` | Materia | Variante A dentro de `AppShell`: Fuentes, Aprendizaje dominante y Estudio. Un controlador académico estable alimenta las vistas. |
 | `FeedbackShell` | 404 y error inesperado | Identidad, mensaje y acción de recuperación; reutiliza superficies y botones del sistema, sin exigir sesión para renderizar. |
 
-## Las 14 rutas de pantalla
+## Las 15 rutas de pantalla
 
 Fuentes relativas a `frontend/src/app/` de la base H6. `(student)` es un grupo de rutas, no parte de la URL. Todas las rutas privadas conservan comprobación de identidad en servidor y autorización de Spring.
 
@@ -46,6 +48,8 @@ Fuentes relativas a `frontend/src/app/` de la base H6. `(student)` es un grupo d
 | R12 | `/seguridad` | `(student)/seguridad/page.tsx` | `MfaPanel`, `ConnectedIdentities`; enrolar/confirmar/desactivar/reponer códigos, reautenticar, vincular/desvincular y retorno `?oidc=vinculada`. Resumen de perfil con identidad existente. | `AppShell`, H6-4 |
 | R13 | `/sesiones` | `(student)/sesiones/page.tsx` | `SessionsPanel`; carga/error, fechas y cierre de una/otras/todas las sesiones. | `AppShell`, H6-4/5 |
 | R14 | `/administracion` | `(student)/administracion/page.tsx` | `AdministrationPanel`; denegación, ADMIN por ámbito, SUPERADMIN, usuarios/roles, ámbitos, registro público, auditoría y conflicto de versión. | `AppShell`, H6-4 |
+
+| R15 | `/configuracion/apariencia` | `(student)/configuracion/apariencia/page.tsx` | Tema, seis fondos, cristal, blur, velo, restauración, almacenamiento bloqueado y sincronización. | `AppShell`, Apariencia |
 
 ## Rutas técnicas y fronteras de composición
 
@@ -134,7 +138,7 @@ Todas estas filas tienen rediseño, captura clara, captura oscura, responsive y 
 | X05 | Diálogos, menús, tooltips y confirmaciones | Capa compartida de overlays | Título/nombre accesible, Escape, foco/restauración, pending y cancelación sin peticiones. |
 | X06 | Botones, campos, selectores, listas/tablas y estados | Primitivas compartidas | Normal/hover/foco/disabled/pending/error/éxito; contraste compuesto y movimiento reducido. |
 
-Son **36 casos internos/transversales**, además de las 14 rutas. Cada caso requiere evidencia en ambos temas y su prueba indicada; una misma captura puede acreditar varios estados únicamente si se identifican y son visibles. No se marca un caso como aprobado solo porque lo cubre un estilo global.
+El inventario vigente suma **43 casos internos/transversales**, además de las 15 rutas: los 36 históricos de esta sección y AP01–AP07 documentados en Apariencia. Cada caso requiere evidencia en ambos temas y su prueba indicada; una misma captura puede acreditar varios estados únicamente si se identifican y son visibles. No se marca un caso como aprobado solo porque lo cubre un estilo global.
 
 ## Registro de evidencia de H6-6
 

@@ -1,0 +1,174 @@
+{
+  "scope": "production Next with isolated in-memory upstream; no real authorization claim",
+  "checks": [
+    {
+      "theme": "light",
+      "expanded": false,
+      "width": 1920,
+      "height": 1080,
+      "file": "appearance-light-collapsed-1920x1080.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": true,
+      "width": 1920,
+      "height": 1080,
+      "file": "appearance-light-expanded-1920x1080.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": false,
+      "width": 1440,
+      "height": 900,
+      "file": "appearance-light-collapsed-1440x900.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": true,
+      "width": 1440,
+      "height": 900,
+      "file": "appearance-light-expanded-1440x900.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": false,
+      "width": 1024,
+      "height": 768,
+      "file": "appearance-light-collapsed-1024x768.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": true,
+      "width": 1024,
+      "height": 768,
+      "file": "appearance-light-expanded-1024x768.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": false,
+      "width": 768,
+      "height": 1024,
+      "file": "appearance-light-collapsed-768x1024.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": true,
+      "width": 768,
+      "height": 1024,
+      "file": "appearance-light-expanded-768x1024.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": false,
+      "width": 390,
+      "height": 844,
+      "file": "appearance-light-collapsed-390x844.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": true,
+      "width": 390,
+      "height": 844,
+      "file": "appearance-light-expanded-390x844.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": false,
+      "width": 320,
+      "height": 844,
+      "file": "appearance-light-collapsed-320x844.jpg"
+    },
+    {
+      "theme": "light",
+      "expanded": true,
+      "width": 320,
+      "height": 844,
+      "file": "appearance-light-expanded-320x844.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": false,
+      "width": 1920,
+      "height": 1080,
+      "file": "appearance-dark-collapsed-1920x1080.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": true,
+      "width": 1920,
+      "height": 1080,
+      "file": "appearance-dark-expanded-1920x1080.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": false,
+      "width": 1440,
+      "height": 900,
+      "file": "appearance-dark-collapsed-1440x900.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": true,
+      "width": 1440,
+      "height": 900,
+      "file": "appearance-dark-expanded-1440x900.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": false,
+      "width": 1024,
+      "height": 768,
+      "file": "appearance-dark-collapsed-1024x768.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": true,
+      "width": 1024,
+      "height": 768,
+      "file": "appearance-dark-expanded-1024x768.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": false,
+      "width": 768,
+      "height": 1024,
+      "file": "appearance-dark-collapsed-768x1024.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": true,
+      "width": 768,
+      "height": 1024,
+      "file": "appearance-dark-expanded-768x1024.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": false,
+      "width": 390,
+      "height": 844,
+      "file": "appearance-dark-collapsed-390x844.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": true,
+      "width": 390,
+      "height": 844,
+      "file": "appearance-dark-expanded-390x844.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": false,
+      "width": 320,
+      "height": 844,
+      "file": "appearance-dark-collapsed-320x844.jpg"
+    },
+    {
+      "theme": "dark",
+      "expanded": true,
+      "width": 320,
+      "height": 844,
+      "file": "appearance-dark-expanded-320x844.jpg"
+    }
+  ],
+  "errors": []
+}

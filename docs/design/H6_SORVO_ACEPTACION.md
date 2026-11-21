@@ -1,6 +1,6 @@
 # H6: matriz de aceptación Sorvo
 
-Los 50 casos mantienen su ruta y comportamiento existente. Las capturas claras y oscuras siguientes corresponden al sistema compartido. El [informe](H6_SORVO_INFORME.md) explica pruebas, procedencia y límites; el [CSV](H6_MATRIZ_ACEPTACION.csv) conserva las columnas históricas.
+La base Sorvo tenía 50 casos. La [extensión de Apariencia](H6_APARIENCIA_INFORME.md) incorpora R15 y AP01–AP07; el inventario vigente tiene 58 filas. Las capturas de esta tabla conservan la revisión histórica de Sorvo. Las capturas claras y oscuras siguientes corresponden al sistema compartido. El [informe](H6_SORVO_INFORME.md) explica pruebas, procedencia y límites; el [CSV](H6_MATRIZ_ACEPTACION.csv) conserva las columnas históricas.
 
 | Caso | Pantalla o estado | Claro | Oscuro | Procedencia |
 | --- | --- | --- | --- | --- |

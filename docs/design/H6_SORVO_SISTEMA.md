@@ -72,3 +72,12 @@ no pudo recuperarse y no se considera consultado. Se conserva el diálogo nativo
 compartido; la adaptación no obliga a instalar SweetAlert2.
 
 La validación, comparación y límites se registran en [el informe](H6_SORVO_INFORME.md).
+
+
+## Extensión: navegación y Apariencia
+
+La [extensión de Apariencia](H6_APARIENCIA_INFORME.md) añade la ruta protegida `/configuracion/apariencia`. El rail ahora toca x=0 y ocupa 100dvh, con anchos compartidos de 72/232 px; el encabezado mide 56 px y conserva únicamente el tema rápido. La cuenta vive en el extremo inferior de la navegación. En móvil la navegación se despliega bajo el encabezado sin reservar una columna de escritorio.
+
+`--appearance-opacity` alimenta los tokens semánticos primario, secundario y navegación; no sustituye las reglas de accesibilidad. La transparencia se limita a 20–72% (opacidad primaria 80–28%). Navegación conserva al menos 56% de opacidad; lectura 91% y modales 86% no disminuyen. El blur predeterminado sigue en 10 px (navegación 12 px); el control acepta 0–24 px, con navegación limitada a 24. El velo conserva los neutros H6 y ajusta su alpha dentro de límites; su valor 50 restaura el tratamiento aprobado. No se aplican filtros de color.
+
+`appearance-store` es el único almacén en memoria de las preferencias. Conserva `siare-theme` como única clave persistente del tema existente; las demás preferencias usan `siare-appearance-v1` con versión, valores acotados y fondos autorizados. Ninguna clave visual contiene identidad, tokens ni secretos. El script previo al pintado comparte el normalizador con el runtime y funciona tras minificación de producción. `AppearanceSync` escucha en el layout raíz, también en páginas públicas y errores, sin envolver ni dar claves a los componentes académicos.

@@ -1,5 +1,8 @@
 # H6: homologación visual integral con referencia Sorvo
 
+Nota de vigencia: este informe documenta la revisión Sorvo anterior. La [extensión de Apariencia](H6_APARIENCIA_INFORME.md) actualiza el inventario a 15 rutas y 58 casos, conserva 3100 y despliega únicamente la preview autorizada.
+
+
 Fecha: 21 de noviembre de 2026, America/Bogota. Preview: <http://127.0.0.1:3107>.
 Rama: `feat/h6-sorvo-global`. Código desplegado: `ec146fb`.
 Base del PR: `feat/h6-landing-access`, `123cc0b`.

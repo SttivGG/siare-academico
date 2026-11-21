@@ -1,0 +1,4 @@
+{ ok: 1 }
+OK Flask y Mongo/Redis
+OK Express y Cassandra
+OK Express -> ClickHouse: authenticated SELECT 1, academic schema, invalid credential rejected; ingestion pending.

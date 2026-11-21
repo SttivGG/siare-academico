@@ -1,0 +1,66 @@
+{
+  "branch": "feat/h6-navigation-appearance",
+  "base": "8b6e35e13ee754aff8e480807ce2e59dcc7b54b2",
+  "sourceCommit": "10c64ee651a2ed96663ee998110273c28a985363",
+  "scope": "All authenticated testing uses production Next/BFF with isolated in-memory HTTP upstreams. User explicitly prohibited synthetic writes to habitual databases.",
+  "unitAndComponents": {
+    "passed": 47,
+    "command": "npm test"
+  },
+  "typecheck": {
+    "passed": true,
+    "command": "npm run typecheck"
+  },
+  "build": {
+    "passed": true,
+    "command": "npm run build"
+  },
+  "integration": {
+    "activities": 4,
+    "identity": 6,
+    "nexoStates": 5,
+    "passed": 15
+  },
+  "playwright": {
+    "startTime": "2026-11-21T14:50:45.602Z",
+    "duration": 96734.58,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "ST": {
+    "ST-01": "academic-state unit: draft retained between tools",
+    "ST-02": "academic-state unit: source-specific drafts and review invalidation",
+    "ST-03": "unit + browser: Quiz node, answers and question retained while appearance changes",
+    "ST-04": "unit + browser: Crossword cell node and letters retained while appearance changes",
+    "ST-05": "unit + browser: expansion, theme and background retain draft and activity state",
+    "ST-06": "controller unit + activities integration: lost-response exact frozen envelope; no real Spring writes",
+    "ST-07": "controller unit + activities integration: synchronous lock and late original response; no real Spring writes",
+    "ST-08": "browser: leaving to Appearance opens existing guard; cancellation retains draft",
+    "ST-09": "AES/recovery unit + browser: real encrypted IndexedDB copy and purge",
+    "ST-10": "controller destruction unit + browser: bottom-account logout and success/denied recovery purge"
+  },
+  "limits": [
+    "No authenticated Spring end-to-end run because user selected memory-only tests",
+    "Firefox/WebKit, screen reader and physical device performance pending",
+    "Contrast sampling is not WCAG certification"
+  ],
+  "deployment": {
+    "healthy": true,
+    "image": "siare-academico-frontend:h6-navigation-appearance",
+    "imageId": "sha256:04a6543ae6ecd2cc5baf6c1df7eb2cf674ebf141a788e31c3bd24609799a0167",
+    "container": "be7abd5f10ceba091fdbf171a47cfb7f2f8a4612e2b349900c7c03add753a276",
+    "habitualServicesUnchanged": 9,
+    "envPreserved": true,
+    "habitualBrowser": {
+      "origin": "http://127.0.0.1:3100/login",
+      "title": "Iniciar sesiÃ³n Â· SIARE",
+      "sameTitle": true,
+      "sameBodyHtml": true,
+      "samePixels": true,
+      "beforeBodyHash": "68dedbe38f08369a63b4881247e9547f7543ebf789102ec3b7c1b015bdda331b",
+      "afterBodyHash": "68dedbe38f08369a63b4881247e9547f7543ebf789102ec3b7c1b015bdda331b"
+    }
+  }
+}
