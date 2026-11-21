@@ -22,7 +22,8 @@ before(async () => {
       const state = opaque(); const link = request.url.includes("/users/me/");
       if (link && (!input.confirmed || request.headers.authorization !== "Bearer original-session")) return reply(403, { message: "Inicia sesión y confirma." });
       flows.set(state, { provider: input.provider, binding: input.binding, mode: link ? "link" : mode });
-      return reply(200, { authorizationUrl: `https://${input.provider === "google" ? "accounts.google.com/authorize" : "gitlab.com/oauth/authorize"}?state=${state}` });
+      const callbackOrigin = mode === "wrong-origin" ? "http://127.0.0.1:3100" : origin;
+      return reply(200, { authorizationUrl: `https://${input.provider === "google" ? "accounts.google.com/authorize" : "gitlab.com/oauth/authorize"}?state=${state}&redirect_uri=${encodeURIComponent(`${callbackOrigin}/api/oidc/callback/${input.provider}`)}` });
     }
     assert.match(request.headers["x-siare-oidc-diagnostic"] ?? "", /^[a-f0-9-]{36}$/);
     const flow = flows.get(input.state); flows.delete(input.state);
@@ -51,7 +52,7 @@ after(async () => {
     assert.ok(!diagnostics.includes(value), "Diagnostics must not contain sensitive or untrusted data");
 });
 function failureLocation(response, notice, code) {
-  const url = new URL(response.headers.get("location"));
+  const url = new URL(response.headers.get("location"), origin);
   assert.equal(url.origin, origin); assert.equal(url.pathname, "/login"); assert.equal(url.searchParams.get("oidc"), notice);
   if (code) assert.equal(url.searchParams.get("diagnostico"), code);
   assert.equal(url.searchParams.get("referencia"), response.headers.get("x-siare-oidc-diagnostic"));
@@ -74,11 +75,35 @@ test("actual BFF enforces CSRF, input allowlist and missing-context rejection", 
   assert.equal(response.status, 303); failureLocation(response, "contexto", "OIDC_BROWSER_CONTEXT_MISSING");
   assert.equal(upstreamCalls, beforeCalls);
 });
+
+test("actual BFF blocks the shared core's 3100 callback before sending a preview browser to a provider", async () => {
+  mode = "wrong-origin";
+  for (const provider of ["google", "gitlab"]) {
+    const response = await start({ provider });
+    assert.equal(response.status, 502);
+    const body = await response.json();
+    assert.equal(body.code, "OIDC_REDIRECT_CHANGED");
+    assert.equal(body.authorizationUrl, undefined);
+    assert.equal(response.headers.getSetCookie().length, 0);
+  }
+  mode = "login";
+});
+
+test("callback Location stays relative despite spoofed host headers and manipulated return parameters", async () => {
+  for (const target of ["http://127.0.0.1:3100/login", "https://evil.example", "//evil.example", "/\\evil.example"]) {
+    const params = new URLSearchParams({ next: target, returnTo: target, callbackUrl: target });
+    const response = await fetch(`${origin}/api/oidc/callback/google?${params}`, { redirect: "manual", headers: { Host: "evil.example", "X-Forwarded-Host": "127.0.0.1:3100", "X-Forwarded-Proto": "https" } });
+    assert.equal(response.status, 303);
+    assert.ok(response.headers.get("location").startsWith("/login?"));
+    assert.equal(new URL(response.headers.get("location"), origin).origin, origin);
+    assert.ok(!response.headers.get("location").includes(target));
+  }
+});
 test("actual BFF installs only HttpOnly SIARE credentials and consumes flow cookie", async () => {
   mode = "login"; const started = await start(); assert.equal(started.status, 200);
   assert.match(started.headers.get("set-cookie"), /HttpOnly/i); assert.match(started.headers.get("set-cookie"), /SameSite=lax/i);
   const response = await callback(started);
-  assert.equal(response.status, 303); assert.equal(response.headers.get("location"), origin + "/inicio");
+  assert.equal(response.status, 303); assert.equal(new URL(response.headers.get("location"), origin).href, origin + "/inicio");
   assert.equal(response.headers.get("referrer-policy"), "no-referrer");
   const cookies = response.headers.getSetCookie();
   assert.ok(cookies.some(c => c.startsWith("siare_session=") && /HttpOnly/i.test(c)));
@@ -88,7 +113,7 @@ test("actual BFF installs only HttpOnly SIARE credentials and consumes flow cook
 });
 test("actual BFF continues to own MFA without granting an application session", async () => {
   mode = "mfa"; const response = await callback(await start());
-  assert.equal(response.headers.get("location"), origin + "/login/mfa");
+  assert.equal(new URL(response.headers.get("location"), origin).href, origin + "/login/mfa");
   const cookies = response.headers.getSetCookie();
   assert.ok(cookies.some(c => /^siare_mfa=[A-Za-z0-9_-]{43};/.test(c) && /HttpOnly/i.test(c) && /SameSite=strict/i.test(c)));
   for (const key of ["siare_session", "siare_refresh"]) assert.ok(cookies.some(c => c.startsWith(key + "=;") && /Max-Age=0/i.test(c)));
@@ -103,16 +128,16 @@ test("GitLab BFF supports its own callback, SIARE session, MFA and explicit link
   assert.equal(started.status, 200);
   assert.ok(started.headers.getSetCookie().some(c => c.startsWith("siare_oidc_gitlab=") && /HttpOnly/i.test(c)));
   const loggedIn = await callback(started);
-  assert.equal(loggedIn.headers.get("location"), origin + "/inicio");
+  assert.equal(new URL(loggedIn.headers.get("location"), origin).href, origin + "/inicio");
   assert.ok(loggedIn.headers.getSetCookie().some(c => c.startsWith("siare_session=") && /HttpOnly/i.test(c)));
   assert.ok(loggedIn.headers.getSetCookie().some(c => c.startsWith("siare_oidc_gitlab=;") && /Max-Age=0/i.test(c)));
   mode = "mfa";
   const mfa = await callback(await start({ provider: "gitlab" }));
-  assert.equal(mfa.headers.get("location"), origin + "/login/mfa");
+  assert.equal(new URL(mfa.headers.get("location"), origin).href, origin + "/login/mfa");
   assert.ok(!mfa.headers.getSetCookie().some(c => /^siare_(session|refresh)=[^;]/.test(c)));
   assert.equal((await start({ provider: "gitlab", link: true }, "siare_session=original-session")).status, 403);
   const linked = await callback(await start({ provider: "gitlab", link: true, confirmed: true }, "siare_session=original-session"), "siare_session=original-session");
-  assert.equal(linked.headers.get("location"), origin + "/seguridad?oidc=vinculada");
+  assert.equal(new URL(linked.headers.get("location"), origin).href, origin + "/seguridad?oidc=vinculada");
   assert.ok(!linked.headers.getSetCookie().some(c => /^siare_(session|refresh)=/.test(c)));
 });
 test("link requires confirmation and original current session; valid link sets no credentials", async () => {
@@ -120,7 +145,7 @@ test("link requires confirmation and original current session; valid link sets n
   const rejected = await callback(await start({ link: true, confirmed: true }, "siare_session=original-session"), "siare_session=different-session");
   failureLocation(rejected, "fallo", "OIDC_UPSTREAM_REJECTED");
   const response = await callback(await start({ link: true, confirmed: true }, "siare_session=original-session"), "siare_session=original-session");
-  assert.equal(response.headers.get("location"), origin + "/seguridad?oidc=vinculada");
+  assert.equal(new URL(response.headers.get("location"), origin).href, origin + "/seguridad?oidc=vinculada");
   assert.equal(response.headers.getSetCookie().filter(c => c.startsWith("siare_session=") || c.startsWith("siare_refresh=")).length, 0);
 });
 test("callback distinguishes external validation, account collision and invalid upstream responses without exposing payloads", async () => {

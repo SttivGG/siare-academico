@@ -1,3 +1,4 @@
+import { appOrigin } from "../../../../lib/public-origin";
 import { NextRequest, NextResponse } from "next/server";
 import { activityRoute, activityQuery, bodyLimit } from "../../../../lib/activity-policy";
 import { cookieSettings, isAllowedMutation, isAllowedRoute } from "../../../../lib/session-policy";
@@ -18,7 +19,7 @@ async function handle(request: NextRequest, context: Context) {
   const activityParams = activityQuery(path, request.nextUrl.searchParams);
   if (!activityParams) return failure(400, "VALIDATION", "Cursor o límite de página inválido.");
   const mutation = request.method !== "GET";
-  if (mutation && !isAllowedMutation(request.headers, process.env.APP_ORIGIN ?? "http://127.0.0.1:3100")) {
+  if (mutation && !isAllowedMutation(request.headers, appOrigin())) {
     return failure(403, "CSRF", "La solicitud no tiene un origen válido. Recarga la página e inténtalo de nuevo.");
   }
   const publicRoute = path.startsWith("auth/") && path !== "auth/logout";

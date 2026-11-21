@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isProvider, validOpaque, callbackInput, diagnosticCode } from "../../../../../lib/oidc-policy";
-import { appOrigin, flowCookie, oidcHeaders, oidcResult, oidcDiagnostic } from "../../../../../lib/oidc-server";
+import { flowCookie, oidcHeaders, oidcResult, oidcDiagnostic } from "../../../../../lib/oidc-server";
+import { internalLocation } from "../../../../../lib/public-origin";
 import { secureCookie, sessionName } from "../../../../../lib/server-session";
 import { cookieSettings } from "../../../../../lib/session-policy";
 
@@ -17,9 +18,9 @@ export async function GET(request: NextRequest, context: { params: Promise<{ pro
   };
   const failed = (code: string, notice = "fallo", status?: number) => {
     diagnostic.fail(code, status);
-    const destination = new URL("/login", appOrigin());
+    const destination = new URL("/login", "https://internal.invalid");
     destination.search = new URLSearchParams({ oidc: notice, diagnostico: code, referencia: diagnostic.id }).toString();
-    return finish(NextResponse.redirect(destination, 303));
+    return finish(new NextResponse(null, { status: 303, headers: { Location: internalLocation(destination.pathname + destination.search) } }));
   };
   if (!isProvider(provider)) return failed("OIDC_PROVIDER_INVALID");
   const [binding, mode] = (request.cookies.get(flowCookie(provider))?.value ?? "").split(".");

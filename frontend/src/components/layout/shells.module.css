@@ -67,12 +67,8 @@
 .authCard { inline-size: 100%; max-inline-size: 460px; margin: 16px auto 32px; background: var(--glass-paint); border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: var(--radius-panel); padding: clamp(20px, 3vw, 36px); }
 .authCard h1 { font-size: clamp(1.65rem, 1.4rem + .7vw, 2.1rem); margin-block-end: 24px; }
 .authCard hr { margin-block: 24px; border-color: var(--border); }
-.authCard, .authAside, .publicHeader { -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); }
+.authCard, .authAside { -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); }
 .authCard input { font-size: 1rem; }
-.publicShell { max-inline-size: 1400px; margin-inline: auto; min-block-size: 100dvh; padding: 16px; display: flex; flex-direction: column; }
-.publicShell > main { flex: 1; padding-inline: clamp(8px, 4vw, 64px); }
-.publicHeader { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--glass-paint); box-shadow: var(--shadow); border: 1px solid var(--border); border-radius: var(--radius-rail); padding: 16px 24px; }
-.publicFooter { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 24px; color: var(--muted); font-size: .8125rem; }
 @media (max-width: 1199px) { .appShell { gap: 12px; padding: 12px 12px 12px 0; } }
 @media (min-width: 701px) and (max-width: 1199px) {
   .workspaceColumns { grid-template-columns: 224px minmax(0, 1fr); }
@@ -89,9 +85,6 @@
   .authMain { padding: 0; min-block-size: calc(100dvh - 24px); }
   .authCard { margin-block: 8px 24px; }
   .authTools { align-items: end; }
-  .publicHeader { padding: 16px; }
-  .publicHeader > div { inline-size: 100%; justify-content: space-between; }
-  .publicShell { padding: 12px; }
   .workspaceColumns { display: block; padding-block-end: calc(80px + env(safe-area-inset-bottom)); }
   .workspaceColumns > section { display: none; }
   .workspaceColumns[data-panel=sources] > section:first-child, .workspaceColumns[data-panel=learning] > section:nth-child(2), .workspaceColumns[data-panel=study] > section:nth-child(3) { display: block; }
