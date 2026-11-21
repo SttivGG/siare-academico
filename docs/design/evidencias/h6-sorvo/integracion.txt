@@ -1,0 +1,23 @@
+✔ five actual routes forward authorization and cursor; unknown routes stay closed (1955.3664ms)
+✔ malformed pagination, absent session and CSRF never reach upstream (41.5638ms)
+✔ banks over 16 KiB pass intact; byte limits stay scoped even without content-length (48.4736ms)
+✔ retry payloads are forwarded unchanged; refresh keeps HttpOnly session boundaries (33.0839ms)
+✔ ADMIN: scoped controls, protected own access, cancel/Escape without mutation and one versioned confirmation (6341.6489ms)
+✔ SUPERADMIN: scopes, registration, audit, explicit confirmations and concurrent version conflicts (13102.5587ms)
+✔ access and recovery: field errors, retained values, registration closed, invalid token and expired MFA (13803.6129ms)
+✔ security: account identity, unlink safe cancellation, MFA sensitive-action cancellation and failure (7508.2373ms)
+✔ sessions: loading, errors and empty states; failure boundary renders and retry returns to authorized page (10915.8463ms)
+✔ actual BFF enforces CSRF, input allowlist and missing-context rejection (6073.6372ms)
+✔ actual BFF installs only HttpOnly SIARE credentials and consumes flow cookie (96.3679ms)
+✔ actual BFF continues to own MFA without granting an application session (29.696ms)
+✔ GitLab BFF supports its own callback, SIARE session, MFA and explicit linking; Microsoft is rejected (79.8578ms)
+✔ link requires confirmation and original current session; valid link sets no credentials (30.5768ms)
+✔ callback distinguishes external validation, account collision and invalid upstream responses without exposing payloads (140.7816ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52722.123

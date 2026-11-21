@@ -1,0 +1,4151 @@
+{
+  "method": "Computed text colors against rendered backgrounds with glyphs hidden. Visible text nodes, 1440/390, both themes; not a complete WCAG audit.",
+  "contrasts": [
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 5.11,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Un lugar para empezar.",
+      "ratio": 6.73,
+      "target": 3
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 4.98,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 12.34,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Registrarse",
+      "ratio": 4.5,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 9.27,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Entra a tu espacio y sigue aprendiendo.",
+      "ratio": 5.49,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Correo electrónico",
+      "ratio": 10.6,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Contraseña",
+      "ratio": 10.61,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 6.04,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Olvidé mi contraseña",
+      "ratio": 4.93,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Google",
+      "ratio": 11.99,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 5.99,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "GitLab",
+      "ratio": 11.34,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 5.41,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Organiza",
+      "ratio": 12.39,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 6.93,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Comprende",
+      "ratio": 11.43,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 6.64,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Practica",
+      "ratio": 9.73,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 5.07,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 9.33,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Servicio de acceso disponible",
+      "ratio": 4.48,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Mi espacio",
+      "ratio": 6.77,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Hola,",
+      "ratio": 10.55,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Todo empieza con una materia. Dale un lugar a lo que quieres aprender.",
+      "ratio": 6.32,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tus materias, en un solo lugar",
+      "ratio": 11.77,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Crea un espacio para cada asignatura, añade una descripción y mantén a mano lo que estás estudiando.",
+      "ratio": 6.88,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Ir a mis materias",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Crear materia",
+      "ratio": 13.04,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Un espacio a tu ritmo",
+      "ratio": 5.63,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Fuentes · Aprendizaje · Estudio",
+      "ratio": 9.56,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Abre una materia para leer documentos, preparar un banco o continuar una actividad dentro de tu cuaderno.",
+      "ratio": 8.75,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu cuaderno",
+      "ratio": 12.51,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Consulta materias activas o archivadas y encuentra tus fuentes.",
+      "ratio": 7.34,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Explorar materias →",
+      "ratio": 7.53,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu cuenta",
+      "ratio": 12.52,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Revisa tu identidad, el segundo factor y tus vías de acceso.",
+      "ratio": 6.55,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Cuenta y seguridad →",
+      "ratio": 6.54,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tus accesos",
+      "ratio": 9.74,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Consulta las sesiones registradas y cierra las que ya no necesites.",
+      "ratio": 4.91,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "text": "Revisar sesiones →",
+      "ratio": 5.41,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Organiza tu aprendizaje",
+      "ratio": 6.08,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Mis materias",
+      "ratio": 10.44,
+      "target": 3
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Un espacio para cada cosa que estás aprendiendo.",
+      "ratio": 6.32,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "+ Crear materia",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Buscar materias",
+      "ratio": 10.44,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Mostrar",
+      "ratio": 5.45,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Programación avanzada",
+      "ratio": 11.46,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 7.04,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "text": "Abrir materia",
+      "ratio": 6.86,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "← Mis materias",
+      "ratio": 6.12,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Espacio de trabajo",
+      "ratio": 6.2,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Programación avanzada",
+      "ratio": 10.08,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 6.62,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Trabajo en memoria. Una recarga o cierre puede perderlo.",
+      "ratio": 6.32,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Habilitar recuperación local",
+      "ratio": 2.78,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Fuentes",
+      "ratio": 12.01,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Guarda tus apuntes y extrae su texto para consultarlo aquí.",
+      "ratio": 7.53,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Añadir documento",
+      "ratio": 11.11,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Seleccionar documento",
+      "ratio": 11.12,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "PDF, DOCX, PPTX, JPG, JPEG o PNG · Máximo",
+      "ratio": 6.77,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Archivos (",
+      "ratio": 11.78,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Actualizar lista",
+      "ratio": 6.97,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Buscar documentos",
+      "ratio": 11.24,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Todavía no hay documentos en esta materia.",
+      "ratio": 10.88,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu cuaderno de estudio",
+      "ratio": 7.18,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Aprendizaje",
+      "ratio": 12.23,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Un paso más cerca de entender.",
+      "ratio": 11.71,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Reúne tus fuentes, prepara una actividad y aprende con la retroalimentación de tus respuestas.",
+      "ratio": 10.14,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Todavía no has consultado evaluaciones aquí. Los resultados aparecerán cuando Spring evalúe un intento o consultes uno guardado.",
+      "ratio": 6.24,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Lectura",
+      "ratio": 13.04,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Catálogo",
+      "ratio": 10.28,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Preparar banco",
+      "ratio": 12.85,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Intentos",
+      "ratio": 12.58,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Actividades",
+      "ratio": 7.73,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Explorar catálogo",
+      "ratio": 12.53,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu catálogo",
+      "ratio": 11.6,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Actualizar catálogo",
+      "ratio": 5.91,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Todavía no hay actividades. Selecciona un documento READY y prepara un banco revisado.",
+      "ratio": 8.86,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Datos de la materia",
+      "ratio": 12.67,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Mantén tu espacio organizado.",
+      "ratio": 6.29,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Nombre de la materia",
+      "ratio": 8.36,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Descripción (opcional)",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Hasta 2000 caracteres. Puedes cambiarla más adelante.",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Guardar cambios",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Dejará de aparecer entre las activas. Sus datos no se eliminarán.",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Practica a tu ritmo",
+      "ratio": 3.6,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Estudio",
+      "ratio": 7.27,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Elige una herramienta para trabajar en Aprendizaje.",
+      "ratio": 3.49,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Lectura documental",
+      "ratio": 8.68,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Quiz y Crucigrama",
+      "ratio": 5.25,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Editor de banco",
+      "ratio": 7.41,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Consultar intentos",
+      "ratio": 7.73,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Sin fuente seleccionada",
+      "ratio": 4.66,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Borradores y respuestas se conservan al cambiar de herramienta.",
+      "ratio": 4.45,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu cuenta SIARE",
+      "ratio": 6.2,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Seguridad de la cuenta",
+      "ratio": 10.07,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Configura tu segundo factor y conserva una forma segura de recuperar el acceso.",
+      "ratio": 6.32,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Estudiante de cristal",
+      "ratio": 12.24,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "glass-check-c447d926-c681-4c85-b9eb-2b57184e05d1@example.test",
+      "ratio": 7.23,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Revisar sesiones",
+      "ratio": 9.67,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Protección de acceso",
+      "ratio": 7.42,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Autenticación de dos factores",
+      "ratio": 11.22,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Estado MFA:",
+      "ratio": 10.7,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Contraseña actual",
+      "ratio": 12.51,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Configurar aplicación autenticadora",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tus vías de acceso",
+      "ratio": 6.48,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Identidades conectadas",
+      "ratio": 9.38,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Vincula tus propias cuentas de Google o GitLab.com. El correo coincidente nunca conecta cuentas automáticamente.",
+      "ratio": 4.49,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "No tienes identidades conectadas.",
+      "ratio": 10.81,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Puedes vincular una cuenta disponible desde las opciones siguientes.",
+      "ratio": 6.47,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.",
+      "ratio": 5.18,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 5.47,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 6.5,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "← Volver al inicio",
+      "ratio": 5.54,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Tema",
+      "ratio": 6.26,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "SIARE Académico",
+      "ratio": 6.4,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 7.83,
+      "target": 3
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Inicia sesión para entrar a tus materias.",
+      "ratio": 5.66,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Correo electrónico",
+      "ratio": 10.69,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Contraseña",
+      "ratio": 10.72,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 5.58,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "¿Es tu primera visita?",
+      "ratio": 6.53,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Crea tu cuenta",
+      "ratio": 5.64,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Olvidé mi contraseña",
+      "ratio": 5.95,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Continuar con",
+      "ratio": 11.87,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 6,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Continuar con",
+      "ratio": 11.57,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 5.69,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "text": "Un espacio para aprender, a tu ritmo.",
+      "ratio": 8.94,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 5.07,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Un lugar para empezar.",
+      "ratio": 7.39,
+      "target": 3
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 6.51,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 13.16,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Registrarse",
+      "ratio": 5.41,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 9.72,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Entra a tu espacio y sigue aprendiendo.",
+      "ratio": 6.08,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Correo electrónico",
+      "ratio": 11.68,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Contraseña",
+      "ratio": 12.02,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 5.99,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Olvidé mi contraseña",
+      "ratio": 5.69,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Google",
+      "ratio": 13,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 7.01,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "GitLab",
+      "ratio": 12.12,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 5.98,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Organiza",
+      "ratio": 11.03,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 5.51,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Comprende",
+      "ratio": 10.33,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 5.57,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Practica",
+      "ratio": 10.59,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 5.1,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 5.39,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "text": "Servicio de acceso disponible",
+      "ratio": 6.41,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Mi espacio",
+      "ratio": 6.53,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Hola,",
+      "ratio": 11.56,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Todo empieza con una materia. Dale un lugar a lo que quieres aprender.",
+      "ratio": 5.21,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Tus materias, en un solo lugar",
+      "ratio": 10.2,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Crea un espacio para cada asignatura, añade una descripción y mantén a mano lo que estás estudiando.",
+      "ratio": 6.21,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Ir a mis materias",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Crear materia",
+      "ratio": 13.05,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Un espacio a tu ritmo",
+      "ratio": 6.95,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Fuentes · Aprendizaje · Estudio",
+      "ratio": 11.76,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Abre una materia para leer documentos, preparar un banco o continuar una actividad dentro de tu cuaderno.",
+      "ratio": 10.97,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Tu cuaderno",
+      "ratio": 14.75,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Consulta materias activas o archivadas y encuentra tus fuentes.",
+      "ratio": 9.26,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Explorar materias →",
+      "ratio": 8.58,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Tu cuenta",
+      "ratio": 14.78,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Revisa tu identidad, el segundo factor y tus vías de acceso.",
+      "ratio": 9.26,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Cuenta y seguridad →",
+      "ratio": 8.5,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Tus accesos",
+      "ratio": 14.74,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Consulta las sesiones registradas y cierra las que ya no necesites.",
+      "ratio": 9.26,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "text": "Revisar sesiones →",
+      "ratio": 8.5,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Organiza tu aprendizaje",
+      "ratio": 5.94,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Mis materias",
+      "ratio": 10.6,
+      "target": 3
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Un espacio para cada cosa que estás aprendiendo.",
+      "ratio": 5.74,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "+ Crear materia",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Buscar materias",
+      "ratio": 10.92,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Mostrar",
+      "ratio": 11.26,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Programación avanzada",
+      "ratio": 10.84,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 6.54,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "text": "Abrir materia",
+      "ratio": 6.99,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "← Mis materias",
+      "ratio": 6.3,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Programación avanzada",
+      "ratio": 9.52,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 6.16,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Trabajo en memoria. Una recarga o cierre puede perderlo.",
+      "ratio": 5.04,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Habilitar recuperación local",
+      "ratio": 6.54,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Fuentes",
+      "ratio": 14,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Aprendizaje",
+      "ratio": 10.85,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Estudio",
+      "ratio": 13.04,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Aprendizaje",
+      "ratio": 12.71,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Un paso más cerca de entender.",
+      "ratio": 11.68,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Reúne tus fuentes, prepara una actividad y aprende con la retroalimentación de tus respuestas.",
+      "ratio": 11.26,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Todavía no has consultado evaluaciones aquí. Los resultados aparecerán cuando Spring evalúe un intento o consultes uno guardado.",
+      "ratio": 6.93,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Lectura",
+      "ratio": 13.61,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Catálogo",
+      "ratio": 9.36,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Preparar banco",
+      "ratio": 13.53,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Intentos",
+      "ratio": 12.46,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Actividades",
+      "ratio": 7.1,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Explorar catálogo",
+      "ratio": 10.91,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Tu catálogo",
+      "ratio": 11.52,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Actualizar catálogo",
+      "ratio": 6.07,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Todavía no hay actividades. Selecciona un documento READY y prepara un banco revisado.",
+      "ratio": 1.72,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Datos de la materia",
+      "ratio": 15,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Mantén tu espacio organizado.",
+      "ratio": 7.36,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Nombre de la materia",
+      "ratio": 14.11,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Descripción (opcional)",
+      "ratio": 14.24,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Hasta 2000 caracteres. Puedes cambiarla más adelante.",
+      "ratio": 8.94,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Guardar cambios",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Dejará de aparecer entre las activas. Sus datos no se eliminarán.",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Tu cuenta SIARE",
+      "ratio": 6.35,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Seguridad de la cuenta",
+      "ratio": 9.22,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Configura tu segundo factor y conserva una forma segura de recuperar el acceso.",
+      "ratio": 4.88,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Estudiante de cristal",
+      "ratio": 10.73,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "glass-check-c447d926-c681-4c85-b9eb-2b57184e05d1@example.test",
+      "ratio": 6.4,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Revisar sesiones",
+      "ratio": 12.72,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Protección de acceso",
+      "ratio": 6.68,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Autenticación de dos factores",
+      "ratio": 10.53,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Estado MFA:",
+      "ratio": 10.92,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Contraseña actual",
+      "ratio": 11.02,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Configurar aplicación autenticadora",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Tus vías de acceso",
+      "ratio": 8.66,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Identidades conectadas",
+      "ratio": 14.78,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Vincula tus propias cuentas de Google o GitLab.com. El correo coincidente nunca conecta cuentas automáticamente.",
+      "ratio": 9.18,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "No tienes identidades conectadas.",
+      "ratio": 14.88,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Puedes vincular una cuenta disponible desde las opciones siguientes.",
+      "ratio": 9.42,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.",
+      "ratio": 2.23,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 9.26,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 9.26,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "← Volver al inicio",
+      "ratio": 6.74,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Tema",
+      "ratio": 8.93,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "SIARE Académico",
+      "ratio": 7.31,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 10.6,
+      "target": 3
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Inicia sesión para entrar a tus materias.",
+      "ratio": 6.67,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Correo electrónico",
+      "ratio": 12.37,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Contraseña",
+      "ratio": 12.37,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 6.74,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "¿Es tu primera visita?",
+      "ratio": 7.05,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Crea tu cuenta",
+      "ratio": 5.87,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Olvidé mi contraseña",
+      "ratio": 6.67,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Continuar con",
+      "ratio": 13.18,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 7.07,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Continuar con",
+      "ratio": 12.44,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 6.28,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Un espacio para aprender, a tu ritmo.",
+      "ratio": 3.89,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 7.7,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Un lugar para empezar.",
+      "ratio": 8.97,
+      "target": 3
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 7.55,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 7.23,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Registrarse",
+      "ratio": 9.31,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 11.82,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Entra a tu espacio y sigue aprendiendo.",
+      "ratio": 10.03,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Correo electrónico",
+      "ratio": 12.05,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Contraseña",
+      "ratio": 12.56,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 10.66,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Olvidé mi contraseña",
+      "ratio": 8.96,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Google",
+      "ratio": 15.06,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 9.83,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "GitLab",
+      "ratio": 14.85,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 10.44,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Organiza",
+      "ratio": 10.23,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 11.31,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Comprende",
+      "ratio": 12.4,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 10.37,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Practica",
+      "ratio": 11.54,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 10.22,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 16.22,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Servicio de acceso disponible",
+      "ratio": 7.03,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Mi espacio",
+      "ratio": 6.86,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Hola,",
+      "ratio": 8.41,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Todo empieza con una materia. Dale un lugar a lo que quieres aprender.",
+      "ratio": 7.2,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tus materias, en un solo lugar",
+      "ratio": 10.06,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Crea un espacio para cada asignatura, añade una descripción y mantén a mano lo que estás estudiando.",
+      "ratio": 9.24,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Ir a mis materias",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Crear materia",
+      "ratio": 16.72,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Un espacio a tu ritmo",
+      "ratio": 10.31,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Fuentes · Aprendizaje · Estudio",
+      "ratio": 14.14,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Abre una materia para leer documentos, preparar un banco o continuar una actividad dentro de tu cuaderno.",
+      "ratio": 13.63,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu cuaderno",
+      "ratio": 13.45,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Consulta materias activas o archivadas y encuentra tus fuentes.",
+      "ratio": 8.31,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Explorar materias →",
+      "ratio": 7.32,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu cuenta",
+      "ratio": 10.6,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Revisa tu identidad, el segundo factor y tus vías de acceso.",
+      "ratio": 9.59,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Cuenta y seguridad →",
+      "ratio": 7.57,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tus accesos",
+      "ratio": 11.4,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Consulta las sesiones registradas y cierra las que ya no necesites.",
+      "ratio": 8.51,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Revisar sesiones →",
+      "ratio": 8.62,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Organiza tu aprendizaje",
+      "ratio": 6.64,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Mis materias",
+      "ratio": 8.41,
+      "target": 3
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Un espacio para cada cosa que estás aprendiendo.",
+      "ratio": 7.2,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "+ Crear materia",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Buscar materias",
+      "ratio": 8.38,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Mostrar",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Programación avanzada",
+      "ratio": 11.11,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 12.57,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Abrir materia",
+      "ratio": 10.99,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "← Mis materias",
+      "ratio": 6.15,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Espacio de trabajo",
+      "ratio": 6.42,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Programación avanzada",
+      "ratio": 8.69,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 7,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Trabajo en memoria. Una recarga o cierre puede perderlo.",
+      "ratio": 7.22,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Habilitar recuperación local",
+      "ratio": 6.2,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Fuentes",
+      "ratio": 8.69,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Guarda tus apuntes y extrae su texto para consultarlo aquí.",
+      "ratio": 7.72,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Añadir documento",
+      "ratio": 9.97,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Seleccionar documento",
+      "ratio": 9.5,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "PDF, DOCX, PPTX, JPG, JPEG o PNG · Máximo",
+      "ratio": 9.64,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Archivos (",
+      "ratio": 9.37,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Actualizar lista",
+      "ratio": 8.87,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Buscar documentos",
+      "ratio": 11.59,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Todavía no hay documentos en esta materia.",
+      "ratio": 8.36,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu cuaderno de estudio",
+      "ratio": 8.66,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Aprendizaje",
+      "ratio": 12.55,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Un paso más cerca de entender.",
+      "ratio": 9.7,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Reúne tus fuentes, prepara una actividad y aprende con la retroalimentación de tus respuestas.",
+      "ratio": 9.98,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Todavía no has consultado evaluaciones aquí. Los resultados aparecerán cuando Spring evalúe un intento o consultes uno guardado.",
+      "ratio": 8.6,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Lectura",
+      "ratio": 16.3,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Catálogo",
+      "ratio": 10.65,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Preparar banco",
+      "ratio": 15.74,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Intentos",
+      "ratio": 15.57,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Actividades",
+      "ratio": 4.27,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Explorar catálogo",
+      "ratio": 11.98,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu catálogo",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Actualizar catálogo",
+      "ratio": 10.96,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Todavía no hay actividades. Selecciona un documento READY y prepara un banco revisado.",
+      "ratio": 7.47,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Datos de la materia",
+      "ratio": 14.39,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Mantén tu espacio organizado.",
+      "ratio": 13.75,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Nombre de la materia",
+      "ratio": 15.88,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Descripción (opcional)",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Hasta 2000 caracteres. Puedes cambiarla más adelante.",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Guardar cambios",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Dejará de aparecer entre las activas. Sus datos no se eliminarán.",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Practica a tu ritmo",
+      "ratio": 6.98,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Estudio",
+      "ratio": 10.28,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Elige una herramienta para trabajar en Aprendizaje.",
+      "ratio": 8.68,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Lectura documental",
+      "ratio": 11.07,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Quiz y Crucigrama",
+      "ratio": 8.67,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Editor de banco",
+      "ratio": 12.56,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Consultar intentos",
+      "ratio": 12.96,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Sin fuente seleccionada",
+      "ratio": 9.15,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Borradores y respuestas se conservan al cambiar de herramienta.",
+      "ratio": 8.85,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu cuenta SIARE",
+      "ratio": 6.86,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Seguridad de la cuenta",
+      "ratio": 8.41,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Configura tu segundo factor y conserva una forma segura de recuperar el acceso.",
+      "ratio": 7.2,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Estudiante de cristal",
+      "ratio": 10.08,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "glass-check-c447d926-c681-4c85-b9eb-2b57184e05d1@example.test",
+      "ratio": 8.52,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Revisar sesiones",
+      "ratio": 14.59,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Protección de acceso",
+      "ratio": 7.43,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Autenticación de dos factores",
+      "ratio": 13.39,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Estado MFA:",
+      "ratio": 10.61,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Contraseña actual",
+      "ratio": 13.73,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Configurar aplicación autenticadora",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tus vías de acceso",
+      "ratio": 7.94,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Identidades conectadas",
+      "ratio": 11.68,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Vincula tus propias cuentas de Google o GitLab.com. El correo coincidente nunca conecta cuentas automáticamente.",
+      "ratio": 9.51,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "No tienes identidades conectadas.",
+      "ratio": 13.13,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Puedes vincular una cuenta disponible desde las opciones siguientes.",
+      "ratio": 11.31,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.",
+      "ratio": 8.11,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 10.85,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 11.95,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "← Volver al inicio",
+      "ratio": 8.71,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tema",
+      "ratio": 10.98,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "SIARE Académico",
+      "ratio": 8.43,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 12.04,
+      "target": 3
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Inicia sesión para entrar a tus materias.",
+      "ratio": 10.17,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Correo electrónico",
+      "ratio": 12,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Contraseña",
+      "ratio": 12.69,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 10.91,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "¿Es tu primera visita?",
+      "ratio": 10.66,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Crea tu cuenta",
+      "ratio": 8.8,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Olvidé mi contraseña",
+      "ratio": 8.83,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Continuar con",
+      "ratio": 15.02,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 10.25,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Continuar con",
+      "ratio": 15.4,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 10.96,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Un espacio para aprender, a tu ritmo.",
+      "ratio": 13.85,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 8.28,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Un lugar para empezar.",
+      "ratio": 11.09,
+      "target": 3
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 10.55,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 7.62,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Registrarse",
+      "ratio": 8.8,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 13.11,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Entra a tu espacio y sigue aprendiendo.",
+      "ratio": 11.15,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Correo electrónico",
+      "ratio": 13.65,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Contraseña",
+      "ratio": 14.02,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 12.04,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Olvidé mi contraseña",
+      "ratio": 10.02,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Google",
+      "ratio": 15.6,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 11.32,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "GitLab",
+      "ratio": 14.79,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 10.85,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Organiza",
+      "ratio": 12.55,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 10.58,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Comprende",
+      "ratio": 12.69,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 10.97,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Practica",
+      "ratio": 12.64,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 11.03,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 15.02,
+      "target": 4.5
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "text": "Servicio de acceso disponible",
+      "ratio": 15.18,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Mi espacio",
+      "ratio": 9.65,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Hola,",
+      "ratio": 13.26,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Todo empieza con una materia. Dale un lugar a lo que quieres aprender.",
+      "ratio": 9.8,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tus materias, en un solo lugar",
+      "ratio": 12.52,
+      "target": 3
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Crea un espacio para cada asignatura, añade una descripción y mantén a mano lo que estás estudiando.",
+      "ratio": 10.89,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Ir a mis materias",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Crear materia",
+      "ratio": 15.94,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Un espacio a tu ritmo",
+      "ratio": 9.44,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Fuentes · Aprendizaje · Estudio",
+      "ratio": 12.4,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Abre una materia para leer documentos, preparar un banco o continuar una actividad dentro de tu cuaderno.",
+      "ratio": 12.36,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu cuaderno",
+      "ratio": 15.37,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Consulta materias activas o archivadas y encuentra tus fuentes.",
+      "ratio": 13.45,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Explorar materias →",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu cuenta",
+      "ratio": 15.37,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Revisa tu identidad, el segundo factor y tus vías de acceso.",
+      "ratio": 13.45,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Cuenta y seguridad →",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tus accesos",
+      "ratio": 15.37,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Consulta las sesiones registradas y cierra las que ya no necesites.",
+      "ratio": 13.45,
+      "target": 4.5
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "text": "Revisar sesiones →",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Organiza tu aprendizaje",
+      "ratio": 9.11,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Mis materias",
+      "ratio": 13.14,
+      "target": 3
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Un espacio para cada cosa que estás aprendiendo.",
+      "ratio": 10.08,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "+ Crear materia",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Buscar materias",
+      "ratio": 12.51,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Mostrar",
+      "ratio": 12.87,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Programación avanzada",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 9.94,
+      "target": 4.5
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "text": "Abrir materia",
+      "ratio": 8.99,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "← Mis materias",
+      "ratio": 9.54,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Programación avanzada",
+      "ratio": 12.62,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Fuentes y actividades para estudiar.",
+      "ratio": 10.71,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Trabajo en memoria. Una recarga o cierre puede perderlo.",
+      "ratio": 9.81,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Habilitar recuperación local",
+      "ratio": 10.44,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Fuentes",
+      "ratio": 16.96,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Aprendizaje",
+      "ratio": 11.55,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Estudio",
+      "ratio": 16.89,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Aprendizaje",
+      "ratio": 12.2,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Un paso más cerca de entender.",
+      "ratio": 9.53,
+      "target": 3
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Reúne tus fuentes, prepara una actividad y aprende con la retroalimentación de tus respuestas.",
+      "ratio": 9.84,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Todavía no has consultado evaluaciones aquí. Los resultados aparecerán cuando Spring evalúe un intento o consultes uno guardado.",
+      "ratio": 8.45,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Lectura",
+      "ratio": 14.95,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Catálogo",
+      "ratio": 8.73,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Preparar banco",
+      "ratio": 14.7,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Intentos",
+      "ratio": 13.92,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Actividades",
+      "ratio": 5.2,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Explorar catálogo",
+      "ratio": 11.82,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu catálogo",
+      "ratio": 13.46,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Actualizar catálogo",
+      "ratio": 9.71,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Todavía no hay actividades. Selecciona un documento READY y prepara un banco revisado.",
+      "ratio": 1.43,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Datos de la materia",
+      "ratio": 17.25,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Mantén tu espacio organizado.",
+      "ratio": 14.21,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Nombre de la materia",
+      "ratio": 16.33,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Descripción (opcional)",
+      "ratio": 16.33,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Hasta 2000 caracteres. Puedes cambiarla más adelante.",
+      "ratio": 13.85,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Guardar cambios",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Dejará de aparecer entre las activas. Sus datos no se eliminarán.",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Archivar materia",
+      "ratio": null,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu cuenta SIARE",
+      "ratio": 9.35,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Seguridad de la cuenta",
+      "ratio": 12.29,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Configura tu segundo factor y conserva una forma segura de recuperar el acceso.",
+      "ratio": 9.66,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Estudiante de cristal",
+      "ratio": 13.07,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "glass-check-c447d926-c681-4c85-b9eb-2b57184e05d1@example.test",
+      "ratio": 10.93,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Revisar sesiones",
+      "ratio": 15.45,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Protección de acceso",
+      "ratio": 8.84,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Autenticación de dos factores",
+      "ratio": 12.64,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Estado MFA:",
+      "ratio": 8.61,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Contraseña actual",
+      "ratio": 11.66,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Configurar aplicación autenticadora",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tus vías de acceso",
+      "ratio": 10.26,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Identidades conectadas",
+      "ratio": 15.01,
+      "target": 3
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Vincula tus propias cuentas de Google o GitLab.com. El correo coincidente nunca conecta cuentas automáticamente.",
+      "ratio": 13.03,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "No tienes identidades conectadas.",
+      "ratio": 16.67,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Puedes vincular una cuenta disponible desde las opciones siguientes.",
+      "ratio": 14.16,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.",
+      "ratio": 2.87,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 14.37,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Requiere haber iniciado sesión en los últimos cinco minutos.",
+      "ratio": 14.37,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "← Volver al inicio",
+      "ratio": 9.14,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Tema",
+      "ratio": 12.77,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "SIARE Académico",
+      "ratio": 8.8,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Qué bueno verte de nuevo",
+      "ratio": 12.57,
+      "target": 3
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Inicia sesión para entrar a tus materias.",
+      "ratio": 10.85,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Correo electrónico",
+      "ratio": 13.09,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Contraseña",
+      "ratio": 13.87,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Usa la contraseña de tu cuenta SIARE.",
+      "ratio": 11.37,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "¿Es tu primera visita?",
+      "ratio": 12.04,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Crea tu cuenta",
+      "ratio": 9.2,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Olvidé mi contraseña",
+      "ratio": 9.13,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Continuar con",
+      "ratio": 14.14,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 9.16,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Continuar con",
+      "ratio": 15.13,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 10.73,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "text": "Un espacio para aprender, a tu ritmo.",
+      "ratio": 12.46,
+      "target": 4.5
+    }
+  ],
+  "failures": [
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "text": "Servicio de acceso disponible",
+      "ratio": 4.48,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Habilitar recuperación local",
+      "ratio": 2.78,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Practica a tu ritmo",
+      "ratio": 3.6,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Elige una herramienta para trabajar en Aprendizaje.",
+      "ratio": 3.49,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "text": "Borradores y respuestas se conservan al cambiar de herramienta.",
+      "ratio": 4.45,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "text": "Vincula tus propias cuentas de Google o GitLab.com. El correo coincidente nunca conecta cuentas automáticamente.",
+      "ratio": 4.49,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "text": "Todavía no hay actividades. Selecciona un documento READY y prepara un banco revisado.",
+      "ratio": 1.72,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "text": "Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.",
+      "ratio": 2.23,
+      "target": 4.5
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "text": "Un espacio para aprender, a tu ritmo.",
+      "ratio": 3.89,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "text": "Actividades",
+      "ratio": 4.27,
+      "target": 4.5
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "text": "Todavía no hay actividades. Selecciona un documento READY y prepara un banco revisado.",
+      "ratio": 1.43,
+      "target": 4.5
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "text": "Confirmo que quiero vincular a mi cuenta SIARE la identidad que seleccionaré.",
+      "ratio": 2.87,
+      "target": 4.5
+    }
+  ]
+}

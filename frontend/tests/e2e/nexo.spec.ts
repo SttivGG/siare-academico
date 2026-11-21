@@ -127,7 +127,7 @@ test('system theme without JavaScript, blocked storage and cross-tab synchroniza
   const noJs = await browser.newContext({ javaScriptEnabled: false, colorScheme: 'dark', baseURL });
   try {
     const page = await noJs.newPage(); await page.goto('/login');
-    expect(await page.locator('body').evaluate(el => getComputedStyle(el).color)).toBe('rgb(241, 239, 237)');
+    expect(await page.locator('body').evaluate(el => getComputedStyle(el).color)).toBe('rgb(245, 245, 245)');
     await page.screenshot({ path: `${output}/sin-js-dark-${info.project.name}.png` });
   } finally { await noJs.close(); }
   const context = await browser.newContext({ baseURL });
