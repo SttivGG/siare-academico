@@ -1,0 +1,667 @@
+{
+  "implementationCommit": "4442b69064a116b820051a5470ec188383e585aa",
+  "origin": "http://127.0.0.1:3107",
+  "browser": "Chromium 157.0.8103.79",
+  "unit": {
+    "passed": 44,
+    "failed": 0,
+    "command": "npm.cmd test"
+  },
+  "typecheck": {
+    "passed": true,
+    "command": "npm.cmd run typecheck"
+  },
+  "build": {
+    "passed": true,
+    "framework": "Next.js 16.4.6",
+    "dockerNode": "24.22.2",
+    "command": "npm.cmd run build; Dockerfile also runs tests and typecheck"
+  },
+  "bff": {
+    "passed": 4,
+    "failed": 0,
+    "command": "npm.cmd run test:integration:activities",
+    "upstream": "controlled local HTTP server; actual Next handlers"
+  },
+  "playwright": {
+    "command": "npx.cmd playwright test --reporter=list,json",
+    "stats": {
+      "startTime": "2026-11-20T13:53:22.687Z",
+      "duration": 271752.708,
+      "expected": 72,
+      "skipped": 2,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "file": "frontend/tests/e2e/activities.spec.ts",
+        "title": "document READY → reviewed bank → quiz and crossword → authorized results",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 10176,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/activities.spec.ts",
+        "title": "document READY → reviewed bank → quiz and crossword → authorized results",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 8873,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/activities.spec.ts",
+        "title": "real catalog pagination, large banks, ownership, archival and renewable session",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 3848,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/activities.spec.ts",
+        "title": "real catalog pagination, large banks, ownership, archival and renewable session",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 4071,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-02: source-specific drafts and human review cannot migrate to another source",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 7676,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-02: source-specific drafts and human review cannot migrate to another source",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 8029,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-03: Quiz answers and current question survive tools; activities do not share answers",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1734,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-03: Quiz answers and current question survive tools; activities do not share answers",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1695,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-04: crossword cells and direction survive reading, tools and mobile viewport",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1642,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-04: crossword cells and direction survive reading, tools and mobile viewport",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1528,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-09: encrypted recovery restores crossword cells, direction and the reviewed manual bank",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2538,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-09: encrypted recovery restores crossword cells, direction and the reviewed manual bank",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2568,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: denied writes never announce saved and retain the current bank",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1566,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: denied writes never announce saved and retain the current bank",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1353,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-05: theme and responsive panel changes preserve the reviewed bank",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1477,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-05: theme and responsive panel changes preserve the reviewed bank",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1376,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-06/09: Spring saves, HTTP response is lost, reload restores the exact frozen retry",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 4291,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-06/09: Spring saves, HTTP response is lost, reload restores the exact frozen retry",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 4245,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-07: double click and late response remain associated with the original activity",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1855,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-07: double click and late response remain associated with the original activity",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1573,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-08: cancelling navigation preserves draft and answers without sending or archiving",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1326,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-08: cancelling navigation preserves draft and answers without sending or archiving",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1388,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-08/09: an authorized internal departure and return preserve the in-memory bank",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1542,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-08/09: an authorized internal departure and return preserve the in-memory bank",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1362,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-09: wrong phrase, corrupt copy and denied storage preserve the live draft",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2902,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-09: wrong phrase, corrupt copy and denied storage preserve the live draft",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2902,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-10: logout purges account A copies and memory before account B enters",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2590,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-10: logout purges account A copies and memory before account B enters",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2567,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: logout reports a denied purge while closing the server session",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1845,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: logout reports a denied purge while closing the server session",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1632,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: competing tabs cannot overwrite a saved copy",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2505,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: competing tabs cannot overwrite a saved copy",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2542,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-10: a retained encrypted A copy is unavailable to B and restores only after A reauthenticates",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 3132,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "ST-10: a retained encrypted A copy is unavailable to B and restores only after A reauthenticates",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2782,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "DT-01: real catalog contract has no date and never renders a fictitious one",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1622,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "DT-01: real catalog contract has no date and never renders a fictitious one",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1009,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: expiry and older versions are handled without restoring or overwriting live work",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2552,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: expiry and older versions are handled without restoring or overwriting live work",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2570,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: session expiry preserves a locked copy for the same authenticated account",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2423,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "recovery: session expiry preserves a locked copy for the same authenticated account",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2768,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "visual A: eight academic states in both themes at all five requested sizes",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 19803,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "visual A: eight academic states in both themes at all five requested sizes",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 18948,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "documental: scanned READY source displays its OCR warning in the central reader",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 7090,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "documental: scanned READY source displays its OCR warning in the central reader",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 5136,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "documental: uploaded quarantine becomes FAILED safely and offers an explicit retry",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 6757,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/cuaderno.spec.ts",
+        "title": "documental: uploaded quarantine becomes FAILED safely and offers an explicit retry",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 6530,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/identity.spec.ts",
+        "title": "renews from HttpOnly refresh cookie, enforces admin denial and revokes other sessions",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2620,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/identity.spec.ts",
+        "title": "renews from HttpOnly refresh cookie, enforces admin denial and revokes other sessions",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 2379,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/mfa.spec.ts",
+        "title": "enrolls using local QR, keeps challenge HttpOnly, recovers once and preserves USER boundaries",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 3677,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/mfa.spec.ts",
+        "title": "enrolls using local QR, keeps challenge HttpOnly, recovers once and preserves USER boundaries",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 3451,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/mfa.spec.ts",
+        "title": "password recovery shows uniform response, CSRF protection and missing-link feedback",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 808,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/mfa.spec.ts",
+        "title": "password recovery shows uniform response, CSRF protection and missing-link feedback",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 770,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo-recovery.spec.ts",
+        "title": "H6-3 ST-01: switching Bank/Catalog/Bank must preserve the draft and review",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1118,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo-recovery.spec.ts",
+        "title": "H6-3 ST-01: switching Bank/Catalog/Bank must preserve the draft and review",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1253,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "Nexo global: route captures, both themes, eight viewports and real USER authorization",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 18974,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "Nexo global: route captures, both themes, eight viewports and real USER authorization",
+        "project": "mobile",
+        "status": "skipped",
+        "durationMs": 196,
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "La matriz interna ya incluye móvil y tableta.",
+            "location": {
+              "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-3\\frontend\\tests\\e2e\\nexo.spec.ts",
+              "line": 19,
+              "column": 8
+            }
+          }
+        ]
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "theme, account and responsive navigation preserve the live form, academic draft",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 2322,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "theme, account and responsive navigation preserve the live form, academic draft",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1826,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 3525,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 1905,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "Nexo semantic contrast, keyboard focus, reduced motion and forced colors",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 878,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/nexo.spec.ts",
+        "title": "Nexo semantic contrast, keyboard focus, reduced motion and forced colors",
+        "project": "mobile",
+        "status": "skipped",
+        "durationMs": 207,
+        "annotations": [
+          {
+            "type": "skip",
+            "description": "Mismas propiedades CSS en ambos proyectos.",
+            "location": {
+              "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-3\\frontend\\tests\\e2e\\nexo.spec.ts",
+              "line": 136,
+              "column": 8
+            }
+          }
+        ]
+      },
+      {
+        "file": "frontend/tests/e2e/oidc.spec.ts",
+        "title": "unconfigured providers are disabled, callbacks fail safely and CSRF is enforced",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 1060,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/oidc.spec.ts",
+        "title": "unconfigured providers are disabled, callbacks fail safely and CSRF is enforced",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 876,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/oidc.spec.ts",
+        "title": "registration offers Google and GitLab and email conflicts direct users to an authenticated link",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 887,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/oidc.spec.ts",
+        "title": "registration offers Google and GitLab and email conflicts direct users to an authenticated link",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 696,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/oidc.spec.ts",
+        "title": "GitLab buttons start the selected provider from login and registration and report failures accessibly",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 776,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/oidc.spec.ts",
+        "title": "GitLab buttons start the selected provider from login and registration and report failures accessibly",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 683,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/phase-one.spec.ts",
+        "title": "registro, login, creación, edición, archivo y cierre de sesión desde la interfaz",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 3079,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/phase-one.spec.ts",
+        "title": "registro, login, creación, edición, archivo y cierre de sesión desde la interfaz",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 3417,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/phase-one.spec.ts",
+        "title": "el BFF rechaza operaciones sin protección CSRF y sesiones inválidas",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 706,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/phase-one.spec.ts",
+        "title": "el BFF rechaza operaciones sin protección CSRF y sesiones inválidas",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 632,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/phase-two.spec.ts",
+        "title": "carga, procesamiento, texto y descarga desde la materia",
+        "project": "desktop",
+        "status": "passed",
+        "durationMs": 14412,
+        "annotations": []
+      },
+      {
+        "file": "frontend/tests/e2e/phase-two.spec.ts",
+        "title": "carga, procesamiento, texto y descarga desde la materia",
+        "project": "mobile",
+        "status": "passed",
+        "durationMs": 13953,
+        "annotations": []
+      }
+    ]
+  },
+  "manualUnverified": [
+    "Firefox/WebKit",
+    "screen reader",
+    "real browser zoom 200%; font scaling tested",
+    "physical mobile virtual keyboard",
+    "external Google/GitLab login",
+    "external SMTP delivery",
+    "temporal PROCESSING and dark FAILED captures"
+  ],
+  "officialDeploymentChecks": {
+    "passed": true,
+    "originalServicesPreserved": 9,
+    "habitualOrigin": "http://127.0.0.1:3100",
+    "browserSmokePassed": true
+  },
+  "historicalCorrections": "During development, real catalog DTO, state lifetime and frozen-envelope recovery were fixed. Harness waits and the logout alert selector were corrected without dropping assertions. This final complete run has no failed or flaky cases."
+}

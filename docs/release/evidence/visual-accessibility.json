@@ -1,0 +1,551 @@
+{
+  "method": "Rendered samples with text hidden; transparency 72%, blur 0px, veil 0%; both themes, six backgrounds, 1440/390. Sampling is not WCAG certification.",
+  "contrastSamples": 912,
+  "contrastFailures": [],
+  "appearance": {
+    "scope": "production Next with isolated in-memory upstream; no real authorization claim",
+    "checks": [
+      {
+        "theme": "light",
+        "expanded": false,
+        "width": 1920,
+        "height": 1080,
+        "file": "appearance-light-collapsed-1920x1080.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": true,
+        "width": 1920,
+        "height": 1080,
+        "file": "appearance-light-expanded-1920x1080.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": false,
+        "width": 1440,
+        "height": 900,
+        "file": "appearance-light-collapsed-1440x900.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": true,
+        "width": 1440,
+        "height": 900,
+        "file": "appearance-light-expanded-1440x900.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": false,
+        "width": 1024,
+        "height": 768,
+        "file": "appearance-light-collapsed-1024x768.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": true,
+        "width": 1024,
+        "height": 768,
+        "file": "appearance-light-expanded-1024x768.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": false,
+        "width": 768,
+        "height": 1024,
+        "file": "appearance-light-collapsed-768x1024.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": true,
+        "width": 768,
+        "height": 1024,
+        "file": "appearance-light-expanded-768x1024.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": false,
+        "width": 390,
+        "height": 844,
+        "file": "appearance-light-collapsed-390x844.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": true,
+        "width": 390,
+        "height": 844,
+        "file": "appearance-light-expanded-390x844.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": false,
+        "width": 320,
+        "height": 844,
+        "file": "appearance-light-collapsed-320x844.jpg"
+      },
+      {
+        "theme": "light",
+        "expanded": true,
+        "width": 320,
+        "height": 844,
+        "file": "appearance-light-expanded-320x844.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": false,
+        "width": 1920,
+        "height": 1080,
+        "file": "appearance-dark-collapsed-1920x1080.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": true,
+        "width": 1920,
+        "height": 1080,
+        "file": "appearance-dark-expanded-1920x1080.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": false,
+        "width": 1440,
+        "height": 900,
+        "file": "appearance-dark-collapsed-1440x900.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": true,
+        "width": 1440,
+        "height": 900,
+        "file": "appearance-dark-expanded-1440x900.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": false,
+        "width": 1024,
+        "height": 768,
+        "file": "appearance-dark-collapsed-1024x768.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": true,
+        "width": 1024,
+        "height": 768,
+        "file": "appearance-dark-expanded-1024x768.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": false,
+        "width": 768,
+        "height": 1024,
+        "file": "appearance-dark-collapsed-768x1024.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": true,
+        "width": 768,
+        "height": 1024,
+        "file": "appearance-dark-expanded-768x1024.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": false,
+        "width": 390,
+        "height": 844,
+        "file": "appearance-dark-collapsed-390x844.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": true,
+        "width": 390,
+        "height": 844,
+        "file": "appearance-dark-expanded-390x844.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": false,
+        "width": 320,
+        "height": 844,
+        "file": "appearance-dark-collapsed-320x844.jpg"
+      },
+      {
+        "theme": "dark",
+        "expanded": true,
+        "width": 320,
+        "height": 844,
+        "file": "appearance-dark-expanded-320x844.jpg"
+      }
+    ],
+    "errors": []
+  },
+  "glassOptics": {
+    "method": "Hide descendants without changing the real surface; replace only the photographic backdrop with a color probe and compare RGB in an interior strip. Opaque surfaces give zero transmission.",
+    "optics": [
+      {
+        "name": "landing",
+        "theme": "light",
+        "width": 1440,
+        "rect": {
+          "x": 862.40625,
+          "y": 318.5,
+          "width": 520,
+          "height": 745.640625,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 30.43319209039548,
+        "changedFraction": 0.766454802259887
+      },
+      {
+        "name": "inicio",
+        "theme": "light",
+        "width": 1440,
+        "rect": {
+          "x": 96,
+          "y": 286.3125,
+          "width": 1320,
+          "height": 314.53125,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 53.36515985324947,
+        "changedFraction": 0.971501572327044
+      },
+      {
+        "name": "materias",
+        "theme": "light",
+        "width": 1440,
+        "rect": {
+          "x": 96,
+          "y": 384,
+          "width": 426.65625,
+          "height": 238,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 52.42610229276896,
+        "changedFraction": 0.8984567901234568
+      },
+      {
+        "name": "cuaderno",
+        "theme": "light",
+        "width": 1440,
+        "rect": {
+          "x": 360,
+          "y": 289.96875,
+          "width": 808,
+          "height": 655.84375,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 47.18280701754386,
+        "changedFraction": 0.989671052631579
+      },
+      {
+        "name": "seguridad",
+        "theme": "light",
+        "width": 1440,
+        "rect": {
+          "x": 96,
+          "y": 317.8125,
+          "width": 1320,
+          "height": 106,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 53.444837526205454,
+        "changedFraction": 0.9717767295597485
+      },
+      {
+        "name": "login",
+        "theme": "light",
+        "width": 1440,
+        "rect": {
+          "x": 793.671875,
+          "y": 150,
+          "width": 460,
+          "height": 818.296875,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 46.31096278317152,
+        "changedFraction": 0.9655339805825243
+      },
+      {
+        "name": "landing",
+        "theme": "light",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 603.171875,
+          "width": 350,
+          "height": 800.484375,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 18.473454746136866,
+        "changedFraction": 0.7797461368653421
+      },
+      {
+        "name": "inicio",
+        "theme": "light",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 285.78125,
+          "width": 350,
+          "height": 644.875,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 47.12621412803532,
+        "changedFraction": 0.9498344370860927
+      },
+      {
+        "name": "materias",
+        "theme": "light",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 583.15625,
+          "width": 350,
+          "height": 238,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 49.01037527593819,
+        "changedFraction": 0.9446467991169978
+      },
+      {
+        "name": "cuaderno",
+        "theme": "light",
+        "width": 390,
+        "rect": {
+          "x": 24,
+          "y": 267.984375,
+          "width": 342,
+          "height": 857.65625,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 45.733503401360544,
+        "changedFraction": 0.952437641723356
+      },
+      {
+        "name": "seguridad",
+        "theme": "light",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 285.78125,
+          "width": 350,
+          "height": 216.78125,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 50.261313465783665,
+        "changedFraction": 0.9516004415011038
+      },
+      {
+        "name": "login",
+        "theme": "light",
+        "width": 390,
+        "rect": {
+          "x": 12,
+          "y": 130,
+          "width": 366,
+          "height": 779.015625,
+          "color": "rgba(255, 255, 255, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 46.98904612159329,
+        "changedFraction": 0.944496855345912
+      },
+      {
+        "name": "landing",
+        "theme": "dark",
+        "width": 1440,
+        "rect": {
+          "x": 862.40625,
+          "y": 318.5,
+          "width": 520,
+          "height": 745.640625,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 36.06730225988701,
+        "changedFraction": 0.7962570621468926
+      },
+      {
+        "name": "inicio",
+        "theme": "dark",
+        "width": 1440,
+        "rect": {
+          "x": 96,
+          "y": 286.3125,
+          "width": 1320,
+          "height": 314.53125,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 91.38313679245283,
+        "changedFraction": 0.9739124737945493
+      },
+      {
+        "name": "materias",
+        "theme": "dark",
+        "width": 1440,
+        "rect": {
+          "x": 96,
+          "y": 384,
+          "width": 426.65625,
+          "height": 238,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 92.0703262786596,
+        "changedFraction": 0.9135361552028218
+      },
+      {
+        "name": "cuaderno",
+        "theme": "dark",
+        "width": 1440,
+        "rect": {
+          "x": 360,
+          "y": 289.96875,
+          "width": 808,
+          "height": 655.84375,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 88.45739035087719,
+        "changedFraction": 1
+      },
+      {
+        "name": "seguridad",
+        "theme": "dark",
+        "width": 1440,
+        "rect": {
+          "x": 96,
+          "y": 317.8125,
+          "width": 1320,
+          "height": 106,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 90.99397274633124,
+        "changedFraction": 0.975524109014675
+      },
+      {
+        "name": "login",
+        "theme": "dark",
+        "width": 1440,
+        "rect": {
+          "x": 793.671875,
+          "y": 150,
+          "width": 460,
+          "height": 818.296875,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 89.1340210355987,
+        "changedFraction": 0.9526294498381876
+      },
+      {
+        "name": "landing",
+        "theme": "dark",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 603.171875,
+          "width": 350,
+          "height": 800.484375,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 25.930132450331126,
+        "changedFraction": 0.8447019867549669
+      },
+      {
+        "name": "inicio",
+        "theme": "dark",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 285.78125,
+          "width": 350,
+          "height": 644.875,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 85.38918322295805,
+        "changedFraction": 0.9463024282560707
+      },
+      {
+        "name": "materias",
+        "theme": "dark",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 583.15625,
+          "width": 350,
+          "height": 238,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 87.59100441501104,
+        "changedFraction": 0.9440397350993377
+      },
+      {
+        "name": "cuaderno",
+        "theme": "dark",
+        "width": 390,
+        "rect": {
+          "x": 24,
+          "y": 267.984375,
+          "width": 342,
+          "height": 857.65625,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 89.81009070294785,
+        "changedFraction": 0.9522108843537415
+      },
+      {
+        "name": "seguridad",
+        "theme": "dark",
+        "width": 390,
+        "rect": {
+          "x": 20,
+          "y": 285.78125,
+          "width": 350,
+          "height": 216.78125,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 87.07533112582782,
+        "changedFraction": 0.9485651214128036
+      },
+      {
+        "name": "login",
+        "theme": "dark",
+        "width": 390,
+        "rect": {
+          "x": 12,
+          "y": 130,
+          "width": 366,
+          "height": 779.015625,
+          "color": "rgba(7, 9, 12, 0.28)",
+          "blur": "blur(10px)"
+        },
+        "meanChannelDifference": 89.01336477987421,
+        "changedFraction": 0.9515723270440252
+      }
+    ]
+  },
+  "manualPending": [
+    "Firefox",
+    "WebKit",
+    "screen reader",
+    "real browser zoom",
+    "physical devices"
+  ]
+}

@@ -1,1 +1,2 @@
-export default function Loading() { return <p role="status">Cargando sesiones…</p>; }
+import { LoadingState } from "../../../components/ui/primitives";
+export default function Loading() { return <LoadingState>Cargando sesiones…</LoadingState>; }

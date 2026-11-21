@@ -1,0 +1,22 @@
+{
+  "codeCommit": "2431547c19a584975c6b3bdfb0e8630fa5c9398f",
+  "branch": "feat/h6-landing-access",
+  "unitTests": 45,
+  "unitPassed": 45,
+  "build": "passed",
+  "typecheck": "passed",
+  "playwright": {
+    "passed": 11,
+    "skipped": 1,
+    "skipReason": "The desktop matrix already includes tablet and mobile"
+  },
+  "geometryStates": 28,
+  "maximumTabShift": 0,
+  "contrastSamples": 216,
+  "contrastFailures": 0,
+  "opticalProbeCases": 4,
+  "minimumOpticalPixelChange": 0.8575174825174825,
+  "habitualContainersPreserved": 9,
+  "previewHealthy": true,
+  "rollbackImage": "sha256:7f71a64b93e6d27e6785d8cee70572e78d7a85ccbfb8f228dd2704adb544a1ed"
+}

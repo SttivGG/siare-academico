@@ -1,0 +1,1200 @@
+{
+  "runtimeRevision": "06000f6ec47fc0bfe467de05456c5e25ca9cce76",
+  "unitComponents": {
+    "passed": 45,
+    "failed": 0
+  },
+  "typecheck": "passed local and Docker",
+  "nextBuild": "passed local and Docker",
+  "integration": {
+    "bffH3": 4,
+    "controlledOIDC": 6,
+    "controlledAdminSecurity": 5,
+    "failed": 0
+  },
+  "playwright": {
+    "origin": "http://127.0.0.1:3107",
+    "stats": {
+      "startTime": "2026-11-20T20:23:01.921Z",
+      "duration": 430394.946,
+      "expected": 87,
+      "skipped": 3,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "tests": [
+      {
+        "file": "activities.spec.ts",
+        "line": 14,
+        "title": "document READY → reviewed bank → quiz and crossword → authorized results",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 10566
+          }
+        ]
+      },
+      {
+        "file": "activities.spec.ts",
+        "line": 14,
+        "title": "document READY → reviewed bank → quiz and crossword → authorized results",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 8885
+          }
+        ]
+      },
+      {
+        "file": "activities.spec.ts",
+        "line": 104,
+        "title": "real catalog pagination, large banks, ownership, archival and renewable session",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4584
+          }
+        ]
+      },
+      {
+        "file": "activities.spec.ts",
+        "line": 104,
+        "title": "real catalog pagination, large banks, ownership, archival and renewable session",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4384
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 42,
+        "title": "ST-02: source-specific drafts and human review cannot migrate to another source",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 10019
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 42,
+        "title": "ST-02: source-specific drafts and human review cannot migrate to another source",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 10246
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 51,
+        "title": "ST-03: Quiz answers and current question survive tools; activities do not share answers",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2493
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 51,
+        "title": "ST-03: Quiz answers and current question survive tools; activities do not share answers",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2504
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 56,
+        "title": "ST-04: crossword cells and direction survive reading, tools and mobile viewport",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1500
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 56,
+        "title": "ST-04: crossword cells and direction survive reading, tools and mobile viewport",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2076
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 59,
+        "title": "ST-09: encrypted recovery restores crossword cells, direction and the reviewed manual bank",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3812
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 59,
+        "title": "ST-09: encrypted recovery restores crossword cells, direction and the reviewed manual bank",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3331
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 63,
+        "title": "recovery: denied writes never announce saved and retain the current bank",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2239
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 63,
+        "title": "recovery: denied writes never announce saved and retain the current bank",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1692
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 70,
+        "title": "ST-05: theme and responsive panel changes preserve the reviewed bank",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2135
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 70,
+        "title": "ST-05: theme and responsive panel changes preserve the reviewed bank",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2061
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 76,
+        "title": "ST-06/09: Spring saves, HTTP response is lost, reload restores the exact frozen retry",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 5463
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 76,
+        "title": "ST-06/09: Spring saves, HTTP response is lost, reload restores the exact frozen retry",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4828
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 85,
+        "title": "ST-07: double click and late response remain associated with the original activity",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2052
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 85,
+        "title": "ST-07: double click and late response remain associated with the original activity",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1863
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 90,
+        "title": "ST-08: cancelling navigation preserves draft and answers without sending or archiving",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1716
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 90,
+        "title": "ST-08: cancelling navigation preserves draft and answers without sending or archiving",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1707
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 94,
+        "title": "ST-08/09: an authorized internal departure and return preserve the in-memory bank",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1833
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 94,
+        "title": "ST-08/09: an authorized internal departure and return preserve the in-memory bank",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1721
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 98,
+        "title": "ST-09: wrong phrase, corrupt copy and denied storage preserve the live draft",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3605
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 98,
+        "title": "ST-09: wrong phrase, corrupt copy and denied storage preserve the live draft",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3259
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 105,
+        "title": "ST-10: logout purges account A copies and memory before account B enters",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3156
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 105,
+        "title": "ST-10: logout purges account A copies and memory before account B enters",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2897
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 110,
+        "title": "recovery: logout reports a denied purge while closing the server session",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2230
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 110,
+        "title": "recovery: logout reports a denied purge while closing the server session",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2828
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 115,
+        "title": "recovery: competing tabs cannot overwrite a saved copy",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2973
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 115,
+        "title": "recovery: competing tabs cannot overwrite a saved copy",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3086
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 120,
+        "title": "ST-10: a retained encrypted A copy is unavailable to B and restores only after A reauthenticates",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3667
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 120,
+        "title": "ST-10: a retained encrypted A copy is unavailable to B and restores only after A reauthenticates",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3028
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 128,
+        "title": "DT-01: real catalog contract has no date and never renders a fictitious one",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1279
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 128,
+        "title": "DT-01: real catalog contract has no date and never renders a fictitious one",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1289
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 132,
+        "title": "recovery: expiry and older versions are handled without restoring or overwriting live work",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2798
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 132,
+        "title": "recovery: expiry and older versions are handled without restoring or overwriting live work",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2577
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 140,
+        "title": "recovery: session expiry preserves a locked copy for the same authenticated account",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3247
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 140,
+        "title": "recovery: session expiry preserves a locked copy for the same authenticated account",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2856
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 146,
+        "title": "visual A: eight academic states in both themes at all eight requested sizes",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 33263
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 146,
+        "title": "visual A: eight academic states in both themes at all eight requested sizes",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 31894
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 175,
+        "title": "documental: scanned READY source displays its OCR warning in the central reader",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 7652
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 175,
+        "title": "documental: scanned READY source displays its OCR warning in the central reader",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 6520
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 184,
+        "title": "documental: uploaded quarantine becomes FAILED safely and offers an explicit retry",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 7553
+          }
+        ]
+      },
+      {
+        "file": "cuaderno.spec.ts",
+        "line": 184,
+        "title": "documental: uploaded quarantine becomes FAILED safely and offers an explicit retry",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 9919
+          }
+        ]
+      },
+      {
+        "file": "identity.spec.ts",
+        "line": 5,
+        "title": "renews from HttpOnly refresh cookie, enforces admin denial and revokes other sessions",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3484
+          }
+        ]
+      },
+      {
+        "file": "identity.spec.ts",
+        "line": 5,
+        "title": "renews from HttpOnly refresh cookie, enforces admin denial and revokes other sessions",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2602
+          }
+        ]
+      },
+      {
+        "file": "mfa.spec.ts",
+        "line": 13,
+        "title": "enrolls using local QR, keeps challenge HttpOnly, recovers once and preserves USER boundaries",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4121
+          }
+        ]
+      },
+      {
+        "file": "mfa.spec.ts",
+        "line": 13,
+        "title": "enrolls using local QR, keeps challenge HttpOnly, recovers once and preserves USER boundaries",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4414
+          }
+        ]
+      },
+      {
+        "file": "mfa.spec.ts",
+        "line": 64,
+        "title": "password recovery shows uniform response, CSRF protection and missing-link feedback",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1011
+          }
+        ]
+      },
+      {
+        "file": "mfa.spec.ts",
+        "line": 64,
+        "title": "password recovery shows uniform response, CSRF protection and missing-link feedback",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1016
+          }
+        ]
+      },
+      {
+        "file": "nexo-academic-states.spec.ts",
+        "line": 6,
+        "title": "H6-4: academic loading, upload, processing, pending attempt, lookup and archived internal states",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 23044
+          }
+        ]
+      },
+      {
+        "file": "nexo-academic-states.spec.ts",
+        "line": 6,
+        "title": "H6-4: academic loading, upload, processing, pending attempt, lookup and archived internal states",
+        "project": "mobile",
+        "status": "skipped",
+        "results": [
+          {
+            "status": "skipped",
+            "durationMs": 289
+          }
+        ]
+      },
+      {
+        "file": "nexo-coverage.spec.ts",
+        "line": 21,
+        "title": "H6-4: real session revocation, every cancel avoids mutation; revoke-all clears academic copies",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4600
+          }
+        ]
+      },
+      {
+        "file": "nexo-coverage.spec.ts",
+        "line": 21,
+        "title": "H6-4: real session revocation, every cancel avoids mutation; revoke-all clears academic copies",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3051
+          }
+        ]
+      },
+      {
+        "file": "nexo-coverage.spec.ts",
+        "line": 49,
+        "title": "H6-4: real subject search, empty filters, field errors and public notices",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 9780
+          }
+        ]
+      },
+      {
+        "file": "nexo-coverage.spec.ts",
+        "line": 49,
+        "title": "H6-4: real subject search, empty filters, field errors and public notices",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3301
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 17,
+        "title": "H6-5: disclosures close on focus departure, Escape, outside pointer and breakpoint; retain form",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4949
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 17,
+        "title": "H6-5: disclosures close on focus departure, Escape, outside pointer and breakpoint; retain form",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4109
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 51,
+        "title": "H6-5: quiz focus/progress, crossword current clue and reduced-motion/forced-colors in eight sizes",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3601
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 51,
+        "title": "H6-5: quiz focus/progress, crossword current clue and reduced-motion/forced-colors in eight sizes",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3254
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 97,
+        "title": "H6-5: lookup errors identify the field, focus it and retain both values",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1153
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 97,
+        "title": "H6-5: lookup errors identify the field, focus it and retain both values",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1038
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 108,
+        "title": "H6-5: controlled source metadata distinguishes selection and a filter with no matches",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3238
+          }
+        ]
+      },
+      {
+        "file": "nexo-interactions.spec.ts",
+        "line": 108,
+        "title": "H6-5: controlled source metadata distinguishes selection and a filter with no matches",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2794
+          }
+        ]
+      },
+      {
+        "file": "nexo-mfa-management.spec.ts",
+        "line": 9,
+        "title": "H6-4: real USER MFA regeneration and disable retain reauthentication and safe cancellation",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 8156
+          }
+        ]
+      },
+      {
+        "file": "nexo-mfa-management.spec.ts",
+        "line": 9,
+        "title": "H6-4: real USER MFA regeneration and disable retain reauthentication and safe cancellation",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 7185
+          }
+        ]
+      },
+      {
+        "file": "nexo-recovery.spec.ts",
+        "line": 5,
+        "title": "H6-3 ST-01: switching Bank/Catalog/Bank must preserve the draft and review",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1419
+          }
+        ]
+      },
+      {
+        "file": "nexo-recovery.spec.ts",
+        "line": 5,
+        "title": "H6-3 ST-01: switching Bank/Catalog/Bank must preserve the draft and review",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1821
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 18,
+        "title": "Nexo global: route captures, both themes, eight viewports and real USER authorization",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 21584
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 18,
+        "title": "Nexo global: route captures, both themes, eight viewports and real USER authorization",
+        "project": "mobile",
+        "status": "skipped",
+        "results": [
+          {
+            "status": "skipped",
+            "durationMs": 301
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 61,
+        "title": "theme, account and responsive navigation preserve the live form, academic draft",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3142
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 61,
+        "title": "theme, account and responsive navigation preserve the live form, academic draft",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2985
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 126,
+        "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 3651
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 126,
+        "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 2385
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 147,
+        "title": "Nexo semantic contrast, keyboard focus, reduced motion and forced colors",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 916
+          }
+        ]
+      },
+      {
+        "file": "nexo.spec.ts",
+        "line": 147,
+        "title": "Nexo semantic contrast, keyboard focus, reduced motion and forced colors",
+        "project": "mobile",
+        "status": "skipped",
+        "results": [
+          {
+            "status": "skipped",
+            "durationMs": 427
+          }
+        ]
+      },
+      {
+        "file": "oidc.spec.ts",
+        "line": 3,
+        "title": "unconfigured providers are disabled, callbacks fail safely and CSRF is enforced",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1237
+          }
+        ]
+      },
+      {
+        "file": "oidc.spec.ts",
+        "line": 3,
+        "title": "unconfigured providers are disabled, callbacks fail safely and CSRF is enforced",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1304
+          }
+        ]
+      },
+      {
+        "file": "oidc.spec.ts",
+        "line": 22,
+        "title": "registration offers Google and GitLab and email conflicts direct users to an authenticated link",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1329
+          }
+        ]
+      },
+      {
+        "file": "oidc.spec.ts",
+        "line": 22,
+        "title": "registration offers Google and GitLab and email conflicts direct users to an authenticated link",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1428
+          }
+        ]
+      },
+      {
+        "file": "oidc.spec.ts",
+        "line": 36,
+        "title": "GitLab buttons start the selected provider from login and registration and report failures accessibly",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1013
+          }
+        ]
+      },
+      {
+        "file": "oidc.spec.ts",
+        "line": 36,
+        "title": "GitLab buttons start the selected provider from login and registration and report failures accessibly",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 1062
+          }
+        ]
+      },
+      {
+        "file": "phase-one.spec.ts",
+        "line": 5,
+        "title": "registro, login, creación, edición, archivo y cierre de sesión desde la interfaz",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4416
+          }
+        ]
+      },
+      {
+        "file": "phase-one.spec.ts",
+        "line": 5,
+        "title": "registro, login, creación, edición, archivo y cierre de sesión desde la interfaz",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 4825
+          }
+        ]
+      },
+      {
+        "file": "phase-one.spec.ts",
+        "line": 62,
+        "title": "el BFF rechaza operaciones sin protección CSRF y sesiones inválidas",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 964
+          }
+        ]
+      },
+      {
+        "file": "phase-one.spec.ts",
+        "line": 62,
+        "title": "el BFF rechaza operaciones sin protección CSRF y sesiones inválidas",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 837
+          }
+        ]
+      },
+      {
+        "file": "phase-two.spec.ts",
+        "line": 5,
+        "title": "carga, procesamiento, texto y descarga desde la materia",
+        "project": "desktop",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 16050
+          }
+        ]
+      },
+      {
+        "file": "phase-two.spec.ts",
+        "line": 5,
+        "title": "carga, procesamiento, texto y descarga desde la materia",
+        "project": "mobile",
+        "status": "expected",
+        "results": [
+          {
+            "status": "passed",
+            "durationMs": 14239
+          }
+        ]
+      }
+    ]
+  },
+  "historicalOmissions": "Three mobile duplicates: Nexo global matrix, semantic contrast, internal academic-state matrix. All scenarios run in their own eight-size desktop matrix; no new omissions.",
+  "habitualOfficialCheck": "Test-Siare.ps1 passed; nine containers/images/mounts and .env unchanged; browser smoke 3100 passed."
+}

@@ -1,0 +1,36 @@
+{
+  "codeCommit": "95c215e2f1f6629ebf33e1a0bd529d92169d0828",
+  "branch": "feat/h6-landing-access",
+  "unitTests": 45,
+  "unitPassed": 45,
+  "build": "passed",
+  "typecheck": "passed",
+  "playwright": {
+    "passed": 11,
+    "skipped": 1,
+    "skipReason": "Matrix already covers mobile in the desktop project"
+  },
+  "geometryStates": 28,
+  "maximumTabShift": 0,
+  "additionalBreakpointWidths": 10,
+  "contrastSamples": 100,
+  "contrastFailures": 0,
+  "neutralBackground": [
+    {
+      "theme": "light",
+      "region": "Right background: 84–97% width, 12–70% full-page height",
+      "samples": 1024,
+      "maxChannelDifference": 0
+    },
+    {
+      "theme": "dark",
+      "region": "Right background: 84–97% width, 12–70% full-page height",
+      "samples": 1024,
+      "maxChannelDifference": 0
+    }
+  ],
+  "habitualContainersPreserved": 9,
+  "previewHealthy": true,
+  "rollbackImage": "sha256:07a9f22ef4bfc0eea667a3084a26680aa8900bca250aee9cb4b0fc9cb6c30267",
+  "screenshots": 36
+}

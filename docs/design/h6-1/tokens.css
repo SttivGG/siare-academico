@@ -1,0 +1,32 @@
+/* Propuesta H6-1. Exclusiva de docs/design; no importada por frontend. */
+@font-face{font-family:Urbanist;src:url('assets/urbanist-latin.woff2') format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
+:root{
+  color-scheme:light;
+  --font:Urbanist,system-ui,sans-serif;
+  --brand:#f58136;--brand-hover:#ff954f;--on-brand:#202020;
+  --canvas:#f4f4f4;--surface:#f6f6f5;--raised:#eae8e5;
+  --glass:rgba(242,246,248,.82);--rail:rgba(255,255,255,.74);
+  --input:rgba(255,255,255,.84);--text:#202020;--muted:#625e5c;--faint:#706c6a;
+  --link:#9c4312;--focus:#a44714;--border:rgba(66,48,37,.14);--control:#827872;
+  --hover:rgba(72,55,43,.055);--selected:rgba(245,129,54,.12);
+  --rose:#f6e2d2;--mint:#e1f0ea;--cream:#f3e7d1;--blue-pastel:#e3eaf2;
+  --success:#326448;--success-bg:#e5eee8;--info:#4d5c70;--info-bg:#e8edf2;
+  --warning:#895014;--warning-bg:#f8eadb;--danger:#9f3434;--danger-bg:#f7e8e7;
+  --wash-a:#f3e4d9;--wash-b:#dfebe5;--glass-edge:rgba(255,255,255,.8);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.8),0 1px 2px rgba(40,30,24,.025),0 18px 40px -24px rgba(60,45,40,.28);
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-8:32px;--space-10:40px;--space-12:48px;
+  --radius-sm:8px;--radius-control:12px;--radius-panel:22px;--radius-rail:28px;
+  --rail-width:84px;--header-height:64px;--target:44px;--blur:26px;
+  --duration-fast:140ms;--duration:220ms;--ease:cubic-bezier(.2,.7,.2,1);
+}
+:root[data-theme=dark]{
+  color-scheme:dark;--canvas:#242323;--surface:#292725;--raised:#35312e;
+  --glass:rgba(34,33,32,.88);--rail:rgba(35,34,33,.82);--input:rgba(49,46,43,.9);
+  --text:#f1efed;--muted:#c4bfba;--faint:#b3ada7;--link:#ffae78;--focus:#ffa86e;
+  --border:rgba(255,246,238,.16);--control:#9d9188;--hover:rgba(255,242,230,.065);--selected:rgba(245,129,54,.15);
+  --rose:#48372e;--mint:#303e37;--cream:#423b2d;--blue-pastel:#363b43;
+  --success:#b8d9c2;--success-bg:#34483b;--info:#ccd5df;--info-bg:#363e47;
+  --warning:#e3c39d;--warning-bg:#493a2d;--danger:#f1aaaa;--danger-bg:#482f2e;
+  --wash-a:#46362d;--wash-b:#2e3b35;--glass-edge:rgba(255,255,255,.08);
+  --shadow:inset 0 1px 0 rgba(255,255,255,.05),0 16px 40px -25px rgba(0,0,0,.7);
+}

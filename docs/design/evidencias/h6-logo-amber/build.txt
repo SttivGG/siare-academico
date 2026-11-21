@@ -1,0 +1,5 @@
+#10 2.667 ℹ tests 45
+#10 2.667 ℹ pass 45
+#10 2.667 ℹ fail 0
+#10 12.29 ✓ Compiled successfully in 8.8s
+#10 21.94 > tsc --noEmit

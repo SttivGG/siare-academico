@@ -1,0 +1,8 @@
+#10 [build 6/6] RUN npm test && npm run build && npm run typecheck
+#10 2.936 ℹ tests 45
+#10 2.937 ℹ pass 45
+#10 2.937 ℹ fail 0
+#10 3.113 > next build
+#10 13.50 ✓ Compiled successfully in 9.6s
+#10 24.69 > siare-frontend@0.1.0 typecheck
+#10 24.69 > tsc --noEmit

@@ -1,0 +1,22 @@
+
+Running 12 tests using 1 worker
+
+(node:20404) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs (26.0s)
+  ok  2 [desktop] › tests\e2e\landing.spec.ts:87:1 › landing: keyboard tabs, theme persistence, system theme and recovery navigation (1.3s)
+  ok  3 [desktop] › tests\e2e\landing.spec.ts:105:1 › landing: global theme updates translucent surface, fields and interaction states (2.4s)
+  ok  4 [desktop] › tests\e2e\landing.spec.ts:150:1 › landing: native validation and field errors reuse the existing login/register transport (1.8s)
+  ok  5 [desktop] › tests\e2e\landing.spec.ts:180:1 › landing: pending submission cannot be interrupted by switching tabs (1.7s)
+  ok  6 [desktop] › tests\e2e\landing.spec.ts:195:1 › landing: provider buttons retain disabled, error and redirect behavior (2.2s)
+(node:2972) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   7 [mobile] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs
+  ok  8 [mobile] › tests\e2e\landing.spec.ts:87:1 › landing: keyboard tabs, theme persistence, system theme and recovery navigation (1.9s)
+  ok  9 [mobile] › tests\e2e\landing.spec.ts:105:1 › landing: global theme updates translucent surface, fields and interaction states (1.8s)
+  ok 10 [mobile] › tests\e2e\landing.spec.ts:150:1 › landing: native validation and field errors reuse the existing login/register transport (1.2s)
+  ok 11 [mobile] › tests\e2e\landing.spec.ts:180:1 › landing: pending submission cannot be interrupted by switching tabs (956ms)
+  ok 12 [mobile] › tests\e2e\landing.spec.ts:195:1 › landing: provider buttons retain disabled, error and redirect behavior (2.0s)
+
+  1 skipped
+  11 passed (48.1s)

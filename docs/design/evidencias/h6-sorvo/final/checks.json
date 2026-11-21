@@ -1,0 +1,114 @@
+{
+  "origin": "http://127.0.0.1:3107",
+  "phase": "final",
+  "checks": [
+    {
+      "id": "landing",
+      "theme": "light",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(244, 244, 244, 0.88) 3%, rgba(244, 244, 244, 0.72) 48%, rgba(244, 244, 244, 0.42) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#ffffff47",
+        "text": "rgb(32, 33, 36)"
+      }
+    },
+    {
+      "id": "inicio",
+      "theme": "light",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(244, 244, 244, 0.88) 3%, rgba(244, 244, 244, 0.72) 48%, rgba(244, 244, 244, 0.42) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#ffffff47",
+        "text": "rgb(32, 33, 36)"
+      }
+    },
+    {
+      "id": "materias",
+      "theme": "light",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(244, 244, 244, 0.88) 3%, rgba(244, 244, 244, 0.72) 48%, rgba(244, 244, 244, 0.42) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#ffffff47",
+        "text": "rgb(32, 33, 36)"
+      }
+    },
+    {
+      "id": "cuaderno",
+      "theme": "light",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(244, 244, 244, 0.88) 3%, rgba(244, 244, 244, 0.72) 48%, rgba(244, 244, 244, 0.42) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#ffffff47",
+        "text": "rgb(32, 33, 36)"
+      }
+    },
+    {
+      "id": "seguridad",
+      "theme": "light",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(244, 244, 244, 0.88) 3%, rgba(244, 244, 244, 0.72) 48%, rgba(244, 244, 244, 0.42) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#ffffff47",
+        "text": "rgb(32, 33, 36)"
+      }
+    },
+    {
+      "id": "login",
+      "theme": "light",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(244, 244, 244, 0.88) 3%, rgba(244, 244, 244, 0.72) 48%, rgba(244, 244, 244, 0.42) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#ffffff47",
+        "text": "rgb(32, 33, 36)"
+      }
+    },
+    {
+      "id": "landing",
+      "theme": "dark",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(12, 18, 24, 0.78) 3%, rgba(12, 18, 24, 0.64) 48%, rgba(12, 18, 24, 0.4) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#07090c47",
+        "text": "rgb(245, 245, 245)"
+      }
+    },
+    {
+      "id": "inicio",
+      "theme": "dark",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(12, 18, 24, 0.78) 3%, rgba(12, 18, 24, 0.64) 48%, rgba(12, 18, 24, 0.4) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#07090c47",
+        "text": "rgb(245, 245, 245)"
+      }
+    },
+    {
+      "id": "materias",
+      "theme": "dark",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(12, 18, 24, 0.78) 3%, rgba(12, 18, 24, 0.64) 48%, rgba(12, 18, 24, 0.4) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#07090c47",
+        "text": "rgb(245, 245, 245)"
+      }
+    },
+    {
+      "id": "cuaderno",
+      "theme": "dark",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(12, 18, 24, 0.78) 3%, rgba(12, 18, 24, 0.64) 48%, rgba(12, 18, 24, 0.4) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#07090c47",
+        "text": "rgb(245, 245, 245)"
+      }
+    },
+    {
+      "id": "seguridad",
+      "theme": "dark",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(12, 18, 24, 0.78) 3%, rgba(12, 18, 24, 0.64) 48%, rgba(12, 18, 24, 0.4) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#07090c47",
+        "text": "rgb(245, 245, 245)"
+      }
+    },
+    {
+      "id": "login",
+      "theme": "dark",
+      "styles": {
+        "background": "linear-gradient(100deg in oklab, rgba(12, 18, 24, 0.78) 3%, rgba(12, 18, 24, 0.64) 48%, rgba(12, 18, 24, 0.4) 100%), url(\"http://127.0.0.1:3107/images/study-background.webp\")",
+        "glass": "#07090c47",
+        "text": "rgb(245, 245, 245)"
+      }
+    }
+  ]
+}

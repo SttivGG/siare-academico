@@ -1,0 +1,17 @@
+
+> siare-frontend@0.1.0 test:integration:nexo
+> node --test tests/integration/nexo-states.mjs
+
+✔ ADMIN: scoped controls, protected own access, cancel/Escape without mutation and one versioned confirmation (6948.3149ms)
+✔ SUPERADMIN: scopes, registration, audit, explicit confirmations and concurrent version conflicts (15252.6563ms)
+✔ access and recovery: field errors, retained values, registration closed, invalid token and expired MFA (19931.5589ms)
+✔ security: account identity, unlink safe cancellation, MFA sensitive-action cancellation and failure (8442.4858ms)
+✔ sessions: loading, errors and empty states; failure boundary renders and retry returns to authorized page (14767.2667ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66863.9766

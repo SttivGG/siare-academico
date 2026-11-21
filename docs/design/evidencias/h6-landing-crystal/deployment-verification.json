@@ -1,0 +1,92 @@
+{
+  "codeCommit": "2431547c19a584975c6b3bdfb0e8630fa5c9398f",
+  "preview": {
+    "id": "b648a1dddf346093fee2e3b6998452254ed1ed172f4f902071b5f52ebcbb8e7b",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:ca59092ea6e363652702f4eb352d11c1b4bc8d21cbf3b4130ecc35ad64c4413b",
+    "imageName": "siare-academico-frontend:h6-landing-crystal",
+    "created": "2026-11-21T04:31:17.575090235Z",
+    "started": "2026-11-21T04:31:19.222810795Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-h6-3-validation",
+    "service": "frontend-h6",
+    "configHash": "A4EFFE4EA4DCAA39399922B404BEB3465CAA89CA851110ADC17EBA60EB09E6EE",
+    "envHash": "11D93BE279FF9A27C8C7DC54D0B59C16DA5863FFDC8CB24CA2386F7C4F8AEA52",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "name": "siare-academico_edge",
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160"
+      }
+    ]
+  },
+  "branch": "feat/h6-landing-access",
+  "mainEnvLogoPhotoPreserved": true,
+  "previewConfigurationPreserved": true,
+  "rollbackImage": "sha256:7f71a64b93e6d27e6785d8cee70572e78d7a85ccbfb8f228dd2704adb544a1ed",
+  "habitual": [
+    {
+      "name": "/siare-academico-frontend-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-core-api-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-content-ai-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-progress-api-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-mysql-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-cassandra-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-redis-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-clickhouse-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-mongo-1",
+      "unchanged": true,
+      "health": "healthy"
+    }
+  ],
+  "health": [
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3100
+    },
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3107
+    }
+  ]
+}

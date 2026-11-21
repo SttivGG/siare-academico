@@ -1,0 +1,43 @@
+{
+  "origin": "http://127.0.0.1:3107",
+  "scope": "Deployed Docker frontend: public routes, protection of Appearance without session, visual preferences, cross-tab theme, local WebP assets, no-JS dark system and responsive. No login or database mutation.",
+  "captures": [
+    "preview-public-light-1440x900.jpg",
+    "preview-public-light-390x844.jpg",
+    "preview-public-light-320x844.jpg",
+    "preview-public-dark-1440x900.jpg",
+    "preview-public-dark-390x844.jpg",
+    "preview-public-dark-320x844.jpg"
+  ],
+  "assets": [
+    {
+      "id": "library",
+      "status": 200,
+      "bytes": 78020,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "id": "minimal",
+      "status": 200,
+      "bytes": 128654,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "id": "collaborative",
+      "status": 200,
+      "bytes": 161326,
+      "width": 1920,
+      "height": 1080
+    },
+    {
+      "id": "reading",
+      "status": 200,
+      "bytes": 230806,
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,12 @@
+# H6 — Limitaciones y verificaciones pendientes
+
+- **OIDC externo Google/GitLab: NO VERIFICADO en esta preparación.** El core compartido está configurado para 3100. La preview 3107 rechaza su callback incompatible antes de entregar una URL al navegador. Las pruebas controladas cubren login, MFA, vinculación, fallo, diagnóstico y callback, pero no discovery, consentimiento o callbacks registrados de proveedores reales. No se modifica el core habitual para forzar una prueba.
+- **SMTP y recuperación por correo real: NO VERIFICADOS.** Se comprueban respuesta uniforme, CSRF, token ausente/inválido y retorno relativo al login. El origen del enlace de correo es responsabilidad de `siare.mail.origin` del core del entorno; compartir un core no convierte ese enlace en multi-origen.
+- **Roles ADMIN/SUPERADMIN reales: NO VERIFICADOS.** El upstream controlado permite revisar interfaces por ámbito, conflictos y cancelaciones. No acredita la autorización real de Spring.
+- **Firefox/WebKit, lector de pantalla, zoom real del navegador y dispositivos físicos: PENDIENTES MANUALES.** Chromium cubre tamaños, teclado/foco, colores forzados, movimiento reducido y contraste automatizado. Cambiar CSS font-size no acredita zoom real ni conformidad WCAG completa.
+- El modelo HTTP de release usa solo datos en memoria y no persiste credenciales, semillas, respuestas ni documentos. Sus respuestas de evaluación y extracción son contratos sintéticos, no ejecución de los algoritmos o persistencia reales del backend. Las comprobaciones autenticadas de esta preparación se limitan a ese modelo.
+- La copia académica local sigue siendo opcional, cifrada y ligada a cuenta/materia; exige frase y autorización. No es sincronización entre dispositivos ni reemplazo de los datos confirmados del servidor. Las preferencias de apariencia son locales al origen y navegador.
+- Las cookies HTTP de loopback pertenecen al hostname, no al puerto. Usar contextos de navegador separados para pruebas de preview/habitual; no se cambian nombres o políticas de cookies existentes para esta preparación.
+- H5 #8/#9, Flyway V6, generación ML y analítica pendiente quedan fuera. Las limitaciones históricas de contratos H3/H4 permanecen; el catálogo no proporciona fechas inventadas ni un listado global de intentos.
+
+Estas restricciones deben acompañar al PR. No se registran proveedores simulados como integraciones externas aprobadas.

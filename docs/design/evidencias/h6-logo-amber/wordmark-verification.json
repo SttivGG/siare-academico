@@ -1,0 +1,114 @@
+[
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "state": "system",
+    "letterRGB": [
+      254,
+      173,
+      98
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "state": "toggle",
+    "letterRGB": [
+      42,
+      42,
+      41
+    ],
+    "maximumSymbolDelta": 2,
+    "symbolMeanDelta": 0.01850004401279305,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "state": "toggle",
+    "letterRGB": [
+      254,
+      173,
+      98
+    ],
+    "maximumSymbolDelta": 1,
+    "symbolMeanDelta": 0.01817076311662738,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "state": "reload",
+    "letterRGB": [
+      254,
+      173,
+      98
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "state": "system",
+    "letterRGB": [
+      254,
+      173,
+      98
+    ],
+    "maximumSymbolDelta": 1,
+    "symbolMeanDelta": 0.0003237985008818342,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "state": "toggle",
+    "letterRGB": [
+      42,
+      42,
+      41
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "state": "toggle",
+    "letterRGB": [
+      254,
+      173,
+      98
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "state": "reload",
+    "letterRGB": [
+      254,
+      173,
+      98
+    ],
+    "maximumSymbolDelta": 1,
+    "symbolMeanDelta": 0.015824790564373897,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  }
+]

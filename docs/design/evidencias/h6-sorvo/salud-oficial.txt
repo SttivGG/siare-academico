@@ -1,0 +1,20 @@
+Docker Compose version v5.5.1
+OK healthy: mysql
+OK healthy: mongo
+OK healthy: cassandra
+OK healthy: redis
+OK healthy: clickhouse
+OK healthy: core-api
+OK healthy: content-ai
+OK healthy: progress-api
+OK healthy: frontend
+OK conexion autenticada/consulta: mysql
+{ ok: 1 }
+OK conexion autenticada/consulta: mongo
+OK conexion autenticada/consulta: cassandra
+OK conexion autenticada/consulta: redis
+OK conexion autenticada/consulta: clickhouse
+OK Flask y Mongo/Redis
+OK Express y Cassandra
+OK Express -> ClickHouse: authenticated SELECT 1, academic schema, invalid credential rejected; ingestion pending.
+OK: tres backends, cinco motores de datos, puertos y frontend -> Spring.

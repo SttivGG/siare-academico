@@ -1,0 +1,114 @@
+[
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "state": "system",
+    "letterRGB": [
+      254,
+      254,
+      254
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "state": "toggle",
+    "letterRGB": [
+      42,
+      42,
+      41
+    ],
+    "maximumSymbolDelta": 1,
+    "symbolMeanDelta": 0.00001793113791001177,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "state": "toggle",
+    "letterRGB": [
+      254,
+      254,
+      254
+    ],
+    "maximumSymbolDelta": 1,
+    "symbolMeanDelta": 0.01817076311662738,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "state": "reload",
+    "letterRGB": [
+      254,
+      254,
+      254
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "state": "system",
+    "letterRGB": [
+      254,
+      254,
+      254
+    ],
+    "maximumSymbolDelta": 1,
+    "symbolMeanDelta": 0.0003237985008818342,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "state": "toggle",
+    "letterRGB": [
+      42,
+      42,
+      41
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "state": "toggle",
+    "letterRGB": [
+      254,
+      254,
+      254
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "state": "reload",
+    "letterRGB": [
+      254,
+      254,
+      254
+    ],
+    "maximumSymbolDelta": 0,
+    "symbolMeanDelta": 0,
+    "symbolColorsUnchanged": true,
+    "geometryUnchanged": true
+  }
+]

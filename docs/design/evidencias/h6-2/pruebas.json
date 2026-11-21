@@ -1,0 +1,481 @@
+{
+  "runtimeSourceCommit": "1931ddbcf177fbfe3ffbb4b8041a4335fd601edb",
+  "origin": "http://127.0.0.1:3107",
+  "stats": {
+    "startTime": "2026-11-20T04:28:23.268Z",
+    "duration": 128232.673,
+    "expected": 28,
+    "skipped": 4,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "tests": [
+    {
+      "title": "document READY → reviewed bank → quiz and crossword → authorized results",
+      "file": "activities.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 12382,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "document READY → reviewed bank → quiz and crossword → authorized results",
+      "file": "activities.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 9648,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "real catalog pagination, large banks, ownership, archival and renewable session",
+      "file": "activities.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5774,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "real catalog pagination, large banks, ownership, archival and renewable session",
+      "file": "activities.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4192,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "renews from HttpOnly refresh cookie, enforces admin denial and revokes other sessions",
+      "file": "identity.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4973,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "renews from HttpOnly refresh cookie, enforces admin denial and revokes other sessions",
+      "file": "identity.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3291,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "enrolls using local QR, keeps challenge HttpOnly, recovers once and preserves USER boundaries",
+      "file": "mfa.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5564,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "enrolls using local QR, keeps challenge HttpOnly, recovers once and preserves USER boundaries",
+      "file": "mfa.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4831,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "password recovery shows uniform response, CSRF protection and missing-link feedback",
+      "file": "mfa.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1059,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "password recovery shows uniform response, CSRF protection and missing-link feedback",
+      "file": "mfa.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 983,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "H6-3 ST-01: switching Bank/Catalog/Bank must preserve the draft and review",
+      "file": "nexo-recovery.pending.spec.ts",
+      "project": "desktop",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "fixme"
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 0,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "H6-3 ST-01: switching Bank/Catalog/Bank must preserve the draft and review",
+      "file": "nexo-recovery.pending.spec.ts",
+      "project": "mobile",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "fixme"
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 0,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "Nexo global: route captures, both themes, eight viewports and real USER authorization",
+      "file": "nexo.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 24857,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "Nexo global: route captures, both themes, eight viewports and real USER authorization",
+      "file": "nexo.spec.ts",
+      "project": "mobile",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "La matriz interna ya incluye móvil y tableta."
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 257,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "theme, account and responsive navigation preserve the live form, academic draft",
+      "file": "nexo.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2714,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "theme, account and responsive navigation preserve the live form, academic draft",
+      "file": "nexo.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2307,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+      "file": "nexo.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4785,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+      "file": "nexo.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2314,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "Nexo semantic contrast, keyboard focus, reduced motion and forced colors",
+      "file": "nexo.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 906,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "Nexo semantic contrast, keyboard focus, reduced motion and forced colors",
+      "file": "nexo.spec.ts",
+      "project": "mobile",
+      "status": "skipped",
+      "annotations": [
+        {
+          "type": "skip",
+          "description": "Mismas propiedades CSS en ambos proyectos."
+        }
+      ],
+      "results": [
+        {
+          "status": "skipped",
+          "duration": 248,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "unconfigured providers are disabled, callbacks fail safely and CSRF is enforced",
+      "file": "oidc.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1306,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "unconfigured providers are disabled, callbacks fail safely and CSRF is enforced",
+      "file": "oidc.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1111,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "registration offers Google and GitLab and email conflicts direct users to an authenticated link",
+      "file": "oidc.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1444,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "registration offers Google and GitLab and email conflicts direct users to an authenticated link",
+      "file": "oidc.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 885,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "GitLab buttons start the selected provider from login and registration and report failures accessibly",
+      "file": "oidc.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1272,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "GitLab buttons start the selected provider from login and registration and report failures accessibly",
+      "file": "oidc.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 852,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "registro, login, creación, edición, archivo y cierre de sesión desde la interfaz",
+      "file": "phase-one.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4712,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "registro, login, creación, edición, archivo y cierre de sesión desde la interfaz",
+      "file": "phase-one.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2854,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "el BFF rechaza operaciones sin protección CSRF y sesiones inválidas",
+      "file": "phase-one.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 961,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "el BFF rechaza operaciones sin protección CSRF y sesiones inválidas",
+      "file": "phase-one.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 644,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "carga, procesamiento, texto y descarga desde la materia",
+      "file": "phase-two.spec.ts",
+      "project": "desktop",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 8640,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "title": "carga, procesamiento, texto y descarga desde la materia",
+      "file": "phase-two.spec.ts",
+      "project": "mobile",
+      "status": "expected",
+      "annotations": [],
+      "results": [
+        {
+          "status": "passed",
+          "duration": 7715,
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

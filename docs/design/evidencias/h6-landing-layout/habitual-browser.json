@@ -1,0 +1,23 @@
+{
+  "domIdentical": true,
+  "screenshotIdentical": true,
+  "screenshotSHA256": "d3d65d9f4c354d9131ae892627e567aa5a6237b2abe37c7bdf9883674ba686bf",
+  "health": [
+    {
+      "port": 3100,
+      "status": 200,
+      "body": {
+        "service": "frontend",
+        "status": "UP"
+      }
+    },
+    {
+      "port": 3107,
+      "status": 200,
+      "body": {
+        "service": "frontend",
+        "status": "UP"
+      }
+    }
+  ]
+}

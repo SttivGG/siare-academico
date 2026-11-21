@@ -5,7 +5,7 @@ export function cookieSettings(secure: boolean) {
 }
 
 export function isAllowedMutation(headers: Headers, configuredOrigin: string): boolean {
-  return headers.get("origin") === configuredOrigin
+  return !!configuredOrigin && headers.get("origin") === configuredOrigin
     && headers.get("x-siare-csrf") === "1"
     && headers.get("content-type")?.split(";")[0].trim().toLowerCase() === "application/json"
     && !["cross-site", "none"].includes(headers.get("sec-fetch-site") ?? "");

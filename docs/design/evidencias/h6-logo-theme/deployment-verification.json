@@ -1,0 +1,92 @@
+{
+  "preview": {
+    "id": "a9639cddbfe618d7c2705f56e57ff15b6f11d9f5733e21c9b8d366d2e4faec7e",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:3eb0e6c3f17e289eb92758b0499dbca27ad3d2c3a7c15d03fe3ddc75812aa3d2",
+    "imageName": "siare-academico-frontend:h6-logo-theme",
+    "created": "2026-11-21T05:00:12.397472033Z",
+    "started": "2026-11-21T05:00:14.117679314Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-h6-3-validation",
+    "service": "frontend-h6",
+    "configHash": "350DAE9E185E6F55C2D8DA4C46A3D8ED64310852E5F0E6EB0A1B1AAFAC2436CA",
+    "envHash": "11D93BE279FF9A27C8C7DC54D0B59C16DA5863FFDC8CB24CA2386F7C4F8AEA52",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "name": "siare-academico_edge",
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160"
+      }
+    ]
+  },
+  "habitual": [
+    {
+      "name": "/siare-academico-frontend-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-core-api-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-content-ai-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-progress-api-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-mysql-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-cassandra-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-redis-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-clickhouse-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-mongo-1",
+      "unchanged": true,
+      "health": "healthy"
+    }
+  ],
+  "mainEnvLogoPhotoPreserved": true,
+  "health": [
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3100
+    },
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3107
+    }
+  ],
+  "branch": "feat/h6-landing-access",
+  "codeCommit": "538f0c55d14de1c167f151ae48e214a8273a7279",
+  "previewConfigurationPreserved": true,
+  "rollbackImage": "sha256:f01c61b31d3f0ad558f2b05fd4b2d56c0431a72d22fd82a4aa85ce524287e8ee"
+}

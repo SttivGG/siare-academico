@@ -1,0 +1,20 @@
+
+> siare-frontend@0.1.0 test:integration:identity
+> node --test tests/integration/oidc-bff.mjs
+
+✔ actual BFF enforces CSRF, input allowlist and missing-context rejection (5734.2664ms)
+✔ actual BFF blocks the shared core's 3100 callback before sending a preview browser to a provider (51.8822ms)
+✔ callback Location stays relative despite spoofed host headers and manipulated return parameters (16.2904ms)
+✔ actual BFF installs only HttpOnly SIARE credentials and consumes flow cookie (34.7832ms)
+✔ actual BFF continues to own MFA without granting an application session (18.4698ms)
+✔ GitLab BFF supports its own callback, SIARE session, MFA and explicit linking; Microsoft is rejected (53.9003ms)
+✔ link requires confirmation and original current session; valid link sets no credentials (23.9562ms)
+✔ callback distinguishes external validation, account collision and invalid upstream responses without exposing payloads (93.5045ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6280.2314

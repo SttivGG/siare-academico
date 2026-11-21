@@ -1,0 +1,472 @@
+{
+  "checkedAt": "2026-11-20T00:51:13.499009+00:00",
+  "method": "WCAG relative luminance sRGB; alpha composited against declared canvas and two gradient extremes",
+  "limitations": "Calculated token pairs, not pixel-level or complete WCAG audit; decorative borders excluded; browser rendering/forced colors still need manual review",
+  "results": [
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "surface",
+      "ratio": 15.067,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 5.93,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "faint",
+      "background": "surface",
+      "ratio": 4.804,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "link",
+      "background": "surface",
+      "ratio": 6.021,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "rose",
+      "ratio": 12.979,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "mint",
+      "ratio": 13.852,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "cream",
+      "ratio": 13.315,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "blue-pastel",
+      "ratio": 13.436,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "on-brand",
+      "background": "brand",
+      "ratio": 6.266,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "on-brand",
+      "background": "brand-hover",
+      "ratio": 7.498,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "success",
+      "background": "success-bg",
+      "ratio": 5.808,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "info",
+      "background": "info-bg",
+      "ratio": 5.787,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "warning",
+      "background": "warning-bg",
+      "ratio": 5.521,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "danger",
+      "background": "danger-bg",
+      "ratio": 5.855,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "glass over canvas",
+      "ratio": 14.954,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "glass over canvas",
+      "ratio": 5.885,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "link",
+      "background": "glass over canvas",
+      "ratio": 5.976,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "control",
+      "background": "input over glass over canvas",
+      "ratio": 4.246,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "input over glass over canvas",
+      "ratio": 5.936,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "glass over wash-a",
+      "ratio": 14.633,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "glass over wash-a",
+      "ratio": 5.759,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "link",
+      "background": "glass over wash-a",
+      "ratio": 5.848,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "control",
+      "background": "input over glass over wash-a",
+      "ratio": 4.232,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "input over glass over wash-a",
+      "ratio": 5.917,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "text",
+      "background": "glass over wash-b",
+      "ratio": 14.673,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "muted",
+      "background": "glass over wash-b",
+      "ratio": 5.775,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "link",
+      "background": "glass over wash-b",
+      "ratio": 5.864,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "control",
+      "background": "input over glass over wash-b",
+      "ratio": 4.234,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "light",
+      "foreground": "focus",
+      "background": "input over glass over wash-b",
+      "ratio": 5.919,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "surface",
+      "ratio": 12.974,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "surface",
+      "ratio": 8.155,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "faint",
+      "background": "surface",
+      "ratio": 6.698,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "link",
+      "background": "surface",
+      "ratio": 8.204,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "rose",
+      "ratio": 9.836,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "mint",
+      "ratio": 9.792,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "cream",
+      "ratio": 9.661,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "blue-pastel",
+      "ratio": 9.825,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "on-brand",
+      "background": "brand",
+      "ratio": 6.266,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "on-brand",
+      "background": "brand-hover",
+      "ratio": 7.498,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "success",
+      "background": "success-bg",
+      "ratio": 6.433,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "info",
+      "background": "info-bg",
+      "ratio": 7.306,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "warning",
+      "background": "warning-bg",
+      "ratio": 6.519,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "danger",
+      "background": "danger-bg",
+      "ratio": 6.43,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "glass over canvas",
+      "ratio": 13.974,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "glass over canvas",
+      "ratio": 8.783,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "link",
+      "background": "glass over canvas",
+      "ratio": 8.836,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "control",
+      "background": "input over glass over canvas",
+      "ratio": 4.476,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "input over glass over canvas",
+      "ratio": 7.251,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "glass over wash-a",
+      "ratio": 13.535,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "glass over wash-a",
+      "ratio": 8.507,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "link",
+      "background": "glass over wash-a",
+      "ratio": 8.558,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "control",
+      "background": "input over glass over wash-a",
+      "ratio": 4.46,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "input over glass over wash-a",
+      "ratio": 7.224,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "text",
+      "background": "glass over wash-b",
+      "ratio": 13.557,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "muted",
+      "background": "glass over wash-b",
+      "ratio": 8.522,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "link",
+      "background": "glass over wash-b",
+      "ratio": 8.573,
+      "target": 4.5,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "control",
+      "background": "input over glass over wash-b",
+      "ratio": 4.461,
+      "target": 3,
+      "pass": true
+    },
+    {
+      "theme": "dark",
+      "foreground": "focus",
+      "background": "input over glass over wash-b",
+      "ratio": 7.226,
+      "target": 3,
+      "pass": true
+    }
+  ],
+  "failures": []
+}

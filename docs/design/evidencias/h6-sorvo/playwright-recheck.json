@@ -1,0 +1,313 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "landing.spec.ts",
+      "nexo.spec.ts",
+      "--grep",
+      "real provider availability|system theme without",
+      "--reporter=list,json"
+    ],
+    "configFile": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\playwright.config.ts",
+    "rootDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-sorvo/frontend/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-sorvo/.cache/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-sorvo/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      },
+      {
+        "outputDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-sorvo/.cache/playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-sorvo/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\.cache\\playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\tests\\e2e",
+        "snapshotDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3107",
+          "browserName": "chromium",
+          "launchOptions": {
+            "executablePath": "C:/Users/Daniel Giraldo/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe"
+          },
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 1000
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      },
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\.cache\\playwright-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "mobile",
+        "testDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\tests\\e2e",
+        "snapshotDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3107",
+          "browserName": "chromium",
+          "launchOptions": {
+            "executablePath": "C:/Users/Daniel Giraldo/AppData/Local/ms-playwright/chromium-1243/chrome-win64/chrome.exe"
+          },
+          "trace": "off",
+          "screenshot": "only-on-failure",
+          "viewport": {
+            "width": 375,
+            "height": 812
+          },
+          "isMobile": true,
+          "hasTouch": true,
+          "reducedMotion": "reduce"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "mobile"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "landing.spec.ts",
+      "file": "landing.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "landing: real provider availability, responsive themes and both tabs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19674,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T13:49:40.059Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 60000,
+              "annotations": [
+                {
+                  "type": "skip",
+                  "description": "La matriz incluye escritorio, tableta y móvil.",
+                  "location": {
+                    "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\tests\\e2e\\landing.spec.ts",
+                    "line": 8,
+                    "column": 8
+                  }
+                }
+              ],
+              "expectedStatus": "skipped",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "skipped",
+                  "duration": 477,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T13:50:03.851Z",
+                  "annotations": [
+                    {
+                      "type": "skip",
+                      "description": "La matriz incluye escritorio, tableta y móvil.",
+                      "location": {
+                        "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-sorvo\\frontend\\tests\\e2e\\landing.spec.ts",
+                        "line": 8,
+                        "column": 8
+                      }
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "4e5b49d369fd48ca0656-409d119edcdba3bbc626",
+          "file": "landing.spec.ts",
+          "line": 7,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "nexo.spec.ts",
+      "file": "nexo.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "system theme without JavaScript, blocked storage and cross-tab synchronization",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2698,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T13:50:00.190Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            },
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "mobile",
+              "projectName": "mobile",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2284,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T13:50:04.654Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5d424312640614b2bc54-765ec0a8ad749ddec9e9",
+          "file": "nexo.spec.ts",
+          "line": 126,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-21T13:49:39.123Z",
+    "duration": 28103.108,
+    "expected": 3,
+    "skipped": 1,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

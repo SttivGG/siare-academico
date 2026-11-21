@@ -1,0 +1,12 @@
+{
+  "origin": "http://127.0.0.1:3100",
+  "htmlUnchanged": true,
+  "screenshotUnchanged": true,
+  "beforeSHA256": "8097cd4009d6178f04851a3ea54013cd241bedce9df001d8dccae84128676db1",
+  "afterSHA256": "8097cd4009d6178f04851a3ea54013cd241bedce9df001d8dccae84128676db1",
+  "health": {
+    "service": "frontend",
+    "status": "UP"
+  },
+  "errors": []
+}

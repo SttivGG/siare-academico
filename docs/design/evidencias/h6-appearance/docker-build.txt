@@ -1,0 +1,179 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 795B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:24.22.2-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
+#2 DONE 1.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 104B done
+#3 DONE 0.1s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [build 1/6] FROM docker.io/library/node:24.22.2-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9
+#5 resolve docker.io/library/node:24.22.2-bookworm-slim@sha256:01d566e8d94d8c619591d78652babfccd3c6992a3dffa9ed5ab39e11cf6c70e9 0.1s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 3.14MB 0.5s done
+#4 DONE 0.6s
+
+#6 [build 2/6] WORKDIR /app
+#6 CACHED
+
+#7 [build 3/6] COPY package.json package-lock.json ./
+#7 DONE 0.5s
+
+#8 [build 4/6] RUN npm ci --no-audit --no-fund
+#8 38.36
+#8 38.36 added 87 packages in 37s
+#8 38.36 npm notice
+#8 38.36 npm notice New major version of npm available! 11.19.1 -> 12.2.3
+#8 38.36 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.3
+#8 38.36 npm notice To update run: npm install -g npm@12.2.3
+#8 38.36 npm notice
+#8 DONE 39.8s
+
+#9 [build 5/6] COPY . .
+#9 DONE 0.8s
+
+#10 [build 6/6] RUN npm test && npm run build && npm run typecheck
+#10 0.764
+#10 0.764 > siare-frontend@0.1.0 test
+#10 0.764 > node --test tests/*.test.mjs
+#10 0.764
+#10 1.513 ✔ ST-01/02: bank drafts belong to a source and preserve content while provenance invalidates review (42.231976ms)
+#10 1.526 ✔ ST-03/04/05: independent activity state survives presentation and activity changes (9.036085ms)
+#10 1.530 ✔ ST-06/07: synchronous lock, lost response and late evaluation retain one exact envelope and original owner (6.678716ms)
+#10 2.476 ✔ ST-09: encrypted allowlist, unique IV, wrong phrase, tampering, expiry and account binding (941.624897ms)
+#10 2.486 ✔ ST-09: a recovered frozen envelope remains unresolved until an explicit retry (11.257163ms)
+#10 2.502 ✔ confirmed attempts persist only a receipt; feedback is fetched and authorized again (8.760587ms)
+#10 2.503 ✔ ST-10: destroying an authenticated controller drops work and ignores a late response (3.134907ms)
+#10 2.509 ✔ an unresolved original attempt cannot be replaced by recovery, including a late-response window (10.648035ms)
+#10 2.542 ✔ only the five authorized H3 routes and methods are admitted (2.632397ms)
+#10 2.544 ✔ cursor is validated and large bank limits do not affect auth or submissions (1.920697ms)
+#10 2.544 ✔ importing validated:true still requires a separate review; factual claims stay editorial (26.674745ms)
+#10 2.544 ✔ invalid bank structures, duplicates, answer keys and oversize fields are rejected (5.868214ms)
+#10 2.546 ✔ document evidence must reference a real fragment, literal quote, and correct answer (1.723959ms)
+#10 2.550 ✔ Spanish normalization preserves Ñ, crossword intersections share one cell (20.713082ms)
+#10 2.552 ✔ submission snapshots exclude score and cannot change when answer state is edited (29.511648ms)
+#10 2.663 ✔ quiz presents real options and navigation without any answer key before evaluation (30.291938ms)
+#10 2.682 ✔ crossword renders only public cells, numbered clues and keyboard instructions (19.075036ms)
+#10 3.254 ✔ authorized evaluation renders server score, expected answers and rationale (566.138167ms)
+#10 3.303 ✔ DT-02: only valid evaluation dates render, consistently in America/Bogota (41.610625ms)
+#10 3.305 ✔ an empty bank starts with publication disabled and no automatic-generation promise (11.661811ms)
+#10 3.351 ✔ appearance restore accepts only known version, finite bounded numbers and allowlisted background IDs (3.007643ms)
+#10 3.352 ✔ before-paint bootstrap and live validation agree; blocked or corrupt storage never inserts a URL or secret (19.863921ms)
+#10 3.354 ✔ core HTTP 200 / {"status":"UP"} maps to UP (61.183347ms)
+#10 3.355 ✔ core HTTP 503 / {"status":"DOWN"} maps to DOWN (13.446672ms)
+#10 3.357 ✔ core HTTP 200 / {"other":"value"} maps to DOWN (14.965262ms)
+#10 3.358 ✔ core HTTP 200 / invalid json maps to DOWN (38.801192ms)
+#10 3.358 ✔ missing configuration and invalid URL cannot report UP (5.32963ms)
+#10 3.361 ✔ identity dates never invent a value and consistently use Bogota across server/browser timezones (633.45659ms)
+#10 3.363 ✔ upload policy offers all six extensions and rejects empty, legacy and oversized files (1.618888ms)
+#10 3.363 ✔ document errors distinguish active content, attachments, provenance, corruption and limits without internal messages (0.659566ms)
+#10 3.364 ✔ multipart requires same origin, CSRF and a bounded valid boundary (43.439511ms)
+#10 3.365 ✔ actual streaming bytes are limited even without content-length (18.721041ms)
+#10 3.367 ✔ JSON proxy allows document JSON operations but leaves upload/download to dedicated routes (0.553433ms)
+#10 3.870 ✔ Nexo fields associate visible labels, hints and errors without erasing supplied constraints (12.291363ms)
+#10 3.870 ✔ Nexo buttons prevent form submission by default and expose loading and accessible icon names (1.809985ms)
+#10 3.876 ✔ Nexo notices distinguish critical errors and progress never invents a percentage (3.237264ms)
+#10 3.877 ✔ initial theme accepts only visual enums, runs with storage denied, and never reads identity (10.146497ms)
+#10 3.900 ✔ callback accepts a bounded code and opaque state, rejects ambiguity and errors (3.525567ms)
+#10 3.900 ✔ diagnostics accept only fixed internal codes and give actionable account-conflict guidance (0.5523ms)
+#10 3.900 ✔ only configured provider hosts over HTTPS can receive the browser (0.835975ms)
+#10 3.900 ✔ generic BFF cannot start or complete an OIDC flow with browser-chosen bindings (0.547712ms)
+#10 3.900 ✔ session cookies are HttpOnly, same-site and secure by configuration (2.602646ms)
+#10 3.900 ✔ CSRF boundary requires exact origin, custom header, JSON and a same-site request (56.097795ms)
+#10 3.900 ✔ BFF cannot proxy arbitrary paths or methods (0.786119ms)
+#10 3.900 ✔ small upload overage is fully consumed before rejection and never forwarded as a successful stream (81.0096ms)
+#10 3.900 ✔ unbounded upload is cancelled at a finite drain budget (9.096ms)
+#10 3.900 ✔ valid upload bytes remain intact (2.62958ms)
+#10 3.901 ℹ tests 47
+#10 3.901 ℹ suites 0
+#10 3.901 ℹ pass 47
+#10 3.901 ℹ fail 0
+#10 3.901 ℹ cancelled 0
+#10 3.901 ℹ skipped 0
+#10 3.901 ℹ todo 0
+#10 3.901 ℹ duration_ms 3046.639791
+#10 4.130
+#10 4.130 > siare-frontend@0.1.0 build
+#10 4.130 > next build
+#10 4.130
+#10 4.771 ▲ Next.js 16.4.6 (Turbopack)
+#10 4.931 ✓ Running next.config.ts took 159ms
+#10 4.960 - Experiments (use with caution):
+#10 4.960   · cpus: 1
+#10 4.960
+#10 5.008   Creating an optimized production build ...
+#10 18.51 ✓ Compiled successfully in 13.5s
+#10 18.56   Running TypeScript ...
+#10 32.73   Finished TypeScript in 14.2s ...
+#10 32.74   Collecting page data using 1 worker ...
+#10 33.67   Generating static pages using 1 worker (0/8) ...
+#10 33.92   Generating static pages using 1 worker (2/8)
+#10 34.08   Generating static pages using 1 worker (4/8)
+#10 34.08   Generating static pages using 1 worker (6/8)
+#10 34.09 ✓ Generating static pages using 1 worker (8/8) in 417ms
+#10 34.10   Finalizing page optimization ...
+#10 35.82
+#10 35.83 Route (app)
+#10 35.83 ┌ ƒ /
+#10 35.83 ├ ○ /_not-found
+#10 35.83 ├ ƒ /administracion
+#10 35.83 ├ ƒ /api/bff/[...path]
+#10 35.83 ├ ƒ /api/files/[...path]
+#10 35.83 ├ ƒ /api/health
+#10 35.83 ├ ƒ /api/oidc/callback/[provider]
+#10 35.83 ├ ƒ /api/oidc/start
+#10 35.83 ├ ƒ /configuracion/apariencia
+#10 35.83 ├ ƒ /inicio
+#10 35.83 ├ ƒ /login
+#10 35.83 ├ ƒ /login/mfa
+#10 35.83 ├ ƒ /materias
+#10 35.83 ├ ƒ /materias/[id]
+#10 35.83 ├ ƒ /materias/nueva
+#10 35.83 ├ ○ /recuperar
+#10 35.83 ├ ○ /recuperar/confirmar
+#10 35.83 ├ ○ /registro
+#10 35.83 ├ ƒ /seguridad
+#10 35.83 ├ ○ /sesion/renovar
+#10 35.83 └ ƒ /sesiones
+#10 35.83
+#10 35.83
+#10 35.83 ○  (Static)   prerendered as static content
+#10 35.83 ƒ  (Dynamic)  server-rendered on demand
+#10 35.83
+#10 36.18
+#10 36.18 > siare-frontend@0.1.0 typecheck
+#10 36.18 > tsc --noEmit
+#10 36.18
+#10 DONE 47.1s
+
+#11 [stage-1 3/5] COPY --from=build --chown=node:node /app/.next/standalone ./
+#11 DONE 2.2s
+
+#12 [stage-1 4/5] COPY --from=build --chown=node:node /app/.next/static ./.next/static
+#12 DONE 0.3s
+
+#13 [stage-1 5/5] COPY --from=build --chown=node:node /app/public ./public
+#13 DONE 0.3s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 3.6s done
+#14 exporting manifest sha256:c5d6358e75f664bac92e8613741067783a4ed6337bebb9b5a0a092bd7b82d350
+#14 exporting manifest sha256:c5d6358e75f664bac92e8613741067783a4ed6337bebb9b5a0a092bd7b82d350 0.0s done
+#14 exporting config sha256:df7b63b47dd510bc7578e28ff577459becd273988e6d60e74b05d45c620b3c37 0.1s done
+#14 exporting attestation manifest sha256:e7932cd0904fd9a6c878d20a72285f3cbf06e46d83d14d6ecba1639f9b401147 0.1s done
+#14 exporting manifest list sha256:04a6543ae6ecd2cc5baf6c1df7eb2cf674ebf141a788e31c3bd24609799a0167
+#14 exporting manifest list sha256:04a6543ae6ecd2cc5baf6c1df7eb2cf674ebf141a788e31c3bd24609799a0167 0.0s done
+#14 naming to docker.io/library/siare-academico-frontend:h6-navigation-appearance done
+#14 unpacking to docker.io/library/siare-academico-frontend:h6-navigation-appearance
+#14 unpacking to docker.io/library/siare-academico-frontend:h6-navigation-appearance 1.2s done
+#14 DONE 5.3s

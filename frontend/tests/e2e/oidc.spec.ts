@@ -11,7 +11,7 @@ test("unconfigured providers are disabled, callbacks fail safely and CSRF is enf
   expect((await page.request.post("/api/bff/auth/oidc/complete", { headers: { Origin: baseURL!, "X-SIARE-CSRF": "1" }, data: {} })).status()).toBe(404);
   const callback = await page.request.get(`/api/oidc/callback/google?state=${"x".repeat(43)}&code=controlled`, { maxRedirects: 0 });
   expect(callback.status()).toBe(303); expect(callback.headers()["referrer-policy"]).toBe("no-referrer");
-  const destination = new URL(callback.headers().location);
+  const destination = new URL(callback.headers().location, baseURL);
   expect(destination.origin).toBe(baseURL); expect(destination.pathname).toBe("/login");
   expect(destination.searchParams.get("oidc")).toBe("contexto");
   expect(destination.searchParams.get("diagnostico")).toBe("OIDC_BROWSER_CONTEXT_MISSING");

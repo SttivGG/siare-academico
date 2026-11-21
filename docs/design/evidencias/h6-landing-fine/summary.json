@@ -1,0 +1,66 @@
+{
+  "origin": "http://127.0.0.1:3107",
+  "implementation": "8c056c61a6f9dec5e40356d5730bbaa173dc2434",
+  "viewports": [
+    {
+      "theme": "light",
+      "device": "desktop"
+    },
+    {
+      "theme": "light",
+      "device": "compact"
+    },
+    {
+      "theme": "light",
+      "device": "landscape"
+    },
+    {
+      "theme": "light",
+      "device": "tablet"
+    },
+    {
+      "theme": "light",
+      "device": "mobile"
+    },
+    {
+      "theme": "light",
+      "device": "small"
+    },
+    {
+      "theme": "dark",
+      "device": "desktop"
+    },
+    {
+      "theme": "dark",
+      "device": "compact"
+    },
+    {
+      "theme": "dark",
+      "device": "landscape"
+    },
+    {
+      "theme": "dark",
+      "device": "tablet"
+    },
+    {
+      "theme": "dark",
+      "device": "mobile"
+    },
+    {
+      "theme": "dark",
+      "device": "small"
+    }
+  ],
+  "tabChangesPerViewport": 8,
+  "maximumDocumentGeometryDeltaPixels": 0,
+  "habitualScreenshotUnchanged": true,
+  "habitualScreenshotSHA256": "8097cd4009d6178f04851a3ea54013cd241bedce9df001d8dccae84128676db1",
+  "unitTestsPassed": 45,
+  "productionBuildPassed": true,
+  "typecheckPassed": true,
+  "playwrightPassed": 9,
+  "playwrightSkipped": 1,
+  "skipReason": "Matrix already covers all viewport sizes from the desktop project.",
+  "contrastSamplesPassed": 100,
+  "realAuthenticationSubmitted": false
+}

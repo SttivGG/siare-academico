@@ -1,0 +1,89 @@
+{
+  "mainUnchanged": true,
+  "health": [
+    {
+      "port": 3100,
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      }
+    },
+    {
+      "port": 3107,
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      }
+    }
+  ],
+  "temporary3117Stopped": true,
+  "deployedCommit": "8c056c61a6f9dec5e40356d5730bbaa173dc2434",
+  "rollback": {
+    "image": "sha256:71f8b6b2eb6f196343e73d7ddb3e8ab1e446f10edf79ab01278deb1351599a48",
+    "tag": "siare-academico-frontend:h6-landing-fine-rollback-20261120"
+  },
+  "habitual": [
+    {
+      "name": "/siare-academico-frontend-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-core-api-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-content-ai-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-progress-api-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-mysql-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-cassandra-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-redis-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-clickhouse-1",
+      "unchanged": true,
+      "healthy": true
+    },
+    {
+      "name": "/siare-academico-mongo-1",
+      "unchanged": true,
+      "healthy": true
+    }
+  ],
+  "branch": "feat/h6-landing-access",
+  "preview": {
+    "id": "96a39276b5b3ad920cc4e2e6d130747d718307683a1e78a949357af7dcd4c2cf",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:922f8963076e55d5e064c1a60c8bc17ddc146f3918033f4a9b4673c48cd060ce",
+    "imageName": "siare-academico-frontend:h6-landing-fine",
+    "created": "2026-11-21T02:33:23.0230399Z",
+    "started": "2026-11-21T02:33:25.685911214Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "8A019E4CE837406BA1208B421117B469290D6FB47D38A15190A4F7E205B8802D",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mounts": [],
+    "networks": [
+      "siare-academico_edge"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+
+> siare-frontend@0.1.0 test:e2e
+> playwright test landing.spec.ts nexo.spec.ts --grep real provider availability|system theme without --reporter=list,json
+
+
+Running 4 tests using 1 worker
+
+(node:5496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs (19.7s)
+  ok 2 [desktop] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization (2.7s)
+(node:4576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -  3 [mobile] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs
+  ok 4 [mobile] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization (2.3s)
+
+  1 skipped
+  3 passed (28.1s)

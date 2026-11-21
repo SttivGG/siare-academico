@@ -1,0 +1,114 @@
+{
+  "origin": "http://127.0.0.1:3107",
+  "phase": "before",
+  "checks": [
+    {
+      "id": "landing",
+      "theme": "light",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(32, 32, 32)"
+      }
+    },
+    {
+      "id": "inicio",
+      "theme": "light",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(32, 32, 32)"
+      }
+    },
+    {
+      "id": "materias",
+      "theme": "light",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(32, 32, 32)"
+      }
+    },
+    {
+      "id": "cuaderno",
+      "theme": "light",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(32, 32, 32)"
+      }
+    },
+    {
+      "id": "seguridad",
+      "theme": "light",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(32, 32, 32)"
+      }
+    },
+    {
+      "id": "login",
+      "theme": "light",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(32, 32, 32)"
+      }
+    },
+    {
+      "id": "landing",
+      "theme": "dark",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(241, 239, 237)"
+      }
+    },
+    {
+      "id": "inicio",
+      "theme": "dark",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(241, 239, 237)"
+      }
+    },
+    {
+      "id": "materias",
+      "theme": "dark",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(241, 239, 237)"
+      }
+    },
+    {
+      "id": "cuaderno",
+      "theme": "dark",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(241, 239, 237)"
+      }
+    },
+    {
+      "id": "seguridad",
+      "theme": "dark",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(241, 239, 237)"
+      }
+    },
+    {
+      "id": "login",
+      "theme": "dark",
+      "styles": {
+        "background": "none",
+        "glass": "",
+        "text": "rgb(241, 239, 237)"
+      }
+    }
+  ]
+}

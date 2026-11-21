@@ -1,0 +1,9 @@
+{
+  "origin": "http://127.0.0.1:3100/login",
+  "title": "Iniciar sesión · SIARE",
+  "sameTitle": true,
+  "sameBodyHtml": true,
+  "samePixels": true,
+  "beforeBodyHash": "68dedbe38f08369a63b4881247e9547f7543ebf789102ec3b7c1b015bdda331b",
+  "afterBodyHash": "68dedbe38f08369a63b4881247e9547f7543ebf789102ec3b7c1b015bdda331b"
+}

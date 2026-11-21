@@ -1,0 +1,46 @@
+[
+  {
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "id": "9e4ecb00cb952eef7c916664c706b20cf29bfda55a471865928584acda068fee",
+    "image": "sha256:2f2dc7f3dc37453f605a57825c2c6f2946199b6f0f712908eb64ea41089c53c1",
+    "created": "2026-11-20T20:18:41.772303846Z",
+    "health": "healthy",
+    "environmentHash": "11D93BE279FF9A27C8C7DC54D0B59C16DA5863FFDC8CB24CA2386F7C4F8AEA52",
+    "ports": {
+      "3000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "3107"
+        }
+      ]
+    },
+    "networks": [
+      "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160"
+    ],
+    "mounts": [],
+    "memory": 402653184,
+    "nanoCpus": 1000000000
+  },
+  {
+    "name": "/siare-academico-frontend-1",
+    "id": "eae9ae80e3c14891bd844a492afbae59e920812b44de53c11915fda63c92829d",
+    "image": "sha256:c67d08bd4d4ef8e405f1d886ed3fec4c9fdb62f06be117184a8ff68c7c9ff5b0",
+    "created": "2026-11-19T17:19:08.150698068Z",
+    "health": "healthy",
+    "environmentHash": "83A25095F56A5046FA24E17A7C3F02F303791EBA85E32D514BF01A5F592F853C",
+    "ports": {
+      "3000/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "3100"
+        }
+      ]
+    },
+    "networks": [
+      "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160"
+    ],
+    "mounts": [],
+    "memory": 402653184,
+    "nanoCpus": 1000000000
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "codeCommit": "db823a8b5c03d90b273cf0aa0b3947c7f325f548",
+  "branch": "feat/h6-landing-access",
+  "unitTestsPassed": 45,
+  "build": "passed",
+  "typecheck": "passed",
+  "playwright": {
+    "passed": 11,
+    "skipped": 1,
+    "reason": "Mobile matrix already exercised inside desktop project"
+  },
+  "geometryStates": 28,
+  "maximumTabShift": 0,
+  "logoStates": 8,
+  "maximumOtherLayoutShift": 0,
+  "originalMatchesUserFile": true,
+  "cleanPNGDeliveredWithoutConversion": true,
+  "previewHealthy": true,
+  "habitualContainersPreserved": 9
+}

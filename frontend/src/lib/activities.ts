@@ -6,10 +6,12 @@ export type Bank = { validated: boolean; questions: Question[]; words: Word[] };
 export type Fragment = { index: number; unitType: string; unitNumber: number; text: string };
 export type DocumentSource = { documentId: string; originalFilename: string };
 export type ActivityType = 'QUIZ' | 'CROSSWORD';
-export type ActivitySummary = { activityId: string; subjectId: string; documentId: string | null; type: ActivityType; title: string; status: string; createdAt: string };
+// Catalog H3 deliberately does not include dates or document metadata.
+export type ActivitySummary = { activityId: string; subjectId: string; type: ActivityType; title: string; available: boolean };
+export type ActivityDetail = Omit<ActivitySummary, 'available'> & { documentId: string | null; status: string; createdAt: string };
 export type Clue = { id: string; number: number; row: number; column: number; direction: 'ACROSS' | 'DOWN'; length: number; clue: string; source?: Source | null };
-export type QuizActivity = ActivitySummary & { type: 'QUIZ'; content: { questions: Omit<Question, 'correctOptionId' | 'explanation'>[] } };
-export type CrosswordActivity = ActivitySummary & { type: 'CROSSWORD'; content: { rows: number; columns: number; cells: { row: number; column: number }[]; clues: Clue[] } };
+export type QuizActivity = ActivityDetail & { type: 'QUIZ'; content: { questions: Omit<Question, 'correctOptionId' | 'explanation'>[] } };
+export type CrosswordActivity = ActivityDetail & { type: 'CROSSWORD'; content: { rows: number; columns: number; cells: { row: number; column: number }[]; clues: Clue[] } };
 export type Activity = QuizActivity | CrosswordActivity;
 export type Evaluation = { attemptId: string; activityId: string; subjectId: string; activityType: ActivityType; percentage: number; points: number; total: number; occurredAt: string; feedback: string; items: { id: string; correct: boolean; submitted: string | null; expected: string; rationale: string; feedback: string }[] };
 export type Submission = { idempotencyKey: string; answers: Record<string, string>; durationMs: number };

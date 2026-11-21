@@ -1,0 +1,345 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "source": "frontend/src/app/page.tsx"
+    },
+    {
+      "route": "/administracion",
+      "source": "frontend/src/app/(student)/administracion/page.tsx"
+    },
+    {
+      "route": "/inicio",
+      "source": "frontend/src/app/(student)/inicio/page.tsx"
+    },
+    {
+      "route": "/login",
+      "source": "frontend/src/app/login/page.tsx"
+    },
+    {
+      "route": "/login/mfa",
+      "source": "frontend/src/app/login/mfa/page.tsx"
+    },
+    {
+      "route": "/materias",
+      "source": "frontend/src/app/(student)/materias/page.tsx"
+    },
+    {
+      "route": "/materias/[id]",
+      "source": "frontend/src/app/(student)/materias/[id]/page.tsx"
+    },
+    {
+      "route": "/materias/nueva",
+      "source": "frontend/src/app/(student)/materias/nueva/page.tsx"
+    },
+    {
+      "route": "/recuperar",
+      "source": "frontend/src/app/recuperar/page.tsx"
+    },
+    {
+      "route": "/recuperar/confirmar",
+      "source": "frontend/src/app/recuperar/confirmar/page.tsx"
+    },
+    {
+      "route": "/registro",
+      "source": "frontend/src/app/registro/page.tsx"
+    },
+    {
+      "route": "/seguridad",
+      "source": "frontend/src/app/(student)/seguridad/page.tsx"
+    },
+    {
+      "route": "/sesion/renovar",
+      "source": "frontend/src/app/sesion/renovar/page.tsx"
+    },
+    {
+      "route": "/sesiones",
+      "source": "frontend/src/app/(student)/sesiones/page.tsx"
+    }
+  ],
+  "technicalRoutesUnchanged": [
+    {
+      "route": "/api/bff/[...path]",
+      "source": "frontend/src/app/api/bff/[...path]/route.ts"
+    },
+    {
+      "route": "/api/files/[...path]",
+      "source": "frontend/src/app/api/files/[...path]/route.ts"
+    },
+    {
+      "route": "/api/health",
+      "source": "frontend/src/app/api/health/route.ts"
+    },
+    {
+      "route": "/api/oidc/callback/[provider]",
+      "source": "frontend/src/app/api/oidc/callback/[provider]/route.ts"
+    },
+    {
+      "route": "/api/oidc/start",
+      "source": "frontend/src/app/api/oidc/start/route.ts"
+    }
+  ],
+  "internalCases": [
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "W01",
+    "W02",
+    "W03",
+    "W04",
+    "W05",
+    "W06",
+    "W07",
+    "W08",
+    "W09",
+    "W10",
+    "W11",
+    "W12",
+    "W13",
+    "W14",
+    "I01",
+    "I02",
+    "I03",
+    "I04",
+    "I05",
+    "I06",
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "X01",
+    "X02",
+    "X03",
+    "X04",
+    "X05",
+    "X06"
+  ],
+  "counts": {
+    "visualPages": 14,
+    "technicalRoutes": 5,
+    "internalCases": 36
+  },
+  "fontSHA256": "7981ef90c246352c7c217081b8d9337b9c95e9d17ae126bf56b0d3753d1e5ffb",
+  "fontMatchesApprovedPrototype": true,
+  "internalMappings": [
+    {
+      "id": "A01",
+      "routes": "/login",
+      "owner": "auth-form.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "A02",
+      "routes": "/login",
+      "owner": "app/login/page.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "A03",
+      "routes": "/login; /registro",
+      "owner": "federated-login.tsx; lib/oidc-policy.ts",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "A04",
+      "routes": "/login/mfa",
+      "owner": "mfa-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "A05",
+      "routes": "/recuperar; /recuperar/confirmar",
+      "owner": "password-recovery-form.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "W01",
+      "routes": "/materias/[id]",
+      "owner": "subject-workspace.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W02",
+      "routes": "/materias/[id]",
+      "owner": "subject-documents.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W03",
+      "routes": "/materias/[id]",
+      "owner": "subject-documents.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W04",
+      "routes": "/materias/[id]",
+      "owner": "subject-documents.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W05",
+      "routes": "/materias/[id]",
+      "owner": "subject-documents.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W06",
+      "routes": "/materias/[id]",
+      "owner": "activity-panel.tsx; lib/activities.ts",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W07",
+      "routes": "/materias/[id]",
+      "owner": "activity-bank-editor.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W08",
+      "routes": "/materias/[id]",
+      "owner": "activity-player.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W09",
+      "routes": "/materias/[id]",
+      "owner": "activity-player.tsx / CrosswordGrid",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W10",
+      "routes": "/materias/[id]",
+      "owner": "activity-player.tsx; lib/activities.ts / freezeSubmission",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W11",
+      "routes": "/materias/[id]",
+      "owner": "activity-player.tsx / EvaluationView",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W12",
+      "routes": "/materias/[id]",
+      "owner": "activity-panel.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "W13",
+      "routes": "/materias/[id]",
+      "owner": "subject-workspace.tsx; ui/dialog.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "W14",
+      "routes": "/materias/[id]",
+      "owner": "subject-workspace.tsx; activity-panel.tsx; activity-player.tsx",
+      "pending": "H6-3"
+    },
+    {
+      "id": "I01",
+      "routes": "Rutas privadas R08–R14",
+      "owner": "student-nav.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "I02",
+      "routes": "/seguridad",
+      "owner": "mfa-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "I03",
+      "routes": "/seguridad",
+      "owner": "mfa-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "I04",
+      "routes": "/seguridad",
+      "owner": "connected-identities.tsx; federated-login.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "I05",
+      "routes": "/sesiones",
+      "owner": "sessions-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "I06",
+      "routes": "Transversal: rutas visuales R01–R14",
+      "owner": "ui/theme-control.tsx; lib/theme.ts",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "D01",
+      "routes": "/administracion",
+      "owner": "app/(student)/administracion/page.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "D02",
+      "routes": "/administracion",
+      "owner": "administration-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "D03",
+      "routes": "/administracion",
+      "owner": "administration-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "D04",
+      "routes": "/administracion",
+      "owner": "administration-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "D05",
+      "routes": "/administracion",
+      "owner": "administration-panel.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "X01",
+      "routes": "Transversal: rutas visuales R01–R14",
+      "owner": "app/error.tsx; layout/feedback-shell.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "X02",
+      "routes": "URL visual inexistente: frontera not-found.tsx",
+      "owner": "app/not-found.tsx; layout/feedback-shell.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "X03",
+      "routes": "/sesiones; /administracion",
+      "owner": "app/(student)/sesiones/loading.tsx; app/(student)/administracion/loading.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "X04",
+      "routes": "Rutas privadas R08–R14",
+      "owner": "student-nav.tsx; layout/app-shell.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "X05",
+      "routes": "Rutas privadas R08–R14",
+      "owner": "ui/dialog.tsx; student-nav.tsx",
+      "pending": "H6-4 / H6-5 / H6-6"
+    },
+    {
+      "id": "X06",
+      "routes": "Transversal: rutas visuales R01–R14",
+      "owner": "ui/primitives.tsx; styles/tokens.css; app/globals.css",
+      "pending": "H6-4 / H6-5 / H6-6"
+    }
+  ]
+}

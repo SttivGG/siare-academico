@@ -1,0 +1,20 @@
+{
+  "base": "c8f934492f0cc7809282657270df34b4474915ca",
+  "runtimeCode": "1931ddbcf177fbfe3ffbb4b8041a4335fd601edb",
+  "unchangedPaths": [
+    "services",
+    "frontend/src/app/api",
+    "compose.apps.yml",
+    "compose.datos.yml",
+    "frontend/package.json",
+    "frontend/package-lock.json",
+    "frontend/public/fonts"
+  ],
+  "H5Included": false,
+  "FlywayV6Included": false,
+  "PR8": "OPEN ca27a80; untouched",
+  "PR9": "OPEN ff104c2; untouched",
+  "habitualContainersRecreated": false,
+  "isolatedHasPersistentVolumes": false,
+  "dataNote": "Only synthetic accounts, subjects, documents and submissions created by integration tests; no existing data or roles changed."
+}

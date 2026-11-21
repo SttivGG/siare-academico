@@ -1,0 +1,78 @@
+{
+  "base": "56687c678a3260a9f0ceaa24a8101986043de6b1",
+  "files": [
+    {
+      "path": "frontend/src/lib/academic-state.ts",
+      "baseBlob": "0ce7192ed8d1550f2872fad1e0c72e71d1ca18c6",
+      "currentBlob": "0ce7192ed8d1550f2872fad1e0c72e71d1ca18c6",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/lib/academic-recovery.ts",
+      "baseBlob": "9947cb055466d28a4b0bb3372e1345117627c39b",
+      "currentBlob": "9947cb055466d28a4b0bb3372e1345117627c39b",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/academic-provider.tsx",
+      "baseBlob": "9759280a4441b199f62471aa55f27e8d52bf3ab0",
+      "currentBlob": "9759280a4441b199f62471aa55f27e8d52bf3ab0",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/ui/dialog.tsx",
+      "baseBlob": "aa386fcf540f3e174bb2eae7cca66e17d58bdc45",
+      "currentBlob": "aa386fcf540f3e174bb2eae7cca66e17d58bdc45",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/ui/confirm-dialog.tsx",
+      "baseBlob": "47dac686764f1cf627aa76f6b8490f4c4f254b76",
+      "currentBlob": "47dac686764f1cf627aa76f6b8490f4c4f254b76",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/auth-form.tsx",
+      "baseBlob": "fd426d1c7774ef4bb153e5a34c18c3813608031e",
+      "currentBlob": "fd426d1c7774ef4bb153e5a34c18c3813608031e",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/mfa-panel.tsx",
+      "baseBlob": "ebab9dd5bb96c3c92a22883b3347ea6f53f1cf28",
+      "currentBlob": "ebab9dd5bb96c3c92a22883b3347ea6f53f1cf28",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/administration-panel.tsx",
+      "baseBlob": "c3a50d18ca20d32f6d123859d2c94d43cbf39520",
+      "currentBlob": "c3a50d18ca20d32f6d123859d2c94d43cbf39520",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/components/sessions-panel.tsx",
+      "baseBlob": "90fe01d8d99972cc272f68550b6d28ae7dbfde52",
+      "currentBlob": "90fe01d8d99972cc272f68550b6d28ae7dbfde52",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/src/styles/tokens.css",
+      "baseBlob": "88013dee8b3f68e0462d68036856a44e48fa0c4c",
+      "currentBlob": "88013dee8b3f68e0462d68036856a44e48fa0c4c",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/package.json",
+      "baseBlob": "eab559322ab4ff76339c3901ab913f484be8d3fc",
+      "currentBlob": "eab559322ab4ff76339c3901ab913f484be8d3fc",
+      "unchanged": true
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "baseBlob": "b98eef412f145426eb6faded4618ab33cc031b9e",
+      "currentBlob": "b98eef412f145426eb6faded4618ab33cc031b9e",
+      "unchanged": true
+    }
+  ],
+  "servicesBffComposeUnchanged": true
+}

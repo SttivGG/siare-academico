@@ -1,0 +1,85 @@
+{
+  "canonicalText": "UTF-8 LF; terminal trailing whitespace removed",
+  "files": [
+    {
+      "file": "activities-final.txt",
+      "bytes": 596,
+      "sha256": "b638c50fd21cc5ae9342c31ef46273b520d529f5be63d94cbc45f688aae6c195"
+    },
+    {
+      "file": "appearance-dark.jpg",
+      "bytes": 217970,
+      "sha256": "9646ffcfeaf59515640bc5ec82915fc7eee87c8353d299f4af0c59a38a2063b8"
+    },
+    {
+      "file": "build-final.txt",
+      "bytes": 1181,
+      "sha256": "a188e11275d551e427a26511d75e4084a6f68e4790608cdff1d25467517b34ea"
+    },
+    {
+      "file": "crossword-dark.jpg",
+      "bytes": 40946,
+      "sha256": "72e11b7ff79603f3496550a19b858b55d2e53f39c64387bd1f70297e6dc71b7b"
+    },
+    {
+      "file": "deployment.json",
+      "bytes": 6463,
+      "sha256": "a45b2396672bd4242255e4cc232cdbdd00c1601178ca57def56d84f6cbd67a31"
+    },
+    {
+      "file": "habitual-3100.png",
+      "bytes": 52105,
+      "sha256": "8097cd4009d6178f04851a3ea54013cd241bedce9df001d8dccae84128676db1"
+    },
+    {
+      "file": "identity-final.txt",
+      "bytes": 1062,
+      "sha256": "e992c9953575e45cd175b3463e7db4297992b03155e92b3ff1294115b442e06a"
+    },
+    {
+      "file": "nexo-final.txt",
+      "bytes": 817,
+      "sha256": "d92420ed39d6a17b612a72c8a1cafea35fb5a0dbcb4d254f50f7ba188634b4c4"
+    },
+    {
+      "file": "playwright-summary.json",
+      "bytes": 43222,
+      "sha256": "76099902e46de9d7422d504ed0ef78458258e4933a4725f57c95c1aa55cd6771"
+    },
+    {
+      "file": "preservation.json",
+      "bytes": 2441,
+      "sha256": "dc2676941148b9d27b596314d123461e255a99a9959d0f140b4ca2b83affea67"
+    },
+    {
+      "file": "preview-3107.png",
+      "bytes": 1134091,
+      "sha256": "95b43ab6dc3469bb425df14e505c396ae59d9139ab360c662ed9027de1c92516"
+    },
+    {
+      "file": "privacy.json",
+      "bytes": 2204,
+      "sha256": "1a7455a1cdf033ec53d5420168e91c434c04f900bed7af7cdc49fc2bcafaef0e"
+    },
+    {
+      "file": "README.md",
+      "bytes": 1871,
+      "sha256": "2b3d8eab6d1428d008676bb1d1cb2d51ab2fc4890f8cde06926eb8ede2987e41"
+    },
+    {
+      "file": "typecheck-final.txt",
+      "bytes": 49,
+      "sha256": "916087994fdae3d627f945537a96cb32b39dd1638267eb670b299245554de941"
+    },
+    {
+      "file": "unit-final.txt",
+      "bytes": 4862,
+      "sha256": "aa96dcb5c04fae21b10649131839ddf801e37a57035ceb23c5756c02aa02fe3c"
+    },
+    {
+      "file": "visual-accessibility.json",
+      "bytes": 14316,
+      "sha256": "f6c64d687e8bb1d996de26e741e41afff9d99d67baf5597d8358348bea4a0138"
+    }
+  ]
+}

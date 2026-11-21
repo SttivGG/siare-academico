@@ -4,8 +4,9 @@ import { NextResponse } from "next/server";
 import { cookieSettings } from "./session-policy";
 import { secureCookie, sessionName, refreshName, challengeName } from "./server-session";
 import { validOpaque, diagnosticCode, type Provider } from "./oidc-policy";
+import { internalLocation } from "./public-origin";
 
-export const appOrigin = () => process.env.APP_ORIGIN ?? "http://127.0.0.1:3100";
+export { appOrigin } from "./public-origin";
 export const flowCookie = (provider: string) => `${secureCookie() ? "__Host-" : ""}siare_oidc_${provider}`;
 export const oidcHeaders = { "Cache-Control": "no-store", "Referrer-Policy": "no-referrer" };
 
@@ -21,7 +22,7 @@ export function oidcDiagnostic(provider: Provider | "unknown", stage: "start" | 
 export function oidcResult(data: Record<string, unknown>) {
   const destination = data.linked === true ? "/seguridad?oidc=vinculada" : data.mfaRequired === true
     ? `/login/mfa${data.enrollmentRequired === true ? "?configurar=1" : ""}` : "/inicio";
-  const response = NextResponse.redirect(new URL(destination, appOrigin()), 303);
+  const response = new NextResponse(null, { status: 303, headers: { Location: internalLocation(destination) } });
   for (const [key, value] of Object.entries(oidcHeaders)) response.headers.set(key, value);
   if (data.linked === true) return response;
   if (data.mfaRequired === true) {

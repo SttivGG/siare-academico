@@ -1,0 +1,89 @@
+{
+  "method": "Sample an empty interior strip of the actual deployed panel. Change only the photograph layer behind it to a colored probe; compare rendered RGB pixels. An opaque panel would give zero difference.",
+  "results": [
+    {
+      "theme": "light",
+      "width": 1440,
+      "panel": {
+        "x": 862.40625,
+        "y": 303.09375,
+        "width": 520,
+        "height": 745.640625,
+        "surface": "rgba(255, 255, 255, 0.28)",
+        "reflection": "linear-gradient(135deg in oklab, rgba(255, 255, 255, 0.22), rgba(0, 0, 0, 0) 42%)",
+        "blur": "blur(10px)"
+      },
+      "sample": {
+        "left": 895,
+        "top": 826,
+        "width": 456,
+        "height": 24
+      },
+      "meanChannelDifference": 32.83360745614035,
+      "changedFraction": 0.9091739766081871
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "panel": {
+        "x": 20,
+        "y": 587.765625,
+        "width": 350,
+        "height": 800.484375,
+        "surface": "rgba(255, 255, 255, 0.28)",
+        "reflection": "linear-gradient(135deg in oklab, rgba(255, 255, 255, 0.22), rgba(0, 0, 0, 0) 42%)",
+        "blur": "blur(10px)"
+      },
+      "sample": {
+        "left": 52,
+        "top": 1149,
+        "width": 286,
+        "height": 24
+      },
+      "meanChannelDifference": 21.751845376845377,
+      "changedFraction": 0.8575174825174825
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "panel": {
+        "x": 862.40625,
+        "y": 303.09375,
+        "width": 520,
+        "height": 745.640625,
+        "surface": "rgba(7, 9, 12, 0.28)",
+        "reflection": "linear-gradient(135deg in oklab, rgba(255, 255, 255, 0.067), rgba(0, 0, 0, 0) 42%)",
+        "blur": "blur(10px)"
+      },
+      "sample": {
+        "left": 895,
+        "top": 826,
+        "width": 456,
+        "height": 24
+      },
+      "meanChannelDifference": 36.083516081871345,
+      "changedFraction": 0.9287889863547758
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "panel": {
+        "x": 20,
+        "y": 587.765625,
+        "width": 350,
+        "height": 800.484375,
+        "surface": "rgba(7, 9, 12, 0.28)",
+        "reflection": "linear-gradient(135deg in oklab, rgba(255, 255, 255, 0.067), rgba(0, 0, 0, 0) 42%)",
+        "blur": "blur(10px)"
+      },
+      "sample": {
+        "left": 52,
+        "top": 1149,
+        "width": 286,
+        "height": 24
+      },
+      "meanChannelDifference": 26.57090132090132,
+      "changedFraction": 0.8865578865578866
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+
+Running 12 tests using 1 worker
+
+(node:5756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs (22.8s)
+  ok  2 [desktop] › tests\e2e\landing.spec.ts:75:1 › landing: keyboard tabs, theme persistence, system theme and recovery navigation (1.6s)
+  ok  3 [desktop] › tests\e2e\landing.spec.ts:93:1 › landing: global theme updates translucent surface, fields and interaction states (2.8s)
+  ok  4 [desktop] › tests\e2e\landing.spec.ts:138:1 › landing: native validation and field errors reuse the existing login/register transport (1.4s)
+  ok  5 [desktop] › tests\e2e\landing.spec.ts:168:1 › landing: pending submission cannot be interrupted by switching tabs (1.2s)
+  ok  6 [desktop] › tests\e2e\landing.spec.ts:183:1 › landing: provider buttons retain disabled, error and redirect behavior (2.0s)
+(node:22616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   7 [mobile] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs
+  ok  8 [mobile] › tests\e2e\landing.spec.ts:75:1 › landing: keyboard tabs, theme persistence, system theme and recovery navigation (1.5s)
+  ok  9 [mobile] › tests\e2e\landing.spec.ts:93:1 › landing: global theme updates translucent surface, fields and interaction states (2.4s)
+  ok 10 [mobile] › tests\e2e\landing.spec.ts:138:1 › landing: native validation and field errors reuse the existing login/register transport (1.5s)
+  ok 11 [mobile] › tests\e2e\landing.spec.ts:168:1 › landing: pending submission cannot be interrupted by switching tabs (1.3s)
+  ok 12 [mobile] › tests\e2e\landing.spec.ts:183:1 › landing: provider buttons retain disabled, error and redirect behavior (2.3s)
+
+  1 skipped
+  11 passed (45.0s)

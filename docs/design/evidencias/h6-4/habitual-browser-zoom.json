@@ -1,0 +1,26 @@
+{
+  "/": {
+    "status": 200,
+    "title": "SIARE · Tu espacio de aprendizaje",
+    "heading": "Un lugar para empezar.\nUna materia a la vez."
+  },
+  "/login": {
+    "status": 200,
+    "title": "Iniciar sesión · SIARE",
+    "heading": "Qué bueno verte de nuevo"
+  },
+  "zoom": {
+    "method": "browser accelerator Control+=, 4 times; no CSS font or device emulation",
+    "before": {
+      "innerWidth": 1424,
+      "devicePixelRatio": 1,
+      "font": "16px"
+    },
+    "after": {
+      "innerWidth": 1424,
+      "devicePixelRatio": 1,
+      "font": "16px"
+    },
+    "verified": false
+  }
+}

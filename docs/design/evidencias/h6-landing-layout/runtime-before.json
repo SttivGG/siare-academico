@@ -1,0 +1,226 @@
+[
+  {
+    "id": "fdc5073258db2e39ed026fe61b4acfbd557b219daadb5ae015d61962da3e8d48",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:07a9f22ef4bfc0eea667a3084a26680aa8900bca250aee9cb4b0fc9cb6c30267",
+    "imageName": "siare-academico-frontend:h6-landing-glass",
+    "created": "2026-11-21T03:06:21.163814575Z",
+    "started": "2026-11-21T03:06:23.576056258Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-h6-3-validation",
+    "service": "frontend-h6",
+    "configHash": "3CBE3452300BE3EB08ED41D4EA438D6ABEE1AAD142652FDEC1A1B8A5EF8D4175",
+    "envHash": "11D93BE279FF9A27C8C7DC54D0B59C16DA5863FFDC8CB24CA2386F7C4F8AEA52",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160",
+        "name": "siare-academico_edge"
+      }
+    ]
+  },
+  {
+    "id": "eae9ae80e3c14891bd844a492afbae59e920812b44de53c11915fda63c92829d",
+    "name": "/siare-academico-frontend-1",
+    "image": "sha256:c67d08bd4d4ef8e405f1d886ed3fec4c9fdb62f06be117184a8ff68c7c9ff5b0",
+    "imageName": "siare-academico-frontend:0.1.0",
+    "created": "2026-11-19T17:19:08.150698068Z",
+    "started": "2026-11-21T01:22:56.185494623Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "frontend",
+    "configHash": "B9233F6C2C80911AD0F40601B11825A96E82F797F1E714C91F7A16E6308D3BCD",
+    "envHash": "83A25095F56A5046FA24E17A7C3F02F303791EBA85E32D514BF01A5F592F853C",
+    "hostHash": "0D4BCB25D3CE395C3BF1646DDF8232512B19401B18B308FDA3CBB04886C3B08F",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160",
+        "name": "siare-academico_edge"
+      }
+    ]
+  },
+  {
+    "id": "27138d454210d5aacd9b8181efe5d8a02c5f09f9a4bdd15f15188fa4e7cd7bfe",
+    "name": "/siare-academico-core-api-1",
+    "image": "sha256:ecff70dea3a1061462ec103d81fed5f6729a2b8cee1113670afc87f814642e84",
+    "imageName": "siare-academico-core-api:0.1.0",
+    "created": "2026-11-19T01:31:17.509705819Z",
+    "started": "2026-11-21T01:22:56.701431782Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "core-api",
+    "configHash": "44AF6A7DEAF8E035D210873AB14C1BA0C1B90DC2CAE4D18D3C2251EB79DC1013",
+    "envHash": "E53CF722FAA32DA18A079964920EC7702F2C6B0AECB6E6F176056405A7289AC5",
+    "hostHash": "3068A7AB28DB68C87F2D5118253BFC01EEDD050CC1F5E6E4E4B364E1D2723699",
+    "mountsHash": "C10E94482A80F90AD4AB5C5EC27082602DD5A1F87E3D534ECDB8D97FE6059F40",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      },
+      {
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160",
+        "name": "siare-academico_edge"
+      }
+    ]
+  },
+  {
+    "id": "8a7f97dc46a985c054b278bffb4369bfcf13f92199650b6e1de3742073347189",
+    "name": "/siare-academico-content-ai-1",
+    "image": "sha256:212a8df4b6896d98ad607d66db4c7f03d562fa871dffa8f8e9bae93d17f36ba4",
+    "imageName": "siare-academico-content-ai:0.1.0",
+    "created": "2026-11-19T01:31:08.20468285Z",
+    "started": "2026-11-21T01:23:01.287972041Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "content-ai",
+    "configHash": "01A9C251057A88EA88D38245C52023EECED4BCD0FDBBC72DEA9670C3A9B4200D",
+    "envHash": "1F49FB288691A166E9525275CA6B7F7CAA40D4C8CC7C8CD767C9D07D1275CF1B",
+    "hostHash": "D69F3055036E5608B5962419428F391EC9C4B5B07FBF1E5C685B94C221584617",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  },
+  {
+    "id": "c5ee706867eb29119d33d4129fb05a39d34ab59de9c6219e16e56ff1a2a50927",
+    "name": "/siare-academico-progress-api-1",
+    "image": "sha256:cb222edc168be4ff9e50af43555eebc1e9d95f358b5f61b3d4829138f0fadcc0",
+    "imageName": "siare-academico-progress-api:0.1.0",
+    "created": "2026-11-10T19:25:56.756685855Z",
+    "started": "2026-11-21T01:22:59.195117131Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "progress-api",
+    "configHash": "EAC9F61D8F7D3B2A7ABBCD8744A54E4F747476442E7165A05864861FCF6EA161",
+    "envHash": "C58DF49EC5E119977B5B6CD87A2C19C0D98F408FDB9D7D7B393FFF2664CD50FF",
+    "hostHash": "C63918EA8CE8DC06394D04CC638DB9CFDAC01DE991441F6D8E15F6463BE52090",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  },
+  {
+    "id": "a874a4f0ab4620d5266b85d7b7ed32953d97059808e6452209d1f25762f543f6",
+    "name": "/siare-academico-mysql-1",
+    "image": "sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902",
+    "imageName": "mysql:8.4.13@sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902",
+    "created": "2026-11-10T19:25:31.323093084Z",
+    "started": "2026-11-21T01:22:55.559328221Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "mysql",
+    "configHash": "E5D6630DE7E6E1534E71B6A70BB8E97427326CEEB05CFC345E5C92A7A63D2611",
+    "envHash": "954FD18AD60BEAD6AF94436837D2F657D98E4D38F9F5901C88A1F7AC09935A82",
+    "hostHash": "526C809189CEE2D75018DEA79711600318AA04136DDECCC1A0E11654D9022823",
+    "mountsHash": "A2B7634A003CEEFDC459A08197118F697146C089F55CB0079BC1691A95182274",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  },
+  {
+    "id": "274b64b24986140c696397d8130f04a33934e2334ef6abfb6468cca549338c0d",
+    "name": "/siare-academico-cassandra-1",
+    "image": "sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e",
+    "imageName": "cassandra:4.1.12@sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e",
+    "created": "2026-11-10T19:25:31.316224415Z",
+    "started": "2026-11-21T01:22:59.856895937Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "cassandra",
+    "configHash": "782557C346998969DB6C22900941BA60E203BB5E634FCE52EFDEC05D5BDE3853",
+    "envHash": "7C182875B46623A49C038D68565C11A1D8D1FDFDB1952EE0649A83F6745A0E2B",
+    "hostHash": "58BBEB03C17395AD89DDC9105D90FBC6ED345D15683690D26D7DA448B92B4A90",
+    "mountsHash": "9369974921091D9A46AA75A46AD7C5D673CAE80ECE75053A6CB26899C3D0D200",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  },
+  {
+    "id": "d7b516acd286898e0dcc1270da802640116b701f40c0fb701ba4020833ada141",
+    "name": "/siare-academico-redis-1",
+    "image": "sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7",
+    "imageName": "redis:7.4.12-alpine@sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7",
+    "created": "2026-11-10T19:25:31.312555451Z",
+    "started": "2026-11-21T01:23:00.584000916Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "redis",
+    "configHash": "1CE5D5D12B0A964B9227956F62280CBAFE99AC64675A616B2806920C658E557D",
+    "envHash": "245136DB7706DD98A7D1026BDC441429936DAD8F63F2A3531D8B641549E8334F",
+    "hostHash": "43F29218F35C6871949886CA0BB6F6E5FBD53A1784527AB2968AD00F9C72EFD9",
+    "mountsHash": "6F9CF6807DC34C85D498D43952E43454A81D6C0E90ECADDB566261B13631E7CE",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  },
+  {
+    "id": "f93db5993ddbbeb5f734654b3aec4f307955f44b0471815addc2c245b9c99f8b",
+    "name": "/siare-academico-clickhouse-1",
+    "image": "sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7",
+    "imageName": "clickhouse/clickhouse-server:26.8.36.3@sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7",
+    "created": "2026-11-10T19:25:31.294534887Z",
+    "started": "2026-11-21T01:22:57.237503416Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "clickhouse",
+    "configHash": "B5B3B1878402771CE7715E5693E7A57D0A3DA9DDDA6C779675105160D3030340",
+    "envHash": "79470167E293CE68531AAA520970A817F3CCEABC1EFDE9FF265D554FAE0500C5",
+    "hostHash": "E04D94503BC6F1B3AF1CBB83304CEA2A7C74580825E579531CE575E7A14920EC",
+    "mountsHash": "03C18FBAAB0F4F055EBC5AFB912EA93C523ADE1C5CECE3B2E2A9B4DAF1597B5F",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  },
+  {
+    "id": "c11e8984ca8be9e21bd9080475bd3d3c41d59ea5429335d018ab25a4d1cef566",
+    "name": "/siare-academico-mongo-1",
+    "image": "sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142",
+    "imageName": "mongo:8.0.34@sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142",
+    "created": "2026-11-10T19:25:31.290336233Z",
+    "started": "2026-11-21T01:22:58.130093823Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-academico",
+    "service": "mongo",
+    "configHash": "4DF870255F68BA4E15E37A7E674627D1653D240EF5746A2411657303F4D27E1F",
+    "envHash": "AAD156747258FA6C816A14CBB284BBE1D9678B57B2641C964A4BE5E44E961A5B",
+    "hostHash": "ED402634EF8DA377198D4458C17E74C9981C7261C42C5CB2C55DFBC5ACA8A26D",
+    "mountsHash": "BCFBDC2AE20D86D15E7200FEFE994D4D2877A52170005FA162E46EB94C0582F0",
+    "networks": [
+      {
+        "id": "cf7ca3f3a7da723cbd7e2328967663941463e8bf973a018aaa5475e4fa1c31fe",
+        "name": "siare-academico_data"
+      }
+    ]
+  }
+]

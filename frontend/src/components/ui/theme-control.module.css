@@ -1,0 +1,2 @@
+.themeToggle { display: grid; place-items: center; inline-size: 44px; min-block-size: 44px; padding: 8px; border: 1px solid var(--border); border-radius: 12px; color: var(--text); background: transparent; }
+.themeToggle:hover { background: var(--hover); }

@@ -1,0 +1,705 @@
+{
+  "method": "Text colors against sampled rendered backgrounds with glyphs hidden; Chromium, 1440 and 390px, register tab. Not a complete WCAG audit.",
+  "results": [
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 5.28,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Un lugar para empezar.Una materia a la vez.",
+      "ratio": 12.17,
+      "target": 3
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Una materia a la vez.",
+      "ratio": 4.96,
+      "target": 3
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 12.52,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 5.8,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Registrarse",
+      "ratio": 14.27,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Tu próximo paso empieza aquí",
+      "ratio": 12.23,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Tres datos para crear tu espacio de estudio.",
+      "ratio": 5.82,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Nombre",
+      "ratio": 13.51,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Correo electrónico",
+      "ratio": 12.79,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Contraseña",
+      "ratio": 13.44,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes.",
+      "ratio": 5.68,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Crear cuenta",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Google",
+      "ratio": 7.27,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Consultando disponibilidad…",
+      "ratio": 6.23,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "GitLab",
+      "ratio": 7.16,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Consultando disponibilidad…",
+      "ratio": 6.01,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Organiza",
+      "ratio": 14.7,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 5.68,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Comprende",
+      "ratio": 14.13,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 5.52,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Practica",
+      "ratio": 13.87,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 5.37,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 13.22,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "text": "Servicio de acceso disponible",
+      "ratio": 6.24,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 5.09,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Un lugar para empezar.Una materia a la vez.",
+      "ratio": 11.94,
+      "target": 3
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Una materia a la vez.",
+      "ratio": 4.86,
+      "target": 3
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 11.73,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 6.47,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Registrarse",
+      "ratio": 15.02,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Tu próximo paso empieza aquí",
+      "ratio": 13.92,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Tres datos para crear tu espacio de estudio.",
+      "ratio": 6.67,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Nombre",
+      "ratio": 14.9,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Correo electrónico",
+      "ratio": 14.66,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Contraseña",
+      "ratio": 14.78,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes.",
+      "ratio": 6.61,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Crear cuenta",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Google",
+      "ratio": 15.42,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 6.97,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "GitLab",
+      "ratio": 15.04,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 6.45,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Organiza",
+      "ratio": 14.47,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 5.6,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Comprende",
+      "ratio": 14.03,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 5.43,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Practica",
+      "ratio": 14.13,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 5.42,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 8.45,
+      "target": 4.5
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "text": "Servicio de acceso disponible",
+      "ratio": 9.96,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 7.88,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Un lugar para empezar.Una materia a la vez.",
+      "ratio": 11.93,
+      "target": 3
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Una materia a la vez.",
+      "ratio": 7.64,
+      "target": 3
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 12.1,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Iniciar sesión",
+      "ratio": 12.13,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Registrarse",
+      "ratio": 13.45,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tu próximo paso empieza aquí",
+      "ratio": 15.89,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Tres datos para crear tu espacio de estudio.",
+      "ratio": 11.65,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Nombre",
+      "ratio": 16.09,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Correo electrónico",
+      "ratio": 15.93,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Contraseña",
+      "ratio": 15.73,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes.",
+      "ratio": 11.35,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Crear cuenta",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Google",
+      "ratio": 16.52,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 11.5,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "GitLab",
+      "ratio": 16.36,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 11.07,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Organiza",
+      "ratio": 11.35,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 7.13,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Comprende",
+      "ratio": 11.2,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 7.02,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Practica",
+      "ratio": 11.24,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 6.92,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 13.6,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 1440,
+      "text": "Servicio de acceso disponible",
+      "ratio": 8.7,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu espacio de aprendizaje",
+      "ratio": 7.96,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Un lugar para empezar.Una materia a la vez.",
+      "ratio": 12.05,
+      "target": 3
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Una materia a la vez.",
+      "ratio": 7.65,
+      "target": 3
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.",
+      "ratio": 11.73,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Iniciar sesión",
+      "ratio": 12.49,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Registrarse",
+      "ratio": 12.99,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Tu próximo paso empieza aquí",
+      "ratio": 15.92,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Tres datos para crear tu espacio de estudio.",
+      "ratio": 11.68,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Nombre",
+      "ratio": 16.47,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Correo electrónico",
+      "ratio": 16.42,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Contraseña",
+      "ratio": 16.42,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Una frase de 15 a 1024 caracteres. Puedes usar espacios y Unicode; evita frases comunes.",
+      "ratio": 11.6,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Crear cuenta",
+      "ratio": 6.27,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Google",
+      "ratio": 17.03,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 11.79,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "GitLab",
+      "ratio": 16.53,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Selecciona tu cuenta para continuar.",
+      "ratio": 11.22,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Organiza",
+      "ratio": 11.22,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Crea materias y conserva sus fuentes en un solo espacio.",
+      "ratio": 6.93,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Comprende",
+      "ratio": 11.2,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Consulta tus documentos y revisa el material de estudio.",
+      "ratio": 6.92,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Practica",
+      "ratio": 11.27,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Prepara bancos revisados y responde Quiz y Crucigramas con evaluación.",
+      "ratio": 6.96,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "SIARE Académico · Tu espacio de aprendizaje",
+      "ratio": 12.98,
+      "target": 4.5
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "text": "Servicio de acceso disponible",
+      "ratio": 13.14,
+      "target": 4.5
+    }
+  ]
+}
