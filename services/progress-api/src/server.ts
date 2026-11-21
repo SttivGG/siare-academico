@@ -1,8 +1,13 @@
 import { createApp } from "./app.js";
+import { createCassandraAttemptModel } from "./models/attempt.model.js";
 import { createCassandraHealthModel } from "./models/health.model.js";
 
-const { model, close } = createCassandraHealthModel();
-const server = createApp(model).listen(3001, "0.0.0.0", () => {
+const { client, model, close } = createCassandraHealthModel();
+const app = createApp(model, {
+  model: createCassandraAttemptModel(client),
+  token: process.env.PROGRESS_SERVICE_TOKEN,
+});
+const server = app.listen(3001, "0.0.0.0", () => {
   console.log("progress-api listening on port 3001");
 });
 
