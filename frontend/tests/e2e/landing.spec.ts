@@ -58,12 +58,14 @@ test('landing: real provider availability, responsive themes and both tabs', asy
           grayscale: getComputedStyle(node, '::before').filter,
         }));
         expect(overlay.canvas).toBe(theme === 'dark' ? 'rgb(24, 24, 24)' : 'rgb(244, 244, 244)');
-        expect(overlay.grayscale).toBe('grayscale(1)');
+        expect(overlay.grayscale).toBe('none');
         if (width > 900) {
           const logo = await page.getByAltText('SIARE').boundingBox();
           expect(logo!.x + logo!.width).toBeLessThanOrEqual(message!.x);
-          expect(panel!.x + panel!.width).toBeLessThan(width * .82);
-          expect(logo!.width).toBeGreaterThanOrEqual(250);
+          expect(panel!.x).toBeGreaterThan(width / 2);
+          expect(panel!.x + panel!.width).toBeGreaterThan(width * .86);
+          expect(panel!.x - (logo!.x + logo!.width)).toBeGreaterThanOrEqual(48);
+          expect(logo!.width).toBeGreaterThanOrEqual(width > 1200 ? 500 : 340);
         }
         await page.screenshot({ path: `${evidence}/3107-after-${theme}-${device}-${register ? 'register' : 'login'}.png`, fullPage: true });
       }
@@ -121,7 +123,7 @@ test('landing: global theme updates translucent surface, fields and interaction 
   const light = await colors();
   for (const state of [dark, light]) {
     const rgba = state.surface.match(/[\d.]+/g)!.map(Number);
-    expect(rgba[3]).toBeGreaterThan(0); expect(rgba[3]).toBeLessThan(0.7);
+    expect(rgba[3]).toBeGreaterThan(0); expect(rgba[3]).toBeLessThanOrEqual(0.3);
     expect(Math.max(...rgba.slice(0, 3)) - Math.min(...rgba.slice(0, 3))).toBeLessThanOrEqual(5);
     expect(state.blur).toBe('blur(10px)');
   }
