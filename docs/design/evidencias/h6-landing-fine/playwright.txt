@@ -1,0 +1,20 @@
+
+Running 10 tests using 1 worker
+
+(node:13300) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs (15.4s)
+  ok  2 [desktop] › tests\e2e\landing.spec.ts:75:1 › landing: keyboard tabs, theme persistence, system theme and recovery navigation (1.4s)
+  ok  3 [desktop] › tests\e2e\landing.spec.ts:93:1 › landing: native validation and field errors reuse the existing login/register transport (1.5s)
+  ok  4 [desktop] › tests\e2e\landing.spec.ts:123:1 › landing: pending submission cannot be interrupted by switching tabs (1.2s)
+  ok  5 [desktop] › tests\e2e\landing.spec.ts:138:1 › landing: provider buttons retain disabled, error and redirect behavior (1.9s)
+(node:22472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  -   6 [mobile] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs
+  ok  7 [mobile] › tests\e2e\landing.spec.ts:75:1 › landing: keyboard tabs, theme persistence, system theme and recovery navigation (1.5s)
+  ok  8 [mobile] › tests\e2e\landing.spec.ts:93:1 › landing: native validation and field errors reuse the existing login/register transport (1.2s)
+  ok  9 [mobile] › tests\e2e\landing.spec.ts:123:1 › landing: pending submission cannot be interrupted by switching tabs (907ms)
+  ok 10 [mobile] › tests\e2e\landing.spec.ts:138:1 › landing: provider buttons retain disabled, error and redirect behavior (2.0s)
+
+  1 skipped
+  9 passed (31.1s)

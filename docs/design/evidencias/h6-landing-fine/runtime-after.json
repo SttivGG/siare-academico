@@ -1,0 +1,295 @@
+[
+  {
+    "id": "96a39276b5b3ad920cc4e2e6d130747d718307683a1e78a949357af7dcd4c2cf",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:922f8963076e55d5e064c1a60c8bc17ddc146f3918033f4a9b4673c48cd060ce",
+    "imageName": "siare-academico-frontend:h6-landing-fine",
+    "created": "2026-11-21T02:33:23.0230399Z",
+    "started": "2026-11-21T02:33:25.685911214Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "8A019E4CE837406BA1208B421117B469290D6FB47D38A15190A4F7E205B8802D",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mounts": [],
+    "networks": [
+      "siare-academico_edge"
+    ]
+  },
+  {
+    "id": "eae9ae80e3c14891bd844a492afbae59e920812b44de53c11915fda63c92829d",
+    "name": "/siare-academico-frontend-1",
+    "image": "sha256:c67d08bd4d4ef8e405f1d886ed3fec4c9fdb62f06be117184a8ff68c7c9ff5b0",
+    "imageName": "siare-academico-frontend:0.1.0",
+    "created": "2026-11-19T17:19:08.150698068Z",
+    "started": "2026-11-21T01:22:56.185494623Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "B9233F6C2C80911AD0F40601B11825A96E82F797F1E714C91F7A16E6308D3BCD",
+    "hostHash": "0D4BCB25D3CE395C3BF1646DDF8232512B19401B18B308FDA3CBB04886C3B08F",
+    "mounts": [],
+    "networks": [
+      "siare-academico_edge"
+    ]
+  },
+  {
+    "id": "27138d454210d5aacd9b8181efe5d8a02c5f09f9a4bdd15f15188fa4e7cd7bfe",
+    "name": "/siare-academico-core-api-1",
+    "image": "sha256:ecff70dea3a1061462ec103d81fed5f6729a2b8cee1113670afc87f814642e84",
+    "imageName": "siare-academico-core-api:0.1.0",
+    "created": "2026-11-19T01:31:17.509705819Z",
+    "started": "2026-11-21T01:22:56.701431782Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "44AF6A7DEAF8E035D210873AB14C1BA0C1B90DC2CAE4D18D3C2251EB79DC1013",
+    "hostHash": "3068A7AB28DB68C87F2D5118253BFC01EEDD050CC1F5E6E4E4B364E1D2723699",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "siare-academico_jwt-keys",
+        "Source": "/var/lib/docker/volumes/siare-academico_jwt-keys/_data",
+        "Destination": "/run/siare-keys",
+        "Driver": "local",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": ""
+      },
+      {
+        "Type": "bind",
+        "Source": "C:\\Users\\Daniel Giraldo\\AppData\\Local/SIARE/identity/totp.key",
+        "Destination": "/run/siare-mfa/totp.key",
+        "Mode": "",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "networks": [
+      "siare-academico_data",
+      "siare-academico_edge"
+    ]
+  },
+  {
+    "id": "8a7f97dc46a985c054b278bffb4369bfcf13f92199650b6e1de3742073347189",
+    "name": "/siare-academico-content-ai-1",
+    "image": "sha256:212a8df4b6896d98ad607d66db4c7f03d562fa871dffa8f8e9bae93d17f36ba4",
+    "imageName": "siare-academico-content-ai:0.1.0",
+    "created": "2026-11-19T01:31:08.20468285Z",
+    "started": "2026-11-21T01:23:01.287972041Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "01A9C251057A88EA88D38245C52023EECED4BCD0FDBBC72DEA9670C3A9B4200D",
+    "hostHash": "D69F3055036E5608B5962419428F391EC9C4B5B07FBF1E5C685B94C221584617",
+    "mounts": [],
+    "networks": [
+      "siare-academico_data"
+    ]
+  },
+  {
+    "id": "c5ee706867eb29119d33d4129fb05a39d34ab59de9c6219e16e56ff1a2a50927",
+    "name": "/siare-academico-progress-api-1",
+    "image": "sha256:cb222edc168be4ff9e50af43555eebc1e9d95f358b5f61b3d4829138f0fadcc0",
+    "imageName": "siare-academico-progress-api:0.1.0",
+    "created": "2026-11-10T19:25:56.756685855Z",
+    "started": "2026-11-21T01:22:59.195117131Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "EAC9F61D8F7D3B2A7ABBCD8744A54E4F747476442E7165A05864861FCF6EA161",
+    "hostHash": "C63918EA8CE8DC06394D04CC638DB9CFDAC01DE991441F6D8E15F6463BE52090",
+    "mounts": [],
+    "networks": [
+      "siare-academico_data"
+    ]
+  },
+  {
+    "id": "a874a4f0ab4620d5266b85d7b7ed32953d97059808e6452209d1f25762f543f6",
+    "name": "/siare-academico-mysql-1",
+    "image": "sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902",
+    "imageName": "mysql:8.4.13@sha256:a81d043930e51745522bd5c430961cf8286f0a23f0a9a2a6e0108f7ea71b0902",
+    "created": "2026-11-10T19:25:31.323093084Z",
+    "started": "2026-11-21T01:22:55.559328221Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "E5D6630DE7E6E1534E71B6A70BB8E97427326CEEB05CFC345E5C92A7A63D2611",
+    "hostHash": "526C809189CEE2D75018DEA79711600318AA04136DDECCC1A0E11654D9022823",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "siare-academico_mysql-data",
+        "Source": "/var/lib/docker/volumes/siare-academico_mysql-data/_data",
+        "Destination": "/var/lib/mysql",
+        "Driver": "local",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": ""
+      }
+    ],
+    "networks": [
+      "siare-academico_data"
+    ]
+  },
+  {
+    "id": "274b64b24986140c696397d8130f04a33934e2334ef6abfb6468cca549338c0d",
+    "name": "/siare-academico-cassandra-1",
+    "image": "sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e",
+    "imageName": "cassandra:4.1.12@sha256:4d020740a8496d0ea571efa55f2e9b1ec4d623c70674b34a91c3b449f082143e",
+    "created": "2026-11-10T19:25:31.316224415Z",
+    "started": "2026-11-21T01:22:59.856895937Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "782557C346998969DB6C22900941BA60E203BB5E634FCE52EFDEC05D5BDE3853",
+    "hostHash": "58BBEB03C17395AD89DDC9105D90FBC6ED345D15683690D26D7DA448B92B4A90",
+    "mounts": [
+      {
+        "Type": "bind",
+        "Source": "/run/desktop/mnt/host/d/ITP/Septimo Semestre/Programación Avanzada/siare-academico/docker/cassandra/entrypoint.sh",
+        "Destination": "/opt/siare/entrypoint.sh",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "volume",
+        "Name": "siare-academico_cassandra-data",
+        "Source": "/var/lib/docker/volumes/siare-academico_cassandra-data/_data",
+        "Destination": "/var/lib/cassandra",
+        "Driver": "local",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": ""
+      }
+    ],
+    "networks": [
+      "siare-academico_data"
+    ]
+  },
+  {
+    "id": "d7b516acd286898e0dcc1270da802640116b701f40c0fb701ba4020833ada141",
+    "name": "/siare-academico-redis-1",
+    "image": "sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7",
+    "imageName": "redis:7.4.12-alpine@sha256:7b1753b4c5ad8458906c272a8132b8c15f5557b000379eb115fb239706a384b7",
+    "created": "2026-11-10T19:25:31.312555451Z",
+    "started": "2026-11-21T01:23:00.584000916Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "1CE5D5D12B0A964B9227956F62280CBAFE99AC64675A616B2806920C658E557D",
+    "hostHash": "43F29218F35C6871949886CA0BB6F6E5FBD53A1784527AB2968AD00F9C72EFD9",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "siare-academico_redis-data",
+        "Source": "/var/lib/docker/volumes/siare-academico_redis-data/_data",
+        "Destination": "/data",
+        "Driver": "local",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": ""
+      }
+    ],
+    "networks": [
+      "siare-academico_data"
+    ]
+  },
+  {
+    "id": "f93db5993ddbbeb5f734654b3aec4f307955f44b0471815addc2c245b9c99f8b",
+    "name": "/siare-academico-clickhouse-1",
+    "image": "sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7",
+    "imageName": "clickhouse/clickhouse-server:26.8.36.3@sha256:d426d2f612e1e189c90f9a3f8dcd85a03c6851273833817a296bb327e63aa7a7",
+    "created": "2026-11-10T19:25:31.294534887Z",
+    "started": "2026-11-21T01:22:57.237503416Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "B5B3B1878402771CE7715E5693E7A57D0A3DA9DDDA6C779675105160D3030340",
+    "hostHash": "E04D94503BC6F1B3AF1CBB83304CEA2A7C74580825E579531CE575E7A14920EC",
+    "mounts": [
+      {
+        "Type": "bind",
+        "Source": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\docker\\clickhouse\\10-academic.sh",
+        "Destination": "/docker-entrypoint-initdb.d/10-academic.sh",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/run/desktop/mnt/host/d/ITP/Septimo Semestre/Programación Avanzada/siare-academico/docker/clickhouse/10-academic.sql",
+        "Destination": "/opt/siare/10-academic.sql",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "volume",
+        "Name": "siare-academico_clickhouse-data",
+        "Source": "/var/lib/docker/volumes/siare-academico_clickhouse-data/_data",
+        "Destination": "/var/lib/clickhouse",
+        "Driver": "local",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": ""
+      },
+      {
+        "Type": "bind",
+        "Source": "/run/desktop/mnt/host/d/ITP/Septimo Semestre/Programación Avanzada/siare-academico/docker/clickhouse/limits.xml",
+        "Destination": "/etc/clickhouse-server/config.d/siare.xml",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      },
+      {
+        "Type": "bind",
+        "Source": "/run/desktop/mnt/host/d/ITP/Septimo Semestre/Programación Avanzada/siare-academico/docker/clickhouse/users.xml",
+        "Destination": "/etc/clickhouse-server/users.d/siare.xml",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "networks": [
+      "siare-academico_data"
+    ]
+  },
+  {
+    "id": "c11e8984ca8be9e21bd9080475bd3d3c41d59ea5429335d018ab25a4d1cef566",
+    "name": "/siare-academico-mongo-1",
+    "image": "sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142",
+    "imageName": "mongo:8.0.34@sha256:b9924c330a8bbc5800fe9c69f04a84e221eca7b28fd049a0354147d9908fa142",
+    "created": "2026-11-10T19:25:31.290336233Z",
+    "started": "2026-11-21T01:22:58.130093823Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "4DF870255F68BA4E15E37A7E674627D1653D240EF5746A2411657303F4D27E1F",
+    "hostHash": "ED402634EF8DA377198D4458C17E74C9981C7261C42C5CB2C55DFBC5ACA8A26D",
+    "mounts": [
+      {
+        "Type": "volume",
+        "Name": "siare-academico_mongo-config",
+        "Source": "/var/lib/docker/volumes/siare-academico_mongo-config/_data",
+        "Destination": "/data/configdb",
+        "Driver": "local",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": ""
+      },
+      {
+        "Type": "volume",
+        "Name": "siare-academico_mongo-data",
+        "Source": "/var/lib/docker/volumes/siare-academico_mongo-data/_data",
+        "Destination": "/data/db",
+        "Driver": "local",
+        "Mode": "rw",
+        "RW": true,
+        "Propagation": ""
+      },
+      {
+        "Type": "bind",
+        "Source": "/run/desktop/mnt/host/d/ITP/Septimo Semestre/Programación Avanzada/siare-academico/docker/mongo/10-app-user.js",
+        "Destination": "/docker-entrypoint-initdb.d/10-app-user.js",
+        "Mode": "ro",
+        "RW": false,
+        "Propagation": "rprivate"
+      }
+    ],
+    "networks": [
+      "siare-academico_data"
+    ]
+  }
+]

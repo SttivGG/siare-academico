@@ -1,0 +1,10 @@
+{
+  "asset": "frontend/public/images/siare-logo.png",
+  "sha256": "a120d94b62431789671c20307a4f34e642c5ca935ca7a51f02d2dd08396280b7",
+  "width": 1536,
+  "height": 1024,
+  "transparentPixels": 1061214,
+  "totalPixels": 1572864,
+  "unchangedAsset": true,
+  "boxRemovedInCSS": true
+}

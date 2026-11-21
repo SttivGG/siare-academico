@@ -1,0 +1,17 @@
+{
+  "habitualMainUnchanged": true,
+  "navigation": [
+    {
+      "route": "/login",
+      "heading": "Qué bueno verte de nuevo"
+    },
+    {
+      "route": "/registro",
+      "heading": "Crea tu cuenta"
+    },
+    {
+      "route": "/recuperar",
+      "heading": "Recuperar contraseña"
+    }
+  ]
+}
