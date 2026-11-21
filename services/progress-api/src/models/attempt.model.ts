@@ -16,7 +16,10 @@ const options: cassandra.QueryOptions = {
   serialConsistency: cassandra.types.consistencies.localSerial,
 };
 
-export function createCassandraAttemptModel(client: cassandra.Client): AttemptModel {
+export function createCassandraAttemptModel(
+  client: cassandra.Client,
+  applyProgress: (event: AttemptEvent) => Promise<void>,
+): AttemptModel {
   return {
     async record(event) {
       // parseAttemptEvent emits properties in fixed order and normalizes the UTC instant.
@@ -42,10 +45,15 @@ export function createCassandraAttemptModel(client: cassandra.Client): AttemptMo
         [attemptId, eventId, payload, now],
         options,
       );
-      if (attempt.wasApplied()) return { outcome: "recorded", recordedAt: now };
+      if (attempt.wasApplied()) {
+        await applyProgress(event);
+        return { outcome: "recorded", recordedAt: now };
+      }
 
       const existing = attempt.first();
       if (existing.event_id.equals(eventId)) {
+        // The durable write may precede a failed progress update. Replaying repairs it.
+        await applyProgress(event);
         return { outcome: "duplicate", recordedAt: existing.recorded_at };
       }
 

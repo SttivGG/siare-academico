@@ -29,7 +29,7 @@ escritura, Express devuelve 503 y el llamante debe mantener el mismo evento
 y clave al reintentar.
 
 El acuse contiene `analyticsStatus: PENDING`. El envío HTTP desde Spring,
-las consultas de progreso, ClickHouse y Redis se incorporan en bloques
+ClickHouse y Redis se incorporan en bloques
 posteriores. Express queda en la red interna de Compose.
 
 ## Prueba en la instalación local
@@ -66,3 +66,43 @@ docker compose -f compose.datos.yml -f compose.apps.yml -f .cache/progress-local
 docker compose -f compose.datos.yml -f compose.apps.yml -f .cache/progress-local.compose.yml --env-file .env up -d --no-deps --no-build --wait progress-api
 $test | docker exec -i siare-academico-progress-api-1 node --input-type=module - replay $seed
 ```
+
+## Consultar progreso por actividad
+
+`GET /internal/v1/students/{studentId}/progress?subjectId=<UUID>&limit=20`
+usa el mismo Bearer interno y la cabecera `X-Request-Id`. Responde con
+`items`: cada actividad tiene `attemptCount`, `bestScore`, `lastScore` y
+`lastAttemptAt`. Se acepta un límite de 1 a 100 y un `cursor` devuelto
+como `nextCursor` para continuar. Al terminar, `nextCursor` es nulo.
+
+La lectura se ordena por `activityId` y el cursor solo se acepta para el
+mismo estudiante y materia. La paginación lee el estado disponible en cada
+solicitud. Si aparece una actividad por delante del cursor, puede entrar
+en las páginas restantes. Si aparece por detrás, se ve al empezar una
+consulta nueva. `asOf` indica cuándo se leyó esa página. La última nota se
+elige por la fecha del evento, con desempate por `attemptId`.
+
+La migración `002-progress.cql` crea 16 grupos por estudiante y materia
+según el primer dígito de `activityId`. Cada grupo permite leer solo filas
+resumen. Cassandra confirma juntos el resumen actualizado y la marca del
+intento en un lote condicional en la misma partición. Un reintento puede
+reparar un resumen pendiente tras la escritura original y nunca
+incrementa dos veces el conteo. Las marcas se conservan para que la
+reconstrucción histórica sea repetible.
+
+Aplica las migraciones en orden, reconstruye y recrea solo Express con
+los comandos anteriores y reconstruye los resúmenes históricos. El
+proceso lee páginas de 100 registros y admite repetición:
+
+```powershell
+Get-Content services/progress-api/cassandra/002-progress.cql -Raw |
+    docker exec -i siare-academico-cassandra-1 cqlsh
+# Después de desplegar la nueva imagen de Express:
+docker exec siare-academico-progress-api-1 node dist/backfill-progress.js
+Get-Content services/progress-api/test/progress.integration.mjs -Raw |
+    docker exec -i siare-academico-progress-api-1 node --input-type=module -
+```
+
+La prueba comprueba conteos concurrentes, notas, orden temporal, aislamiento,
+cursor inválido y cambios entre páginas. Spring conserva la autorización
+del estudiante y la materia antes de llamar a este servicio interno.

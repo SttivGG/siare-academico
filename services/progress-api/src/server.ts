@@ -1,10 +1,13 @@
 import { createApp } from "./app.js";
 import { createCassandraAttemptModel } from "./models/attempt.model.js";
 import { createCassandraHealthModel } from "./models/health.model.js";
+import { createCassandraProgressModel } from "./models/progress.model.js";
 
 const { client, model, close } = createCassandraHealthModel();
+const progress = createCassandraProgressModel(client);
 const app = createApp(model, {
-  model: createCassandraAttemptModel(client),
+  model: createCassandraAttemptModel(client, progress.apply),
+  progress,
   token: process.env.PROGRESS_SERVICE_TOKEN,
 });
 const server = app.listen(3001, "0.0.0.0", () => {
