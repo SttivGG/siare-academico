@@ -229,3 +229,8 @@ Para probar la contingencia, reemplaza temporalmente la URL de Redis de
 Express por `redis://127.0.0.1:1`, vuelve a recrearlo y ejecuta el mismo
 comando con `outage` en lugar de `warm`. Luego levanta Express con el
 override normal. Durante la prueba, el Redis compartido permanece activo.
+
+## Pruebas de concurrencia
+
+Consulta [Rendimiento de progress-api](PERFORMANCE.md) para aplicar la migración
+005 y repetir la comparación con Cassandra, ClickHouse y Redis.

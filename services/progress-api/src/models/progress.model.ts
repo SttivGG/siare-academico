@@ -49,54 +49,73 @@ function timestampKey(instant: string) {
 }
 
 export function createCassandraProgressModel(client: cassandra.Client) {
+  const writesByPartition = new Map<string, Promise<void>>();
+
+  async function applyToPartition(event: AttemptEvent, bucket: number) {
+    const partition = [...scopeIds(event), bucket];
+    const markerKey = [...partition, 1, event.activityId, event.attemptId];
+    const summaryKey = [...partition, 0, event.activityId, ""];
+
+    for (let retry = 0; retry < 24; retry++) {
+      const marker = await client.execute("SELECT attempt_id FROM " + table + " WHERE " + rowWhere, markerKey, read);
+      if (marker.rowLength !== 0) return;
+      const summary = (await client.execute("SELECT * FROM " + table + " WHERE " + rowWhere, summaryKey, read)).first();
+
+      const previousTime = summary ? timestampKey(summary.last_attempt_at) : "";
+      const eventTime = timestampKey(event.occurredAt);
+      const isLatest = eventTime > previousTime
+        || (eventTime === previousTime && event.attemptId > summary.last_attempt_id);
+      const values = [
+        summary ? summary.attempt_count.add(1) : cassandra.types.Long.fromNumber(1),
+        Math.max(summary?.best_score ?? 0, event.score),
+        isLatest ? event.score : summary.last_score,
+        isLatest ? event.occurredAt : summary.last_attempt_at,
+        isLatest ? event.attemptId : summary.last_attempt_id,
+      ];
+      const mutation = summary
+        ? {
+          query: "UPDATE " + table + " SET attempt_count = ?, best_score = ?, last_score = ?, last_attempt_at = ?, last_attempt_id = ? WHERE "
+            + rowWhere + " IF attempt_count = ?",
+          params: [...values, ...summaryKey, summary.attempt_count],
+        }
+        : {
+          query: "INSERT INTO " + table
+            + " (student_id, subject_id, bucket, row_kind, activity_id, attempt_id, attempt_count, best_score, last_score, last_attempt_at, last_attempt_id)"
+            + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) IF NOT EXISTS",
+          params: [...summaryKey, ...values],
+        };
+
+      // A retry can only observe either both committed rows or neither marker nor its increment.
+      const result = await client.batch([
+        {
+          query: "INSERT INTO " + table
+            + " (student_id, subject_id, bucket, row_kind, activity_id, attempt_id) VALUES (?, ?, ?, ?, ?, ?) IF NOT EXISTS",
+          params: markerKey,
+        },
+        mutation,
+      ], conditional);
+      if (result.wasApplied()) return;
+      await setTimeout(5 + Math.random() * Math.min(10 + retry * 5, 100));
+    }
+    throw new Error("Progress update contention");
+  }
+
   return {
     async apply(event: AttemptEvent): Promise<void> {
-      const partition = [...scopeIds(event), bucketFor(event.activityId)];
-      const markerKey = [...partition, 1, event.activityId, event.attemptId];
-      const summaryKey = [...partition, 0, event.activityId, ""];
-
-      for (let retry = 0; retry < 24; retry++) {
-        const marker = await client.execute("SELECT attempt_id FROM " + table + " WHERE " + rowWhere, markerKey, read);
-        if (marker.rowLength !== 0) return;
-        const summary = (await client.execute("SELECT * FROM " + table + " WHERE " + rowWhere, summaryKey, read)).first();
-
-        const previousTime = summary ? timestampKey(summary.last_attempt_at) : "";
-        const eventTime = timestampKey(event.occurredAt);
-        const isLatest = eventTime > previousTime
-          || (eventTime === previousTime && event.attemptId > summary.last_attempt_id);
-        const values = [
-          summary ? summary.attempt_count.add(1) : cassandra.types.Long.fromNumber(1),
-          Math.max(summary?.best_score ?? 0, event.score),
-          isLatest ? event.score : summary.last_score,
-          isLatest ? event.occurredAt : summary.last_attempt_at,
-          isLatest ? event.attemptId : summary.last_attempt_id,
-        ];
-        const mutation = summary
-          ? {
-            query: "UPDATE " + table + " SET attempt_count = ?, best_score = ?, last_score = ?, last_attempt_at = ?, last_attempt_id = ? WHERE "
-              + rowWhere + " IF attempt_count = ?",
-            params: [...values, ...summaryKey, summary.attempt_count],
-          }
-          : {
-            query: "INSERT INTO " + table
-              + " (student_id, subject_id, bucket, row_kind, activity_id, attempt_id, attempt_count, best_score, last_score, last_attempt_at, last_attempt_id)"
-              + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) IF NOT EXISTS",
-            params: [...summaryKey, ...values],
-          };
-
-        // A retry can only observe either both committed rows or neither marker nor its increment.
-        const result = await client.batch([
-          {
-            query: "INSERT INTO " + table
-              + " (student_id, subject_id, bucket, row_kind, activity_id, attempt_id) VALUES (?, ?, ?, ?, ?, ?) IF NOT EXISTS",
-            params: markerKey,
-          },
-          mutation,
-        ], conditional);
-        if (result.wasApplied()) return;
-        await setTimeout(5 + Math.random() * Math.min(10 + retry * 5, 100));
+      const bucket = bucketFor(event.activityId);
+      const key = [event.studentId, event.subjectId, bucket].join(":");
+      const previous = writesByPartition.get(key);
+      // Keep Cassandra's conditional batch for correctness across processes. Within
+      // one Express process, queue mutations to the same partition to reduce CAS retries.
+      if (!previous && writesByPartition.size >= 128) return applyToPartition(event, bucket);
+      const task = previous
+        ? previous.then(() => applyToPartition(event, bucket), () => applyToPartition(event, bucket))
+        : applyToPartition(event, bucket);
+      writesByPartition.set(key, task);
+      try { await task; }
+      finally {
+        if (writesByPartition.get(key) === task) writesByPartition.delete(key);
       }
-      throw new Error("Progress update contention");
     },
 
     async list(scope: ProgressScope, limit: number, after?: string): Promise<ActivityProgress[]> {

@@ -10,11 +10,12 @@ export interface CacheStore {
 }
 
 function counters() {
-  return { hits: 0, misses: 0, fallbacks: 0, errors: 0, invalidations: 0, hitTimeMs: 0, sourceReads: 0, sourceTimeMs: 0 };
+  return { hits: 0, misses: 0, coalesced: 0, fallbacks: 0, errors: 0, invalidations: 0, hitTimeMs: 0, sourceReads: 0, sourceTimeMs: 0 };
 }
 
 export function createQueryCache(generations: CacheGenerations, store?: CacheStore, ttlSeconds = 60) {
   const byView = { progress: counters(), indicators: counters() };
+  const inFlight = new Map<string, Promise<unknown>>();
 
   return {
     async read<T>(view: CachedView, scope: ProgressScope, filters: readonly unknown[], readSource: () => Promise<T>): Promise<T> {
@@ -54,14 +55,26 @@ export function createQueryCache(generations: CacheGenerations, store?: CacheSto
       }
 
       stats.misses++;
-      const value = await load();
-      try {
-        // A read started before an invalidation can only write to its old key.
-        await store.set(key, JSON.stringify({ value }), ttlSeconds);
-      } catch {
-        stats.errors++;
+      const pending = inFlight.get(key);
+      if (pending) {
+        stats.coalesced++;
+        return pending as Promise<T>;
       }
-      return value;
+
+      const readAndCache = (async () => {
+        const value = await load();
+        try {
+          // A read started before an invalidation can only write to its old key.
+          await store.set(key, JSON.stringify({ value }), ttlSeconds);
+        } catch {
+          stats.errors++;
+        }
+        return value;
+      })();
+      if (inFlight.size >= 128) return readAndCache;
+      inFlight.set(key, readAndCache);
+      try { return await readAndCache; }
+      finally { inFlight.delete(key); }
     },
 
     async invalidate(view: CachedView, scope: ProgressScope) {

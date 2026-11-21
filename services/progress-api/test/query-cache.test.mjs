@@ -51,3 +51,38 @@ test("a Redis or revision failure falls back to the source", async () => {
     assert.equal(cache.metrics().progress.errors, 1);
   }
 });
+
+test("simultaneous cold reads of the same key share one source read", async () => {
+  const cache = createQueryCache({ current: async () => "initial" }, {
+    ready: () => true,
+    get: async () => null,
+    set: async () => {},
+  });
+  const allLookups = Promise.withResolvers();
+  let lookups = 0;
+  const source = async () => {
+    lookups++;
+    await allLookups.promise;
+    return 7;
+  };
+  const reads = Array.from({ length: 12 }, () => cache.read("progress", scope, [20], source));
+  // Wait until all 12 lookups have reached the miss branch while the source is blocked.
+  await new Promise((resolve) => setImmediate(resolve));
+  try {
+    assert.equal(lookups, 1);
+    assert.equal(cache.metrics().progress.coalesced, 11);
+  } finally {
+    allLookups.resolve();
+  }
+  assert.deepEqual(await Promise.all(reads), Array(12).fill(7));
+});
+
+test("a rejected shared read releases its key for a subsequent source read", async () => {
+  const cache = createQueryCache({ current: async () => "initial" }, {
+    ready: () => true,
+    get: async () => null,
+    set: async () => {},
+  });
+  await assert.rejects(cache.read("progress", scope, [20], async () => { throw new Error("Source failed"); }));
+  assert.equal(await cache.read("progress", scope, [20], async () => 9), 9);
+});

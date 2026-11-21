@@ -83,6 +83,37 @@ try {
     );
     assert.equal((await send(crossword)).status, 201);
 
+    // An accepted Cassandra row without a progress receipt must be repaired on replay.
+    const unconfirmed = {
+      ...quiz, eventId: testId("unconfirmed-event"), attemptId: testId("unconfirmed-attempt"),
+      studentId: testId("unconfirmed-student"),
+    };
+    const pendingPayload = JSON.stringify(unconfirmed);
+    await client.execute(
+      "INSERT INTO siare_progress.event_claims (event_id, fingerprint) VALUES (?, ?)",
+      [asUuid(unconfirmed.eventId), createHash("sha256").update(pendingPayload).digest("hex")],
+      { prepare: true },
+    );
+    await client.execute(
+      "INSERT INTO siare_progress.attempts (attempt_id, event_id, payload, recorded_at) VALUES (?, ?, ?, ?)",
+      [asUuid(unconfirmed.attemptId), asUuid(unconfirmed.eventId), pendingPayload, new Date()],
+      { prepare: true },
+    );
+    assert.equal((await send(unconfirmed)).status, 200);
+    const repaired = await client.execute(
+      "SELECT progress_confirmed_at FROM siare_progress.attempts WHERE attempt_id = ?",
+      [asUuid(unconfirmed.attemptId)],
+      { prepare: true },
+    );
+    assert.ok(repaired.first().progress_confirmed_at instanceof Date);
+    const response = await fetch(
+      "http://127.0.0.1:3001/internal/v1/students/" + unconfirmed.studentId + "/progress?subjectId=" + unconfirmed.subjectId,
+      { headers: { Authorization: "Bearer " + token, "X-Request-Id": randomUUID() }, signal: AbortSignal.timeout(15000) },
+    );
+    assert.equal(response.status, 200);
+    assert.equal((await response.json()).items[0].attemptCount, 1);
+    console.log("OK: el reenvio reparo un intento duradero con progreso pendiente.");
+
     const competitors = ["a", "b"].map((label) => ({
       ...quiz, attemptId: testId("contested-attempt"), eventId: testId("contested-" + label),
     }));

@@ -20,6 +20,27 @@ export function createCassandraAttemptModel(
   client: cassandra.Client,
   applyProgress: (event: AttemptEvent) => Promise<void>,
 ): AttemptModel {
+  const inFlight = new Map<string, Promise<void>>();
+
+  async function finishProgress(event: AttemptEvent, attemptId: cassandra.types.Uuid) {
+    const current = inFlight.get(event.attemptId);
+    if (current) return current;
+
+    const task = (async () => {
+      await applyProgress(event);
+      // Persist completion only after the progress update and its cache generation change.
+      await client.execute(
+        "UPDATE siare_progress.attempts SET progress_confirmed_at = ? WHERE attempt_id = ?",
+        [new Date(), attemptId],
+        options,
+      );
+    })();
+    if (inFlight.size >= 128) return task;
+    inFlight.set(event.attemptId, task);
+    try { await task; }
+    finally { inFlight.delete(event.attemptId); }
+  }
+
   return {
     async record(event) {
       // parseAttemptEvent emits properties in fixed order and normalizes the UTC instant.
@@ -40,20 +61,26 @@ export function createCassandraAttemptModel(
         return { outcome: "idempotency-conflict" };
       }
 
-      const attempt = await client.execute(
-        "INSERT INTO siare_progress.attempts (attempt_id, event_id, payload, recorded_at) VALUES (?, ?, ?, ?) IF NOT EXISTS",
-        [attemptId, eventId, payload, now],
+      // When the claim already exists, try a quorum read before issuing another LWT.
+      let existing = claim.wasApplied() ? undefined : (await client.execute(
+        "SELECT event_id, recorded_at, progress_confirmed_at FROM siare_progress.attempts WHERE attempt_id = ?",
+        [attemptId],
         options,
-      );
-      if (attempt.wasApplied()) {
-        await applyProgress(event);
-        return { outcome: "recorded", recordedAt: now };
+      )).first();
+      if (!existing) {
+        const attempt = await client.execute(
+          "INSERT INTO siare_progress.attempts (attempt_id, event_id, payload, recorded_at) VALUES (?, ?, ?, ?) IF NOT EXISTS",
+          [attemptId, eventId, payload, now],
+          options,
+        );
+        if (attempt.wasApplied()) {
+          await finishProgress(event, attemptId);
+          return { outcome: "recorded", recordedAt: now };
+        }
+        existing = attempt.first();
       }
-
-      const existing = attempt.first();
       if (existing.event_id.equals(eventId)) {
-        // The durable write may precede a failed progress update. Replaying repairs it.
-        await applyProgress(event);
+        if (!existing.progress_confirmed_at) await finishProgress(event, attemptId);
         return { outcome: "duplicate", recordedAt: existing.recorded_at };
       }
 
