@@ -29,7 +29,7 @@
 #7 DONE 0.5s
 
 #8 [build 4/6] RUN npm ci --no-audit --no-fund
-#8 38.36 
+#8 38.36
 #8 38.36 added 87 packages in 37s
 #8 38.36 npm notice
 #8 38.36 npm notice New major version of npm available! 11.19.1 -> 12.2.3
@@ -42,10 +42,10 @@
 #9 DONE 0.8s
 
 #10 [build 6/6] RUN npm test && npm run build && npm run typecheck
-#10 0.764 
+#10 0.764
 #10 0.764 > siare-frontend@0.1.0 test
 #10 0.764 > node --test tests/*.test.mjs
-#10 0.764 
+#10 0.764
 #10 1.513 ✔ ST-01/02: bank drafts belong to a source and preserve content while provenance invalidates review (42.231976ms)
 #10 1.526 ✔ ST-03/04/05: independent activity state survives presentation and activity changes (9.036085ms)
 #10 1.530 ✔ ST-06/07: synchronous lock, lost response and late evaluation retain one exact envelope and original owner (6.678716ms)
@@ -101,27 +101,27 @@
 #10 3.901 ℹ skipped 0
 #10 3.901 ℹ todo 0
 #10 3.901 ℹ duration_ms 3046.639791
-#10 4.130 
+#10 4.130
 #10 4.130 > siare-frontend@0.1.0 build
 #10 4.130 > next build
-#10 4.130 
+#10 4.130
 #10 4.771 ▲ Next.js 16.4.6 (Turbopack)
 #10 4.931 ✓ Running next.config.ts took 159ms
 #10 4.960 - Experiments (use with caution):
 #10 4.960   · cpus: 1
-#10 4.960 
+#10 4.960
 #10 5.008   Creating an optimized production build ...
 #10 18.51 ✓ Compiled successfully in 13.5s
 #10 18.56   Running TypeScript ...
 #10 32.73   Finished TypeScript in 14.2s ...
 #10 32.74   Collecting page data using 1 worker ...
 #10 33.67   Generating static pages using 1 worker (0/8) ...
-#10 33.92   Generating static pages using 1 worker (2/8) 
-#10 34.08   Generating static pages using 1 worker (4/8) 
-#10 34.08   Generating static pages using 1 worker (6/8) 
+#10 33.92   Generating static pages using 1 worker (2/8)
+#10 34.08   Generating static pages using 1 worker (4/8)
+#10 34.08   Generating static pages using 1 worker (6/8)
 #10 34.09 ✓ Generating static pages using 1 worker (8/8) in 417ms
 #10 34.10   Finalizing page optimization ...
-#10 35.82 
+#10 35.82
 #10 35.83 Route (app)
 #10 35.83 ┌ ƒ /
 #10 35.83 ├ ○ /_not-found
@@ -144,15 +144,15 @@
 #10 35.83 ├ ƒ /seguridad
 #10 35.83 ├ ○ /sesion/renovar
 #10 35.83 └ ƒ /sesiones
-#10 35.83 
-#10 35.83 
+#10 35.83
+#10 35.83
 #10 35.83 ○  (Static)   prerendered as static content
 #10 35.83 ƒ  (Dynamic)  server-rendered on demand
-#10 35.83 
-#10 36.18 
+#10 35.83
+#10 36.18
 #10 36.18 > siare-frontend@0.1.0 typecheck
 #10 36.18 > tsc --noEmit
-#10 36.18 
+#10 36.18
 #10 DONE 47.1s
 
 #11 [stage-1 3/5] COPY --from=build --chown=node:node /app/.next/standalone ./

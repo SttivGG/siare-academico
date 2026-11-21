@@ -1,6 +1,6 @@
 # H6: navegación compacta y Apariencia
 
-Implementación del 21 de noviembre de 2026, America/Bogota. Rama `feat/h6-navigation-appearance`, creada desde `8b6e35e13ee754aff8e480807ce2e59dcc7b54b2`, HEAD verificado del draft [#14](https://github.com/SttivGG/siare-academico/pull/14). La base del nuevo draft es `feat/h6-sorvo-global`; no se fusiona ningún PR.
+Implementación del 21 de noviembre de 2026, America/Bogota. Rama `feat/h6-navigation-appearance`, creada desde `8b6e35e13ee754aff8e480807ce2e59dcc7b54b2`, HEAD verificado del draft [#14](https://github.com/SttivGG/siare-academico/pull/14). El [PR draft #15](https://github.com/SttivGG/siare-academico/pull/15) apunta a `feat/h6-sorvo-global`; no se fusiona ningún PR.
 
 ## Navegación y cuenta
 
@@ -80,3 +80,6 @@ La [comparación Docker](evidencias/h6-appearance/deployment-verification.json) 
 El navegador validó en el contenedor de 3107 la redirección de Apariencia sin sesión, preferencias públicas con recarga y sincronización, assets WebP servidos localmente, ausencia de errores JavaScript y tema oscuro del sistema sin JavaScript. También comprobó 1440/390/320 px en claro/oscuro. [Registro](evidencias/h6-appearance/preview-browser.json). La [comparación de 3100](evidencias/h6-appearance/habitual-browser.json) acredita igualdad exacta de DOM y píxeles en `/login` antes/después, además de título. Las 40 capturas autenticadas siguen identificadas como fixtures y no se presentan como login real en 3107.
 
 Para revertir solo la preview, ejecutar desde la raíz habitual `pwsh -File .cache/h6-appearance/rollback-preview.ps1`. El script conserva los archivos Compose efectivos previos, añade `rollback.override.json`, usa la imagen funcional guardada y repite controles oficiales, recreación selectiva y espera healthy. Se preparó y validó la configuración; no se ejecutó la reversión. Los archivos locales de despliegue están en `.cache/h6-appearance/`; las evidencias versionadas contienen los identificadores y las comprobaciones sin variables secretas.
+
+
+La rama publicada contiene el commit fuente `10c64ee` y el informe/evidencias en `81ed75e`, seguido del enlace al draft y normalización de espacios finales de los logs. El conector GitHub pudo leer #14, pero devolvió 403 al crear el PR; la CLI local autenticada creó el draft #15 con la misma base y descripción. #14 permanece abierto y sin cambios.
