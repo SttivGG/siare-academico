@@ -37,7 +37,7 @@ export function uploadError(file: { name: string; size: number }, maximum: numbe
 
 export function allowedUpload(headers: Headers, origin: string): boolean {
   const content = headers.get("content-type") ?? "";
-  return headers.get("origin") === origin && headers.get("x-siare-csrf") === "1"
+  return !!origin && headers.get("origin") === origin && headers.get("x-siare-csrf") === "1"
     && !["cross-site", "none"].includes(headers.get("sec-fetch-site") ?? "")
     && /^multipart\/form-data;\s*boundary=(?:[a-z0-9'()+_,.\/:=?-]{1,70}|"[a-z0-9'()+_,.\/:=? -]{1,70}")$/i.test(content);
 }

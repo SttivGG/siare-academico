@@ -21,7 +21,8 @@ const warnings: Record<string, string> = {
   OCR_APPLIED: "Se reconoció texto de páginas escaneadas. Puede contener errores de reconocimiento.",
 };
 
-export function SubjectDocuments({ subjectId, archived, selectedId, onSelect }: { subjectId: string; archived: boolean; selectedId?: string; onSelect?: (document: Document | null) => void }) {
+export function SubjectDocuments({ subjectId, archived, selectedId, onSelect, compact = false, onRead }: { subjectId: string; archived: boolean; selectedId?: string; onSelect?: (document: Document | null) => void; compact?: boolean; onRead?: (document: Document) => void }) {
+  const [search, setSearch] = useState('');
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -97,19 +98,20 @@ export function SubjectDocuments({ subjectId, archived, selectedId, onSelect }: 
     finally { setBusy(""); }
   }
   async function showText(document: Document) {
+    if (onRead) { onRead(document); return; }
     if (preview?.id === document.documentId) { setPreview(null); return; }
     setBusy(document.documentId); setError("");
     try { setPreview({ id: document.documentId, text: await api<Text>(`documents/${document.documentId}/text`) }); }
     catch (err) { fail(err instanceof Error ? err.message : "No se pudo consultar el texto."); }
     finally { setBusy(""); }
   }
-  return <section className="panel document-panel" aria-labelledby="documents-title"><h2 id="documents-title">Documentos de la materia</h2>
+  return <section className="panel document-panel" aria-labelledby="documents-title"><h2 id="documents-title">{compact ? "Fuentes" : "Documentos de la materia"}</h2>
     <p className="muted section-intro">Guarda tus apuntes y extrae su texto para consultarlo aquí.</p>
     {selectedId && onSelect && <button type="button" className="button secondary" onClick={() => onSelect(null)}>Quitar selección de fuente</button>}
     {error && <p className="notice error" role="alert" tabIndex={-1} ref={alert}>{error}</p>}
     {notice && <p className="notice success" role="status">{notice}</p>}
     {archived ? <p className="notice">La materia está archivada. Sus documentos y textos siguen disponibles para consulta y descarga.</p>
-      : <form onSubmit={upload} className="document-upload" aria-busy={busy === "upload"}>
+      : <details className="source-upload" open={!compact || undefined}><summary>Añadir documento</summary><form onSubmit={upload} className="document-upload" aria-busy={busy === "upload"}>
         <div className={`document-drop${dragging ? " dragging" : ""}`} onDragOver={e => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)}
           onDrop={e => { e.preventDefault(); setDragging(false); if (busy) return; if (e.dataTransfer.files.length !== 1) { fail("Selecciona un solo archivo cada vez."); return; } select(e.dataTransfer.files[0]); }}>
           <label htmlFor="document-file">Seleccionar documento</label>
@@ -119,11 +121,12 @@ export function SubjectDocuments({ subjectId, archived, selectedId, onSelect }: 
         </div><div className="actions"><button className="button primary" type="submit" disabled={!!busy || !file}>{busy === "upload" ? "Guardando archivo…" : "Subir documento"}</button>
           {progress !== null && <span role="status">{progress < 100 ? `Cargando ${progress}%` : "Validando y guardando…"}</span>}</div>
         {progress !== null && <progress aria-label="Progreso de carga" max={100} value={progress} />}
-      </form>}
+      </form></details>}
     <div className="document-toolbar"><h3>Archivos ({documents.length})</h3><button className="button subtle" type="button" disabled={!!busy} onClick={() => { setError(""); void refresh(); }}>Actualizar lista</button></div>
-    {loading ? <p role="status">Cargando documentos…</p> : documents.length === 0 ? <p className="notice">Todavía no hay documentos en esta materia.</p> : <ul className="document-list">{documents.map(document => {
+    <div className="field"><label htmlFor="source-search">Buscar documentos</label><input id="source-search" type="search" value={search} onChange={e => setSearch(e.target.value)} /></div>
+    {loading ? <p role="status">Cargando documentos…</p> : documents.length === 0 ? <p className="notice">Todavía no hay documentos en esta materia.</p> : <ul className="document-list">{documents.filter(d => d.originalFilename.toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))).map(document => {
       const expired = document.status === "PROCESSING" && document.leaseUntil && Date.parse(document.leaseUntil) <= Date.now();
-      return <li key={document.documentId}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
+      return <li key={document.documentId} data-selected={selectedId === document.documentId || undefined}><h3>{document.originalFilename}</h3><p className="hint">{document.originalFilename.split(".").at(-1)?.toUpperCase()} · {(document.sizeBytes / 1024).toLocaleString("es-CO", { maximumFractionDigits: 1 })} KiB · {new Date(document.createdAt).toLocaleDateString("es-CO")}</p>
         <p className="document-status" role="status">{labels[document.status]}{expired ? " · El trabajo se interrumpió; puedes reintentar." : ""}</p>
         {document.status === "FAILED" && <p className="notice error">{errors[document.errorCode ?? ""] ?? "No se pudo extraer el texto. El original se conserva y puedes reintentar."}</p>}
         {document.status !== "READY" && <p className="hint">Original conservado en cuarentena. La descarga se habilita después del procesamiento seguro.</p>}
@@ -136,5 +139,6 @@ export function SubjectDocuments({ subjectId, archived, selectedId, onSelect }: 
         </div>}
       </li>;
     })}</ul>}
+    {!loading && documents.length > 0 && !documents.some(document => document.originalFilename.toLocaleLowerCase('es').includes(search.toLocaleLowerCase('es'))) && <p role="status" className="hint">No hay documentos que coincidan con la búsqueda. Prueba con otro nombre.</p>}
   </section>;
 }

@@ -3,3 +3,6 @@
 Dockerfile text eol=lf
 *.yaml text eol=lf
 *.ps1 text eol=crlf
+frontend/tests/fixtures/documents/*.pdf binary
+docs/release/*.csv text eol=lf
+scripts/release/*.py text eol=lf

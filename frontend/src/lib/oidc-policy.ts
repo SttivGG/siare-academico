@@ -40,3 +40,12 @@ export function allowedAuthorizationUrl(value: unknown, provider: Provider) {
       && url.hostname === (provider === "google" ? "accounts.google.com" : "gitlab.com");
   } catch { return false; }
 }
+
+export function matchesOidcCallback(value: string, provider: Provider, origin: string): boolean {
+  if (!origin) return false;
+  try {
+    const url = new URL(value);
+    const callbacks = url.searchParams.getAll("redirect_uri");
+    return callbacks.length === 1 && callbacks[0] === `${origin}/api/oidc/callback/${provider}`;
+  } catch { return false; }
+}

@@ -22,6 +22,8 @@ test('document READY → reviewed bank → quiz and crossword → authorized res
   await page.screenshot({ path: `../.cache/h4-empty-${info.project.name}.png`, fullPage: true });
   await expect(page.getByText('Todavía no has consultado evaluaciones aquí.', { exact: false })).toBeVisible();
   await expect(page.getByText('Todavía no hay actividades.', { exact: false })).toBeVisible();
+  if (await page.getByRole('navigation', { name: 'Paneles del cuaderno' }).isVisible()) await page.getByRole('button', { name: 'Fuentes', exact: true }).click();
+  await page.getByText('Añadir documento', { exact: true }).click();
   await page.getByLabel('Seleccionar documento').setInputFiles({ name: 'astronomia-h4.pdf', mimeType: 'application/pdf', buffer: pdf() });
   await page.getByRole('button', { name: 'Subir documento', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'astronomia-h4.pdf' })).toBeVisible();
@@ -35,6 +37,7 @@ test('document READY → reviewed bank → quiz and crossword → authorized res
   const source = { reference: 'astronomia-h4.pdf · página 1', fragmentIndex: fragment.index, quote: fragment.text.trim() };
   const bank = { validated: true, questions: [{ id: 'q1', prompt: '¿Cuánto es dos más dos?', options: [{ id: 'a', text: 'cuatro' }, { id: 'b', text: 'cinco' }], correctOptionId: 'a', explanation: 'Dos más dos es cuatro.', topic: 'Repaso', source }], words: [{ id: 'w1', answer: 'SOL', clue: 'Estrella del sistema solar.', topic: 'Repaso', source }, { id: 'w2', answer: 'LUNA', clue: 'Satélite de la Tierra.', topic: 'Repaso', source }] };
   for (const type of ['QUIZ', 'CROSSWORD']) {
+    if (await page.getByRole('navigation', { name: 'Paneles del cuaderno' }).isVisible()) await page.getByRole('button', { name: 'Aprendizaje', exact: true }).click();
     await page.getByRole('button', { name: 'Preparar banco', exact: true }).click();
     await expect(page.getByText('Fuente READY: astronomia-h4.pdf')).toBeVisible();
     await page.getByLabel('Actividad', { exact: true }).selectOption(type);

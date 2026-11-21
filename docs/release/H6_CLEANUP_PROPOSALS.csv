@@ -1,0 +1,13 @@
+categoria,alcance,ruta,propuesta,motivo,accion_en_este_candidato
+D,H6,frontend/src/app/registro/page.tsx;frontend/src/app/recuperar/page.tsx;frontend/src/app/recuperar/confirmar/page.tsx,Retirar imports Link sin uso,TypeScript advisory TS6133; no se cambia el árbol aprobado,Conservar y documentar
+D,H6,frontend/src/components/activity-bank-editor.tsx,Retirar import INITIAL_BANK sin uso,TypeScript advisory TS6133; no se cambia el árbol aprobado,Conservar y documentar
+D,H6,frontend/src/components/activity-player.tsx,Revisar imports crosswordAnswers/freezeSubmission/Submission sin uso,TypeScript advisory TS6133; no se cambia el árbol aprobado,Conservar y documentar
+D,H6,frontend/src/components/subject-workspace.tsx,Revisar DocumentSource y valores result/recent sin lectura,No eliminar setters/estado por inferencia; verificar comportamiento en cambio separado,Conservar y documentar
+D,H6,frontend/public/images/siare-logo.png,Archivar logo anterior tras revisión específica,Sin consumidor estático; bytes visuales únicos; PNG limpio activo distinto,Conservar árbol aprobado
+D,main y H6,frontend/src/app/globals.css,Revisar dieciséis selectores léxicos de implementaciones anteriores,Se requieren comprobaciones dinámicas y visuales antes de retirar reglas,Conservar árbol aprobado
+D,H6,frontend/src/styles/tokens.css,Revisar escala y alias Nexo sin uso,Tokens y variantes de accesibilidad no son equivalentes por repetición textual,Conservar árbol aprobado
+D,H6,frontend/tests/measure-h6*.mjs,Exigir origen aislado explícito antes de reutilizar benchmarks,Son herramientas con funciones distintas; algunos defaults apuntan a 3107,Conservar código sin ejecutar contra runtime habitual
+B,main,docs/PLAN_ENTREGA_2026_2.md,Actualizar el corte con responsable del documento,Conserva pendientes anteriores a actividades H3/H4,Identificar como histórico en índice nuevo; archivo intacto
+B,main,docs/CONTRATOS_EQUIPO.md,Reconciliar tabla inicial con código/OpenAPI actuales,Tabla de corte anterior y propuestas del equipo tienen autoridad distinta,Identificar corte en índice nuevo; archivo intacto
+B,main,docs/H4_FRONTEND.md,Enlazar diseño H6 después de revisión del responsable,Descripción visual H4 anterior a Sorvo; contiene contratos útiles,Identificar alcance H4 en índice nuevo; archivo intacto
+C,main,docs/capturas/h4/,Consultar al responsable sobre archivo futuro,Evidencia académica preexistente en main; no autorizada su retirada,Conservar íntegra

@@ -19,7 +19,7 @@ export async function api<T>(path: string, method = "GET", body?: unknown): Prom
   } catch { throw new ApiError(503, "No se pudo conectar. Comprueba tu conexión e inténtalo de nuevo."); }
   const data = await response.json();
   if (!response.ok) {
-    if (response.status === 401 && !path.startsWith("auth/")) window.location.assign("/login?sesion=expirada");
+    if (response.status === 401 && !path.startsWith("auth/")) { window.dispatchEvent(new Event('siare-session-expired')); window.location.assign("/login?sesion=expirada"); }
     throw new ApiError(response.status, data.message ?? "No se pudo completar la solicitud.", data.fields ?? {});
   }
   return data;
