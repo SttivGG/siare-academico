@@ -25,9 +25,9 @@
    The cleaned PNG retains alpha in every gap, without a silhouette glow. */
 .logoArtwork { inline-size: var(--logo-size); max-inline-size: 100%; aspect-ratio: 1; display: grid; place-items: center; }
 .identity img { grid-area: 1 / 1; inline-size: 90%; block-size: 90%; object-fit: cover; }
-/* Reuse the PNG's exact alpha silhouette, clipping below the book (y=788/1024).
-   Only the wordmark is whitened; the original symbol and light logo stay intact. */
-.logoWordmark { clip-path: inset(77% 0 0); filter: brightness(0) invert(1); opacity: 0; pointer-events: none; }
+/* Reuse the PNG's alpha, clipping below the book (y=788/1024).
+   A mask gives the wordmark the exact requested color without tinting the symbol. */
+.logoWordmark { grid-area: 1 / 1; inline-size: 90%; block-size: 90%; background: #ffae62; mask-size: cover; mask-position: center; mask-repeat: no-repeat; clip-path: inset(77% 0 0); opacity: 0; pointer-events: none; forced-color-adjust: none; }
 :global(html[data-theme=dark]) .logoWordmark { opacity: 1; }
 @media (prefers-color-scheme: dark) {
   :global(html:not([data-theme=light])) .logoWordmark { opacity: 1; }

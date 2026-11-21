@@ -17,7 +17,7 @@ export default async function Home() {
       <section className={styles.hero}>
         <div className={styles.identity}><div className={styles.logoArtwork}>
           <Image src={logo} alt="SIARE" preload unoptimized sizes="(max-width: 540px) 252px, (max-width: 900px) 342px, (max-width: 1200px) 389px, (max-width: 1600px) 36vw, 576px" />
-          <Image src={logo} alt="" aria-hidden="true" unoptimized className={styles.logoWordmark} sizes="(max-width: 540px) 252px, (max-width: 900px) 342px, (max-width: 1200px) 389px, (max-width: 1600px) 36vw, 576px" />
+          <span aria-hidden="true" className={styles.logoWordmark} style={{ maskImage: `url("${logo.src}")` }} />
         </div><span>Académico</span></div>
         <div className={styles.accessColumn}>
           <div className={styles.welcome}>
