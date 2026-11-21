@@ -2,6 +2,8 @@
 
 Preparación del 21 de noviembre de 2026, America/Bogota. Rama `release/h6-sorvo-consolidation`, creada desde `feat/h6-navigation-appearance` en `2cc4575a5ddc636d61e0020877ba88ddfab2f285`. Base de integración: `origin/main` en `c8f934492f0cc7809282657270df34b4474915ca`.
 
+[PR draft #17 hacia main](https://github.com/SttivGG/siare-academico/pull/17). No se fusionan ni cierran las ramas o PR anteriores.
+
 ## Comportamiento incluido
 
 Se conserva la landing definitiva y su logo PNG limpio; el sistema Sorvo; navegación contraída/expandida; cuenta inferior; encabezado compacto; Apariencia con cinco fotografías y Sin imagen, miniaturas y créditos Pexels; temas Claro/Oscuro/Sistema; transparencia, desenfoque y velo. Se conserva el workspace A, Fuentes | Aprendizaje | Estudio, Quiz, Crucigrama, borradores y respuestas por actividad, envío idempotente y recuperación local cifrada opcional.

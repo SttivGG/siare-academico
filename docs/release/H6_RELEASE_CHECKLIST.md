@@ -27,7 +27,7 @@ Estado de preparación: **GO CON RESTRICCIONES** para revisión del candidato. N
 | Preservación 3100 | PASS; nueve servicios sin cambios durante el despliegue; salud UP; HTML y captura exactamente iguales |
 | Privacidad | Cinco avisos Gitleaks de hashes de integridad, contrastados con fuente Git; cero credenciales confirmadas |
 | Comparación íntegra contra main | Git local y manifiesto; sin diferencias en servicios, móvil, Compose o migraciones |
-| HEAD publicado / PR draft | Regresión aprobada; publicación del cierre documental y apertura draft directamente a main |
+| HEAD publicado / PR draft | Rama publicada; [PR draft #17](https://github.com/SttivGG/siare-academico/pull/17) directamente a main; árbol frontend idéntico al probado |
 
 Los intentos iniciales fallidos no se omiten: la copia de dependencias estaba incompleta en la primera ejecución unitaria; tras completarla pasaron las 50 pruebas. La primera corrida E2E terminó con 108 PASS, 17 fallos y cinco omisiones: detectó diferencias del nuevo proveedor con los contratos (acceso ajeno, filtrado de fuentes, campos de envío, OCR y documento sin texto) y recorridos heredados que buscaban controles de escritorio desde móvil o comprobaban Administración después de visitar Apariencia. Se corrigieron fixture y recorridos sin relajar aserciones ni añadir skips. Una segunda corrida fue interrumpida tras 34 casos y señaló una carrera de navegación al cambiar cookies por API con el observador de cuenta activo; ST-10 ahora deja esa pantalla antes de cambiar de cuenta, conserva la copia y verifica el aislamiento. La corrida final completa aprobó 125 casos sin fallos ni reintentos flaky.
 
