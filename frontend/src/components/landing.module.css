@@ -25,7 +25,7 @@
    frame the artwork without changing its proportions or the source asset. */
 .logoArtwork { inline-size: var(--logo-size); max-inline-size: 100%; aspect-ratio: 1; }
 .identity img { inline-size: 100%; block-size: 100%; object-fit: cover; filter: drop-shadow(0 0 1px rgb(244 248 255 / .9)); }
-.identity > span { inline-size: var(--logo-size); max-inline-size: 100%; text-align: center; color: var(--muted); font-size: .875rem; letter-spacing: .28em; text-transform: uppercase; }
+.identity > span { inline-size: var(--logo-size); max-inline-size: 100%; text-align: center; color: light-dark(#474c52, #c4bfba); font-size: .875rem; letter-spacing: .28em; text-transform: uppercase; }
 .accessColumn { grid-column: 2; min-inline-size: 0; display: flex; flex-direction: column; gap: 28px; }
 .welcome { --accent: light-dark(#6c2c0b, #ffae78); min-inline-size: 0; }
 .welcome h1 { font-size: clamp(2rem, 1.5rem + 1vw, 2.75rem); line-height: 1.15; letter-spacing: -.045em; margin-block-end: 16px; text-wrap: balance; }
@@ -50,8 +50,8 @@
   --input: rgb(255 255 255 / .38);
   --raised: rgb(255 255 255 / .48);
   --soft: rgb(255 255 255 / .82);
-  --accent: #98400d;
-  --focus: #98400d;
+  --accent: #78310a;
+  --focus: #78310a;
   --danger: #902d39;
   --danger-soft: rgb(255 238 240 / .85);
   min-inline-size: 0;
