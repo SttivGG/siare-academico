@@ -60,7 +60,7 @@ de UI UX devolvió Fira y verde de dashboard: se descartaron para conservar
 Urbanist y el naranja institucional.
 
 Se aplicó la guía `visual-effects`: interpolación `in oklab` para neutros y un
-preambulo de gradiente válido cuando no se admite ese espacio. La regla consultada
+preámbulo de gradiente válido cuando no se admite ese espacio. La regla consultada
 indica: “Avoid using `in oklch` for alpha transparency fades or mixing neutral colors.”
 Se verificó también la necesidad de transparencia para percibir el filtro en
 [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/backdrop-filter).

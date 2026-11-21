@@ -3,6 +3,7 @@
 Fecha: 21 de noviembre de 2026, America/Bogota. Preview: <http://127.0.0.1:3107>.
 Rama: `feat/h6-sorvo-global`. Código desplegado: `ec146fb`.
 Base del PR: `feat/h6-landing-access`, `123cc0b`.
+Evidencias: `193bdf1`. [PR #14](https://github.com/SttivGG/siare-academico/pull/14), draft y sin fusionar.
 
 El frontend comparte ahora fotografía, cristal, reflejos, bordes y sombras entre
 landing, autenticación y áreas internas. Se conserva Urbanist, naranja `#F58136`,
@@ -135,3 +136,6 @@ se modificaron backend, redes o volúmenes persistentes.
 El PR queda en draft, sin fusión automática. Su base conserva toda la cadena H6
 y las correcciones de landing. Los cambios ajenos de la raíz y los demás worktrees
 se mantienen fuera de esta rama.
+
+El conector GitHub devolvió 403 al intentar crear el PR. La CLI local autenticada
+creó el draft solicitado; se conserva la misma base y alcance.
