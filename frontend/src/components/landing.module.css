@@ -21,10 +21,10 @@
 .main { flex: 1; display: flex; flex-direction: column; }
 .hero { flex: 1; display: grid; inline-size: 100%; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); align-items: center; gap: clamp(48px, 6vw, 112px); padding-block: 24px 48px; }
 .identity { --logo-size: clamp(400px, 40vw, 640px); min-inline-size: 0; margin-inline-start: -16px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-/* The official PNG has transparent side margins. Cover a square viewport to
-   frame the artwork without changing its proportions or the source asset. */
-.logoArtwork { inline-size: var(--logo-size); max-inline-size: 100%; aspect-ratio: 1; }
-.identity img { inline-size: 100%; block-size: 100%; object-fit: cover; filter: drop-shadow(0 0 1px rgb(244 248 255 / .9)); }
+/* Keep the established layout footprint; only the artwork shrinks by 10%.
+   The cleaned PNG retains alpha in every gap, without a silhouette glow. */
+.logoArtwork { inline-size: var(--logo-size); max-inline-size: 100%; aspect-ratio: 1; display: grid; place-items: center; }
+.identity img { inline-size: 90%; block-size: 90%; object-fit: cover; }
 .identity > span { inline-size: var(--logo-size); max-inline-size: 100%; text-align: center; color: light-dark(#474c52, #c4bfba); font-size: .875rem; letter-spacing: .28em; text-transform: uppercase; }
 .accessColumn { grid-column: 2; min-inline-size: 0; display: flex; flex-direction: column; gap: 28px; }
 .welcome { --accent: light-dark(#6c2c0b, #ffae78); min-inline-size: 0; }

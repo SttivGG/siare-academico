@@ -65,7 +65,7 @@ test('landing: real provider availability, responsive themes and both tabs', asy
           expect(panel!.x).toBeGreaterThan(width / 2);
           expect(panel!.x + panel!.width).toBeGreaterThan(width * .86);
           expect(panel!.x - (logo!.x + logo!.width)).toBeGreaterThanOrEqual(48);
-          expect(logo!.width).toBeGreaterThanOrEqual(width > 1200 ? 500 : 340);
+          expect(logo!.width).toBeGreaterThanOrEqual(width > 1200 ? 500 : 300);
         }
         await page.screenshot({ path: `${evidence}/3107-after-${theme}-${device}-${register ? 'register' : 'login'}.png`, fullPage: true });
       }
