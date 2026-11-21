@@ -35,7 +35,7 @@ $env:NEXO_EVIDENCE_DIR='../.cache/h6-release/nexo'
 npm.cmd run test:e2e:release
 ```
 
-La configuración release levanta Next compilado en loopback 3137 y un upstream HTTP aleatorio en memoria. No existe fallback al core real. `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` permite seleccionar Chromium instalado. Las fixtures PDF académica, escaneada y sin texto deben existir en `.cache/phase2-fixtures/`; el comando de preparación documentado en la checklist las toma de fixtures locales sintéticas. No activar `SIARE_TEST_PDF` con documentos personales. La fixture modela contratos para probar el cliente: no sustituye pruebas de extracción, evaluación, autorización, TOTP ni persistencia de Spring.
+La configuración release levanta Next compilado en loopback 3137 y un upstream HTTP aleatorio en memoria. No existe fallback al core real. `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` permite seleccionar Chromium instalado. La configuración copia automáticamente los tres PDF sintéticos rastreados de `frontend/tests/fixtures/documents/` a `.cache/phase2-fixtures/`. Rechaza `SIARE_TEST_PDF` para impedir el uso accidental de documentos personales. La fixture modela contratos para probar el cliente: no sustituye pruebas de extracción, evaluación, autorización, TOTP ni persistencia de Spring.
 
 ## Despliegue autorizado
 

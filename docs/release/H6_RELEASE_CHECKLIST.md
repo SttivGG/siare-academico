@@ -34,7 +34,7 @@ Los intentos iniciales fallidos no se omiten: la copia de dependencias estaba in
 
 Los logs completos, JSON de Playwright, resultados de integración y matrices visuales se generan en `.cache/h6-release/` del worktree; se promueve únicamente el resumen revisado a `docs/release/evidence/`. El navegador público de 3100/3107 y los snapshots Docker están en `.cache/h6-release/` del workspace raíz. No publicar el entorno, cookies, tokens ni documentos privados.
 
-Para preparar los tres PDF sintéticos locales de esta instalación, copiar `academic.pdf`, `scanned.pdf` y `blank.pdf` desde `.cache/phase2-fixtures/` del workspace habitual al mismo directorio relativo del worktree. Se usan únicamente como datos del proveedor en memoria; no se suben al core real. Mantener las salidas visuales en `.cache`, mediante las variables del plan.
+La configuración release prepara automáticamente `academic.pdf`, `scanned.pdf` y `blank.pdf` desde las fixtures rastreadas, cuya procedencia es el generador Python existente. Se usan únicamente como datos del proveedor en memoria; no se suben al core real. Mantener las salidas visuales en `.cache`, mediante las variables del plan.
 
 ## Criterios de decisión
 
