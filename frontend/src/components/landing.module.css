@@ -1,8 +1,6 @@
 .landing {
-  --canvas: light-dark(#f4f4f4, #181818);
-  --landing-glass: light-dark(rgb(255 255 255 / .76), rgb(30 37 45 / .82));
-  --landing-edge: light-dark(rgb(255 255 255 / .9), rgb(226 237 255 / .24));
-  --in-oklab: ;
+  --landing-glass: var(--glass-primary);
+  --landing-edge: var(--border);
   position: relative;
   isolation: isolate;
   min-block-size: 100dvh;
@@ -14,8 +12,7 @@
 .landing::before { content: ""; position: absolute; inset: 0; z-index: -2; background: url("/images/study-background.webp") center / cover; }
 /* A neutral lateral veil keeps the photograph in color. The access column sits
    over the clearer side so there is actual photographic detail to refract. */
-.landing::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg var(--in-oklab), light-dark(rgb(244 244 244 / .88), rgb(12 18 24 / .78)) 3%, light-dark(rgb(244 244 244 / .72), rgb(12 18 24 / .64)) 48%, light-dark(rgb(244 244 244 / .42), rgb(12 18 24 / .40)) 100%); }
-@supports (background: linear-gradient(in oklab, white, black)) { .landing { --in-oklab: in oklab; } }
+.landing::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg var(--in-oklab), var(--scene-start) 3%, var(--scene-middle) 48%, var(--scene-end) 100%); }
 .header, .main, .footer { inline-size: 100%; max-inline-size: 1440px; margin-inline: auto; }
 .header { display: flex; justify-content: flex-end; padding-block: 20px 0; }
 .main { flex: 1; display: flex; flex-direction: column; }
@@ -39,81 +36,17 @@
 .welcome h1 span { color: var(--accent); }
 .welcome > p { max-inline-size: 42ch; color: var(--text); }
 .access {
-  /* These neutral tokens follow SIARE's existing root theme and system setting. */
-  --access-surface: rgb(255 255 255 / .28);
-  --access-edge: rgb(32 34 38 / .28);
-  --access-reflection: rgb(255 255 255 / .65);
-  --access-glint: rgb(255 255 255 / .22);
-  --access-shadow: rgb(0 0 0 / .22);
-  --access-tabs: rgb(0 0 0 / .045);
-  --access-opaque: #f2f3f4;
-  --text: #202124;
-  --muted: #34383d;
-  --color-foreground: var(--text);
-  --color-muted: var(--muted);
-  --border: rgb(32 34 38 / .23);
-  --color-border: var(--border);
-  --control: #72757a;
-  --input: rgb(255 255 255 / .38);
-  --raised: rgb(255 255 255 / .48);
-  --soft: rgb(255 255 255 / .82);
-  --accent: #78310a;
-  --focus: #78310a;
-  --danger: #902d39;
-  --danger-soft: rgb(255 238 240 / .85);
   min-inline-size: 0;
   padding: 28px;
-  border: 1px solid var(--access-edge);
+  border: 1px solid var(--border);
   border-radius: 28px;
   color: var(--text);
-  background: linear-gradient(135deg var(--in-oklab), var(--access-glint), transparent 42%) var(--access-surface);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: inset 0 1px 0 var(--access-reflection), inset 1px 0 0 var(--access-glint), 0 18px 48px -24px var(--access-shadow);
+  background: linear-gradient(135deg var(--in-oklab), var(--glass-glint), transparent 42%) var(--glass-primary);
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur(var(--blur));
+  box-shadow: inset 0 1px 0 var(--glass-reflection), inset 1px 0 0 var(--glass-glint), 0 18px 48px -24px var(--glass-shadow);
 }
-:global(html[data-theme=dark]) .access {
-  --access-surface: rgb(7 9 12 / .28);
-  --access-edge: rgb(255 255 255 / .22);
-  --access-reflection: rgb(255 255 255 / .09);
-  --access-glint: rgb(255 255 255 / .065);
-  --access-shadow: rgb(0 0 0 / .38);
-  --access-tabs: rgb(0 0 0 / .16);
-  --access-opaque: #17191d;
-  --text: #f5f5f5;
-  --muted: #f0f1f2;
-  --border: rgb(255 255 255 / .22);
-  --control: #93979f;
-  --input: rgb(7 9 12 / .36);
-  --raised: rgb(255 255 255 / .09);
-  --soft: rgb(255 255 255 / .13);
-  --accent: #ffc393;
-  --focus: #ffc393;
-  --danger: #ffbdc6;
-  --danger-soft: rgb(60 20 28 / .75);
-}
-@media (prefers-color-scheme: dark) {
-  :global(html:not([data-theme=light])) .access {
-    --access-surface: rgb(7 9 12 / .28);
-    --access-edge: rgb(255 255 255 / .22);
-    --access-reflection: rgb(255 255 255 / .09);
-    --access-glint: rgb(255 255 255 / .065);
-    --access-shadow: rgb(0 0 0 / .38);
-    --access-tabs: rgb(0 0 0 / .16);
-    --access-opaque: #17191d;
-    --text: #f5f5f5;
-    --muted: #f0f1f2;
-    --border: rgb(255 255 255 / .22);
-    --control: #93979f;
-    --input: rgb(7 9 12 / .36);
-    --raised: rgb(255 255 255 / .09);
-    --soft: rgb(255 255 255 / .13);
-    --accent: #ffc393;
-    --focus: #ffc393;
-    --danger: #ffbdc6;
-    --danger-soft: rgb(60 20 28 / .75);
-  }
-}
-.tabs { display: flex; gap: 8px; padding: 5px; border: 1px solid var(--border); border-radius: 14px; background: var(--access-tabs); margin-block-end: 24px; }
+.tabs { display: flex; gap: 8px; padding: 5px; border: 1px solid var(--border); border-radius: 14px; background: var(--hover); margin-block-end: 24px; }
 .tabs button { position: relative; flex: 1; min-block-size: 44px; padding: 8px; border: 1px solid transparent; border-radius: 10px; color: var(--muted); background: transparent; font-size: .9375rem; font-weight: 600; white-space: nowrap; }
 .tabs button[aria-selected=true] { color: var(--text); background: var(--raised); border-color: var(--border); }
 .tabs button[aria-selected=true]::after { content: ""; position: absolute; inset: auto 25% 0; border-block-end: 3px solid var(--brand); }
@@ -138,14 +71,14 @@
 .providers :global(.hint) { margin-block-start: 6px; }
 .providers svg { flex: none; }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; list-style: none; padding: 0; margin: auto 0 28px; }
-.steps li { display: flex; align-items: flex-start; gap: 16px; padding: 22px; min-inline-size: 0; border: 1px solid var(--landing-edge); border-radius: 20px; background: color-mix(in srgb, var(--mint) 55%, var(--landing-glass)); backdrop-filter: blur(10px); box-shadow: var(--shadow); }
-.steps li:nth-child(2) { background: color-mix(in srgb, var(--cream) 55%, var(--landing-glass)); }
-.steps li:nth-child(3) { background: color-mix(in srgb, var(--blue-pastel) 55%, var(--landing-glass)); }
+.steps li { display: flex; align-items: flex-start; gap: 16px; padding: 22px; min-inline-size: 0; border: 1px solid var(--landing-edge); border-radius: 20px; background: var(--glass-paint); -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); box-shadow: var(--shadow); }
+.steps li:nth-child(2) { background: var(--glass-paint); }
+.steps li:nth-child(3) { background: var(--glass-paint); }
 .stepIcon { display: grid; place-items: center; min-inline-size: 36px; min-block-size: 36px; border-radius: 11px; background: var(--rail); color: var(--accent); }
 .steps h2 { font-size: 1.125rem; margin-block: 4px 8px; }
 .steps p { font-size: .9375rem; color: var(--muted); line-height: 1.5; }
-.footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 20px 24px; border-block-start: 1px solid var(--border); color: var(--text); font-size: .8125rem; }
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .access { background: var(--access-opaque); } .steps li { background: var(--surface); } }
+.footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding: 20px 12px 24px; border-block-start: 1px solid var(--border); color: var(--text); font-size: .8125rem; background: var(--glass-navigation); border-radius: var(--radius-control) var(--radius-control) 0 0; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .access { background: var(--glass-fallback); } .steps li { background: var(--surface); } }
 @media (max-width: 1200px) {
   .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 460px); gap: 48px; }
   .identity { --logo-size: clamp(340px, 36vw, 432px); }

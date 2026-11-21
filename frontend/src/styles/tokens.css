@@ -1,72 +1,149 @@
-/* Nexo H6-1 approved palette. One semantic source for every composition. */
+/* SIARE H6: neutral photographic glass shared by public and academic flows. */
 @font-face { font-family: Urbanist; src: url("/fonts/urbanist-latin.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
 :root {
-  color-scheme: light dark;
-  --font: Urbanist,system-ui,sans-serif;
-  --brand: #f58136;
-  --brand-hover: #ff954f;
-  --on-brand: #202020;
-  --canvas: light-dark(#f4f4f4,#242323);
-  --surface: light-dark(#f6f6f5,#292725);
-  --raised: light-dark(#eae8e5,#35312e);
-  --glass: light-dark(rgba(242,246,248,.82),rgba(34,33,32,.88));
-  --rail: light-dark(rgba(255,255,255,.74),rgba(35,34,33,.82));
-  --input: light-dark(rgba(255,255,255,.84),rgba(49,46,43,.9));
-  --text: light-dark(#202020,#f1efed);
-  --muted: light-dark(#625e5c,#c4bfba);
-  --faint: light-dark(#706c6a,#b3ada7);
-  --link: light-dark(#9c4312,#ffae78);
-  --focus: light-dark(#a44714,#ffa86e);
-  --border: light-dark(rgba(66,48,37,.14),rgba(255,246,238,.16));
-  --control: light-dark(#827872,#9d9188);
-  --hover: light-dark(rgba(72,55,43,.055),rgba(255,242,230,.065));
-  --selected: light-dark(rgba(245,129,54,.12),rgba(245,129,54,.15));
-  --rose: light-dark(#f6e2d2,#48372e);
-  --mint: light-dark(#e1f0ea,#303e37);
-  --cream: light-dark(#f3e7d1,#423b2d);
-  --blue-pastel: light-dark(#e3eaf2,#363b43);
-  --success: light-dark(#326448,#b8d9c2);
-  --success-bg: light-dark(#e5eee8,#34483b);
-  --info: light-dark(#4d5c70,#ccd5df);
-  --info-bg: light-dark(#e8edf2,#363e47);
-  --warning: light-dark(#895014,#e3c39d);
-  --warning-bg: light-dark(#f8eadb,#493a2d);
-  --danger: light-dark(#9f3434,#f1aaaa);
-  --danger-bg: light-dark(#f7e8e7,#482f2e);
-  --wash-a: light-dark(#f3e4d9,#46362d);
-  --wash-b: light-dark(#dfebe5,#2e3b35);
-  --glass-edge: light-dark(rgba(255,255,255,.8),rgba(255,255,255,.08));
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --radius-sm: 8px;
-  --radius-control: 12px;
-  --radius-panel: 22px;
-  --radius-rail: 28px;
-  --rail-width: 84px;
-  --header-height: 64px;
-  --target: 44px;
-  --blur: 26px;
-  --duration-fast: 140ms;
-  --duration: 220ms;
-  --ease: cubic-bezier(.2,.7,.2,1);
-  --shadow: inset 0 1px 0 rgba(255,255,255,.8),0 1px 2px rgba(40,30,24,.025),0 18px 40px -24px rgba(60,45,40,.28);
+  color-scheme: light;
+  --canvas: #f0f1f2;
+  --text: #202124;
+  --muted: #34383d;
+  --faint: #555b63;
+  --link: #642908;
+  --focus: #642908;
+  --border: rgb(32 34 38 / .23);
+  --control: #72757a;
+  --hover: rgb(0 0 0 / .055);
+  --selected: rgb(245 129 54 / .16);
+  --raised: rgb(255 255 255 / .48);
+  --glass-primary: rgb(255 255 255 / .28);
+  --glass-secondary: rgb(255 255 255 / .20);
+  --glass-navigation: rgb(255 255 255 / .56);
+  --glass-form: rgb(255 255 255 / .38);
+  --glass-reading: rgb(250 251 252 / .91);
+  --glass-modal: rgb(248 249 250 / .86);
+  --glass-fallback: #f2f3f4;
+  --glass-reflection: rgb(255 255 255 / .65);
+  --glass-glint: rgb(255 255 255 / .22);
+  --glass-shadow: rgb(0 0 0 / .22);
+  --scene-start: rgb(244 244 244 / .88);
+  --scene-middle: rgb(244 244 244 / .72);
+  --scene-end: rgb(244 244 244 / .42);
+  --rose: rgb(247 213 192 / .42);
+  --mint: rgb(211 238 224 / .42);
+  --cream: rgb(244 231 204 / .42);
+  --blue-pastel: rgb(214 229 242 / .42);
+  --success: #28513b;
+  --success-bg: rgb(235 248 240 / .93);
+  --info: #34465c;
+  --info-bg: rgb(237 244 251 / .93);
+  --warning: #70400d;
+  --warning-bg: rgb(255 245 224 / .93);
+  --danger: #902d39;
+  --danger-bg: rgb(255 238 240 / .93);
+  --font: Urbanist, system-ui, sans-serif; --font-sans: var(--font);
+  --brand: #f58136; --brand-hover: #ff954f; --on-brand: #202020;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px;
+  --radius-sm: 8px; --radius-control: 12px; --radius-panel: 22px; --radius-rail: 28px;
+  --rail-width: 84px; --header-height: 64px; --target: 44px;
+  --blur: 10px; --blur-navigation: 12px;
+  --duration-fast: 140ms; --duration: 220ms; --ease: cubic-bezier(.2,.7,.2,1);
+  --in-oklab: ;
+  --glass-paint: linear-gradient(135deg var(--in-oklab), var(--glass-glint), transparent 42%) var(--glass-primary);
+  --shadow: inset 0 1px 0 var(--glass-reflection), inset 1px 0 0 var(--glass-glint), 0 18px 48px -24px var(--glass-shadow);
+  /* Existing component names share the same semantic surfaces. */
+  --glass: var(--glass-primary); --rail: var(--glass-navigation); --input: var(--glass-form); --surface: var(--glass-reading);
+  --glass-edge: var(--glass-reflection);
   --color-background: var(--canvas); --color-foreground: var(--text); --color-muted: var(--muted); --color-border: var(--border);
   --accent: var(--link); --accent-hover: var(--focus); --soft: var(--selected); --danger-soft: var(--danger-bg); --success-soft: var(--success-bg);
   --nexo-orange: var(--brand); --nexo-ink: var(--on-brand); --nexo-mint: var(--mint); --nexo-rose: var(--rose); --nexo-blue: var(--blue-pastel);
-  --font-sans: Urbanist, system-ui, sans-serif;
 }
-:root[data-theme=light] { color-scheme: light; }
-:root[data-theme=dark] { color-scheme: dark; --shadow: inset 0 1px 0 rgba(255,255,255,.05),0 16px 40px -25px rgba(0,0,0,.7); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme=light]) { --shadow: inset 0 1px 0 rgba(255,255,255,.05),0 16px 40px -25px rgba(0,0,0,.7); } }
-@supports not (color: light-dark(white, black)) {
-  :root { --canvas:#f4f4f4;--surface:#f6f6f5;--raised:#eae8e5;--glass:rgba(242,246,248,.82);--rail:rgba(255,255,255,.74);--input:rgba(255,255,255,.84);--text:#202020;--muted:#625e5c;--faint:#706c6a;--link:#9c4312;--focus:#a44714;--border:rgba(66,48,37,.14);--control:#827872;--hover:rgba(72,55,43,.055);--selected:rgba(245,129,54,.12);--rose:#f6e2d2;--mint:#e1f0ea;--cream:#f3e7d1;--blue-pastel:#e3eaf2;--success:#326448;--success-bg:#e5eee8;--info:#4d5c70;--info-bg:#e8edf2;--warning:#895014;--warning-bg:#f8eadb;--danger:#9f3434;--danger-bg:#f7e8e7;--wash-a:#f3e4d9;--wash-b:#dfebe5;--glass-edge:rgba(255,255,255,.8); }
-  :root[data-theme=dark] { --canvas:#242323;--surface:#292725;--raised:#35312e;--glass:rgba(34,33,32,.88);--rail:rgba(35,34,33,.82);--input:rgba(49,46,43,.9);--text:#f1efed;--muted:#c4bfba;--faint:#b3ada7;--link:#ffae78;--focus:#ffa86e;--border:rgba(255,246,238,.16);--control:#9d9188;--hover:rgba(255,242,230,.065);--selected:rgba(245,129,54,.15);--rose:#48372e;--mint:#303e37;--cream:#423b2d;--blue-pastel:#363b43;--success:#b8d9c2;--success-bg:#34483b;--info:#ccd5df;--info-bg:#363e47;--warning:#e3c39d;--warning-bg:#493a2d;--danger:#f1aaaa;--danger-bg:#482f2e;--wash-a:#46362d;--wash-b:#2e3b35;--glass-edge:rgba(255,255,255,.08); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme=light]) { --canvas:#242323;--surface:#292725;--raised:#35312e;--glass:rgba(34,33,32,.88);--rail:rgba(35,34,33,.82);--input:rgba(49,46,43,.9);--text:#f1efed;--muted:#c4bfba;--faint:#b3ada7;--link:#ffae78;--focus:#ffa86e;--border:rgba(255,246,238,.16);--control:#9d9188;--hover:rgba(255,242,230,.065);--selected:rgba(245,129,54,.15);--rose:#48372e;--mint:#303e37;--cream:#423b2d;--blue-pastel:#363b43;--success:#b8d9c2;--success-bg:#34483b;--info:#ccd5df;--info-bg:#363e47;--warning:#e3c39d;--warning-bg:#493a2d;--danger:#f1aaaa;--danger-bg:#482f2e;--wash-a:#46362d;--wash-b:#2e3b35;--glass-edge:rgba(255,255,255,.08); } }
+:root[data-theme=dark] {
+  color-scheme: dark;
+  --canvas: #15181c;
+  --text: #f5f5f5;
+  --muted: #e1e3e6;
+  --faint: #c4c8ce;
+  --link: #ffc393;
+  --focus: #ffc393;
+  --border: rgb(255 255 255 / .22);
+  --control: #93979f;
+  --hover: rgb(255 255 255 / .08);
+  --selected: rgb(245 129 54 / .18);
+  --raised: rgb(255 255 255 / .09);
+  --glass-primary: rgb(7 9 12 / .28);
+  --glass-secondary: rgb(7 9 12 / .20);
+  --glass-navigation: rgb(10 13 17 / .56);
+  --glass-form: rgb(7 9 12 / .36);
+  --glass-reading: rgb(18 21 25 / .91);
+  --glass-modal: rgb(22 25 29 / .86);
+  --glass-fallback: #17191d;
+  --glass-reflection: rgb(255 255 255 / .12);
+  --glass-glint: rgb(255 255 255 / .065);
+  --glass-shadow: rgb(0 0 0 / .38);
+  --scene-start: rgb(12 18 24 / .78);
+  --scene-middle: rgb(12 18 24 / .64);
+  --scene-end: rgb(12 18 24 / .40);
+  --rose: rgb(172 113 80 / .18);
+  --mint: rgb(94 157 127 / .18);
+  --cream: rgb(163 143 91 / .18);
+  --blue-pastel: rgb(109 139 167 / .18);
+  --success: #c4edd5;
+  --success-bg: rgb(21 48 34 / .93);
+  --info: #d4e4f8;
+  --info-bg: rgb(25 38 55 / .93);
+  --warning: #f6d7aa;
+  --warning-bg: rgb(49 37 18 / .93);
+  --danger: #ffbdc6;
+  --danger-bg: rgb(60 20 28 / .93);
+}
+/* Explicit theme wins over the system, including browsers without light-dark(). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) {
+    color-scheme: dark;
+    --canvas: #15181c;
+    --text: #f5f5f5;
+    --muted: #e1e3e6;
+    --faint: #c4c8ce;
+    --link: #ffc393;
+    --focus: #ffc393;
+    --border: rgb(255 255 255 / .22);
+    --control: #93979f;
+    --hover: rgb(255 255 255 / .08);
+    --selected: rgb(245 129 54 / .18);
+    --raised: rgb(255 255 255 / .09);
+    --glass-primary: rgb(7 9 12 / .28);
+    --glass-secondary: rgb(7 9 12 / .20);
+    --glass-navigation: rgb(10 13 17 / .56);
+    --glass-form: rgb(7 9 12 / .36);
+    --glass-reading: rgb(18 21 25 / .91);
+    --glass-modal: rgb(22 25 29 / .86);
+    --glass-fallback: #17191d;
+    --glass-reflection: rgb(255 255 255 / .12);
+    --glass-glint: rgb(255 255 255 / .065);
+    --glass-shadow: rgb(0 0 0 / .38);
+    --scene-start: rgb(12 18 24 / .78);
+    --scene-middle: rgb(12 18 24 / .64);
+    --scene-end: rgb(12 18 24 / .40);
+    --rose: rgb(172 113 80 / .18);
+    --mint: rgb(94 157 127 / .18);
+    --cream: rgb(163 143 91 / .18);
+    --blue-pastel: rgb(109 139 167 / .18);
+    --success: #c4edd5;
+    --success-bg: rgb(21 48 34 / .93);
+    --info: #d4e4f8;
+    --info-bg: rgb(25 38 55 / .93);
+    --warning: #f6d7aa;
+    --warning-bg: rgb(49 37 18 / .93);
+    --danger: #ffbdc6;
+    --danger-bg: rgb(60 20 28 / .93);
+  }
+}
+@supports (background: linear-gradient(in oklab, white, black)) { :root { --in-oklab: in oklab; } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root, :root[data-theme], :root:not([data-theme]) { --glass-primary: var(--glass-fallback); --glass-secondary: var(--glass-fallback); --glass-navigation: var(--glass-fallback); --glass-form: var(--glass-fallback); --glass-reading: var(--glass-fallback); --glass-modal: var(--glass-fallback); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root, :root[data-theme], :root:not([data-theme]) { --glass-primary: var(--glass-fallback); --glass-secondary: var(--glass-fallback); --glass-navigation: var(--glass-fallback); --glass-form: var(--glass-fallback); --glass-reading: var(--glass-fallback); --glass-modal: var(--glass-fallback); --blur: 0px; --blur-navigation: 0px; }
+}
+@media (forced-colors: active) {
+  :root, :root[data-theme], :root:not([data-theme]) { --canvas: Canvas; --text: CanvasText; --muted: CanvasText; --faint: CanvasText; --link: LinkText; --focus: Highlight; --control: CanvasText; --border: CanvasText; --glass-primary: Canvas; --glass-secondary: Canvas; --glass-navigation: Canvas; --glass-form: Canvas; --glass-reading: Canvas; --glass-modal: Canvas; --glass-glint: transparent; --shadow: none; --blur: 0px; --blur-navigation: 0px; }
 }

@@ -36,6 +36,7 @@
 .workspace :global(.academic-recovery > p) { flex: 1 1 18rem; margin: 0; font-size: .8125rem; }
 .workspace :global(.academic-recovery > .actions) { gap: 4px; }
 .workspace :global(.academic-recovery > .actions .button) { padding: 8px; font-size: .8125rem; }
+.workspace :global(.academic-recovery .button.subtle) { color: var(--text); background: var(--glass-form); border-color: var(--control); }
 .workspaceColumns :global(.document-panel) { margin-block-start: 0; }
 .workspaceColumns :global(.document-panel .section-intro) { margin-block: 8px 12px; font-size: .875rem; }
 .workspaceColumns :global(.document-panel .document-toolbar) { margin-block: 12px; gap: 4px; }
@@ -51,7 +52,7 @@
   @keyframes panel-reveal { from { opacity: .65; } to { opacity: 1; } }
 }
 .authShell { min-block-size: 100dvh; display: grid; grid-template-columns: minmax(280px, 42%) minmax(0, 1fr); gap: 16px; padding: 16px; max-inline-size: 1800px; margin-inline: auto; }
-.authAside { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; border: 1px solid var(--border); border-radius: var(--radius-rail); background: var(--glass); box-shadow: var(--shadow); padding: clamp(24px, 4vw, 64px); }
+.authAside { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; border: 1px solid var(--border); border-radius: var(--radius-rail); background: var(--glass-paint); box-shadow: var(--shadow); padding: clamp(24px, 4vw, 64px); }
 .authAside h2 { font-size: clamp(2rem, 1.4rem + 2vw, 3.5rem); margin-block-end: 20px; }
 .authAside p { max-inline-size: 38ch; }
 .wordmark { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
@@ -62,14 +63,15 @@
 .authMain { min-inline-size: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding: 8px clamp(16px, 4vw, 64px) 24px; }
 .authTools { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .authTools .back-link { margin: 0; }
-.authCard { inline-size: 100%; max-inline-size: 460px; margin: 16px auto 32px; background: var(--glass); border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: var(--radius-panel); padding: clamp(20px, 3vw, 36px); }
+.authMain > footer { align-self: start; padding: 8px 12px; border-radius: var(--radius-control); background: var(--glass-navigation); color: var(--text); }
+.authCard { inline-size: 100%; max-inline-size: 460px; margin: 16px auto 32px; background: var(--glass-paint); border: 1px solid var(--border); box-shadow: var(--shadow); border-radius: var(--radius-panel); padding: clamp(20px, 3vw, 36px); }
 .authCard h1 { font-size: clamp(1.65rem, 1.4rem + .7vw, 2.1rem); margin-block-end: 24px; }
 .authCard hr { margin-block: 24px; border-color: var(--border); }
-.authCard, .authAside { backdrop-filter: blur(var(--blur)); }
+.authCard, .authAside, .publicHeader { -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); }
 .authCard input { font-size: 1rem; }
 .publicShell { max-inline-size: 1400px; margin-inline: auto; min-block-size: 100dvh; padding: 16px; display: flex; flex-direction: column; }
 .publicShell > main { flex: 1; padding-inline: clamp(8px, 4vw, 64px); }
-.publicHeader { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--glass); box-shadow: var(--shadow); border: 1px solid var(--border); border-radius: var(--radius-rail); padding: 16px 24px; }
+.publicHeader { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; background: var(--glass-paint); box-shadow: var(--shadow); border: 1px solid var(--border); border-radius: var(--radius-rail); padding: 16px 24px; }
 .publicFooter { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 24px; color: var(--muted); font-size: .8125rem; }
 @media (max-width: 1199px) { .appShell { --rail-width: 64px; gap: 12px; padding: 12px; } }
 @media (min-width: 701px) and (max-width: 1199px) {
@@ -93,7 +95,7 @@
   .workspaceColumns { display: block; padding-block-end: calc(80px + env(safe-area-inset-bottom)); }
   .workspaceColumns > section { display: none; }
   .workspaceColumns[data-panel=sources] > section:first-child, .workspaceColumns[data-panel=learning] > section:nth-child(2), .workspaceColumns[data-panel=study] > section:nth-child(3) { display: block; }
-  .workspaceNavigation { display: flex; gap: 8px; position: fixed; inset: auto 0 0; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); z-index: 15; background: var(--surface); border-block-start: 1px solid var(--border); }
+  .workspaceNavigation { display: flex; gap: 8px; position: fixed; inset: auto 0 0; padding: 8px 12px calc(8px + env(safe-area-inset-bottom)); z-index: 15; background: var(--glass-navigation); -webkit-backdrop-filter: blur(var(--blur-navigation)); backdrop-filter: blur(var(--blur-navigation)); border-block-start: 1px solid var(--border); }
   .workspaceNavigation > button { flex: 1; padding-inline: 4px; font-size: .8125rem; }
   .workspaceColumns :global(.panel) { padding: 16px; }
   .workspace { padding-block-end: calc(72px + env(safe-area-inset-bottom)); }
@@ -102,4 +104,4 @@
   .workspace :global(.activity-player) { margin-block-start: 12px; padding-block-start: 12px; }
   .appShell { scroll-padding-block-end: calc(90px + env(safe-area-inset-bottom)); }
 }
-@supports not (backdrop-filter: blur(1px)) { .authCard, .authAside, .publicHeader { background: var(--surface); } }
+/* Glass fallback lives in shared tokens. */
