@@ -1,6 +1,6 @@
 # H6-0: inventario de pantallas, componentes y flujos
 
-Base: main `c8f9344`, con código frontend/servicios idéntico al desplegado `697621e`. Todas las rutas se expresan relativas a `http://127.0.0.1:3100`. La auditoría y sus límites están en [H6_AUDITORIA_UX.md](H6_AUDITORIA_UX.md).
+Base histórica: main `c8f9344`, con código frontend/servicios idéntico al desplegado `697621e`. Las rutas se expresan relativas al origen de cada entorno. El inventario vigente H6-7A contiene **15 rutas de pantalla y 58 casos**; [verificación de release](../release/H6_RELEASE_CHECKLIST.md) y [matriz vigente](../release/H6_RELEASE_MATRIX.csv). La auditoría histórica y sus límites están en [H6_AUDITORIA_UX.md](H6_AUDITORIA_UX.md).
 
 ## Pantallas del App Router
 
@@ -20,6 +20,7 @@ Base: main `c8f9344`, con código frontend/servicios idéntico al desplegado `69
 | `/seguridad` | `MfaPanel`, `ConnectedIdentities` | MFA activo/pendiente/no configurado; reautenticación; vinculación explícita; desconexión; mensajes OIDC | Navegador, cuenta USER sin factor; resto por código |
 | `/sesiones` | `SessionsPanel` | Listado, fechas, carga/error; cerrar una/otras/todas; expiración | Navegador, captura; sin revocar sesiones |
 | `/administracion` | `AdministrationPanel`, comprobación servidor | Restricción de acceso; ADMIN por ámbito; SUPERADMIN, parámetros, auditoría y versiones de asignación | Navegador: denegación USER; pantalla autorizada por código |
+| `/configuracion/apariencia` | `AppearanceSettings`, store global y seis fondos | Claro/Oscuro/Sistema, transparencia, blur, velo, reset, persistencia y accesibilidad | H6 Apariencia; regresión aislada H6-7A |
 
 El inventario vigente incorpora 15 rutas de pantalla, incluida `/configuracion/apariencia`; ver [Apariencia](H6_APARIENCIA_INFORME.md). La base histórica tenía 14 rutas de pantalla, más `not-found.tsx`, `error.tsx` y cargas específicas de sesiones/administración. `layout.tsx` raíz define idioma y enlace de salto; `(student)/layout.tsx` comprueba sesión/identidad y comparte navegación, contenido y pie.
 

@@ -2,6 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
+import { navigateGlobal } from './navigation';
 const sharp=createRequire(import.meta.url)('sharp');
 const output=process.env.APPEARANCE_EVIDENCE_DIR??'../.cache/h6-appearance';
 const sizes=[[1920,1080],[1440,900],[1024,768],[768,1024],[390,844],[320,844]];
@@ -142,7 +143,7 @@ test('appearance: blocked storage keeps session choices; invalid preferences and
   await page.evaluate(()=>{Storage.prototype.setItem=()=>{throw Error('blocked for test');};});
   await page.getByRole('radio',{name:'Biblioteca moderna',exact:true}).check();await range(page,'Desenfoque','20');
   await expect(page.locator('.appearance-notice')).toBeVisible();
-  await page.getByRole('link',{name:'SIARE · Inicio',exact:true}).click();await expect(page.locator('html')).toHaveAttribute('data-background','library');
+  await navigateGlobal(page,'Inicio');await expect(page.locator('html')).toHaveAttribute('data-background','library');
   expect(await page.evaluate(()=>getComputedStyle(document.documentElement).getPropertyValue('--blur').trim())).toBe('20px');
   await context.clearCookies();
 });
@@ -175,7 +176,10 @@ test('ST-03/04/05: real Quiz and Crossword components retain nodes and answers w
   await settings.getByRole('radio',{name:'Biblioteca moderna',exact:true}).check();await range(settings,'Transparencia del cristal','20');
   await expect(page.locator('html')).toHaveAttribute('data-background','library');await expect(page.getByRole('radio',{name:'Primera opción',exact:true})).toBeChecked();
   expect(await quizNode!.evaluate(el=>el.isConnected)).toBe(true);
+  const originalViewport=page.viewportSize()!;
+  await page.setViewportSize({width:1440,height:900});
   await page.getByRole('button',{name:'Expandir navegación',exact:true}).click();await page.getByRole('button',{name:'Siguiente',exact:true}).click();
+  await page.setViewportSize(originalViewport);expect(await quizNode!.evaluate(el=>el.isConnected)).toBe(true);
   await open(ids[1]);const first=page.locator('.crossword-cell input').first();await first.fill('S');const cell=await first.elementHandle();
   await settings.getByRole('radio',{name:'Aprendizaje colaborativo',exact:true}).check();await range(settings,'Desenfoque','24');await settings.getByRole('combobox',{name:'Tema',exact:true}).selectOption('dark');
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');expect(await cell!.evaluate(el=>el.isConnected)).toBe(true);await expect(first).toHaveValue('S');

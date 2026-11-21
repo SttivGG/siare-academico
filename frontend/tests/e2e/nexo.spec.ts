@@ -49,13 +49,14 @@ test('Nexo global: route captures, both themes, eight viewports and real USER au
   await captureRoutes(publicRoutes);
   const { id } = await createStudent(page, baseURL!);
   await captureRoutes([['R08','/inicio'],['R09','/materias'],['R10','/materias/nueva'],['R11',`/materias/${id}`],['R12','/seguridad'],['R13','/sesiones'],['R14','/administracion'],['R15','/configuracion/apariencia']]);
+  await page.goto('/administracion');
   await expect(page.getByRole('heading', { name: 'Acceso administrativo restringido' })).toBeVisible();
   expect((await page.request.get('/api/bff/admin/users')).status()).toBe(403);
   expect((await page.context().cookies()).filter(cookie => cookie.name.includes('siare_')).every(cookie => cookie.httpOnly)).toBe(true);
   expect(await page.evaluate(() => Object.keys(localStorage))).toEqual(['siare-theme']);
   expect(await page.evaluate(() => sessionStorage.length)).toBe(0);
   expect(errors).toEqual([]);
-  await writeFile(`${output}/validacion.json`, JSON.stringify({ capturedAt: new Date().toISOString(), browser: page.context().browser()?.version(), origin: baseURL, scope: 'production Next H6 isolated with real Spring; synthetic USER; no privileged role changes', captures, checks, errors }, null, 2));
+  await writeFile(`${output}/validacion.json`, JSON.stringify({ capturedAt: new Date().toISOString(), browser: page.context().browser()?.version(), origin: baseURL, scope: process.env.E2E_TEST_SCOPE ?? 'production Next H6 isolated with real Spring; synthetic USER; no privileged role changes', captures, checks, errors }, null, 2));
 });
 
 test('theme, account and responsive navigation preserve the live form, academic draft', async ({ page, baseURL }, info) => {
