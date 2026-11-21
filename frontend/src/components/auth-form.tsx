@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button, Field } from "./ui/primitives";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { api, ApiError } from "../lib/api";
 
 export function AuthForm({ register = false, embedded = false, onPendingChange }: { register?: boolean; embedded?: boolean; onPendingChange?: (pending: boolean) => void }) {
@@ -13,6 +13,9 @@ export function AuthForm({ register = false, embedded = false, onPendingChange }
   const [error, setError] = useState("");
   const [fields, setFields] = useState<Record<string, string>>({});
   const submitting = useRef(false);
+  useEffect(() => {
+    if (error && !pending) errorRef.current?.focus();
+  }, [error, pending]);
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,7 +31,6 @@ export function AuthForm({ register = false, embedded = false, onPendingChange }
     } catch (err) {
       setError(err instanceof Error ? err.message : "No se pudo continuar.");
       if (err instanceof ApiError) setFields(err.fields);
-      requestAnimationFrame(() => errorRef.current?.focus());
     } finally { submitting.current = false; setPending(false); onPendingChange?.(false); }
   }
   return <form onSubmit={submit} className="form-stack" aria-busy={pending}>

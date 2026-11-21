@@ -106,6 +106,9 @@ test('landing: native validation and field errors reuse the existing login/regis
   await expect(page.getByLabel('Correo electrónico')).toHaveAttribute('aria-invalid', 'true');
   await expect(page.getByLabel('Correo electrónico')).toHaveAttribute('aria-describedby', 'email-error');
   await expect(page.locator('form').getByRole('alert')).toBeFocused();
+  await page.getByRole('button', { name: 'Iniciar sesión', exact: true }).click();
+  await expect.poll(() => posts).toBe(2);
+  await expect(page.locator('form').getByRole('alert')).toBeFocused();
   await page.getByRole('tab', { name: 'Registrarse' }).click();
   await page.getByLabel('Nombre', { exact: true }).fill('Estudiante');
   await page.getByLabel('Correo electrónico').fill('student@example.test');
