@@ -15,8 +15,8 @@ export default async function Home() {
     <header className={styles.header}><ThemeControl compact /></header>
     <main id="contenido" tabIndex={-1} className={styles.main}>
       <section className={styles.hero}>
+        <div className={styles.identity}><Image src={logo} alt="SIARE" preload sizes="(max-width: 540px) 260px, (max-width: 1000px) 300px, 360px" /><span>Académico</span></div>
         <div className={styles.welcome}>
-          <div className={styles.identity}><Image src={logo} alt="SIARE" preload sizes="(max-width: 600px) 180px, 250px" /><span>Académico</span></div>
           <span className="eyebrow">Tu espacio de aprendizaje</span>
           <h1>Un lugar para empezar.<br /><span>Una materia a la vez.</span></h1>
           <p className="lead muted">Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.</p>

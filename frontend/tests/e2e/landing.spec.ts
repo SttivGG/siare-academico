@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { mkdir } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 
 const evidence = process.env.LANDING_EVIDENCE_DIR ?? '../docs/design/evidencias/h6-landing';
 const providers = [{ provider: 'google', enabled: false }, { provider: 'gitlab', enabled: false }];
@@ -13,17 +13,28 @@ test('landing: real provider availability, responsive themes and both tabs', asy
   expect(response.ok()).toBeTruthy();
   const available: typeof providers = await response.json();
   const errors: string[] = [];
+  const geometry = [];
   page.on('pageerror', error => errors.push(error.message));
   for (const theme of ['light', 'dark']) {
     await page.addInitScript(value => localStorage.setItem('siare-theme', value), theme);
-    for (const [device, width, height] of [['desktop',1440,1000],['tablet',768,1024],['mobile',390,844],['small',320,812]] as const) {
+    for (const [device, width, height] of [['desktop',1440,1000],['compact',1280,900],['landscape',1024,768],['tablet',768,1024],['mobile',390,844],['small',320,812]] as const) {
       await page.setViewportSize({ width, height }); await page.goto('/');
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('header button')).toHaveCount(1);
       await expect(page.locator('header a, header select')).toHaveCount(0);
       await expect(page.getByText('Reúne tus fuentes.')).toHaveCount(0);
       await expect(page.getByAltText('SIARE')).toBeVisible();
+      await expect(page.getByText('Tu espacio de aprendizaje', { exact: true })).toBeVisible();
+      await expect(page.getByRole('heading', { level: 1 })).toContainText('Un lugar para empezar.');
+      await expect(page.getByText('Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.')).toBeVisible();
       for (const provider of available) await expect(page.getByRole('button', { name: provider.provider === 'google' ? 'Google' : 'GitLab', exact: true })).toBeEnabled({ enabled: provider.enabled });
+      await page.evaluate(() => document.fonts.ready);
+      const measure = () => page.evaluate(() => ['main > section', 'main > ol', 'footer', '[role=tabpanel]', '[role=tabpanel] > div', 'main h1', 'main img'].map(selector => {
+        const node = document.querySelector(selector)!;
+        const rect = (selector === '[role=tabpanel]' ? node.parentElement! : node).getBoundingClientRect();
+        return { selector, x: rect.x + scrollX, y: rect.y + scrollY, width: rect.width, height: rect.height };
+      }));
+      const baseline = await measure();
       for (const register of [false, true]) {
         await page.getByRole('tab', { name: register ? 'Registrarse' : 'Iniciar sesión' }).click();
         await expect(page.getByLabel('Nombre', { exact: true })).toHaveCount(register ? 1 : 0);
@@ -33,10 +44,27 @@ test('landing: real provider availability, responsive themes and both tabs', asy
         const cards = await page.locator('main > ol').boundingBox();
         expect(cards!.y).toBeGreaterThanOrEqual(hero!.y + hero!.height - 1);
         await page.evaluate(() => document.fonts.ready);
+        const current = await measure();
+        for (const [i, box] of current.entries()) for (const key of ['x', 'y', 'width', 'height'] as const) expect(Math.abs(box[key] - baseline[i][key]), `${theme}/${device}/${register}: ${box.selector}.${key}`).toBeLessThan(1);
+        geometry.push({ theme, device, register, boxes: current });
+        if (width > 1100) {
+          const logo = await page.getByAltText('SIARE').boundingBox();
+          const message = await page.locator('h1').boundingBox();
+          const access = await page.getByRole('tabpanel').boundingBox();
+          expect(logo!.x + logo!.width).toBeLessThanOrEqual(message!.x);
+          expect(message!.x + message!.width).toBeLessThanOrEqual(access!.x);
+          expect(logo!.width).toBeGreaterThan(250);
+        }
         await page.screenshot({ path: `${evidence}/3107-after-${theme}-${device}-${register ? 'register' : 'login'}.png`, fullPage: true });
       }
+      for (let repeat = 0; repeat < 3; repeat++) {
+        await page.getByRole('tab', { name: 'Iniciar sesión' }).click();
+        await page.getByRole('tab', { name: 'Registrarse' }).click();
+      }
+      expect(await measure()).toEqual(baseline);
     }
   }
+  await writeFile(`${evidence}/layout-geometry.json`, JSON.stringify(geometry, null, 2));
   expect(errors).toEqual([]);
 });
 

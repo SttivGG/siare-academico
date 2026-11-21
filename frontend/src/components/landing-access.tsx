@@ -20,7 +20,7 @@ export function LandingAccess() {
     <div className={styles.tabs} role="tablist" aria-label="Acceso a SIARE">
       {["Iniciar sesión", "Registrarse"].map((label, index) => <button key={label} ref={node => { tabs.current[index] = node; }} id={`access-tab-${index}`} role="tab" type="button" aria-selected={register === Boolean(index)} tabIndex={register === Boolean(index) ? 0 : -1} aria-disabled={pending || undefined} onClick={() => select(Boolean(index))} onKeyDown={navigate}>{label}</button>)}
     </div>
-    <div role="tabpanel" aria-labelledby={`access-tab-${Number(register)}`}>
+    <div className={styles.accessBody} role="tabpanel" aria-labelledby={`access-tab-${Number(register)}`}>
       <div className={styles.panelIntro}><h2>{register ? "Tu próximo paso empieza aquí" : "Qué bueno verte de nuevo"}</h2><p className="muted">{register ? "Tres datos para crear tu espacio de estudio." : "Entra a tu espacio y sigue aprendiendo."}</p></div>
       <AuthForm key={String(register)} register={register} embedded onPendingChange={setPending} />
     </div>
