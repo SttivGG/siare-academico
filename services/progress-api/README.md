@@ -1,5 +1,7 @@
 # Registro interno de intentos
 
+[Contrato OpenAPI interno](openapi.internal.json) · [Implementación](../../docs/PROGRESO_IMPLEMENTACION.md) · [Evidencias de validación](../../docs/ANALITICA_VALIDACION.md)
+
 Spring evalúa la actividad y llama a `POST /internal/v1/attempts` con el evento
 v1 documentado en [Contratos del equipo](../../docs/CONTRATOS_EQUIPO.md).
 El registro acepta quiz y crucigrama con el mismo contrato. La autenticación
