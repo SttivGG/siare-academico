@@ -127,7 +127,7 @@ Document upload: POST http://127.0.0.1:3107/api/files/subjects/71670230-a2b7-491
   ok 106 [mobile] › tests\e2e\sorvo-glass.spec.ts:88:1 › SIARE glass: system theme, forced colors, reduced transparency and no-blur fallback remain usable (619ms)
 
 
-  1) [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs 
+  1) [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs
 
     Error: expect(received).toBe(expected) // Object.is equality
 
@@ -149,7 +149,7 @@ Document upload: POST http://127.0.0.1:3107/api/files/subjects/71670230-a2b7-491
 
     Error Context: ..\.cache\playwright-results\landing-landing-real-provi-18ac2-onsive-themes-and-both-tabs-desktop\error-context.md
 
-  2) [desktop] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization 
+  2) [desktop] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization
 
     Error: expect(received).toBe(expected) // Object.is equality
 
@@ -171,7 +171,7 @@ Document upload: POST http://127.0.0.1:3107/api/files/subjects/71670230-a2b7-491
 
     Error Context: ..\.cache\playwright-results\nexo-system-theme-without--e510f-d-cross-tab-synchronization-desktop\error-context.md
 
-  3) [mobile] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization 
+  3) [mobile] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization
 
     Error: expect(received).toBe(expected) // Object.is equality
 
@@ -194,8 +194,8 @@ Document upload: POST http://127.0.0.1:3107/api/files/subjects/71670230-a2b7-491
     Error Context: ..\.cache\playwright-results\nexo-system-theme-without--e510f-d-cross-tab-synchronization-mobile\error-context.md
 
   3 failed
-    [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs 
-    [desktop] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization 
-    [mobile] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization 
+    [desktop] › tests\e2e\landing.spec.ts:7:1 › landing: real provider availability, responsive themes and both tabs
+    [desktop] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization
+    [mobile] › tests\e2e\nexo.spec.ts:126:1 › system theme without JavaScript, blocked storage and cross-tab synchronization
   5 skipped
   98 passed (8.0m)

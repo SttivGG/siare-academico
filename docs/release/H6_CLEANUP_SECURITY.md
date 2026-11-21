@@ -12,6 +12,7 @@
 | Cinco fondos y cinco miniaturas, Sin imagen | Recursos activos | Conservados, junto a `H6_APARIENCIA_RECURSOS.md`, autores y licencia Pexels |
 | `docs/design/h6-1/` y capturas de alternativas | Prototipos/evidencia histórica | Conservados; no son imports del producto ni motivo para reescribir historia |
 | `.cache/`, `.local/`, node_modules, salidas de navegador y scripts locales de despliegue | Estado local ignorado | Excluidos de la publicación; no se borran archivos ajenos |
+| Espacios finales y líneas vacías sobrantes en tres logs Sorvo | Formato de evidencia de terminal | Normalizar solo ese espacio; conservar texto y resultados, actualizar sus tres hashes del manifiesto y mantener los originales en el historial H6 |
 | Tokens Sorvo, controladores académicos, fixtures y contratos | Código o evidencia utilizados | Conservados; pruebas de continuidad ST-01–ST-10 y suites existentes |
 
 No se ejecutó limpieza global de Git/Docker, eliminación de worktrees ni reescritura de historia. El manifiesto de todos los archivos y el diff íntegro se revisan localmente, incluyendo recursos binarios por hash y su procedencia.

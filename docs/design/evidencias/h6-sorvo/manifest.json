@@ -83,8 +83,8 @@
     },
     {
       "path": "build.txt",
-      "bytesCanonical": 1151,
-      "sha256": "893d10c09250645031347c0ed71728fbb79137c680075f13f86f2839aa58fbc5"
+      "bytesCanonical": 1147,
+      "sha256": "2120c3d682717e057e34302b5926cf13406333fbe05b71dbe34c5128606c81a2"
     },
     {
       "path": "comparacion-dark.jpg",
@@ -2598,8 +2598,8 @@
     },
     {
       "path": "playwright.txt",
-      "bytesCanonical": 22607,
-      "sha256": "f72c90848aad41dd288e03237ac9a7df00e7e9b8859f8c3d317c19fbf0e92fd4"
+      "bytesCanonical": 22601,
+      "sha256": "607fc42c0ede0b403eb559caf5c675fc31dbfc3bff97ab33ea5d5e068ec0c6b8"
     },
     {
       "path": "preservation-before.json",
@@ -2608,8 +2608,8 @@
     },
     {
       "path": "README.md",
-      "bytesCanonical": 3713,
-      "sha256": "3944e986f8bd64998887953f2e91fef9df005f57ef7c575f539e323fd8505b30"
+      "bytesCanonical": 4019,
+      "sha256": "45cf8042ce9426268a3de51ff025649e0a743c11ce5a84bfe8c1ccde376be854"
     },
     {
       "path": "real/A01-error-real-dark-1440x900.png",
@@ -3463,8 +3463,8 @@
     },
     {
       "path": "typescript.txt",
-      "bytesCanonical": 50,
-      "sha256": "0877271ab2e4b69c43357d30da31298a5a6d778184c8fee634354fcdbe52af79"
+      "bytesCanonical": 49,
+      "sha256": "916087994fdae3d627f945537a96cb32b39dd1638267eb670b299245554de941"
     },
     {
       "path": "verification-summary.json",

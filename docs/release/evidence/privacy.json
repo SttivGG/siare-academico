@@ -1,0 +1,68 @@
+{
+  "tool": "Gitleaks 8.30.1",
+  "scope": "origin/main..candidate and tracked-file snapshot; raw reports remain local and redacted",
+  "historyExit": 1,
+  "treeExit": 1,
+  "rawFindings": 5,
+  "confirmedCredentials": 0,
+  "findings": [
+    {
+      "rule": "generic-api-key",
+      "file": "docs/design/evidencias/h6-2/fuente-runtime.json",
+      "line": 44,
+      "classification": "SHA-256 source integrity checksum, verified against Git source"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "docs/design/evidencias/h6-2/fuente-runtime.json",
+      "line": 48,
+      "classification": "SHA-256 source integrity checksum, verified against Git source"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "docs/design/evidencias/h6-2/fuente-runtime.json",
+      "line": 55,
+      "classification": "SHA-256 source integrity checksum, verified against Git source"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "docs/design/evidencias/h6-2/fuente-runtime.json",
+      "line": 71,
+      "classification": "SHA-256 source integrity checksum, verified against Git source"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "docs/design/evidencias/h6-2/fuente-runtime.json",
+      "line": 81,
+      "classification": "SHA-256 source integrity checksum, verified against Git source"
+    }
+  ],
+  "triage": [
+    {
+      "file": "frontend/src/components/auth-form.tsx",
+      "kind": "source integrity SHA-256",
+      "matchesGitSource": true
+    },
+    {
+      "file": "frontend/src/components/layout/auth-shell.tsx",
+      "kind": "source integrity SHA-256",
+      "matchesGitSource": true
+    },
+    {
+      "file": "frontend/src/components/password-recovery-form.tsx",
+      "kind": "source integrity SHA-256",
+      "matchesGitSource": true
+    },
+    {
+      "file": "frontend/src/lib/api.ts",
+      "kind": "source integrity SHA-256",
+      "matchesGitSource": true
+    },
+    {
+      "file": "frontend/src/styles/tokens.css",
+      "kind": "source integrity SHA-256",
+      "matchesGitSource": true
+    }
+  ],
+  "visualReview": "Bounded review of public and synthetic identity screenshots, including masked MFA codes; no exhaustive historical image OCR claim"
+}

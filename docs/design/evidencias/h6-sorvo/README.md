@@ -1,5 +1,7 @@
 # Evidencias de homologación Sorvo / SIARE
 
+Nota H6-7A: se retiraron únicamente espacios finales y líneas vacías sobrantes de `build.txt`, `playwright.txt` y `typescript.txt`; el manifiesto refleja sus hashes actualizados. Los resultados de las ejecuciones no cambian y los bytes originales permanecen en el historial anterior de H6 (`2cc4575`).
+
 Código productivo: `ec146fb`, rama `feat/h6-sorvo-global`. Las capturas de
 `final/`, `rutas/`, `landing/`, `cuaderno/` y `optica/` proceden de la preview
 Docker <http://127.0.0.1:3107>. Se usan cuentas y materiales sintéticos autorizados.

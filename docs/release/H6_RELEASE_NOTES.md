@@ -18,6 +18,15 @@ Ahora el BFF comprueba que exista un único `redirect_uri`, exactamente igual al
 
 `public-origin.ts` valida la configuración explícita, permite HTTPS y HTTP de loopback, y rechaza credenciales, rutas, query y fragmentos. No infiere orígenes desde `Host` ni `X-Forwarded-Host`. Se retira el fallback fijo a 3100 del BFF, archivos y OIDC; una configuración ausente/inválida rechaza mutaciones. Se conservan CSRF, cookies HttpOnly/SameSite, MFA, contratos del backend y el flujo oficial de cada proveedor.
 
+| Archivo o configuración | Responsabilidad |
+| --- | --- |
+| Core: `application.properties`, `OidcProviders.java` | `siare.oidc.app-origin`, `APP_ORIGIN`, `GOOGLE_REDIRECT_URI`, `GITLAB_REDIRECT_URI`; origen del callback externo. Sin cambios |
+| `frontend/src/components/federated-login.tsx` | Entrega al navegador la URL oficial recibida del BFF. Sin cambios |
+| `frontend/src/app/api/oidc/start/route.ts`, `lib/oidc-policy.ts` | Validación nueva del callback exacto antes de entregar la URL externa |
+| `frontend/src/app/api/oidc/callback/[provider]/route.ts`, `lib/oidc-server.ts` | `Location` interno relativo, sin construir origen desde headers |
+| `frontend/src/lib/public-origin.ts` | Validación central de configuración del operador y destinos internos |
+| Rutas BFF/archivos, `session-policy.ts`, `document-policy.ts` | Origen validado y rechazo explícito de configuración vacía, manteniendo CSRF y límites |
+
 ## Entrega y límites
 
 Solo se autoriza actualizar la preview 3107. La instalación habitual y sus nueve servicios se preservan; ningún merge ni despliegue en 3100 forma parte de esta entrega. H5 #8/#9 no se integra. No se añaden migraciones ni se activa ML.

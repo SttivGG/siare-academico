@@ -4,6 +4,8 @@
 
 `APP_ORIGIN` es configuración de confianza del operador, no un dato enviado por el navegador. Debe ser un origen completo sin ruta, usuario, contraseña, query ni fragmento. Puede terminar en `/`, que se normaliza. Ejemplos de configuración, no valores fijados en el código:
 
+Usar la forma canónica del origen en ambos procesos: hostname en minúsculas y sin puerto predeterminado explícito (`:443` en HTTPS o `:80` en HTTP). En desarrollo configurar `APP_ORIGIN` también en el proceso de Next; no hay un fallback implícito a 3100. No cambiar `.env` ni los clientes federados del entorno habitual para preparar una preview.
+
 | Entorno | Frontend `APP_ORIGIN` | Core OIDC y callbacks |
 | --- | --- | --- |
 | Habitual | `http://127.0.0.1:3100` | Mismo origen; callback `/api/oidc/callback/google` o `/gitlab` |

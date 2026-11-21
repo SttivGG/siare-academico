@@ -1,0 +1,62 @@
+
+> siare-frontend@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ ST-01/02: bank drafts belong to a source and preserve content while provenance invalidates review (39.1217ms)
+✔ ST-03/04/05: independent activity state survives presentation and activity changes (5.261ms)
+✔ ST-06/07: synchronous lock, lost response and late evaluation retain one exact envelope and original owner (5.0713ms)
+✔ ST-09: encrypted allowlist, unique IV, wrong phrase, tampering, expiry and account binding (877.4457ms)
+✔ ST-09: a recovered frozen envelope remains unresolved until an explicit retry (3.1529ms)
+✔ confirmed attempts persist only a receipt; feedback is fetched and authorized again (4.2277ms)
+✔ ST-10: destroying an authenticated controller drops work and ignores a late response (2.7082ms)
+✔ an unresolved original attempt cannot be replaced by recovery, including a late-response window (6.0302ms)
+✔ only the five authorized H3 routes and methods are admitted (3.2765ms)
+✔ cursor is validated and large bank limits do not affect auth or submissions (0.9203ms)
+✔ importing validated:true still requires a separate review; factual claims stay editorial (4.7302ms)
+✔ invalid bank structures, duplicates, answer keys and oversize fields are rejected (7.0202ms)
+✔ document evidence must reference a real fragment, literal quote, and correct answer (1.5751ms)
+✔ Spanish normalization preserves Ñ, crossword intersections share one cell (7.8579ms)
+✔ submission snapshots exclude score and cannot change when answer state is edited (18.3333ms)
+✔ quiz presents real options and navigation without any answer key before evaluation (18.5789ms)
+✔ crossword renders only public cells, numbered clues and keyboard instructions (7.5428ms)
+✔ authorized evaluation renders server score, expected answers and rationale (37.2391ms)
+✔ DT-02: only valid evaluation dates render, consistently in America/Bogota (7.0925ms)
+✔ an empty bank starts with publication disabled and no automatic-generation promise (3.7223ms)
+✔ appearance restore accepts only known version, finite bounded numbers and allowlisted background IDs (4.2541ms)
+✔ before-paint bootstrap and live validation agree; blocked or corrupt storage never inserts a URL or secret (20.0104ms)
+✔ core HTTP 200 / {"status":"UP"} maps to UP (105.5046ms)
+✔ core HTTP 503 / {"status":"DOWN"} maps to DOWN (19.2052ms)
+✔ core HTTP 200 / {"other":"value"} maps to DOWN (11.0077ms)
+✔ core HTTP 200 / invalid json maps to DOWN (13.3203ms)
+✔ missing configuration and invalid URL cannot report UP (0.7393ms)
+✔ identity dates never invent a value and consistently use Bogota across server/browser timezones (107.9376ms)
+✔ upload policy offers all six extensions and rejects empty, legacy and oversized files (2.241ms)
+✔ document errors distinguish active content, attachments, provenance, corruption and limits without internal messages (1.0578ms)
+✔ multipart requires same origin, CSRF and a bounded valid boundary (60.3523ms)
+✔ actual streaming bytes are limited even without content-length (18.3304ms)
+✔ JSON proxy allows document JSON operations but leaves upload/download to dedicated routes (0.8501ms)
+✔ Nexo fields associate visible labels, hints and errors without erasing supplied constraints (17.1408ms)
+✔ Nexo buttons prevent form submission by default and expose loading and accessible icon names (2.4145ms)
+✔ Nexo notices distinguish critical errors and progress never invents a percentage (2.8332ms)
+✔ initial theme accepts only visual enums, runs with storage denied, and never reads identity (9.4529ms)
+✔ callback accepts a bounded code and opaque state, rejects ambiguity and errors (6.0395ms)
+✔ diagnostics accept only fixed internal codes and give actionable account-conflict guidance (0.6731ms)
+✔ only configured provider hosts over HTTPS can receive the browser (0.6818ms)
+✔ generic BFF cannot start or complete an OIDC flow with browser-chosen bindings (0.4549ms)
+✔ public origin accepts explicit loopback ports and HTTPS domains, never guesses a port (2.064ms)
+✔ relative internal redirects cannot select another origin or use ambiguous separators (1.7364ms)
+✔ OIDC callback matches exact deployment, provider and unique redirect_uri (2.8798ms)
+✔ session cookies are HttpOnly, same-site and secure by configuration (3.8405ms)
+✔ CSRF boundary requires exact origin, custom header, JSON and a same-site request (54.0803ms)
+✔ BFF cannot proxy arbitrary paths or methods (0.855ms)
+✔ small upload overage is fully consumed before rejection and never forwarded as a successful stream (61.7078ms)
+✔ unbounded upload is cancelled at a finite drain budget (8.8194ms)
+✔ valid upload bytes remain intact (11.4738ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1491.4492

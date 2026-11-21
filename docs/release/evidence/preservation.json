@@ -1,0 +1,75 @@
+{
+  "main": "c8f934492f0cc7809282657270df34b4474915ca",
+  "h6Source": "2cc4575a5ddc636d61e0020877ba88ddfab2f285",
+  "frontendTree": "d7c0ff7905bbacb98c82664ca0568bb5afafc8e0",
+  "h6Files": [
+    {
+      "Path": "frontend/public",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/lib/academic-state.ts",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/lib/academic-recovery.ts",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/lib/academic-recovery-session.ts",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/components/academic-provider.tsx",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/components/academic-reading.tsx",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/components/academic-recovery.tsx",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/components/activity-panel.tsx",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/components/activity-player.tsx",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/components/layout/workspace-shell.tsx",
+      "UnchangedFromH6": true
+    },
+    {
+      "Path": "frontend/src/styles/tokens.css",
+      "UnchangedFromH6": true
+    }
+  ],
+  "historicalLogFormatting": [
+    {
+      "file": "docs/design/evidencias/h6-sorvo/build.txt",
+      "before": "893d10c09250645031347c0ed71728fbb79137c680075f13f86f2839aa58fbc5",
+      "after": "2120c3d682717e057e34302b5926cf13406333fbe05b71dbe34c5128606c81a2",
+      "reason": "Terminal trailing whitespace only; original preserved at H6 HEAD 2cc4575"
+    },
+    {
+      "file": "docs/design/evidencias/h6-sorvo/playwright.txt",
+      "before": "f72c90848aad41dd288e03237ac9a7df00e7e9b8859f8c3d317c19fbf0e92fd4",
+      "after": "607fc42c0ede0b403eb559caf5c675fc31dbfc3bff97ab33ea5d5e068ec0c6b8",
+      "reason": "Terminal trailing whitespace only; original preserved at H6 HEAD 2cc4575"
+    },
+    {
+      "file": "docs/design/evidencias/h6-sorvo/typescript.txt",
+      "before": "0877271ab2e4b69c43357d30da31298a5a6d778184c8fee634354fcdbe52af79",
+      "after": "916087994fdae3d627f945537a96cb32b39dd1638267eb670b299245554de941",
+      "reason": "Terminal trailing whitespace only; original preserved at H6 HEAD 2cc4575"
+    }
+  ],
+  "h5Included": false,
+  "backendChanges": false,
+  "migrations": false,
+  "usualDatabaseTestWrites": false
+}
