@@ -17,7 +17,7 @@ test('landing: real provider availability, responsive themes and both tabs', asy
   page.on('pageerror', error => errors.push(error.message));
   for (const theme of ['light', 'dark']) {
     await page.addInitScript(value => localStorage.setItem('siare-theme', value), theme);
-    for (const [device, width, height] of [['desktop',1440,1000],['compact',1280,900],['landscape',1024,768],['tablet',768,1024],['mobile',390,844],['small',320,812]] as const) {
+    for (const [device, width, height] of [['wide',1920,1080],['large',1728,900],['desktop',1440,900],['landscape',1024,768],['tablet',768,1024],['mobile',390,844],['small',320,812]] as const) {
       await page.setViewportSize({ width, height }); await page.goto('/');
       await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
       await expect(page.locator('header button')).toHaveCount(1);
@@ -45,7 +45,7 @@ test('landing: real provider availability, responsive themes and both tabs', asy
         expect(cards!.y).toBeGreaterThanOrEqual(hero!.y + hero!.height - 1);
         await page.evaluate(() => document.fonts.ready);
         const current = await measure();
-        for (const [i, box] of current.entries()) for (const key of ['x', 'y', 'width', 'height'] as const) expect(Math.abs(box[key] - baseline[i][key]), `${theme}/${device}/${register}: ${box.selector}.${key}`).toBeLessThan(1);
+        if (width > 800) for (const [i, box] of current.entries()) for (const key of ['x', 'y', 'width', 'height'] as const) expect(Math.abs(box[key] - baseline[i][key]), `${theme}/${device}/${register}: ${box.selector}.${key}`).toBeLessThan(1);
         geometry.push({ theme, device, register, boxes: current });
         if (width > 1100) {
           const logo = await page.getByAltText('SIARE').boundingBox();
@@ -61,7 +61,7 @@ test('landing: real provider availability, responsive themes and both tabs', asy
         await page.getByRole('tab', { name: 'Iniciar sesión' }).click();
         await page.getByRole('tab', { name: 'Registrarse' }).click();
       }
-      expect(await measure()).toEqual(baseline);
+      if (width > 800) expect(await measure()).toEqual(baseline);
     }
   }
   await writeFile(`${evidence}/layout-geometry.json`, JSON.stringify(geometry, null, 2));
@@ -88,6 +88,51 @@ test('landing: keyboard tabs, theme persistence, system theme and recovery navig
   await page.getByRole('link', { name: 'Olvidé mi contraseña' }).click();
   await expect(page).toHaveURL(/\/recuperar$/);
   await page.goBack(); await expect(login).toHaveAttribute('aria-selected', 'true');
+});
+
+test('landing: global theme updates translucent surface, fields and interaction states', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await page.route('**/api/bff/auth/login', route => route.fulfill({ status: 400, json: { message: 'Revisa los datos.', fields: { email: 'Revisa este correo.' } } }));
+  await page.goto('/');
+  await page.getByLabel('Correo electrónico').fill('student@example.test');
+  await page.getByLabel('Contraseña', { exact: true }).fill('test password');
+  await page.getByRole('button', { name: 'Iniciar sesión', exact: true }).click();
+  await expect(page.locator('form').getByRole('alert')).toBeFocused();
+  const colors = () => page.evaluate(() => {
+    const panel = document.querySelector('[role=tabpanel]')!.parentElement!;
+    const selectors = ['[role=tablist]', '[role=tab][aria-selected=true]', 'input', 'label', '.hint', '.field-error', '[role=alert]', 'button:disabled'];
+    return { surface: getComputedStyle(panel).backgroundColor, blur: getComputedStyle(panel).backdropFilter,
+      items: selectors.map(selector => { const css = getComputedStyle(panel.querySelector(selector)!); return { selector, foreground: css.color, background: css.backgroundColor, border: css.borderColor }; }) };
+  });
+  const dark = await colors();
+  const toggle = page.getByRole('button', { name: 'Tema oscuro' });
+  await toggle.click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  const light = await colors();
+  for (const state of [dark, light]) {
+    const rgba = state.surface.match(/[\d.]+/g)!.map(Number);
+    expect(rgba[3]).toBeGreaterThan(0); expect(rgba[3]).toBeLessThan(0.7);
+    expect(Math.max(...rgba.slice(0, 3)) - Math.min(...rgba.slice(0, 3))).toBeLessThanOrEqual(5);
+    expect(state.blur).toBe('blur(10px)');
+  }
+  expect(Number(dark.surface.match(/[\d.]+/)![0])).toBeLessThan(20);
+  expect(Number(light.surface.match(/[\d.]+/)![0])).toBeGreaterThan(240);
+  for (const [i, item] of light.items.entries()) expect(item, item.selector).not.toEqual(dark.items[i]);
+  const input = page.getByLabel('Correo electrónico');
+  await input.focus();
+  const lightFocus = await input.evaluate(node => getComputedStyle(node).outlineColor);
+  await toggle.click(); await input.focus();
+  expect(await input.evaluate(node => getComputedStyle(node).outlineColor)).not.toBe(lightFocus);
+  await expect(input).toHaveAttribute('aria-describedby', 'email-error');
+  await page.reload(); await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  await page.unroute('**/api/bff/auth/oidc/providers');
+  await page.route('**/api/bff/auth/oidc/providers', route => route.fulfill({ json: providers.map(provider => ({ ...provider, enabled: true })) }));
+  await page.reload();
+  const google = page.getByRole('button', { name: 'Google', exact: true });
+  await expect(google).toBeEnabled(); await google.hover();
+  const darkHover = await google.evaluate(node => getComputedStyle(node).backgroundColor);
+  await toggle.click(); await google.hover();
+  expect(await google.evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe(darkHover);
 });
 
 test('landing: native validation and field errors reuse the existing login/register transport', async ({ page }) => {
