@@ -21,7 +21,7 @@ Base: main `c8f9344`, con código frontend/servicios idéntico al desplegado `69
 | `/sesiones` | `SessionsPanel` | Listado, fechas, carga/error; cerrar una/otras/todas; expiración | Navegador, captura; sin revocar sesiones |
 | `/administracion` | `AdministrationPanel`, comprobación servidor | Restricción de acceso; ADMIN por ámbito; SUPERADMIN, parámetros, auditoría y versiones de asignación | Navegador: denegación USER; pantalla autorizada por código |
 
-Hay 14 rutas de pantalla, más `not-found.tsx`, `error.tsx` y cargas específicas de sesiones/administración. `layout.tsx` raíz define idioma y enlace de salto; `(student)/layout.tsx` comprueba sesión/identidad y comparte navegación, contenido y pie.
+El inventario vigente incorpora 15 rutas de pantalla, incluida `/configuracion/apariencia`; ver [Apariencia](H6_APARIENCIA_INFORME.md). La base histórica tenía 14 rutas de pantalla, más `not-found.tsx`, `error.tsx` y cargas específicas de sesiones/administración. `layout.tsx` raíz define idioma y enlace de salto; `(student)/layout.tsx` comprueba sesión/identidad y comparte navegación, contenido y pie.
 
 No existen pantallas independientes de perfil, configuración de apariencia, documentos, Quiz, Crucigrama o resultados. Los últimos cuatro son estados dentro de la materia. H6 debe especificar si necesita navegación propia antes de introducir rutas; no debe presentar rutas inexistentes como entregadas.
 

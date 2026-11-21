@@ -9,6 +9,7 @@ const paths = {
   admin: "M4 21v-7h5v7m6 0V3h5v18M4 7h5m6 4h5",
   menu: "M4 6h16M4 12h16M4 18h16",
   account: "M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM4 21v-3a8 8 0 0 1 16 0v3",
+  appearance: "M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 0-4h-1a2 2 0 0 1 0-4h4a4 4 0 0 0 4-4c0-3-4-6-9-6ZM7 8h.01M12 6h.01M17 8h.01M6 13h.01",
   arrow: "m9 5 7 7-7 7",
 } as const;
 export function Icon({ name, ...props }: SVGProps<SVGSVGElement> & { name: keyof typeof paths }) { return <svg {...props} aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d={paths[name]} /></svg>; }

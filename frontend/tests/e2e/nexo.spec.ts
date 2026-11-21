@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile } from 'node:fs/promises';
-import { openAccount } from './navigation';
+import { openAccount, chooseTheme } from './navigation';
 
 const output = process.env.NEXO_EVIDENCE_DIR ?? '../.cache/h6-3-regression-nexo';
 const sizes = [[1920,1080],[1440,900],[1366,768],[1024,768],[768,1024],[390,844],[375,812],[320,812]];
@@ -48,7 +48,7 @@ test('Nexo global: route captures, both themes, eight viewports and real USER au
   }
   await captureRoutes(publicRoutes);
   const { id } = await createStudent(page, baseURL!);
-  await captureRoutes([['R08','/inicio'],['R09','/materias'],['R10','/materias/nueva'],['R11',`/materias/${id}`],['R12','/seguridad'],['R13','/sesiones'],['R14','/administracion']]);
+  await captureRoutes([['R08','/inicio'],['R09','/materias'],['R10','/materias/nueva'],['R11',`/materias/${id}`],['R12','/seguridad'],['R13','/sesiones'],['R14','/administracion'],['R15','/configuracion/apariencia']]);
   await expect(page.getByRole('heading', { name: 'Acceso administrativo restringido' })).toBeVisible();
   expect((await page.request.get('/api/bff/admin/users')).status()).toBe(403);
   expect((await page.context().cookies()).filter(cookie => cookie.name.includes('siare_')).every(cookie => cookie.httpOnly)).toBe(true);
@@ -65,9 +65,7 @@ test('theme, account and responsive navigation preserve the live form, academic 
   await page.getByRole('button', { name: 'Preparar banco', exact: true }).click();
   await page.getByLabel('Tema exacto del banco', { exact: true }).fill('Borrador que conserva su propietario');
   await page.getByLabel('Editar banco JSON').fill('{"borrador":"sin publicar"}');
-  await page.locator('summary').filter({ hasText: /^Tema$/ }).click();
-  await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption('dark');
-  await page.keyboard.press('Escape');
+  await chooseTheme(page, 'dark');
   for (const width of [1440,1024,390,320,1440]) {
     await page.setViewportSize({ width, height: 900 });
     await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"borrador":"sin publicar"}');
@@ -88,9 +86,7 @@ test('theme, account and responsive navigation preserve the live form, academic 
   await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
   expect(archived).toBe(0);
   await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"borrador":"sin publicar"}');
-  await page.locator('summary').filter({ hasText: /^Tema$/ }).click();
-  await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption('light');
-  await page.keyboard.press('Escape');
+  await chooseTheme(page, 'light');
   await page.getByRole('button', { name: 'Archivar materia', exact: true }).click();
   if (info.project.name === 'desktop') await page.screenshot({ path: `${output}/W13-light-1440x900.png` });
   await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click();
@@ -109,8 +105,8 @@ test('theme, account and responsive navigation preserve the live form, academic 
   await expect(page.locator('summary[aria-label="Menú de cuenta"]')).toBeFocused();
   await expect(page.getByLabel('Nombre de la materia')).toHaveValue('Formulario en curso');
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator('summary[aria-label="Abrir navegación"]').click();
-  await expect(page.getByRole('navigation', { name: 'Navegación móvil' })).toBeVisible();
+  await page.locator('button[aria-label="Abrir navegación"]').click();
+  await expect(page.getByRole('navigation', { name: 'Navegación principal' })).toBeVisible();
   if (info.project.name === 'desktop') {
     for (const theme of ['light','dark']) {
       await page.evaluate(value => { document.documentElement.dataset.theme = value; }, theme);
@@ -119,7 +115,7 @@ test('theme, account and responsive navigation preserve the live form, academic 
     await page.evaluate(() => { document.documentElement.dataset.theme = 'light'; });
   }
   await page.keyboard.press('Escape');
-  await expect(page.locator('summary[aria-label="Abrir navegación"]')).toBeFocused();
+  await expect(page.locator('button[aria-label="Abrir navegación"]')).toBeFocused();
   expect(errors).toEqual([]);
 });
 
@@ -139,7 +135,7 @@ test('system theme without JavaScript, blocked storage and cross-tab synchroniza
     await expect(b.locator('html')).not.toHaveAttribute('data-theme');
     await a.evaluate(() => { Storage.prototype.setItem = () => { throw new Error('Bloqueado para prueba'); }; });
     await a.getByRole('combobox', { name: 'Tema' }).selectOption('light');
-    await expect(a.getByRole('status')).toContainText('no permite guardarlo');
+    await expect(a.getByRole('status')).toContainText('no permite guardar la apariencia');
     await expect(a.locator('html')).toHaveAttribute('data-theme', 'light');
   } finally { await context.close(); }
 });

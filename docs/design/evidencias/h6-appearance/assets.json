@@ -1,0 +1,102 @@
+[
+  {
+    "id": "library",
+    "source": "https://images.pexels.com/photos/18587779/pexels-photo-18587779.jpeg",
+    "original": {
+      "width": 7780,
+      "height": 5187,
+      "bytes": 2462778
+    },
+    "image": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 78020
+    },
+    "thumbnail": {
+      "width": 360,
+      "height": 210,
+      "bytes": 7074
+    },
+    "author": "Marcus Lenk",
+    "page": "https://www.pexels.com/photo/modern-library-interior-18587779/",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "verifiedOn": "2026-11-21",
+    "processing": "Recorte cover 1920×1080; WebP calidad 78; miniatura 360×210 calidad 65. Sin filtros de color. Recorte attention para collaborative (fuente vertical)."
+  },
+  {
+    "id": "minimal",
+    "source": "https://images.pexels.com/photos/7594652/pexels-photo-7594652.jpeg",
+    "original": {
+      "width": 6000,
+      "height": 4000,
+      "bytes": 2320688
+    },
+    "image": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 128654
+    },
+    "thumbnail": {
+      "width": 360,
+      "height": 210,
+      "bytes": 8166
+    },
+    "author": "Mikhail Nilov",
+    "page": "https://www.pexels.com/photo/a-laptop-on-table-with-books-beside-window-7594652/",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "verifiedOn": "2026-11-21",
+    "processing": "Recorte cover 1920×1080; WebP calidad 78; miniatura 360×210 calidad 65. Sin filtros de color. Recorte attention para collaborative (fuente vertical)."
+  },
+  {
+    "id": "collaborative",
+    "source": "https://images.pexels.com/photos/35545648/pexels-photo-35545648.jpeg",
+    "original": {
+      "width": 4480,
+      "height": 5952,
+      "bytes": 2038226
+    },
+    "image": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 161326
+    },
+    "thumbnail": {
+      "width": 360,
+      "height": 210,
+      "bytes": 8668
+    },
+    "author": "Yusuf Çelik",
+    "page": "https://www.pexels.com/photo/students-studying-in-modern-library-setting-35545648/",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "verifiedOn": "2026-11-21",
+    "processing": "Recorte cover 1920×1080; WebP calidad 78; miniatura 360×210 calidad 65. Sin filtros de color. Recorte attention para collaborative (fuente vertical)."
+  },
+  {
+    "id": "reading",
+    "source": "https://images.pexels.com/photos/37349911/pexels-photo-37349911.jpeg",
+    "original": {
+      "width": 3672,
+      "height": 2066,
+      "bytes": 1075695
+    },
+    "image": {
+      "width": 1920,
+      "height": 1080,
+      "bytes": 230806
+    },
+    "thumbnail": {
+      "width": 360,
+      "height": 210,
+      "bytes": 11194
+    },
+    "author": "Ludovic Delot",
+    "page": "https://www.pexels.com/photo/modern-library-lounge-with-books-and-seating-37349911/",
+    "license": "Pexels License",
+    "licenseUrl": "https://www.pexels.com/license/",
+    "verifiedOn": "2026-11-21",
+    "processing": "Recorte cover 1920×1080; WebP calidad 78; miniatura 360×210 calidad 65. Sin filtros de color. Recorte attention para collaborative (fuente vertical)."
+  }
+]

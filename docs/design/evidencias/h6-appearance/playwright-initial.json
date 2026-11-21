@@ -1,0 +1,530 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.appearance.config.ts"
+    ],
+    "configFile": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\playwright.appearance.config.ts",
+    "rootDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-appearance/frontend/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-appearance/.cache/h6-appearance-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-appearance/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "appearance.spec.ts",
+          "sorvo-glass.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\.cache\\h6-appearance-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e",
+        "snapshotDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "appearance.spec.ts",
+          "sorvo-glass.spec.ts"
+        ],
+        "timeout": 90000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3128",
+          "browserName": "chromium",
+          "launchOptions": {
+            "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe"
+          },
+          "reducedMotion": "reduce",
+          "trace": "off",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../.cache/h6-appearance/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node tests/appearance-fixture.mjs",
+      "url": "http://127.0.0.1:3128/login",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "appearance.spec.ts",
+      "file": "appearance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "appearance: both themes, both navigation states and the six requested viewports",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4169,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:43:36.699Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-811edbc8af9ef43bcad3",
+          "file": "appearance.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "appearance: account at the bottom, keyboard, exterior close, focus and no clipping",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:43:41.221Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-4c6c950cdd7fac0dc5a1",
+          "file": "appearance.spec.ts",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "title": "appearance: gallery, live tokens, reload, tab synchronization, system and exact reset",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13017,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:43:42.523Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-afa06341bf2d1914b73f",
+          "file": "appearance.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "appearance: bank DOM and review survive rail and cross-tab appearance updates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8591,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:43:55.579Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-a65c92c8c481eb5fe575",
+          "file": "appearance.spec.ts",
+          "line": 104,
+          "column": 1
+        },
+        {
+          "title": "appearance: blocked storage keeps session choices; invalid preferences and access stay bounded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1009,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:44:04.199Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-c11c7f18fe7bb4e77ffb",
+          "file": "appearance.spec.ts",
+          "line": 121,
+          "column": 1
+        },
+        {
+          "title": "appearance: only selected image plus small thumbnails load; preferences respect accessibility",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 799,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:44:05.247Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-2c4abf34da9f18c8a255",
+          "file": "appearance.spec.ts",
+          "line": 132,
+          "column": 1
+        },
+        {
+          "title": "ST-03/04/05: real Quiz and Crossword components retain nodes and answers while appearance changes",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 90065,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 90000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts",
+                        "column": 53,
+                        "line": 155
+                      },
+                      "message": "Error: locator.elementHandle: Test timeout of 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.quiz-player')\u001b[22m\n\n\n  153 |   async function open(id:string){const picker=page.locator('.catalog-picker');if(await picker.getAttribute('open')===null)await picker.locator('summary').click();await page.locator(`[data-activity-id=\"${id}\"]`).click();}\n  154 |   await open(ids[0]);await page.getByRole('radio',{name:'Primera opción',exact:true}).check();\n> 155 |   const quizNode=await page.locator('.activity-player').elementHandle();\n      |                                                     ^\n  156 |   const settings=await context.newPage();await settings.goto('/configuracion/apariencia');\n  157 |   await settings.getByRole('radio',{name:'Biblioteca moderna',exact:true}).check();await range(settings,'Transparencia del cristal','20');\n  158 |   await expect(page.locator('html')).toHaveAttribute('data-background','library');await expect(page.getByRole('radio',{name:'Primera opción',exact:true})).toBeChecked();\n    at D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts:155:53"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:44:06.071Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\.cache\\h6-appearance-results\\appearance-ST-03-04-05-rea-dd1a6-rs-while-appearance-changes-desktop\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-0ea7906bdf427a2749ab",
+          "file": "appearance.spec.ts",
+          "line": 146,
+          "column": 1
+        },
+        {
+          "title": "appearance: rendered text contrast across every background at the most transparent setting",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 11062,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 74\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.85,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Espacio de estudio minimalista\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.4,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Aprendizaje colaborativo\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.16,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.85,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Tu espacio, a tu manera\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.44,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Espacio de estudio minimalista\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.48,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Aprendizaje colaborativo\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.31,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.12,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Vista previa en directo\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.24,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 74\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.85,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Espacio de estudio minimalista\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.4,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Aprendizaje colaborativo\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.16,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.85,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Tu espacio, a tu manera\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.44,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Espacio de estudio minimalista\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.48,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Aprendizaje colaborativo\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.31,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.12,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Vista previa en directo\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.24,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts:195:20",
+                    "location": {
+                      "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts",
+                      "column": 20,
+                      "line": 195
+                    },
+                    "snippet": " \u001b[90m 193 |\u001b[39m   }\n \u001b[90m 194 |\u001b[39m   \u001b[36mawait\u001b[39m writeFile(\u001b[32m`${output}/background-contrast.json`\u001b[39m\u001b[33m,\u001b[39m\u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify({method\u001b[33m:\u001b[39m\u001b[32m'Rendered samples with text hidden; transparency 72%, blur 0px, veil 0%; both themes, six backgrounds, 1440/390. Sampling is not WCAG certification.'\u001b[39m\u001b[33m,\u001b[39mresults\u001b[33m,\u001b[39mfailures}\u001b[33m,\u001b[39m\u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m\u001b[35m2\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 195 |\u001b[39m   expect(failures)\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                    \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 196 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 197 |\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts",
+                        "column": 20,
+                        "line": 195
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 74\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.85,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Espacio de estudio minimalista\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.4,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Aprendizaje colaborativo\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.16,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"La barra, el encabezado y estas tarjetas ya muestran tu configuración.\",\u001b[39m\n\u001b[31m+     \"theme\": \"light\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.85,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Tu espacio, a tu manera\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Biblioteca moderna\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.44,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Espacio de estudio minimalista\",\u001b[39m\n\u001b[31m+     \"ratio\": 3.48,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Aprendizaje colaborativo\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.31,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Elige el ambiente en el que te gusta aprender. Los cambios se aplican al instante.\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 390,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.12,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Vista previa en directo\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"background\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"ratio\": 4.24,\u001b[39m\n\u001b[31m+     \"target\": 4.5,\u001b[39m\n\u001b[31m+     \"text\": \"Sala de lectura contemporánea\",\u001b[39m\n\u001b[31m+     \"theme\": \"dark\",\u001b[39m\n\u001b[31m+     \"width\": 1440,\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  193 |   }\n  194 |   await writeFile(`${output}/background-contrast.json`,JSON.stringify({method:'Rendered samples with text hidden; transparency 72%, blur 0px, veil 0%; both themes, six backgrounds, 1440/390. Sampling is not WCAG certification.',results,failures},null,2));\n> 195 |   expect(failures).toEqual([]);\n      |                    ^\n  196 | });\n  197 |\n    at D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts:195:20"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:45:37.228Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\.cache\\h6-appearance-results\\appearance-appearance-rend-f3933-he-most-transparent-setting-desktop\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e\\appearance.spec.ts",
+                    "column": 20,
+                    "line": 195
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-465bf770feb1c7220dc8",
+          "file": "appearance.spec.ts",
+          "line": 169,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "sorvo-glass.spec.ts",
+      "file": "sorvo-glass.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "SIARE glass: rendered backgrounds transmit through every primary surface; text contrast and reading protection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30530,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:45:50.016Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3debf2e0a934489e3fd7-d81270de8561acc825e9",
+          "file": "sorvo-glass.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "SIARE glass: system theme, forced colors, reduced transparency and no-blur fallback remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 607,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:46:21.223Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3debf2e0a934489e3fd7-065ce99ce83c4c8d6308",
+          "file": "sorvo-glass.spec.ts",
+          "line": 88,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-21T14:43:33.854Z",
+    "duration": 168498.152,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

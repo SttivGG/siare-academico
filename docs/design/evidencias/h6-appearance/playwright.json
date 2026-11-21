@@ -1,0 +1,546 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.appearance.config.ts"
+    ],
+    "configFile": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\playwright.appearance.config.ts",
+    "rootDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-appearance/frontend/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-appearance/.cache/h6-appearance-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "D:/ITP/Septimo Semestre/Programación Avanzada/siare-academico/.worktrees/h6-appearance/frontend/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "appearance.spec.ts",
+          "sorvo-glass.spec.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\.cache\\h6-appearance-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "desktop",
+        "testDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e",
+        "snapshotDir": "D:\\ITP\\Septimo Semestre\\Programación Avanzada\\siare-academico\\.worktrees\\h6-appearance\\frontend\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "appearance.spec.ts",
+          "sorvo-glass.spec.ts"
+        ],
+        "timeout": 90000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3128",
+          "browserName": "chromium",
+          "launchOptions": {
+            "executablePath": "C:/Program Files/Google/Chrome/Application/chrome.exe"
+          },
+          "reducedMotion": "reduce",
+          "trace": "off",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "desktop"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../.cache/h6-appearance/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.65.0",
+    "workers": 1,
+    "webServer": {
+      "command": "node tests/appearance-fixture.mjs",
+      "url": "http://127.0.0.1:3128/login",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "appearance.spec.ts",
+      "file": "appearance.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "appearance: both themes, both navigation states and the six requested viewports",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3993,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:50:48.247Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-811edbc8af9ef43bcad3",
+          "file": "appearance.spec.ts",
+          "line": 28,
+          "column": 1
+        },
+        {
+          "title": "appearance: account at the bottom, keyboard, exterior close, focus and no clipping",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1306,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:50:52.596Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-4c6c950cdd7fac0dc5a1",
+          "file": "appearance.spec.ts",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "title": "appearance: gallery, live tokens, reload, tab synchronization, system and exact reset",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23606,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:50:53.925Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-afa06341bf2d1914b73f",
+          "file": "appearance.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "ST-09/10: bottom account logout purges the encrypted recovery copy",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1294,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:17.549Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-d1b217d03b4bf07310dd",
+          "file": "appearance.spec.ts",
+          "line": 110,
+          "column": 34
+        },
+        {
+          "title": "ST-09/10: bottom account logout reports denied recovery purge",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1145,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:18.877Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-504147dd4d442a8a4631",
+          "file": "appearance.spec.ts",
+          "line": 110,
+          "column": 34
+        },
+        {
+          "title": "appearance: bank DOM and review survive rail and cross-tab appearance updates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8370,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:20.045Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-a65c92c8c481eb5fe575",
+          "file": "appearance.spec.ts",
+          "line": 122,
+          "column": 1
+        },
+        {
+          "title": "appearance: blocked storage keeps session choices; invalid preferences and access stay bounded",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1044,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:28.458Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-c11c7f18fe7bb4e77ffb",
+          "file": "appearance.spec.ts",
+          "line": 139,
+          "column": 1
+        },
+        {
+          "title": "appearance: only selected image plus small thumbnails load; preferences respect accessibility",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 711,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:29.531Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-2c4abf34da9f18c8a255",
+          "file": "appearance.spec.ts",
+          "line": 150,
+          "column": 1
+        },
+        {
+          "title": "ST-03/04/05: real Quiz and Crossword components retain nodes and answers while appearance changes",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9774,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:30.261Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-0ea7906bdf427a2749ab",
+          "file": "appearance.spec.ts",
+          "line": 164,
+          "column": 1
+        },
+        {
+          "title": "appearance: rendered text contrast across every background at the most transparent setting",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10522,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:40.057Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "800c8f995c061dbbf429-465bf770feb1c7220dc8",
+          "file": "appearance.spec.ts",
+          "line": 187,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "sorvo-glass.spec.ts",
+      "file": "sorvo-glass.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "SIARE glass: rendered backgrounds transmit through every primary surface; text contrast and reading protection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30457,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:51:50.617Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3debf2e0a934489e3fd7-d81270de8561acc825e9",
+          "file": "sorvo-glass.spec.ts",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "SIARE glass: system theme, forced colors, reduced transparency and no-blur fallback remain usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "desktop",
+              "projectName": "desktop",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 677,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-21T14:52:21.094Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3debf2e0a934489e3fd7-065ce99ce83c4c8d6308",
+          "file": "sorvo-glass.spec.ts",
+          "line": 88,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-21T14:50:45.602Z",
+    "duration": 96734.58,
+    "expected": 12,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

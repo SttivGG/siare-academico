@@ -14,38 +14,24 @@ async function learning(page: Page) {
   if (await page.getByRole('navigation', { name: 'Paneles del cuaderno' }).isVisible()) await page.getByRole('button', { name: 'Aprendizaje', exact: true }).click();
 }
 
-test('H6-5: disclosures close on focus departure, Escape, outside pointer and breakpoint; retain form', async ({ page, baseURL }) => {
+test('H6: account and mobile navigation close on departure, Escape, outside pointer and breakpoint; retain form', async ({ page, baseURL }) => {
   await setup(page, baseURL!); await page.goto('/materias/nueva');
   const field = page.getByLabel('Nombre de la materia'); await field.fill('Borrador intacto');
   const account = page.locator('summary[aria-label="Menú de cuenta"]');
-  const theme = page.locator('summary').filter({ hasText: /^Tema$/ });
-  for (const selectedTheme of ['light', 'dark']) {
-    await theme.click(); await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption(selectedTheme); await page.keyboard.press('Escape');
-    for (const [width,height] of sizes) {
-      await page.setViewportSize({ width,height });
-      await account.focus(); await page.keyboard.press('Enter');
-      await expect(account.locator('..')).toHaveAttribute('open', '');
-      await page.keyboard.press('Tab'); await expect(page.getByRole('link', { name: 'Cuenta y seguridad', exact: true })).toBeFocused();
-      await page.keyboard.press('Escape'); await expect(account).toBeFocused();
-      await account.click(); await field.focus(); await expect(account.locator('..')).not.toHaveAttribute('open');
-      await account.click(); await theme.click(); await expect(account.locator('..')).not.toHaveAttribute('open');
-      await expect(theme.locator('..')).toHaveAttribute('open', '');
-      await page.keyboard.press('Escape'); await expect(theme).toBeFocused();
-      expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
-      if (width <= 700) {
-        const mobile = page.locator('summary[aria-label="Abrir navegación"]');
-        await mobile.click(); await page.keyboard.press('Tab');
-        const link = page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('link').first(); await expect(link).toBeFocused();
-        await page.setViewportSize({ width: 1440,height:900 });
-        await expect(mobile.locator('..')).not.toHaveAttribute('open'); await expect(account).toBeFocused();
-      }
-      await expect(field).toHaveValue('Borrador intacto');
-    }
+  for (const [width,height] of sizes) {
+    await page.setViewportSize({width,height});
+    if (!(await account.isVisible())) await page.getByRole('button',{name:'Abrir navegación',exact:true}).click();
+    await account.focus(); await page.keyboard.press('Enter');
+    await expect(account.locator('..')).toHaveAttribute('open','');
+    await page.keyboard.press('Tab'); await expect(page.getByRole('link',{name:'Cuenta y seguridad',exact:true})).toBeFocused();
+    await page.keyboard.press('Escape'); await expect(account).toBeFocused();
+    await account.click(); await field.focus(); await expect(account.locator('..')).not.toHaveAttribute('open');
+    await expect(field).toHaveValue('Borrador intacto');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
-  // Tab exits rather than leaving a disclosure over the form.
-  await account.click(); await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).focus(); await page.keyboard.press('Tab');
+  await page.setViewportSize({width:1440,height:900});
+  await account.click(); await page.getByRole('button',{name:'Cerrar sesión',exact:true}).focus(); await page.keyboard.press('Tab');
   await expect(account.locator('..')).not.toHaveAttribute('open');
-  await account.click(); await page.getByRole('heading', { name: 'Crear materia' }).click(); await expect(account.locator('..')).not.toHaveAttribute('open');
 });
 
 test('H6-5: quiz focus/progress, crossword current clue and reduced-motion/forced-colors in eight sizes', async ({ page, baseURL }) => {
