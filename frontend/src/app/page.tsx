@@ -16,12 +16,14 @@ export default async function Home() {
     <main id="contenido" tabIndex={-1} className={styles.main}>
       <section className={styles.hero}>
         <div className={styles.identity}><div className={styles.logoArtwork}><Image src={logo} alt="SIARE" preload sizes="(max-width: 540px) 330px, (max-width: 800px) 390px, (max-width: 1100px) 420px, (max-width: 1632px) 510px, 540px" /></div><span>Académico</span></div>
-        <div className={styles.welcome}>
+        <div className={styles.accessColumn}>
+          <div className={styles.welcome}>
           <span className="eyebrow">Tu espacio de aprendizaje</span>
           <h1>Un lugar para empezar.<br /><span>Una materia a la vez.</span></h1>
           <p className="lead muted">Organiza tus materias, conecta tus fuentes y encuentra tu propia forma de aprender.</p>
+          </div>
+          <LandingAccess />
         </div>
-        <LandingAccess />
       </section>
       <ol className={styles.steps} role="list">
         <li><span className={styles.stepIcon}><Icon name="book" /></span><div><h2>Organiza</h2><p>Crea materias y conserva sus fuentes en un solo espacio.</p></div></li>

@@ -45,15 +45,26 @@ test('landing: real provider availability, responsive themes and both tabs', asy
         expect(cards!.y).toBeGreaterThanOrEqual(hero!.y + hero!.height - 1);
         await page.evaluate(() => document.fonts.ready);
         const current = await measure();
-        if (width > 800) for (const [i, box] of current.entries()) for (const key of ['x', 'y', 'width', 'height'] as const) expect(Math.abs(box[key] - baseline[i][key]), `${theme}/${device}/${register}: ${box.selector}.${key}`).toBeLessThan(1);
+        for (const [i, box] of current.entries()) for (const key of ['x', 'y', 'width', 'height'] as const) expect(Math.abs(box[key] - baseline[i][key]), `${theme}/${device}/${register}: ${box.selector}.${key}`).toBeLessThan(1);
         geometry.push({ theme, device, register, boxes: current });
-        if (width > 1100) {
+        const welcome = page.locator('main h1').locator('..');
+        const message = await welcome.boundingBox();
+        const panel = await page.getByRole('tabpanel').locator('..').boundingBox();
+        expect(panel!.y - (message!.y + message!.height)).toBeGreaterThanOrEqual(24);
+        expect(panel!.x).toBeCloseTo(message!.x, 0);
+        expect(panel!.width).toBeCloseTo(message!.width, 0);
+        const overlay = await page.locator('main').locator('..').evaluate(node => ({
+          canvas: getComputedStyle(node).getPropertyValue('--canvas'),
+          grayscale: getComputedStyle(node, '::before').filter,
+          gradient: getComputedStyle(node, '::after').backgroundImage,
+        }));
+        expect(overlay.canvas).toContain('#181818');
+        expect(overlay.grayscale).toBe('grayscale(1)');
+        if (width > 900) {
           const logo = await page.getByAltText('SIARE').boundingBox();
-          const message = await page.locator('h1').boundingBox();
-          const access = await page.getByRole('tabpanel').boundingBox();
           expect(logo!.x + logo!.width).toBeLessThanOrEqual(message!.x);
-          expect(message!.x + message!.width).toBeLessThanOrEqual(access!.x);
-          expect(logo!.width).toBeGreaterThan(250);
+          expect(panel!.x + panel!.width).toBeLessThan(width * .82);
+          expect(logo!.width).toBeGreaterThanOrEqual(250);
         }
         await page.screenshot({ path: `${evidence}/3107-after-${theme}-${device}-${register ? 'register' : 'login'}.png`, fullPage: true });
       }
@@ -61,7 +72,7 @@ test('landing: real provider availability, responsive themes and both tabs', asy
         await page.getByRole('tab', { name: 'Iniciar sesión' }).click();
         await page.getByRole('tab', { name: 'Registrarse' }).click();
       }
-      if (width > 800) expect(await measure()).toEqual(baseline);
+      expect(await measure()).toEqual(baseline);
     }
   }
   await writeFile(`${evidence}/layout-geometry.json`, JSON.stringify(geometry, null, 2));
