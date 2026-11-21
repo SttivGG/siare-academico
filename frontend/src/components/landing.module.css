@@ -24,7 +24,14 @@
 /* Keep the established layout footprint; only the artwork shrinks by 10%.
    The cleaned PNG retains alpha in every gap, without a silhouette glow. */
 .logoArtwork { inline-size: var(--logo-size); max-inline-size: 100%; aspect-ratio: 1; display: grid; place-items: center; }
-.identity img { inline-size: 90%; block-size: 90%; object-fit: cover; }
+.identity img { grid-area: 1 / 1; inline-size: 90%; block-size: 90%; object-fit: cover; }
+/* Reuse the PNG's exact alpha silhouette, clipping below the book (y=788/1024).
+   Only the wordmark is whitened; the original symbol and light logo stay intact. */
+.logoWordmark { clip-path: inset(77% 0 0); filter: brightness(0) invert(1); opacity: 0; pointer-events: none; }
+:global(html[data-theme=dark]) .logoWordmark { opacity: 1; }
+@media (prefers-color-scheme: dark) {
+  :global(html:not([data-theme=light])) .logoWordmark { opacity: 1; }
+}
 .identity > span { inline-size: var(--logo-size); max-inline-size: 100%; text-align: center; color: light-dark(#474c52, #c4bfba); font-size: .875rem; letter-spacing: .28em; text-transform: uppercase; }
 .accessColumn { grid-column: 2; min-inline-size: 0; display: flex; flex-direction: column; gap: 28px; }
 .welcome { --accent: light-dark(#6c2c0b, #ffae78); min-inline-size: 0; }
