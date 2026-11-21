@@ -1,0 +1,72 @@
+{
+  "origin": "http://127.0.0.1:3107",
+  "implementation": "3ca1974f75844b6deb5034911298e97ca856548c",
+  "base": "7ede3ef55bf10ecf9c33d05593c165b6c653d5ac",
+  "logoComparisons": [
+    {
+      "viewport": 1920,
+      "layoutBoxWidth": 360,
+      "visibleWidthBefore": 256.7333068847656,
+      "visibleWidthAfter": 316.7578125,
+      "visibleXBefore": 330.0418701171875,
+      "visibleXAfter": 93.09375,
+      "gapAfter": 248.2265625
+    },
+    {
+      "viewport": 1728,
+      "layoutBoxWidth": 359.984375,
+      "visibleWidthBefore": 256.7333068847656,
+      "visibleWidthAfter": 316.7440643310547,
+      "visibleXBefore": 234.0418701171875,
+      "visibleXAfter": 90.21783447265625,
+      "gapAfter": 168.11622619628906
+    },
+    {
+      "viewport": 1440,
+      "layoutBoxWidth": 340,
+      "visibleWidthBefore": 227.4038798014323,
+      "visibleWidthAfter": 299.16015625,
+      "visibleXBefore": 137.34916178385419,
+      "visibleXAfter": 77.515625,
+      "gapAfter": 72.79296875
+    },
+    {
+      "viewport": 1024,
+      "layoutBoxWidth": 280,
+      "visibleWidthBefore": 175.9765625,
+      "visibleWidthAfter": 246.3671875,
+      "visibleXBefore": 209.71875,
+      "visibleXAfter": 174.390625,
+      "gapAfter": null
+    },
+    {
+      "viewport": 768,
+      "layoutBoxWidth": 260,
+      "visibleWidthBefore": 175.9765625,
+      "visibleWidthAfter": 228.76953125,
+      "visibleXBefore": 295.71875,
+      "visibleXAfter": 269.21875,
+      "gapAfter": null
+    },
+    {
+      "viewport": 390,
+      "layoutBoxWidth": 220,
+      "visibleWidthBefore": 152.51302083333334,
+      "visibleWidthAfter": 193.57421875,
+      "visibleXBefore": 118.48958333333334,
+      "visibleXAfter": 97.890625,
+      "gapAfter": null
+    }
+  ],
+  "desktopMaximumGeometryDeltaPixels": 0,
+  "smallScreensUseNaturalFormHeight": true,
+  "approvedCardTextBackgroundFooterRulesUnchanged": true,
+  "habitualScreenshotUnchanged": true,
+  "unitTestsPassed": 45,
+  "productionBuildPassed": true,
+  "typecheckPassed": true,
+  "playwrightPassed": 11,
+  "playwrightSkipped": 1,
+  "contrastSamplesPassed": 100,
+  "realAuthenticationSubmitted": false
+}

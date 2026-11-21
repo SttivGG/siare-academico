@@ -1,0 +1,85 @@
+{
+  "mainUnchanged": true,
+  "habitual": [
+    {
+      "unchanged": true,
+      "name": "/siare-academico-frontend-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-core-api-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-content-ai-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-progress-api-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-mysql-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-cassandra-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-redis-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-clickhouse-1",
+      "health": "healthy"
+    },
+    {
+      "unchanged": true,
+      "name": "/siare-academico-mongo-1",
+      "health": "healthy"
+    }
+  ],
+  "rollbackImage": "sha256:922f8963076e55d5e064c1a60c8bc17ddc146f3918033f4a9b4673c48cd060ce",
+  "health": [
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3100
+    },
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3107
+    }
+  ],
+  "preview": {
+    "id": "fdc5073258db2e39ed026fe61b4acfbd557b219daadb5ae015d61962da3e8d48",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:07a9f22ef4bfc0eea667a3084a26680aa8900bca250aee9cb4b0fc9cb6c30267",
+    "imageName": "siare-academico-frontend:h6-landing-glass",
+    "created": "2026-11-21T03:06:21.163814575Z",
+    "started": "2026-11-21T03:06:23.576056258Z",
+    "restarts": 0,
+    "health": "healthy",
+    "configHash": "3CBE3452300BE3EB08ED41D4EA438D6ABEE1AAD142652FDEC1A1B8A5EF8D4175",
+    "envHash": "7C211CA2AB98DEACF21F27A69347C9411576D1B355067B6C5B2C83A32935E9E6",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mounts": [],
+    "networks": [
+      "siare-academico_edge"
+    ]
+  },
+  "previewEnvironmentAndHostUnchanged": true
+}
