@@ -28,9 +28,7 @@ condicionalmente la reserva perdedora. Si hay incertidumbre sobre una
 escritura, Express devuelve 503 y el llamante debe mantener el mismo evento
 y clave al reintentar.
 
-El acuse contiene `analyticsStatus: PENDING`. El envío HTTP desde Spring,
-ClickHouse y Redis se incorporan en bloques
-posteriores. Express queda en la red interna de Compose.
+El acuse contiene `analyticsStatus: PENDING`. El envío HTTP desde Spring y la caché Redis se incorporan en bloques posteriores. Express queda en la red interna de Compose.
 
 ## Prueba en la instalación local
 
@@ -106,3 +104,65 @@ Get-Content services/progress-api/test/progress.integration.mjs -Raw |
 La prueba comprueba conteos concurrentes, notas, orden temporal, aislamiento,
 cursor inválido y cambios entre páginas. Spring conserva la autorización
 del estudiante y la materia antes de llamar a este servicio interno.
+
+## Indicadores e ingesta en ClickHouse
+
+`GET /internal/v1/students/{studentId}/indicators?subjectId=<UUID>&from=<UTC>&to=<UTC>`
+usa el Bearer interno y `X-Request-Id`. El intervalo es `[from,to)`, de
+hasta 31 días, con precisión de milisegundos. Responde con `attemptCount`,
+`averageScore` y `totalDurationMs`. Sin datos, el conteo y la duración
+son cero, y el promedio y los campos de frescura son nulos. Si ClickHouse
+no está disponible, devuelve 503.
+
+`asOf` es el mayor instante de primera ingesta visible entre los eventos
+únicos del resultado. `ingestionLagMs` mide los milisegundos transcurridos
+entre el registro en Cassandra y la primera ingesta del evento asociado a
+ese instante. La consulta es eventualmente consistente. El estado
+`analyticsStatus: PENDING` del POST indica que la aceptación del intento
+no espera una confirmación analítica.
+
+Express recorre Cassandra en páginas de 32 intentos y envía solo los
+pendientes. Cassandra registra la confirmación después de que ClickHouse
+acepta el lote. Si falla el envío o la confirmación, el proceso reintenta
+con espera creciente hasta 30 segundos. Al reiniciar, el recorrido vuelve
+a empezar y reutiliza las confirmaciones duraderas. La paginación limita
+el trabajo por iteración, aunque cada ciclo recorre la tabla de intentos.
+El tiempo de una vuelta completa crecerá con el historial.
+
+ClickHouse conserva `academic_events` y recibe columnas nuevas para
+registro e ingesta. Si ClickHouse aceptó un lote pero Cassandra no pudo
+guardar su confirmación, el reintento puede insertar otra fila física.
+Los indicadores agrupan por `event_id` antes de calcular conteo, media y
+duración. La primera ingesta se conserva al consultar por duplicado.
+
+Desde la raíz, con los servicios locales levantados, aplica estas
+migraciones antes de reconstruir y recrear Express como se indicó arriba:
+
+```powershell
+Get-Content services/progress-api/cassandra/003-analytics-delivery.cql -Raw |
+    docker exec -i siare-academico-cassandra-1 cqlsh
+Get-Content services/progress-api/clickhouse/001-attempt-ingestion.sql -Raw |
+    docker exec -i siare-academico-clickhouse-1 sh -ec 'exec clickhouse-client --user "$CLICKHOUSE_USER" --password "$CLICKHOUSE_PASSWORD" --database "$CLICKHOUSE_DB" --multiquery'
+```
+
+La prueba `test/analytics.integration.mjs` tiene dos fases. Define una
+semilla única y conserva la misma para ambas. En `outage`, usa un
+override local de Compose que cambie únicamente `CLICKHOUSE_URL` de
+Express a un destino inaccesible (por ejemplo `http://127.0.0.1:1`).
+En `recover`, vuelve a recrear únicamente Express con su configuración
+normal. Las dos fases pueden ejecutarse por stdin sin copiar archivos
+al contenedor:
+
+```powershell
+$seed = [guid]::NewGuid().ToString()
+$test = Get-Content services/progress-api/test/analytics.integration.mjs -Raw
+# Con la conexión de Express a ClickHouse interrumpida:
+$test | docker exec -i siare-academico-progress-api-1 node --input-type=module - outage $seed
+# Después de restaurar la configuración normal de Express:
+$test | docker exec -i siare-academico-progress-api-1 node --input-type=module - recover $seed
+```
+
+La segunda fase verifica los totales conocidos, la exclusión del extremo
+final del intervalo, el aislamiento y la ingesta atrasada. Inserta
+deliberadamente otra fila para un evento sintético y comprueba que cambian
+las filas físicas pero se conservan todos sus indicadores.
