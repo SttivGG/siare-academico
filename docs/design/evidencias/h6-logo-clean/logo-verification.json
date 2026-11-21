@@ -1,0 +1,423 @@
+{
+  "originalUserSHA256": "a120d94b62431789671c20307a4f34e642c5ca935ca7a51f02d2dd08396280b7",
+  "originalRepoSHA256": "a120d94b62431789671c20307a4f34e642c5ca935ca7a51f02d2dd08396280b7",
+  "cleanSHA256": "4d5ed6869d5bfa05ea7cfaf0c411b280159091e0fda52a4d146555ddc00f3bf7",
+  "results": [
+    {
+      "theme": "light",
+      "device": "wide",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.9
+    },
+    {
+      "theme": "light",
+      "device": "desktop",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.8999837239583334
+    },
+    {
+      "theme": "light",
+      "device": "tablet",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.9
+    },
+    {
+      "theme": "light",
+      "device": "mobile",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.9
+    },
+    {
+      "theme": "dark",
+      "device": "wide",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.9
+    },
+    {
+      "theme": "dark",
+      "device": "desktop",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.8999837239583334
+    },
+    {
+      "theme": "dark",
+      "device": "tablet",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.9
+    },
+    {
+      "theme": "dark",
+      "device": "mobile",
+      "asset": {
+        "url": "http://127.0.0.1:3107/_next/static/media/siare-logo-clean.2y9_vzn-xc378.png",
+        "srcset": "",
+        "filter": "none",
+        "width": 1536,
+        "height": 1024,
+        "gaps": [
+          {
+            "x": 500,
+            "y": 600,
+            "alpha": 1
+          },
+          {
+            "x": 1000,
+            "y": 670,
+            "alpha": 1
+          },
+          {
+            "x": 50,
+            "y": 50,
+            "alpha": 0
+          },
+          {
+            "x": 1400,
+            "y": 500,
+            "alpha": 0
+          }
+        ],
+        "shapes": [
+          {
+            "x": 740,
+            "y": 200,
+            "alpha": 253
+          },
+          {
+            "x": 680,
+            "y": 480,
+            "alpha": 253
+          },
+          {
+            "x": 640,
+            "y": 680,
+            "alpha": 252
+          }
+        ]
+      },
+      "maximumOtherLayoutShift": 0,
+      "logoScale": 0.9
+    }
+  ]
+}

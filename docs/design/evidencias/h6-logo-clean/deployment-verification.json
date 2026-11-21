@@ -1,0 +1,92 @@
+{
+  "branch": "feat/h6-landing-access",
+  "preview": {
+    "id": "9e62f9a88131a597820ccd771c7cc644e0fbf5d66eb07d6a84de9d18786f4fe8",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:f01c61b31d3f0ad558f2b05fd4b2d56c0431a72d22fd82a4aa85ce524287e8ee",
+    "imageName": "siare-academico-frontend:h6-logo-clean",
+    "created": "2026-11-21T04:49:40.750231946Z",
+    "started": "2026-11-21T04:49:43.384529028Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-h6-3-validation",
+    "service": "frontend-h6",
+    "configHash": "194F1C752CE2DED60D94C44BC78D08D47DDF0444ED1F72BD60B730FFE23830BE",
+    "envHash": "11D93BE279FF9A27C8C7DC54D0B59C16DA5863FFDC8CB24CA2386F7C4F8AEA52",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "name": "siare-academico_edge",
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160"
+      }
+    ]
+  },
+  "habitual": [
+    {
+      "name": "/siare-academico-frontend-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-core-api-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-content-ai-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-progress-api-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-mysql-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-cassandra-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-redis-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-clickhouse-1",
+      "unchanged": true,
+      "health": "healthy"
+    },
+    {
+      "name": "/siare-academico-mongo-1",
+      "unchanged": true,
+      "health": "healthy"
+    }
+  ],
+  "health": [
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3100
+    },
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3107
+    }
+  ],
+  "rollbackImage": "sha256:ca59092ea6e363652702f4eb352d11c1b4bc8d21cbf3b4130ecc35ad64c4413b",
+  "codeCommit": "db823a8b5c03d90b273cf0aa0b3947c7f325f548",
+  "mainEnvLogoPhotoPreserved": true,
+  "previewConfigurationPreserved": true
+}
