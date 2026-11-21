@@ -120,9 +120,13 @@ test('recovery: competing tabs cannot overwrite a saved copy', async ({ page, co
 
 test('ST-10: a retained encrypted A copy is unavailable to B and restores only after A reauthenticates', async ({ page, baseURL }) => {
   const a = await setup(page, baseURL!); await page.goto(`/materias/${a.id}`); await tool(page, 'Preparar banco'); await page.getByLabel('Editar banco JSON').fill('{"cuenta":"solo A"}'); await enable(page); await save(page);
+  // Leave the live account observer before changing cookies through the API.
+  // Otherwise its focus/expiry refresh can race the next explicit navigation.
+  page.once('dialog', d => d.accept()); await page.goto('/login');
   // Controlled server logout simulates expiry/account switching without the UI purge path.
   expect((await page.request.post('/api/bff/auth/logout', { headers: headers(baseURL!), data: {} })).status()).toBe(200);
-  const b = await setup(page, baseURL!); page.once('dialog', d => d.accept()); await page.goto(`/materias/${b.id}`); await expect(page.getByRole('button', { name: 'Recuperar copia cifrada' })).toHaveCount(0); expect((await page.request.get(`/api/bff/subjects/${a.id}`)).status()).toBe(403);
+  const b = await setup(page, baseURL!); await page.goto(`/materias/${b.id}`); await expect(page.getByRole('button', { name: 'Recuperar copia cifrada' })).toHaveCount(0); expect((await page.request.get(`/api/bff/subjects/${a.id}`)).status()).toBe(403);
+  await page.goto('/login');
   expect((await page.request.post('/api/bff/auth/logout', { headers: headers(baseURL!), data: {} })).status()).toBe(200); expect((await page.request.post('/api/bff/auth/login', { headers: headers(baseURL!), data: { email: a.credentials.email, password: a.credentials.password } })).status()).toBe(200); await page.goto(`/materias/${a.id}`); await unlock(page); await expect(page.getByRole('dialog')).toHaveCount(0); await expect(page.getByLabel('Editar banco JSON')).toHaveValue('{"cuenta":"solo A"}');
 });
 
