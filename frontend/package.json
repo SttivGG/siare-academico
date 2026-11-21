@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
     "test:e2e": "playwright test",
+    "test:e2e:appearance": "playwright test --config playwright.appearance.config.ts",
     "test:integration:activities": "node --test tests/integration/activities-bff.mjs",
     "test:integration:identity": "node --test tests/integration/oidc-bff.mjs",
     "test:integration:nexo": "node --test tests/integration/nexo-states.mjs"

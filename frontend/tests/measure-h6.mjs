@@ -80,7 +80,7 @@ try {
   await open(session.quiz); await page.locator('.quiz-options input').first().check(); await capture('quiz-seleccion');
   await open(session.crossword); await page.locator('.clue-button').first().click(); await capture('crucigrama-pista');
   await page.setViewportSize({ width: 375, height: 812 });
-  await page.locator('summary[aria-label="Abrir navegación"]').click(); await capture('menu-movil');
+  await page.locator('button[aria-label="Abrir navegación"]').click(); await capture('menu-movil');
   expect(errors).toEqual([]);
   await writeFile(`${out}/measurement.json`, JSON.stringify({ phase, origin, browser: browser.version(), node: process.version, viewport: '1440x900', conditions: 'Chromium headless; production Next Docker 1 CPU/384MiB; system no-preference; 6 sequential hard navigations per route, first excluded from warm median; no CPU/network throttling; 500ms observation after fonts/heading; synthetic USER and same subject both phases. Route bytes include prefetched chunks; no React Profiler in production.', measurements, captures, errors }, null, 2));
   await context.close();

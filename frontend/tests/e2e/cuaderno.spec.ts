@@ -1,3 +1,4 @@
+import { chooseTheme } from './navigation';
 import { test, expect, type Page, type APIRequestContext } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile, readFile } from 'node:fs/promises';
@@ -69,7 +70,7 @@ test('recovery: denied writes never announce saved and retain the current bank',
 });
 test('ST-05: theme and responsive panel changes preserve the reviewed bank', async ({ page, baseURL }) => {
   const { id } = await setup(page, baseURL!); await page.goto(`/materias/${id}`); await tool(page, 'Preparar banco'); await page.getByLabel('Tema exacto del banco').fill('Repaso'); await page.getByLabel('Editar banco JSON').fill(JSON.stringify(bank)); await page.getByRole('button', { name: 'Validar y revisar banco' }).click(); await page.getByLabel('He revisado las preguntas', { exact: false }).check();
-  await page.locator('summary').filter({ hasText: /^Tema$/ }).click(); await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption('dark'); await page.keyboard.press('Escape');
+  await chooseTheme(page, 'dark');
   for (const width of [1440, 1024, 390, 320, 1920]) { await page.setViewportSize({ width, height: 900 }); await expect(page.getByLabel('Editar banco JSON')).toHaveValue(JSON.stringify(bank)); await expect(page.getByLabel('He revisado las preguntas', { exact: false })).toBeChecked(); expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true); }
   await tool(page, 'Intentos'); await tool(page, 'Preparar banco'); await expect(page.getByLabel('He revisado las preguntas', { exact: false })).toBeChecked();
 });
@@ -150,7 +151,7 @@ test('visual A: eight academic states in both themes at all eight requested size
   const { id, create } = await setup(page, baseURL!); await page.goto(`/materias/${id}`);
   async function captures(state: string, visiblePanel: 'Fuentes' | 'Aprendizaje' = 'Aprendizaje') {
     for (const theme of ['light', 'dark']) {
-      await page.locator('summary').filter({ hasText: /^Tema$/ }).click(); await page.getByRole('combobox', { name: 'Tema', exact: true }).selectOption(theme); await page.keyboard.press('Escape');
+      await chooseTheme(page, theme);
       for (const [width, height] of [[1920, 1080], [1440, 900], [1366, 768], [1024, 768], [768, 1024], [390, 844], [375, 812], [320, 812]]) {
         await page.setViewportSize({ width, height }); await panel(page, visiblePanel); await page.evaluate(() => document.fonts.ready); expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${state} ${theme} ${width}`).toBe(true);
         await page.screenshot({ path: `${output}/${state}-${theme}-${width}x${height}.png`, fullPage: true }); checks.push({ state, theme, width, height });

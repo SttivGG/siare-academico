@@ -1,7 +1,7 @@
 /* SIARE H6: neutral photographic glass shared by public and academic flows. */
 @font-face { font-family: Urbanist; src: url("/fonts/urbanist-latin.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --canvas: #f0f1f2;
   --text: #202124;
   --muted: #34383d;
@@ -13,9 +13,9 @@
   --hover: rgb(0 0 0 / .055);
   --selected: rgb(245 129 54 / .16);
   --raised: rgb(255 255 255 / .48);
-  --glass-primary: rgb(255 255 255 / .28);
-  --glass-secondary: rgb(255 255 255 / .20);
-  --glass-navigation: rgb(255 255 255 / .56);
+  --glass-primary: rgb(255 255 255 / var(--appearance-opacity, .28));
+  --glass-secondary: rgb(255 255 255 / max(.20, calc(var(--appearance-opacity, .28) - .08)));
+  --glass-navigation: rgb(255 255 255 / max(.56, calc(var(--appearance-opacity, .28) + .28)));
   --glass-form: rgb(255 255 255 / .38);
   --glass-reading: rgb(250 251 252 / .91);
   --glass-modal: rgb(248 249 250 / .86);
@@ -23,9 +23,9 @@
   --glass-reflection: rgb(255 255 255 / .65);
   --glass-glint: rgb(255 255 255 / .22);
   --glass-shadow: rgb(0 0 0 / .22);
-  --scene-start: rgb(244 244 244 / .88);
-  --scene-middle: rgb(244 244 244 / .72);
-  --scene-end: rgb(244 244 244 / .42);
+  --scene-start: rgb(244 244 244 / clamp(0.84, calc(.88 + var(--appearance-veil, 0) * .24), 0.99));
+  --scene-middle: rgb(244 244 244 / max(var(--scene-light-middle-min, 0), clamp(0.68, calc(.72 + var(--appearance-veil, 0) * .24), 0.92)));
+  --scene-end: rgb(244 244 244 / max(var(--scene-light-end-min, 0), clamp(0.38, calc(.42 + var(--appearance-veil, 0) * .24), 0.62)));
   --rose: rgb(247 213 192 / .42);
   --mint: rgb(211 238 224 / .42);
   --cream: rgb(244 231 204 / .42);
@@ -43,8 +43,8 @@
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
   --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px;
   --radius-sm: 8px; --radius-control: 12px; --radius-panel: 22px; --radius-rail: 28px;
-  --rail-width: 84px; --header-height: 64px; --target: 44px;
-  --blur: 10px; --blur-navigation: 12px;
+  --rail-width: 72px; --header-height: 56px; --target: 44px;
+  --blur: var(--appearance-blur, 10px); --blur-navigation: var(--appearance-navigation-blur, 12px);
   --duration-fast: 140ms; --duration: 220ms; --ease: cubic-bezier(.2,.7,.2,1);
   --in-oklab: ;
   --glass-paint: linear-gradient(135deg var(--in-oklab), var(--glass-glint), transparent 42%) var(--glass-primary);
@@ -69,9 +69,9 @@
   --hover: rgb(255 255 255 / .08);
   --selected: rgb(245 129 54 / .18);
   --raised: rgb(255 255 255 / .09);
-  --glass-primary: rgb(7 9 12 / .28);
-  --glass-secondary: rgb(7 9 12 / .20);
-  --glass-navigation: rgb(10 13 17 / .56);
+  --glass-primary: rgb(7 9 12 / var(--appearance-opacity, .28));
+  --glass-secondary: rgb(7 9 12 / max(.20, calc(var(--appearance-opacity, .28) - .08)));
+  --glass-navigation: rgb(10 13 17 / max(.56, calc(var(--appearance-opacity, .28) + .28)));
   --glass-form: rgb(7 9 12 / .36);
   --glass-reading: rgb(18 21 25 / .91);
   --glass-modal: rgb(22 25 29 / .86);
@@ -79,9 +79,9 @@
   --glass-reflection: rgb(255 255 255 / .12);
   --glass-glint: rgb(255 255 255 / .065);
   --glass-shadow: rgb(0 0 0 / .38);
-  --scene-start: rgb(12 18 24 / .78);
-  --scene-middle: rgb(12 18 24 / .64);
-  --scene-end: rgb(12 18 24 / .40);
+  --scene-start: rgb(12 18 24 / clamp(0.74, calc(.78 + var(--appearance-veil, 0) * .24), 0.98));
+  --scene-middle: rgb(12 18 24 / max(var(--scene-dark-middle-min, 0), clamp(0.60, calc(.64 + var(--appearance-veil, 0) * .24), 0.84)));
+  --scene-end: rgb(12 18 24 / max(var(--scene-dark-end-min, 0), clamp(0.36, calc(.40 + var(--appearance-veil, 0) * .24), 0.60)));
   --rose: rgb(172 113 80 / .18);
   --mint: rgb(94 157 127 / .18);
   --cream: rgb(163 143 91 / .18);
@@ -110,9 +110,9 @@
     --hover: rgb(255 255 255 / .08);
     --selected: rgb(245 129 54 / .18);
     --raised: rgb(255 255 255 / .09);
-    --glass-primary: rgb(7 9 12 / .28);
-    --glass-secondary: rgb(7 9 12 / .20);
-    --glass-navigation: rgb(10 13 17 / .56);
+    --glass-primary: rgb(7 9 12 / var(--appearance-opacity, .28));
+    --glass-secondary: rgb(7 9 12 / max(.20, calc(var(--appearance-opacity, .28) - .08)));
+    --glass-navigation: rgb(10 13 17 / max(.56, calc(var(--appearance-opacity, .28) + .28)));
     --glass-form: rgb(7 9 12 / .36);
     --glass-reading: rgb(18 21 25 / .91);
     --glass-modal: rgb(22 25 29 / .86);
@@ -120,9 +120,9 @@
     --glass-reflection: rgb(255 255 255 / .12);
     --glass-glint: rgb(255 255 255 / .065);
     --glass-shadow: rgb(0 0 0 / .38);
-    --scene-start: rgb(12 18 24 / .78);
-    --scene-middle: rgb(12 18 24 / .64);
-    --scene-end: rgb(12 18 24 / .40);
+    --scene-start: rgb(12 18 24 / clamp(0.74, calc(.78 + var(--appearance-veil, 0) * .24), 0.98));
+    --scene-middle: rgb(12 18 24 / max(var(--scene-dark-middle-min, 0), clamp(0.60, calc(.64 + var(--appearance-veil, 0) * .24), 0.84)));
+    --scene-end: rgb(12 18 24 / max(var(--scene-dark-end-min, 0), clamp(0.36, calc(.40 + var(--appearance-veil, 0) * .24), 0.60)));
     --rose: rgb(172 113 80 / .18);
     --mint: rgb(94 157 127 / .18);
     --cream: rgb(163 143 91 / .18);
@@ -147,3 +147,10 @@
 @media (forced-colors: active) {
   :root, :root[data-theme], :root:not([data-theme]) { --canvas: Canvas; --text: CanvasText; --muted: CanvasText; --faint: CanvasText; --link: LinkText; --focus: Highlight; --control: CanvasText; --border: CanvasText; --glass-primary: Canvas; --glass-secondary: Canvas; --glass-navigation: Canvas; --glass-form: Canvas; --glass-reading: Canvas; --glass-modal: Canvas; --glass-glint: transparent; --shadow: none; --blur: 0px; --blur-navigation: 0px; }
 }
+
+:root[data-theme=light] { color-scheme: light; }
+:root[data-rail=expanded] { --rail-width: 232px; }
+
+/* New photographs have different luminance: keep a readable neutral floor.
+   The approved educational scene retains its original treatment. */
+:root:is([data-background=library], [data-background=minimal], [data-background=collaborative], [data-background=reading]) { --scene-light-middle-min: .74; --scene-light-end-min: .56; --scene-dark-middle-min: .74; --scene-dark-end-min: .68; }
