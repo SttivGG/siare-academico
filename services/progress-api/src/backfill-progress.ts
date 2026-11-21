@@ -1,10 +1,12 @@
 import type cassandra from "cassandra-driver";
+import { createCacheGenerations } from "./models/cache-generations.js";
 import { parseAttemptEvent } from "./models/attempt-event.js";
 import { createCassandraHealthModel } from "./models/health.model.js";
 import { createCassandraProgressModel } from "./models/progress.model.js";
 
 const { client, close } = createCassandraHealthModel();
 const progress = createCassandraProgressModel(client);
+const generations = createCacheGenerations(client);
 
 try {
   let count = 0;
@@ -15,6 +17,7 @@ try {
       const event = parseAttemptEvent(JSON.parse(row.payload));
       if (!event) throw new Error("Unexpected historical attempt format");
       await progress.apply(event);
+      await generations.advance("progress", event);
       count++;
     }
     pageState = result.pageState ?? undefined;

@@ -2,6 +2,7 @@ import { setTimeout } from "node:timers/promises";
 import cassandra from "cassandra-driver";
 import { parseAttemptEvent } from "./attempt-event.js";
 import type { AnalyticsSink } from "./analytics.model.js";
+import type { ProgressScope } from "./progress.model.js";
 
 const scan = "SELECT attempt_id, payload, recorded_at, analytics_confirmed_at FROM siare_progress.attempts";
 const confirm = "UPDATE siare_progress.attempts SET analytics_confirmed_at = ? WHERE attempt_id = ?";
@@ -9,7 +10,11 @@ const pageSize = 32;
 const idleMs = 3000;
 const consistency = cassandra.types.consistencies.localQuorum;
 
-export function startAnalyticsDelivery(client: cassandra.Client, sink: AnalyticsSink) {
+export function startAnalyticsDelivery(
+  client: cassandra.Client,
+  sink: AnalyticsSink,
+  invalidateIndicators: (scope: ProgressScope) => Promise<void>,
+) {
   const controller = new AbortController();
   const { signal } = controller;
 
@@ -31,6 +36,11 @@ export function startAnalyticsDelivery(client: cassandra.Client, sink: Analytics
           return { event, recordedAt: row.recorded_at as Date };
         });
         await sink.insert(events, signal);
+        const scopes = new Map(events.map(({ event }) => [event.studentId + ":" + event.subjectId, event]));
+        for (const scope of scopes.values()) {
+          if (signal.aborted) break;
+          await invalidateIndicators(scope);
+        }
         const confirmedAt = new Date();
         // Rows stay pending after an ambiguous insert or after a failed acknowledgment.
         // ClickHouse reads group by event_id, so a replay cannot increment indicators.

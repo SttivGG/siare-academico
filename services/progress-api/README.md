@@ -28,7 +28,7 @@ condicionalmente la reserva perdedora. Si hay incertidumbre sobre una
 escritura, Express devuelve 503 y el llamante debe mantener el mismo evento
 y clave al reintentar.
 
-El acuse contiene `analyticsStatus: PENDING`. El envío HTTP desde Spring y la caché Redis se incorporan en bloques posteriores. Express queda en la red interna de Compose.
+El acuse contiene `analyticsStatus: PENDING`. El envío HTTP desde Spring se incorpora mediante la integración del equipo. Express queda en la red interna de Compose.
 
 ## Prueba en la instalación local
 
@@ -166,3 +166,66 @@ La segunda fase verifica los totales conocidos, la exclusión del extremo
 final del intervalo, el aislamiento y la ingesta atrasada. Inserta
 deliberadamente otra fila para un evento sintético y comprueba que cambian
 las filas físicas pero se conservan todos sus indicadores.
+
+## Caché Redis de progreso e indicadores
+
+Redis guarda los resultados de progreso y de indicadores con un TTL de
+60 segundos. `PROGRESS_CACHE_TTL_SECONDS` permite ajustar el TTL entre
+1 y 300 segundos. Las claves usan el prefijo `siare:progress:v1:` y
+dependen de la vista, estudiante, materia, filtros y generación. No se
+utilizan las claves de sesiones ni se ejecutan limpiezas globales.
+
+Cassandra conserva una generación por vista y ámbito. Express avanza la
+generación de progreso después de aplicar el intento y antes de
+confirmarlo por HTTP. Para indicadores, la generación avanza después de
+que ClickHouse acepta el lote y antes de confirmar su entrega en
+Cassandra. Los reintentos pueden avanzar la generación otra vez.
+Una consulta que empezó antes de la invalidación puede terminar con la
+versión anterior, pero solo puede guardar en una clave de esa generación.
+Las claves anteriores se eliminan por TTL.
+
+Si Redis no está listo, se consulta la fuente. Si la lectura de
+generación o de Redis falla, también se consulta la fuente. Un fallo al
+guardar en caché no cambia el resultado de la consulta. Las
+invalidaciones se conservan en Cassandra aunque Redis esté inaccesible.
+Cada consulta que usa caché hace una lectura de generación en Cassandra.
+
+`GET /internal/v1/cache/metrics` requiere el Bearer interno y
+`X-Request-Id`. Devuelve estado de Redis, TTL y, por vista, hits, misses,
+consultas directas por contingencia, errores e invalidaciones, además
+del tiempo acumulado de aciertos y el tiempo y número de lecturas de la
+fuente. Son métricas en memoria del proceso. Se reinician al recrearlo.
+
+Desde la raíz, aplica la migración adicional antes de activar esta versión:
+
+```powershell
+Get-Content services/progress-api/cassandra/004-cache-generations.cql -Raw |
+    docker exec -i siare-academico-cassandra-1 cqlsh
+docker compose -f compose.datos.yml -f compose.apps.yml --env-file .env build progress-api
+docker compose -f compose.datos.yml -f compose.apps.yml -f .cache/progress-local.compose.yml -f .cache/progress-redis.compose.yml --env-file .env up -d --no-deps --no-build --wait progress-api
+```
+
+En esta instalación, el override ignorado `.cache/progress-redis.compose.yml`
+inyecta la conexión solo en Express. Para reproducirlo localmente, su
+contenido es:
+
+```yaml
+services:
+  progress-api:
+    environment:
+      PROGRESS_REDIS_URL: redis://redis:6379
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
+```
+
+En una prueba de integración, agrega temporalmente un override que
+ponga `PROGRESS_CACHE_TTL_SECONDS: "4"`, recrea solo Express y ejecuta:
+
+```powershell
+Get-Content services/progress-api/test/cache.integration.mjs -Raw |
+    docker exec -i siare-academico-progress-api-1 node --input-type=module - warm
+```
+
+Para probar la contingencia, reemplaza temporalmente la URL de Redis de
+Express por `redis://127.0.0.1:1`, vuelve a recrearlo y ejecuta el mismo
+comando con `outage` en lugar de `warm`. Luego levanta Express con el
+override normal. Durante la prueba, el Redis compartido permanece activo.
