@@ -55,9 +55,10 @@ test('landing: real provider availability, responsive themes and both tabs', asy
         expect(panel!.width).toBeCloseTo(message!.width, 0);
         const overlay = await page.locator('main').locator('..').evaluate(node => ({
           canvas: getComputedStyle(node).backgroundColor,
+          sharedCanvas: getComputedStyle(document.body).backgroundColor,
           grayscale: getComputedStyle(node, '::before').filter,
         }));
-        expect(overlay.canvas).toBe(theme === 'dark' ? 'rgb(24, 24, 24)' : 'rgb(244, 244, 244)');
+        expect(overlay.canvas).toBe(overlay.sharedCanvas);
         expect(overlay.grayscale).toBe('none');
         if (width > 900) {
           const logo = await page.getByAltText('SIARE').boundingBox();

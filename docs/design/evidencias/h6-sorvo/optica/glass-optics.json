@@ -1,0 +1,365 @@
+{
+  "method": "Hide descendants without changing the real surface; replace only the photographic backdrop with a color probe and compare RGB in an interior strip. Opaque surfaces give zero transmission.",
+  "optics": [
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 1440,
+      "rect": {
+        "x": 862.40625,
+        "y": 303.09375,
+        "width": 520,
+        "height": 745.640625,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 30.262040960451976,
+      "changedFraction": 0.7697387005649717
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 1440,
+      "rect": {
+        "x": 124,
+        "y": 298.3125,
+        "width": 1292,
+        "height": 314.53125,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 53.267832261521974,
+      "changedFraction": 0.982489281886388
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 1440,
+      "rect": {
+        "x": 124,
+        "y": 396,
+        "width": 417.328125,
+        "height": 238,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 51.62615176151761,
+      "changedFraction": 0.8989159891598916
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 1440,
+      "rect": {
+        "x": 388,
+        "y": 301.96875,
+        "width": 780,
+        "height": 655.84375,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 47.1537795992714,
+      "changedFraction": 0.9908925318761385
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 1440,
+      "rect": {
+        "x": 124,
+        "y": 329.8125,
+        "width": 1292,
+        "height": 106,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 53.2681270096463,
+      "changedFraction": 0.9760316184351554
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 1440,
+      "rect": {
+        "x": 793.671875,
+        "y": 150,
+        "width": 460,
+        "height": 818.296875,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 46.31929611650485,
+      "changedFraction": 0.9656148867313916
+    },
+    {
+      "name": "landing",
+      "theme": "light",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 587.765625,
+        "width": 350,
+        "height": 800.484375,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 18.052262693156734,
+      "changedFraction": 0.7750551876379691
+    },
+    {
+      "name": "inicio",
+      "theme": "light",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 287.78125,
+        "width": 350,
+        "height": 644.875,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 47.12135761589404,
+      "changedFraction": 0.9489514348785872
+    },
+    {
+      "name": "materias",
+      "theme": "light",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 585.15625,
+        "width": 350,
+        "height": 238,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 49.02367549668874,
+      "changedFraction": 0.9451986754966888
+    },
+    {
+      "name": "cuaderno",
+      "theme": "light",
+      "width": 390,
+      "rect": {
+        "x": 24,
+        "y": 269.984375,
+        "width": 342,
+        "height": 857.65625,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 45.72834467120182,
+      "changedFraction": 0.9515873015873015
+    },
+    {
+      "name": "seguridad",
+      "theme": "light",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 287.78125,
+        "width": 350,
+        "height": 216.78125,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 50.25849889624724,
+      "changedFraction": 0.9502759381898455
+    },
+    {
+      "name": "login",
+      "theme": "light",
+      "width": 390,
+      "rect": {
+        "x": 12,
+        "y": 130,
+        "width": 366,
+        "height": 779.015625,
+        "color": "rgba(255, 255, 255, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 46.9896750524109,
+      "changedFraction": 0.9441299790356394
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 1440,
+      "rect": {
+        "x": 862.40625,
+        "y": 303.09375,
+        "width": 520,
+        "height": 745.640625,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 35.976129943502826,
+      "changedFraction": 0.8083333333333333
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 1440,
+      "rect": {
+        "x": 124,
+        "y": 298.3125,
+        "width": 1292,
+        "height": 314.53125,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 91.17166398713826,
+      "changedFraction": 0.9732583065380493
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 1440,
+      "rect": {
+        "x": 124,
+        "y": 396,
+        "width": 417.328125,
+        "height": 238,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 91.76355013550136,
+      "changedFraction": 0.9161698283649503
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 1440,
+      "rect": {
+        "x": 388,
+        "y": 301.96875,
+        "width": 780,
+        "height": 655.84375,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 88.19234972677596,
+      "changedFraction": 1
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 1440,
+      "rect": {
+        "x": 124,
+        "y": 329.8125,
+        "width": 1292,
+        "height": 106,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 90.48439174705251,
+      "changedFraction": 0.9691318327974277
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 1440,
+      "rect": {
+        "x": 793.671875,
+        "y": 150,
+        "width": 460,
+        "height": 818.296875,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 89.11808252427184,
+      "changedFraction": 0.9526294498381876
+    },
+    {
+      "name": "landing",
+      "theme": "dark",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 587.765625,
+        "width": 350,
+        "height": 800.484375,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 25.508940397350994,
+      "changedFraction": 0.8428807947019867
+    },
+    {
+      "name": "inicio",
+      "theme": "dark",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 287.78125,
+        "width": 350,
+        "height": 644.875,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 85.38863134657836,
+      "changedFraction": 0.9468543046357616
+    },
+    {
+      "name": "materias",
+      "theme": "dark",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 585.15625,
+        "width": 350,
+        "height": 238,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 87.43598233995586,
+      "changedFraction": 0.9442604856512141
+    },
+    {
+      "name": "cuaderno",
+      "theme": "dark",
+      "width": 390,
+      "rect": {
+        "x": 24,
+        "y": 269.984375,
+        "width": 342,
+        "height": 857.65625,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 89.79495464852607,
+      "changedFraction": 0.9522108843537415
+    },
+    {
+      "name": "seguridad",
+      "theme": "dark",
+      "width": 390,
+      "rect": {
+        "x": 20,
+        "y": 287.78125,
+        "width": 350,
+        "height": 216.78125,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 87.06650110375276,
+      "changedFraction": 0.9487306843267108
+    },
+    {
+      "name": "login",
+      "theme": "dark",
+      "width": 390,
+      "rect": {
+        "x": 12,
+        "y": 130,
+        "width": 366,
+        "height": 779.015625,
+        "color": "rgba(7, 9, 12, 0.28)",
+        "blur": "blur(10px)"
+      },
+      "meanChannelDifference": 88.99900419287212,
+      "changedFraction": 0.9515723270440252
+    }
+  ]
+}

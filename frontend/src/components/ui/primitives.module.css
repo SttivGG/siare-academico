@@ -1,9 +1,9 @@
-.surface { background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius-panel); box-shadow: var(--shadow); padding: var(--space-6); min-inline-size: 0; backdrop-filter: blur(var(--blur)); }
+.surface { background: var(--glass-paint); border: 1px solid var(--border); border-radius: var(--radius-panel); box-shadow: var(--shadow); padding: var(--space-6); min-inline-size: 0; -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); }
 .iconButton { min-inline-size: var(--target); padding: 10px; }
 .iconButton svg { inline-size: 20px; block-size: 20px; }
-.loading { padding: var(--space-6); border-radius: var(--radius-panel); background: var(--raised); color: var(--muted); }
+.loading { padding: var(--space-6); border-radius: var(--radius-panel); background: var(--glass-paint); border: 1px solid var(--border); box-shadow: var(--shadow); color: var(--muted); }
 .skeleton { display: grid; gap: 12px; margin-block-start: 20px; }
 .skeleton span { block-size: 12px; border-radius: 6px; background: var(--border); }
 .skeleton span:last-child { inline-size: 60%; }
-@supports not (backdrop-filter: blur(1px)) { .surface { background: var(--surface); } }
+.surface .surface { background: var(--glass-secondary); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
 @media (forced-colors: active) { .surface { border-color: CanvasText; box-shadow: none; } }

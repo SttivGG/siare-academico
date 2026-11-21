@@ -1,0 +1,57 @@
+
+> siare-frontend@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ ST-01/02: bank drafts belong to a source and preserve content while provenance invalidates review (33.7047ms)
+✔ ST-03/04/05: independent activity state survives presentation and activity changes (11.4371ms)
+✔ ST-06/07: synchronous lock, lost response and late evaluation retain one exact envelope and original owner (7.1736ms)
+✔ ST-09: encrypted allowlist, unique IV, wrong phrase, tampering, expiry and account binding (695.0897ms)
+✔ ST-09: a recovered frozen envelope remains unresolved until an explicit retry (1.7678ms)
+✔ confirmed attempts persist only a receipt; feedback is fetched and authorized again (3.733ms)
+✔ ST-10: destroying an authenticated controller drops work and ignores a late response (1.7247ms)
+✔ an unresolved original attempt cannot be replaced by recovery, including a late-response window (5.0999ms)
+✔ only the five authorized H3 routes and methods are admitted (2.433ms)
+✔ cursor is validated and large bank limits do not affect auth or submissions (0.8344ms)
+✔ importing validated:true still requires a separate review; factual claims stay editorial (2.959ms)
+✔ invalid bank structures, duplicates, answer keys and oversize fields are rejected (4.7821ms)
+✔ document evidence must reference a real fragment, literal quote, and correct answer (0.878ms)
+✔ Spanish normalization preserves Ñ, crossword intersections share one cell (6.4882ms)
+✔ submission snapshots exclude score and cannot change when answer state is edited (6.0738ms)
+✔ quiz presents real options and navigation without any answer key before evaluation (20.8336ms)
+✔ crossword renders only public cells, numbered clues and keyboard instructions (7.7982ms)
+✔ authorized evaluation renders server score, expected answers and rationale (29.5212ms)
+✔ DT-02: only valid evaluation dates render, consistently in America/Bogota (9.725ms)
+✔ an empty bank starts with publication disabled and no automatic-generation promise (5.1191ms)
+✔ core HTTP 200 / {"status":"UP"} maps to UP (81.5157ms)
+✔ core HTTP 503 / {"status":"DOWN"} maps to DOWN (26.2806ms)
+✔ core HTTP 200 / {"other":"value"} maps to DOWN (9.4799ms)
+✔ core HTTP 200 / invalid json maps to DOWN (15.8079ms)
+✔ missing configuration and invalid URL cannot report UP (0.5323ms)
+✔ identity dates never invent a value and consistently use Bogota across server/browser timezones (40.8817ms)
+✔ upload policy offers all six extensions and rejects empty, legacy and oversized files (2.1041ms)
+✔ document errors distinguish active content, attachments, provenance, corruption and limits without internal messages (0.4902ms)
+✔ multipart requires same origin, CSRF and a bounded valid boundary (46.3334ms)
+✔ actual streaming bytes are limited even without content-length (16.8163ms)
+✔ JSON proxy allows document JSON operations but leaves upload/download to dedicated routes (0.8006ms)
+✔ Nexo fields associate visible labels, hints and errors without erasing supplied constraints (11.3601ms)
+✔ Nexo buttons prevent form submission by default and expose loading and accessible icon names (1.458ms)
+✔ Nexo notices distinguish critical errors and progress never invents a percentage (1.5531ms)
+✔ initial theme accepts only visual enums, runs with storage denied, and never reads identity (6.6585ms)
+✔ callback accepts a bounded code and opaque state, rejects ambiguity and errors (4.9123ms)
+✔ diagnostics accept only fixed internal codes and give actionable account-conflict guidance (0.814ms)
+✔ only configured provider hosts over HTTPS can receive the browser (0.6845ms)
+✔ generic BFF cannot start or complete an OIDC flow with browser-chosen bindings (0.5452ms)
+✔ session cookies are HttpOnly, same-site and secure by configuration (2.7262ms)
+✔ CSRF boundary requires exact origin, custom header, JSON and a same-site request (49.7973ms)
+✔ BFF cannot proxy arbitrary paths or methods (0.6969ms)
+✔ small upload overage is fully consumed before rejection and never forwarded as a successful stream (50.5848ms)
+✔ unbounded upload is cancelled at a finite drain budget (7.3209ms)
+✔ valid upload bytes remain intact (2.3989ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 45
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1072.0565

@@ -1,0 +1,93 @@
+{
+  "health": [
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3100
+    },
+    {
+      "result": {
+        "service": "frontend",
+        "status": "UP"
+      },
+      "port": 3107
+    }
+  ],
+  "branch": "feat/h6-sorvo-global",
+  "hostNormalization": "Only Dns, DnsOptions and DnsSearch changed from [] to null on recreation; reconstructed before hash matches exactly. All remaining HostConfig fields are identical.",
+  "previewConfigurationPreserved": true,
+  "habitual": [
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-frontend-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-core-api-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-content-ai-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-progress-api-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-mysql-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-cassandra-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-redis-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-clickhouse-1"
+    },
+    {
+      "health": "healthy",
+      "unchanged": true,
+      "name": "/siare-academico-mongo-1"
+    }
+  ],
+  "preview": {
+    "id": "e10e8d8c441695fec807e1a8d42b3f2229b0c0ca5d78e3a97ab2ac2db2aa9cb8",
+    "name": "/siare-h6-3-validation-frontend-h6-1",
+    "image": "sha256:ca0266b8179115663532565932a509a57b10fe7d2e014ecfbb559baccd94c6d2",
+    "imageName": "siare-academico-frontend:h6-sorvo-global",
+    "created": "2026-11-21T13:40:19.649780428Z",
+    "started": "2026-11-21T13:40:22.180067769Z",
+    "restarts": 0,
+    "health": "healthy",
+    "project": "siare-h6-3-validation",
+    "service": "frontend-h6",
+    "configHash": "D2561A0CA3C761E4FF5B96EB15D1B716583AFB4C9161D822754ACD22264AD3E6",
+    "envHash": "11D93BE279FF9A27C8C7DC54D0B59C16DA5863FFDC8CB24CA2386F7C4F8AEA52",
+    "hostHash": "D3B309A6E52A53091636C727B08CBE5E8A65DB22B5FBCA24DAB135DCFBD1B3D0",
+    "mountsHash": "4F53CDA18C2BAA0C0354BB5F9A3ECBE5ED12AB4D8E11BA873C2F11161202B945",
+    "networks": [
+      {
+        "name": "siare-academico_edge",
+        "id": "ae1143d43c2c2edbe954d5220176e4dac85abf5ad6ac445b6c5648175397f160"
+      }
+    ]
+  },
+  "mainEnvLogoPhotoPreserved": true,
+  "codeCommit": "ec146fbd5897bd8829a6a42f8b3d4d37c00bfce5",
+  "rollbackImage": "sha256:3884bca1e9738cd2cc29c8c57c3c7c766ec1145c194ad7dd1e93249319207651"
+}

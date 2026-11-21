@@ -1,0 +1,295 @@
+{
+  "method": "Computed semantic tokens against the neutral canvas. Photographic backgrounds and real transmission are checked separately in sorvo-glass.spec.ts; not a complete WCAG audit.",
+  "results": [
+    {
+      "theme": "light",
+      "pairs": [
+        {
+          "front": "on-brand",
+          "back": "brand",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 6.2658169842789615
+        },
+        {
+          "front": "text",
+          "back": "surface",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 15.418631473873115
+        },
+        {
+          "front": "muted",
+          "back": "surface",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 11.305124069311924
+        },
+        {
+          "front": "text",
+          "back": "rose",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 13.099333949000652
+        },
+        {
+          "front": "muted",
+          "back": "rose",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 9.604587525795662
+        },
+        {
+          "front": "text",
+          "back": "mint",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 13.73740247842997
+        },
+        {
+          "front": "muted",
+          "back": "mint",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.072426964214372
+        },
+        {
+          "front": "text",
+          "back": "cream",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 13.763296068521074
+        },
+        {
+          "front": "muted",
+          "back": "cream",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.091412452587699
+        },
+        {
+          "front": "text",
+          "back": "blue-pastel",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 13.500098421282827
+        },
+        {
+          "front": "muted",
+          "back": "blue-pastel",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 9.898432805735036
+        },
+        {
+          "front": "link",
+          "back": "surface",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.79842429704893
+        },
+        {
+          "front": "text",
+          "back": "glass",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 14.743120253044104
+        },
+        {
+          "front": "muted",
+          "back": "glass",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.8098312040129
+        },
+        {
+          "front": "danger",
+          "back": "danger-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 7.146710103476185
+        },
+        {
+          "front": "success",
+          "back": "success-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 8.22669132840846
+        },
+        {
+          "front": "warning",
+          "back": "warning-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 7.960677948947769
+        },
+        {
+          "front": "info",
+          "back": "info-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 8.686974662894476
+        },
+        {
+          "front": "focus",
+          "back": "input",
+          "base": "canvas",
+          "target": 3,
+          "ratio": 10.454148524848353
+        },
+        {
+          "front": "control",
+          "back": "input",
+          "base": "canvas",
+          "target": 3,
+          "ratio": 4.287872578088717
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "pairs": [
+        {
+          "front": "on-brand",
+          "back": "brand",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 6.2658169842789615
+        },
+        {
+          "front": "text",
+          "back": "surface",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 16.75280204789541
+        },
+        {
+          "front": "muted",
+          "back": "surface",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 14.204310871548039
+        },
+        {
+          "front": "text",
+          "back": "rose",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 13.215688247579003
+        },
+        {
+          "front": "muted",
+          "back": "rose",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 11.205274419968363
+        },
+        {
+          "front": "text",
+          "back": "mint",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 12.593960027375697
+        },
+        {
+          "front": "muted",
+          "back": "mint",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.678125535135008
+        },
+        {
+          "front": "text",
+          "back": "cream",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 12.586788674029583
+        },
+        {
+          "front": "muted",
+          "back": "cream",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.672045111573224
+        },
+        {
+          "front": "text",
+          "back": "blue-pastel",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 12.838666976360129
+        },
+        {
+          "front": "muted",
+          "back": "blue-pastel",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.885606860698665
+        },
+        {
+          "front": "link",
+          "back": "surface",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 11.723463699497339
+        },
+        {
+          "front": "text",
+          "back": "glass",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 16.964445142132185
+        },
+        {
+          "front": "muted",
+          "back": "glass",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 14.383758124357493
+        },
+        {
+          "front": "danger",
+          "back": "danger-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.311092551562123
+        },
+        {
+          "front": "success",
+          "back": "success-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 11.322778372228457
+        },
+        {
+          "front": "warning",
+          "back": "warning-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 10.99892208893542
+        },
+        {
+          "front": "info",
+          "back": "info-bg",
+          "base": "canvas",
+          "target": 4.5,
+          "ratio": 11.975587761986452
+        },
+        {
+          "front": "focus",
+          "back": "input",
+          "base": "canvas",
+          "target": 3,
+          "ratio": 11.990209575304597
+        },
+        {
+          "front": "control",
+          "back": "input",
+          "base": "canvas",
+          "target": 3,
+          "ratio": 6.376010550410544
+        }
+      ]
+    }
+  ]
+}
