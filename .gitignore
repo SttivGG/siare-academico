@@ -29,3 +29,17 @@ coverage/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Isolated release checkouts and generated test output
+.worktrees/
+**/coverage/
+**/htmlcov/
+**/.coverage
+**/test-results/
+**/playwright-report/
+**/blob-report/
+
+# Local signing stores (never substitute these for tracked public fixtures)
+*.p12
+*.pfx
+*.keystore

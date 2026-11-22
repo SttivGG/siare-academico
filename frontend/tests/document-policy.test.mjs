@@ -19,6 +19,8 @@ test("document errors distinguish active content, attachments, provenance, corru
 test("multipart requires same origin, CSRF and a bounded valid boundary", () => {
   const headers = new Headers({ origin: "https://siare.test", "x-siare-csrf": "1", "content-type": "multipart/form-data; boundary=----fixture" });
   assert.equal(allowedUpload(headers, "https://siare.test"), true);
+  const emptyOrigin = new Headers(headers); emptyOrigin.set("origin", "");
+  assert.equal(allowedUpload(emptyOrigin, ""), false);
   for (const [key, value] of [["origin", "https://other.test"], ["x-siare-csrf", ""], ["content-type", "application/json"], ["content-type", "multipart/form-data"], ["sec-fetch-site", "cross-site"]]) {
     const altered = new Headers(headers); altered.set(key, value); assert.equal(allowedUpload(altered, "https://siare.test"), false);
   }

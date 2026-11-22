@@ -1,3 +1,4 @@
+import { appOrigin } from "../../../../lib/public-origin";
 import { NextRequest, NextResponse } from "next/server";
 import { mkdtemp, rm, stat } from "node:fs/promises";
 import { createReadStream, createWriteStream } from "node:fs";
@@ -20,7 +21,7 @@ function failure(status: number, code: string, message: string) {
 export async function POST(request: NextRequest, context: Context) {
   const path = (await context.params).path.join("/");
   if (!new RegExp(`^subjects/${uuid}/documents$`, "i").test(path)) return failure(404, "NOT_FOUND", "Ruta no encontrada.");
-  if (!allowedUpload(request.headers, process.env.APP_ORIGIN ?? "http://127.0.0.1:3100")) return failure(403, "CSRF", "La carga requiere un origen válido y multipart/form-data.");
+  if (!allowedUpload(request.headers, appOrigin())) return failure(403, "CSRF", "La carga requiere un origen válido y multipart/form-data.");
   const token = request.cookies.get(sessionName())?.value;
   if (!token) return failure(401, "UNAUTHORIZED", "Inicia sesión para continuar.");
   const maximum = Number(process.env.DOCUMENT_REQUEST_MAX_BYTES ?? Number(process.env.DOCUMENT_MAX_BYTES ?? DEFAULT_MAX_BYTES) + 131072);
@@ -52,7 +53,7 @@ export async function GET(request: NextRequest, context: Context) {
   if (!token) return failure(401, "UNAUTHORIZED", "Inicia sesión para continuar.");
   if (path === "limits") return NextResponse.json({ maxBytes: Number(process.env.DOCUMENT_MAX_BYTES ?? DEFAULT_MAX_BYTES) }, { headers: { "Cache-Control": "no-store" } });
   if (!new RegExp(`^documents/${uuid}/download$`, "i").test(path)) return failure(404, "NOT_FOUND", "Ruta no encontrada.");
-  if (request.headers.get("sec-fetch-site") === "cross-site" || (request.headers.has("origin") && request.headers.get("origin") !== (process.env.APP_ORIGIN ?? "http://127.0.0.1:3100"))) return failure(403, "CSRF", "Origen no permitido.");
+  if (request.headers.get("sec-fetch-site") === "cross-site" || (request.headers.has("origin") && request.headers.get("origin") !== (appOrigin()))) return failure(403, "CSRF", "Origen no permitido.");
   try {
     const upstream = await fetch(`${process.env.CORE_API_URL}/api/v1/${path}`, {
       headers: { Authorization: `Bearer ${token}` }, cache: "no-store", redirect: "error",

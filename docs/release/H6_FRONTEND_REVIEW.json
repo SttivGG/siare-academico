@@ -1,0 +1,1561 @@
+{
+  "method": "AST TypeScript: imports estáticos, export-from e import()/require literal; convención App Router; referencias CSS/assets. Hallazgos léxicos no prueban código muerto.",
+  "sourceFiles": 87,
+  "testFiles": 44,
+  "routes": [
+    "/administracion",
+    "/configuracion/apariencia",
+    "/inicio",
+    "/materias/nueva",
+    "/materias",
+    "/materias/[id]",
+    "/seguridad",
+    "/sesiones",
+    "/login/mfa",
+    "/login",
+    "/",
+    "/recuperar/confirmar",
+    "/recuperar",
+    "/registro",
+    "/sesion/renovar"
+  ],
+  "packages": [
+    "@playwright/test",
+    "next",
+    "node:assert",
+    "node:child_process",
+    "node:crypto",
+    "node:events",
+    "node:fs",
+    "node:http",
+    "node:module",
+    "node:os",
+    "node:path",
+    "node:stream",
+    "node:test",
+    "node:timers",
+    "node:url",
+    "node:vm",
+    "qrcode",
+    "react",
+    "react-dom",
+    "server-only",
+    "tailwindcss",
+    "typescript"
+  ],
+  "filesWithoutInboundImport": [],
+  "assets": [
+    {
+      "path": "public/fonts/OFL-Urbanist.txt",
+      "consumers": [],
+      "review": "sin consumidor estático; conservar árbol aprobado y procedencia hasta revisión visual/funcional"
+    },
+    {
+      "path": "public/fonts/urbanist-latin.woff2",
+      "consumers": [
+        "src/styles/tokens.css"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/collaborative-thumb.webp",
+      "consumers": [
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/collaborative.webp",
+      "consumers": [
+        "src/app/globals.css",
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/education-thumb.webp",
+      "consumers": [
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/library-thumb.webp",
+      "consumers": [
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/library.webp",
+      "consumers": [
+        "src/app/globals.css",
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/minimal-thumb.webp",
+      "consumers": [
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/minimal.webp",
+      "consumers": [
+        "src/app/globals.css",
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/reading-thumb.webp",
+      "consumers": [
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/backgrounds/reading.webp",
+      "consumers": [
+        "src/app/globals.css",
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/siare-logo-clean.png",
+      "consumers": [
+        "src/app/page.tsx"
+      ],
+      "review": "conservar: consumidor encontrado"
+    },
+    {
+      "path": "public/images/siare-logo.png",
+      "consumers": [],
+      "review": "sin consumidor estático; conservar árbol aprobado y procedencia hasta revisión visual/funcional"
+    },
+    {
+      "path": "public/images/study-background.webp",
+      "consumers": [
+        "src/app/globals.css",
+        "src/components/landing.module.css",
+        "src/lib/appearance.ts"
+      ],
+      "review": "conservar: consumidor encontrado"
+    }
+  ],
+  "css": [
+    {
+      "path": "src/app/globals.css",
+      "classCandidates": [
+        "welcome-content",
+        "welcome-note",
+        "sessions-list",
+        "home-feature",
+        "feature-mark",
+        "phase-note",
+        "list-toolbar",
+        "workspace-grid",
+        "quiet-panel",
+        "confirm-box",
+        "security-panel",
+        "learning-grid",
+        "learning-card",
+        "future-indicators",
+        "future-activities",
+        "workspace-jumps"
+      ],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/appearance-settings.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/landing.module.css",
+      "classCandidates": [],
+      "tokens": [
+        "--landing-glass"
+      ],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/layout/navigation.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/layout/overview.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/layout/shells.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/ui/dialog.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/ui/primitives.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/ui/sections.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/components/ui/theme-control.module.css",
+      "classCandidates": [],
+      "tokens": [],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    },
+    {
+      "path": "src/styles/tokens.css",
+      "classCandidates": [
+        "woff2"
+      ],
+      "tokens": [
+        "--space-1",
+        "--space-2",
+        "--space-3",
+        "--space-5",
+        "--space-8",
+        "--space-10",
+        "--space-12",
+        "--glass",
+        "--glass-edge",
+        "--accent-hover",
+        "--nexo-orange",
+        "--nexo-ink"
+      ],
+      "review": "solo candidatos léxicos: variantes, media queries, clases compuestas y estado dinámico requieren revisión; no se borró CSS"
+    }
+  ],
+  "edges": [
+    {
+      "from": "src/app/(student)/administracion/loading.tsx",
+      "specifier": "../../../components/ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/app/(student)/administracion/page.tsx",
+      "specifier": "../../../components/administration-panel",
+      "kind": "static",
+      "target": "src/components/administration-panel.tsx"
+    },
+    {
+      "from": "src/app/(student)/administracion/page.tsx",
+      "specifier": "../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/(student)/administracion/page.tsx",
+      "specifier": "../../../components/ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/app/(student)/configuracion/apariencia/page.tsx",
+      "specifier": "../../../../components/appearance-settings",
+      "kind": "static",
+      "target": "src/components/appearance-settings.tsx"
+    },
+    {
+      "from": "src/app/(student)/inicio/page.tsx",
+      "specifier": "../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/(student)/inicio/page.tsx",
+      "specifier": "../../../components/ui/icon",
+      "kind": "static",
+      "target": "src/components/ui/icon.tsx"
+    },
+    {
+      "from": "src/app/(student)/inicio/page.tsx",
+      "specifier": "../../../components/layout/overview.module.css",
+      "kind": "static",
+      "target": "src/components/layout/overview.module.css"
+    },
+    {
+      "from": "src/app/(student)/layout.tsx",
+      "specifier": "../../components/layout/app-shell",
+      "kind": "static",
+      "target": "src/components/layout/app-shell.tsx"
+    },
+    {
+      "from": "src/app/(student)/layout.tsx",
+      "specifier": "../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/(student)/layout.tsx",
+      "specifier": "../../components/academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/app/(student)/materias/nueva/page.tsx",
+      "specifier": "../../../../components/subject-form",
+      "kind": "static",
+      "target": "src/components/subject-form.tsx"
+    },
+    {
+      "from": "src/app/(student)/materias/page.tsx",
+      "specifier": "../../../components/subjects-list",
+      "kind": "static",
+      "target": "src/components/subjects-list.tsx"
+    },
+    {
+      "from": "src/app/(student)/materias/[id]/page.tsx",
+      "specifier": "../../../../components/subject-workspace",
+      "kind": "static",
+      "target": "src/components/subject-workspace.tsx"
+    },
+    {
+      "from": "src/app/(student)/seguridad/page.tsx",
+      "specifier": "../../../components/mfa-panel",
+      "kind": "static",
+      "target": "src/components/mfa-panel.tsx"
+    },
+    {
+      "from": "src/app/(student)/seguridad/page.tsx",
+      "specifier": "../../../components/connected-identities",
+      "kind": "static",
+      "target": "src/components/connected-identities.tsx"
+    },
+    {
+      "from": "src/app/(student)/seguridad/page.tsx",
+      "specifier": "../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/(student)/seguridad/page.tsx",
+      "specifier": "../../../components/ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/app/(student)/seguridad/page.tsx",
+      "specifier": "../../../components/ui/sections.module.css",
+      "kind": "static",
+      "target": "src/components/ui/sections.module.css"
+    },
+    {
+      "from": "src/app/(student)/sesiones/loading.tsx",
+      "specifier": "../../../components/ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/app/(student)/sesiones/page.tsx",
+      "specifier": "../../../components/sessions-panel",
+      "kind": "static",
+      "target": "src/components/sessions-panel.tsx"
+    },
+    {
+      "from": "src/app/api/bff/[...path]/route.ts",
+      "specifier": "../../../../lib/public-origin",
+      "kind": "static",
+      "target": "src/lib/public-origin.ts"
+    },
+    {
+      "from": "src/app/api/bff/[...path]/route.ts",
+      "specifier": "../../../../lib/activity-policy",
+      "kind": "static",
+      "target": "src/lib/activity-policy.ts"
+    },
+    {
+      "from": "src/app/api/bff/[...path]/route.ts",
+      "specifier": "../../../../lib/session-policy",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "src/app/api/bff/[...path]/route.ts",
+      "specifier": "../../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/api/files/[...path]/route.ts",
+      "specifier": "../../../../lib/public-origin",
+      "kind": "static",
+      "target": "src/lib/public-origin.ts"
+    },
+    {
+      "from": "src/app/api/files/[...path]/route.ts",
+      "specifier": "../../../../lib/document-policy",
+      "kind": "static",
+      "target": "src/lib/document-policy.ts"
+    },
+    {
+      "from": "src/app/api/files/[...path]/route.ts",
+      "specifier": "../../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/api/health/route.ts",
+      "specifier": "../../../lib/server-health",
+      "kind": "static",
+      "target": "src/lib/server-health.ts"
+    },
+    {
+      "from": "src/app/api/oidc/callback/[provider]/route.ts",
+      "specifier": "../../../../../lib/oidc-policy",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "src/app/api/oidc/callback/[provider]/route.ts",
+      "specifier": "../../../../../lib/oidc-server",
+      "kind": "static",
+      "target": "src/lib/oidc-server.ts"
+    },
+    {
+      "from": "src/app/api/oidc/callback/[provider]/route.ts",
+      "specifier": "../../../../../lib/public-origin",
+      "kind": "static",
+      "target": "src/lib/public-origin.ts"
+    },
+    {
+      "from": "src/app/api/oidc/callback/[provider]/route.ts",
+      "specifier": "../../../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/api/oidc/callback/[provider]/route.ts",
+      "specifier": "../../../../../lib/session-policy",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "src/app/api/oidc/start/route.ts",
+      "specifier": "../../../../lib/session-policy",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "src/app/api/oidc/start/route.ts",
+      "specifier": "../../../../lib/server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/app/api/oidc/start/route.ts",
+      "specifier": "../../../../lib/oidc-policy",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "src/app/api/oidc/start/route.ts",
+      "specifier": "../../../../lib/oidc-server",
+      "kind": "static",
+      "target": "src/lib/oidc-server.ts"
+    },
+    {
+      "from": "src/app/error.tsx",
+      "specifier": "../components/layout/feedback-shell",
+      "kind": "static",
+      "target": "src/components/layout/feedback-shell.tsx"
+    },
+    {
+      "from": "src/app/error.tsx",
+      "specifier": "../components/ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/app/globals.css",
+      "specifier": "../styles/tokens.css",
+      "kind": "static",
+      "target": "src/styles/tokens.css"
+    },
+    {
+      "from": "src/app/layout.tsx",
+      "specifier": "./globals.css",
+      "kind": "static",
+      "target": "src/app/globals.css"
+    },
+    {
+      "from": "src/app/layout.tsx",
+      "specifier": "../lib/theme",
+      "kind": "static",
+      "target": "src/lib/theme.ts"
+    },
+    {
+      "from": "src/app/layout.tsx",
+      "specifier": "../lib/appearance",
+      "kind": "static",
+      "target": "src/lib/appearance.ts"
+    },
+    {
+      "from": "src/app/layout.tsx",
+      "specifier": "../components/appearance-sync",
+      "kind": "static",
+      "target": "src/components/appearance-sync.tsx"
+    },
+    {
+      "from": "src/app/login/mfa/page.tsx",
+      "specifier": "../../../components/layout/auth-shell",
+      "kind": "static",
+      "target": "src/components/layout/auth-shell.tsx"
+    },
+    {
+      "from": "src/app/login/mfa/page.tsx",
+      "specifier": "../../../components/mfa-panel",
+      "kind": "static",
+      "target": "src/components/mfa-panel.tsx"
+    },
+    {
+      "from": "src/app/login/page.tsx",
+      "specifier": "../../components/layout/auth-shell",
+      "kind": "static",
+      "target": "src/components/layout/auth-shell.tsx"
+    },
+    {
+      "from": "src/app/login/page.tsx",
+      "specifier": "../../components/federated-login",
+      "kind": "static",
+      "target": "src/components/federated-login.tsx"
+    },
+    {
+      "from": "src/app/login/page.tsx",
+      "specifier": "../../lib/oidc-policy",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "src/app/login/page.tsx",
+      "specifier": "../../components/auth-form",
+      "kind": "static",
+      "target": "src/components/auth-form.tsx"
+    },
+    {
+      "from": "src/app/not-found.tsx",
+      "specifier": "../components/layout/feedback-shell",
+      "kind": "static",
+      "target": "src/components/layout/feedback-shell.tsx"
+    },
+    {
+      "from": "src/app/page.tsx",
+      "specifier": "../../public/images/siare-logo-clean.png",
+      "kind": "static",
+      "target": "public/images/siare-logo-clean.png"
+    },
+    {
+      "from": "src/app/page.tsx",
+      "specifier": "../components/landing-access",
+      "kind": "static",
+      "target": "src/components/landing-access.tsx"
+    },
+    {
+      "from": "src/app/page.tsx",
+      "specifier": "../components/ui/theme-control",
+      "kind": "static",
+      "target": "src/components/ui/theme-control.tsx"
+    },
+    {
+      "from": "src/app/page.tsx",
+      "specifier": "../lib/server-health",
+      "kind": "static",
+      "target": "src/lib/server-health.ts"
+    },
+    {
+      "from": "src/app/page.tsx",
+      "specifier": "../components/ui/icon",
+      "kind": "static",
+      "target": "src/components/ui/icon.tsx"
+    },
+    {
+      "from": "src/app/page.tsx",
+      "specifier": "../components/landing.module.css",
+      "kind": "static",
+      "target": "src/components/landing.module.css"
+    },
+    {
+      "from": "src/app/recuperar/confirmar/page.tsx",
+      "specifier": "../../../components/layout/auth-shell",
+      "kind": "static",
+      "target": "src/components/layout/auth-shell.tsx"
+    },
+    {
+      "from": "src/app/recuperar/confirmar/page.tsx",
+      "specifier": "../../../components/password-recovery-form",
+      "kind": "static",
+      "target": "src/components/password-recovery-form.tsx"
+    },
+    {
+      "from": "src/app/recuperar/page.tsx",
+      "specifier": "../../components/layout/auth-shell",
+      "kind": "static",
+      "target": "src/components/layout/auth-shell.tsx"
+    },
+    {
+      "from": "src/app/recuperar/page.tsx",
+      "specifier": "../../components/password-recovery-form",
+      "kind": "static",
+      "target": "src/components/password-recovery-form.tsx"
+    },
+    {
+      "from": "src/app/registro/page.tsx",
+      "specifier": "../../components/layout/auth-shell",
+      "kind": "static",
+      "target": "src/components/layout/auth-shell.tsx"
+    },
+    {
+      "from": "src/app/registro/page.tsx",
+      "specifier": "../../components/auth-form",
+      "kind": "static",
+      "target": "src/components/auth-form.tsx"
+    },
+    {
+      "from": "src/app/registro/page.tsx",
+      "specifier": "../../components/federated-login",
+      "kind": "static",
+      "target": "src/components/federated-login.tsx"
+    },
+    {
+      "from": "src/app/sesion/renovar/page.tsx",
+      "specifier": "../../../components/layout/auth-shell",
+      "kind": "static",
+      "target": "src/components/layout/auth-shell.tsx"
+    },
+    {
+      "from": "src/app/sesion/renovar/page.tsx",
+      "specifier": "../../../components/session-renewal",
+      "kind": "static",
+      "target": "src/components/session-renewal.tsx"
+    },
+    {
+      "from": "src/components/academic-provider.tsx",
+      "specifier": "../lib/academic-state",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "src/components/academic-provider.tsx",
+      "specifier": "../lib/academic-recovery-session",
+      "kind": "static",
+      "target": "src/lib/academic-recovery-session.ts"
+    },
+    {
+      "from": "src/components/academic-provider.tsx",
+      "specifier": "../lib/academic-recovery",
+      "kind": "static",
+      "target": "src/lib/academic-recovery.ts"
+    },
+    {
+      "from": "src/components/academic-provider.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/academic-provider.tsx",
+      "specifier": "./ui/dialog",
+      "kind": "static",
+      "target": "src/components/ui/dialog.tsx"
+    },
+    {
+      "from": "src/components/academic-reading.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/academic-reading.tsx",
+      "specifier": "../lib/activities",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "../lib/academic-state",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "../lib/academic-recovery",
+      "kind": "static",
+      "target": "src/lib/academic-recovery.ts"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "../lib/activities",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "./subject-documents",
+      "kind": "static",
+      "target": "src/components/subject-documents.tsx"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/academic-recovery.tsx",
+      "specifier": "./ui/dialog",
+      "kind": "static",
+      "target": "src/components/ui/dialog.tsx"
+    },
+    {
+      "from": "src/components/activity-bank-editor.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/activity-bank-editor.tsx",
+      "specifier": "../lib/academic-state",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "src/components/activity-bank-editor.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/activity-bank-editor.tsx",
+      "specifier": "../lib/activities",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "../lib/activity-policy",
+      "kind": "static",
+      "target": "src/lib/activity-policy.ts"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "../lib/activities",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "./activity-bank-editor",
+      "kind": "static",
+      "target": "src/components/activity-bank-editor.tsx"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "./activity-player",
+      "kind": "static",
+      "target": "src/components/activity-player.tsx"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/activity-panel.tsx",
+      "specifier": "./academic-reading",
+      "kind": "static",
+      "target": "src/components/academic-reading.tsx"
+    },
+    {
+      "from": "src/components/activity-player.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/activity-player.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/activity-player.tsx",
+      "specifier": "../lib/activities",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/components/administration-panel.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/administration-panel.tsx",
+      "specifier": "../lib/display-date",
+      "kind": "static",
+      "target": "src/lib/display-date.ts"
+    },
+    {
+      "from": "src/components/administration-panel.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/administration-panel.tsx",
+      "specifier": "./ui/confirm-dialog",
+      "kind": "static",
+      "target": "src/components/ui/confirm-dialog.tsx"
+    },
+    {
+      "from": "src/components/administration-panel.tsx",
+      "specifier": "./ui/sections.module.css",
+      "kind": "static",
+      "target": "src/components/ui/sections.module.css"
+    },
+    {
+      "from": "src/components/appearance-settings.tsx",
+      "specifier": "../lib/appearance",
+      "kind": "static",
+      "target": "src/lib/appearance.ts"
+    },
+    {
+      "from": "src/components/appearance-settings.tsx",
+      "specifier": "../lib/appearance-store",
+      "kind": "static",
+      "target": "src/lib/appearance-store.ts"
+    },
+    {
+      "from": "src/components/appearance-settings.tsx",
+      "specifier": "./ui/theme-control",
+      "kind": "static",
+      "target": "src/components/ui/theme-control.tsx"
+    },
+    {
+      "from": "src/components/appearance-settings.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/appearance-settings.tsx",
+      "specifier": "./ui/icon",
+      "kind": "static",
+      "target": "src/components/ui/icon.tsx"
+    },
+    {
+      "from": "src/components/appearance-settings.tsx",
+      "specifier": "./appearance-settings.module.css",
+      "kind": "static",
+      "target": "src/components/appearance-settings.module.css"
+    },
+    {
+      "from": "src/components/appearance-sync.tsx",
+      "specifier": "../lib/appearance-store",
+      "kind": "static",
+      "target": "src/lib/appearance-store.ts"
+    },
+    {
+      "from": "src/components/auth-form.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/auth-form.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/connected-identities.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/connected-identities.tsx",
+      "specifier": "./federated-login",
+      "kind": "static",
+      "target": "src/components/federated-login.tsx"
+    },
+    {
+      "from": "src/components/connected-identities.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/connected-identities.tsx",
+      "specifier": "./ui/confirm-dialog",
+      "kind": "static",
+      "target": "src/components/ui/confirm-dialog.tsx"
+    },
+    {
+      "from": "src/components/connected-identities.tsx",
+      "specifier": "../lib/display-date",
+      "kind": "static",
+      "target": "src/lib/display-date.ts"
+    },
+    {
+      "from": "src/components/connected-identities.tsx",
+      "specifier": "./ui/sections.module.css",
+      "kind": "static",
+      "target": "src/components/ui/sections.module.css"
+    },
+    {
+      "from": "src/components/federated-login.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/federated-login.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/federated-login.tsx",
+      "specifier": "../lib/oidc-policy",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "src/components/federated-login.tsx",
+      "specifier": "../lib/oidc-policy",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "src/components/landing-access.tsx",
+      "specifier": "./auth-form",
+      "kind": "static",
+      "target": "src/components/auth-form.tsx"
+    },
+    {
+      "from": "src/components/landing-access.tsx",
+      "specifier": "./federated-login",
+      "kind": "static",
+      "target": "src/components/federated-login.tsx"
+    },
+    {
+      "from": "src/components/landing-access.tsx",
+      "specifier": "./landing.module.css",
+      "kind": "static",
+      "target": "src/components/landing.module.css"
+    },
+    {
+      "from": "src/components/layout/app-shell.tsx",
+      "specifier": "../student-nav",
+      "kind": "static",
+      "target": "src/components/student-nav.tsx"
+    },
+    {
+      "from": "src/components/layout/app-shell.tsx",
+      "specifier": "./shells.module.css",
+      "kind": "static",
+      "target": "src/components/layout/shells.module.css"
+    },
+    {
+      "from": "src/components/layout/auth-shell.tsx",
+      "specifier": "../ui/theme-control",
+      "kind": "static",
+      "target": "src/components/ui/theme-control.tsx"
+    },
+    {
+      "from": "src/components/layout/auth-shell.tsx",
+      "specifier": "./shells.module.css",
+      "kind": "static",
+      "target": "src/components/layout/shells.module.css"
+    },
+    {
+      "from": "src/components/layout/feedback-shell.tsx",
+      "specifier": "../ui/theme-control",
+      "kind": "static",
+      "target": "src/components/ui/theme-control.tsx"
+    },
+    {
+      "from": "src/components/layout/feedback-shell.tsx",
+      "specifier": "../ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/layout/workspace-shell.tsx",
+      "specifier": "../ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/layout/workspace-shell.tsx",
+      "specifier": "./shells.module.css",
+      "kind": "static",
+      "target": "src/components/layout/shells.module.css"
+    },
+    {
+      "from": "src/components/mfa-panel.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/mfa-panel.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/mfa-panel.tsx",
+      "specifier": "./ui/confirm-dialog",
+      "kind": "static",
+      "target": "src/components/ui/confirm-dialog.tsx"
+    },
+    {
+      "from": "src/components/mfa-panel.tsx",
+      "specifier": "./ui/sections.module.css",
+      "kind": "static",
+      "target": "src/components/ui/sections.module.css"
+    },
+    {
+      "from": "src/components/password-recovery-form.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/password-recovery-form.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/session-renewal.tsx",
+      "specifier": "../lib/renew-session",
+      "kind": "static",
+      "target": "src/lib/renew-session.ts"
+    },
+    {
+      "from": "src/components/session-renewal.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/sessions-panel.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/sessions-panel.tsx",
+      "specifier": "../lib/display-date",
+      "kind": "static",
+      "target": "src/lib/display-date.ts"
+    },
+    {
+      "from": "src/components/sessions-panel.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/sessions-panel.tsx",
+      "specifier": "./ui/confirm-dialog",
+      "kind": "static",
+      "target": "src/components/ui/confirm-dialog.tsx"
+    },
+    {
+      "from": "src/components/sessions-panel.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/sessions-panel.tsx",
+      "specifier": "./ui/sections.module.css",
+      "kind": "static",
+      "target": "src/components/ui/sections.module.css"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "../lib/appearance-store",
+      "kind": "static",
+      "target": "src/lib/appearance-store.ts"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "./ui/icon",
+      "kind": "static",
+      "target": "src/components/ui/icon.tsx"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "./ui/theme-control",
+      "kind": "static",
+      "target": "src/components/ui/theme-control.tsx"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "./layout/navigation.module.css",
+      "kind": "static",
+      "target": "src/components/layout/navigation.module.css"
+    },
+    {
+      "from": "src/components/student-nav.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/subject-documents.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/subject-documents.tsx",
+      "specifier": "../lib/renew-session",
+      "kind": "static",
+      "target": "src/lib/renew-session.ts"
+    },
+    {
+      "from": "src/components/subject-documents.tsx",
+      "specifier": "../lib/document-policy",
+      "kind": "static",
+      "target": "src/lib/document-policy.ts"
+    },
+    {
+      "from": "src/components/subject-form.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/subject-form.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./layout/workspace-shell",
+      "kind": "static",
+      "target": "src/components/layout/workspace-shell.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./ui/dialog",
+      "kind": "static",
+      "target": "src/components/ui/dialog.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./subject-form",
+      "kind": "static",
+      "target": "src/components/subject-form.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./activity-panel",
+      "kind": "static",
+      "target": "src/components/activity-panel.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "../lib/activities",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./academic-provider",
+      "kind": "static",
+      "target": "src/components/academic-provider.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./academic-recovery",
+      "kind": "static",
+      "target": "src/components/academic-recovery.tsx"
+    },
+    {
+      "from": "src/components/subject-workspace.tsx",
+      "specifier": "./subject-documents",
+      "kind": "static",
+      "target": "src/components/subject-documents.tsx"
+    },
+    {
+      "from": "src/components/subjects-list.tsx",
+      "specifier": "../lib/api",
+      "kind": "static",
+      "target": "src/lib/api.ts"
+    },
+    {
+      "from": "src/components/subjects-list.tsx",
+      "specifier": "./ui/primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/subjects-list.tsx",
+      "specifier": "./ui/sections.module.css",
+      "kind": "static",
+      "target": "src/components/ui/sections.module.css"
+    },
+    {
+      "from": "src/components/subjects-list.tsx",
+      "specifier": "./layout/overview.module.css",
+      "kind": "static",
+      "target": "src/components/layout/overview.module.css"
+    },
+    {
+      "from": "src/components/ui/confirm-dialog.tsx",
+      "specifier": "./dialog",
+      "kind": "static",
+      "target": "src/components/ui/dialog.tsx"
+    },
+    {
+      "from": "src/components/ui/confirm-dialog.tsx",
+      "specifier": "./primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/ui/dialog.tsx",
+      "specifier": "./primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/ui/dialog.tsx",
+      "specifier": "./dialog.module.css",
+      "kind": "static",
+      "target": "src/components/ui/dialog.module.css"
+    },
+    {
+      "from": "src/components/ui/primitives.tsx",
+      "specifier": "./primitives.module.css",
+      "kind": "static",
+      "target": "src/components/ui/primitives.module.css"
+    },
+    {
+      "from": "src/components/ui/theme-control.tsx",
+      "specifier": "../../lib/theme",
+      "kind": "static",
+      "target": "src/lib/theme.ts"
+    },
+    {
+      "from": "src/components/ui/theme-control.tsx",
+      "specifier": "../../lib/appearance-store",
+      "kind": "static",
+      "target": "src/lib/appearance-store.ts"
+    },
+    {
+      "from": "src/components/ui/theme-control.tsx",
+      "specifier": "./primitives",
+      "kind": "static",
+      "target": "src/components/ui/primitives.tsx"
+    },
+    {
+      "from": "src/components/ui/theme-control.tsx",
+      "specifier": "./theme-control.module.css",
+      "kind": "static",
+      "target": "src/components/ui/theme-control.module.css"
+    },
+    {
+      "from": "src/lib/academic-recovery-session.ts",
+      "specifier": "./academic-state.ts",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "src/lib/academic-recovery-session.ts",
+      "specifier": "./academic-recovery.ts",
+      "kind": "static",
+      "target": "src/lib/academic-recovery.ts"
+    },
+    {
+      "from": "src/lib/academic-recovery-session.ts",
+      "specifier": "./activities.ts",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/lib/academic-recovery.ts",
+      "specifier": "./academic-state.ts",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "src/lib/academic-recovery.ts",
+      "specifier": "./activities.ts",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/lib/academic-state.ts",
+      "specifier": "./activities.ts",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "src/lib/api.ts",
+      "specifier": "./renew-session",
+      "kind": "static",
+      "target": "src/lib/renew-session.ts"
+    },
+    {
+      "from": "src/lib/appearance-store.ts",
+      "specifier": "./appearance",
+      "kind": "static",
+      "target": "src/lib/appearance.ts"
+    },
+    {
+      "from": "src/lib/appearance-store.ts",
+      "specifier": "./theme",
+      "kind": "static",
+      "target": "src/lib/theme.ts"
+    },
+    {
+      "from": "src/lib/oidc-server.ts",
+      "specifier": "./session-policy",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "src/lib/oidc-server.ts",
+      "specifier": "./server-session",
+      "kind": "static",
+      "target": "src/lib/server-session.ts"
+    },
+    {
+      "from": "src/lib/oidc-server.ts",
+      "specifier": "./oidc-policy",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "src/lib/oidc-server.ts",
+      "specifier": "./public-origin",
+      "kind": "static",
+      "target": "src/lib/public-origin.ts"
+    },
+    {
+      "from": "src/lib/oidc-server.ts",
+      "specifier": "./public-origin",
+      "kind": "static",
+      "target": "src/lib/public-origin.ts"
+    },
+    {
+      "from": "src/lib/server-health.ts",
+      "specifier": "./core-health",
+      "kind": "static",
+      "target": "src/lib/core-health.ts"
+    },
+    {
+      "from": "tests/academic-state.test.mjs",
+      "specifier": "../src/lib/academic-state.ts",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "tests/academic-state.test.mjs",
+      "specifier": "../src/lib/academic-recovery.ts",
+      "kind": "static",
+      "target": "src/lib/academic-recovery.ts"
+    },
+    {
+      "from": "tests/activities.test.mjs",
+      "specifier": "../src/lib/activities.ts",
+      "kind": "static",
+      "target": "src/lib/activities.ts"
+    },
+    {
+      "from": "tests/activities.test.mjs",
+      "specifier": "../src/lib/activity-policy.ts",
+      "kind": "static",
+      "target": "src/lib/activity-policy.ts"
+    },
+    {
+      "from": "tests/activity-components.test.mjs",
+      "specifier": "../src/lib/academic-state.ts",
+      "kind": "static",
+      "target": "src/lib/academic-state.ts"
+    },
+    {
+      "from": "tests/appearance.test.mjs",
+      "specifier": "../src/lib/appearance.ts",
+      "kind": "static",
+      "target": "src/lib/appearance.ts"
+    },
+    {
+      "from": "tests/core-health.test.mjs",
+      "specifier": "../src/lib/core-health.ts",
+      "kind": "static",
+      "target": "src/lib/core-health.ts"
+    },
+    {
+      "from": "tests/display-date.test.mjs",
+      "specifier": "../src/lib/display-date.ts",
+      "kind": "static",
+      "target": "src/lib/display-date.ts"
+    },
+    {
+      "from": "tests/document-policy.test.mjs",
+      "specifier": "../src/lib/document-policy.ts",
+      "kind": "static",
+      "target": "src/lib/document-policy.ts"
+    },
+    {
+      "from": "tests/document-policy.test.mjs",
+      "specifier": "../src/lib/session-policy.ts",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "tests/e2e/appearance.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/cuaderno.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/cuaderno.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/identity.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/mfa.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/nexo.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/origin.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/e2e/phase-one.spec.ts",
+      "specifier": "./navigation",
+      "kind": "static",
+      "target": "tests/e2e/navigation.ts"
+    },
+    {
+      "from": "tests/nexo-components.test.mjs",
+      "specifier": "../src/lib/theme.ts",
+      "kind": "static",
+      "target": "src/lib/theme.ts"
+    },
+    {
+      "from": "tests/oidc-policy.test.mjs",
+      "specifier": "../src/lib/oidc-policy.ts",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "tests/oidc-policy.test.mjs",
+      "specifier": "../src/lib/session-policy.ts",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "tests/public-origin.test.mjs",
+      "specifier": "../src/lib/public-origin.ts",
+      "kind": "static",
+      "target": "src/lib/public-origin.ts"
+    },
+    {
+      "from": "tests/public-origin.test.mjs",
+      "specifier": "../src/lib/oidc-policy.ts",
+      "kind": "static",
+      "target": "src/lib/oidc-policy.ts"
+    },
+    {
+      "from": "tests/session-policy.test.mjs",
+      "specifier": "../src/lib/session-policy.ts",
+      "kind": "static",
+      "target": "src/lib/session-policy.ts"
+    },
+    {
+      "from": "tests/upload-rejection.test.mjs",
+      "specifier": "../src/lib/document-policy.ts",
+      "kind": "static",
+      "target": "src/lib/document-policy.ts"
+    }
+  ]
+}

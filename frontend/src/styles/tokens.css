@@ -1,0 +1,156 @@
+/* SIARE H6: neutral photographic glass shared by public and academic flows. */
+@font-face { font-family: Urbanist; src: url("/fonts/urbanist-latin.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+:root {
+  color-scheme: light dark;
+  --canvas: #f0f1f2;
+  --text: #202124;
+  --muted: #34383d;
+  --faint: #555b63;
+  --link: #642908;
+  --focus: #642908;
+  --border: rgb(32 34 38 / .23);
+  --control: #72757a;
+  --hover: rgb(0 0 0 / .055);
+  --selected: rgb(245 129 54 / .16);
+  --raised: rgb(255 255 255 / .48);
+  --glass-primary: rgb(255 255 255 / var(--appearance-opacity, .28));
+  --glass-secondary: rgb(255 255 255 / max(.20, calc(var(--appearance-opacity, .28) - .08)));
+  --glass-navigation: rgb(255 255 255 / max(.56, calc(var(--appearance-opacity, .28) + .28)));
+  --glass-form: rgb(255 255 255 / .38);
+  --glass-reading: rgb(250 251 252 / .91);
+  --glass-modal: rgb(248 249 250 / .86);
+  --glass-fallback: #f2f3f4;
+  --glass-reflection: rgb(255 255 255 / .65);
+  --glass-glint: rgb(255 255 255 / .22);
+  --glass-shadow: rgb(0 0 0 / .22);
+  --scene-start: rgb(244 244 244 / clamp(0.84, calc(.88 + var(--appearance-veil, 0) * .24), 0.99));
+  --scene-middle: rgb(244 244 244 / max(var(--scene-light-middle-min, 0), clamp(0.68, calc(.72 + var(--appearance-veil, 0) * .24), 0.92)));
+  --scene-end: rgb(244 244 244 / max(var(--scene-light-end-min, 0), clamp(0.38, calc(.42 + var(--appearance-veil, 0) * .24), 0.62)));
+  --rose: rgb(247 213 192 / .42);
+  --mint: rgb(211 238 224 / .42);
+  --cream: rgb(244 231 204 / .42);
+  --blue-pastel: rgb(214 229 242 / .42);
+  --success: #28513b;
+  --success-bg: rgb(235 248 240 / .93);
+  --info: #34465c;
+  --info-bg: rgb(237 244 251 / .93);
+  --warning: #70400d;
+  --warning-bg: rgb(255 245 224 / .93);
+  --danger: #902d39;
+  --danger-bg: rgb(255 238 240 / .93);
+  --font: Urbanist, system-ui, sans-serif; --font-sans: var(--font);
+  --brand: #f58136; --brand-hover: #ff954f; --on-brand: #202020;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px;
+  --radius-sm: 8px; --radius-control: 12px; --radius-panel: 22px; --radius-rail: 28px;
+  --rail-width: 72px; --header-height: 56px; --target: 44px;
+  --blur: var(--appearance-blur, 10px); --blur-navigation: var(--appearance-navigation-blur, 12px);
+  --duration-fast: 140ms; --duration: 220ms; --ease: cubic-bezier(.2,.7,.2,1);
+  --in-oklab: ;
+  --glass-paint: linear-gradient(135deg var(--in-oklab), var(--glass-glint), transparent 42%) var(--glass-primary);
+  --shadow: inset 0 1px 0 var(--glass-reflection), inset 1px 0 0 var(--glass-glint), 0 18px 48px -24px var(--glass-shadow);
+  /* Existing component names share the same semantic surfaces. */
+  --glass: var(--glass-primary); --rail: var(--glass-navigation); --input: var(--glass-form); --surface: var(--glass-reading);
+  --glass-edge: var(--glass-reflection);
+  --color-background: var(--canvas); --color-foreground: var(--text); --color-muted: var(--muted); --color-border: var(--border);
+  --accent: var(--link); --accent-hover: var(--focus); --soft: var(--selected); --danger-soft: var(--danger-bg); --success-soft: var(--success-bg);
+  --nexo-orange: var(--brand); --nexo-ink: var(--on-brand); --nexo-mint: var(--mint); --nexo-rose: var(--rose); --nexo-blue: var(--blue-pastel);
+}
+:root[data-theme=dark] {
+  color-scheme: dark;
+  --canvas: #15181c;
+  --text: #f5f5f5;
+  --muted: #e1e3e6;
+  --faint: #c4c8ce;
+  --link: #ffc393;
+  --focus: #ffc393;
+  --border: rgb(255 255 255 / .22);
+  --control: #93979f;
+  --hover: rgb(255 255 255 / .08);
+  --selected: rgb(245 129 54 / .18);
+  --raised: rgb(255 255 255 / .09);
+  --glass-primary: rgb(7 9 12 / var(--appearance-opacity, .28));
+  --glass-secondary: rgb(7 9 12 / max(.20, calc(var(--appearance-opacity, .28) - .08)));
+  --glass-navigation: rgb(10 13 17 / max(.56, calc(var(--appearance-opacity, .28) + .28)));
+  --glass-form: rgb(7 9 12 / .36);
+  --glass-reading: rgb(18 21 25 / .91);
+  --glass-modal: rgb(22 25 29 / .86);
+  --glass-fallback: #17191d;
+  --glass-reflection: rgb(255 255 255 / .12);
+  --glass-glint: rgb(255 255 255 / .065);
+  --glass-shadow: rgb(0 0 0 / .38);
+  --scene-start: rgb(12 18 24 / clamp(0.74, calc(.78 + var(--appearance-veil, 0) * .24), 0.98));
+  --scene-middle: rgb(12 18 24 / max(var(--scene-dark-middle-min, 0), clamp(0.60, calc(.64 + var(--appearance-veil, 0) * .24), 0.84)));
+  --scene-end: rgb(12 18 24 / max(var(--scene-dark-end-min, 0), clamp(0.36, calc(.40 + var(--appearance-veil, 0) * .24), 0.60)));
+  --rose: rgb(172 113 80 / .18);
+  --mint: rgb(94 157 127 / .18);
+  --cream: rgb(163 143 91 / .18);
+  --blue-pastel: rgb(109 139 167 / .18);
+  --success: #c4edd5;
+  --success-bg: rgb(21 48 34 / .93);
+  --info: #d4e4f8;
+  --info-bg: rgb(25 38 55 / .93);
+  --warning: #f6d7aa;
+  --warning-bg: rgb(49 37 18 / .93);
+  --danger: #ffbdc6;
+  --danger-bg: rgb(60 20 28 / .93);
+}
+/* Explicit theme wins over the system, including browsers without light-dark(). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme=light]) {
+    color-scheme: dark;
+    --canvas: #15181c;
+    --text: #f5f5f5;
+    --muted: #e1e3e6;
+    --faint: #c4c8ce;
+    --link: #ffc393;
+    --focus: #ffc393;
+    --border: rgb(255 255 255 / .22);
+    --control: #93979f;
+    --hover: rgb(255 255 255 / .08);
+    --selected: rgb(245 129 54 / .18);
+    --raised: rgb(255 255 255 / .09);
+    --glass-primary: rgb(7 9 12 / var(--appearance-opacity, .28));
+    --glass-secondary: rgb(7 9 12 / max(.20, calc(var(--appearance-opacity, .28) - .08)));
+    --glass-navigation: rgb(10 13 17 / max(.56, calc(var(--appearance-opacity, .28) + .28)));
+    --glass-form: rgb(7 9 12 / .36);
+    --glass-reading: rgb(18 21 25 / .91);
+    --glass-modal: rgb(22 25 29 / .86);
+    --glass-fallback: #17191d;
+    --glass-reflection: rgb(255 255 255 / .12);
+    --glass-glint: rgb(255 255 255 / .065);
+    --glass-shadow: rgb(0 0 0 / .38);
+    --scene-start: rgb(12 18 24 / clamp(0.74, calc(.78 + var(--appearance-veil, 0) * .24), 0.98));
+    --scene-middle: rgb(12 18 24 / max(var(--scene-dark-middle-min, 0), clamp(0.60, calc(.64 + var(--appearance-veil, 0) * .24), 0.84)));
+    --scene-end: rgb(12 18 24 / max(var(--scene-dark-end-min, 0), clamp(0.36, calc(.40 + var(--appearance-veil, 0) * .24), 0.60)));
+    --rose: rgb(172 113 80 / .18);
+    --mint: rgb(94 157 127 / .18);
+    --cream: rgb(163 143 91 / .18);
+    --blue-pastel: rgb(109 139 167 / .18);
+    --success: #c4edd5;
+    --success-bg: rgb(21 48 34 / .93);
+    --info: #d4e4f8;
+    --info-bg: rgb(25 38 55 / .93);
+    --warning: #f6d7aa;
+    --warning-bg: rgb(49 37 18 / .93);
+    --danger: #ffbdc6;
+    --danger-bg: rgb(60 20 28 / .93);
+  }
+}
+@supports (background: linear-gradient(in oklab, white, black)) { :root { --in-oklab: in oklab; } }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root, :root[data-theme], :root:not([data-theme]) { --glass-primary: var(--glass-fallback); --glass-secondary: var(--glass-fallback); --glass-navigation: var(--glass-fallback); --glass-form: var(--glass-fallback); --glass-reading: var(--glass-fallback); --glass-modal: var(--glass-fallback); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root, :root[data-theme], :root:not([data-theme]) { --glass-primary: var(--glass-fallback); --glass-secondary: var(--glass-fallback); --glass-navigation: var(--glass-fallback); --glass-form: var(--glass-fallback); --glass-reading: var(--glass-fallback); --glass-modal: var(--glass-fallback); --blur: 0px; --blur-navigation: 0px; }
+}
+@media (forced-colors: active) {
+  :root, :root[data-theme], :root:not([data-theme]) { --canvas: Canvas; --text: CanvasText; --muted: CanvasText; --faint: CanvasText; --link: LinkText; --focus: Highlight; --control: CanvasText; --border: CanvasText; --glass-primary: Canvas; --glass-secondary: Canvas; --glass-navigation: Canvas; --glass-form: Canvas; --glass-reading: Canvas; --glass-modal: Canvas; --glass-glint: transparent; --shadow: none; --blur: 0px; --blur-navigation: 0px; }
+}
+
+:root[data-theme=light] { color-scheme: light; }
+:root[data-rail=expanded] { --rail-width: 232px; }
+
+/* New photographs have different luminance: keep a readable neutral floor.
+   The approved educational scene retains its original treatment. */
+:root:is([data-background=library], [data-background=minimal], [data-background=collaborative], [data-background=reading]) { --scene-light-middle-min: .74; --scene-light-end-min: .56; --scene-dark-middle-min: .74; --scene-dark-end-min: .68; }

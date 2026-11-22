@@ -1,0 +1,518 @@
+ruta,bytes,sha256,categoria,motivo
+.env.example,1958,2f32f4bfe5611f6be7b1a6ec52cf7067a1ddaaa09906e1b917866672a40a0eae,A,Código/configuración/recurso o pruebas conservados
+.gitattributes,202,29eaa87067e7183340ae6a3c369fdb3a793e9eaaa9976b563de24ba0f4d1d50a,A,Código/configuración/recurso o pruebas conservados
+.gitignore,635,548220d938cb4d2aca315389bdfb33f211ad681204f38d3fd148f04ade783d22,A,Código/configuración/recurso o pruebas conservados
+AGENTS.md,1076,f15a5ed3ffd9da157a64fc017c04957015ab057c14b4fd0cd9eab088834bb86c,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+README.md,23138,02504a950de64c9f2e50ee8ad03fa37c7fa8860eac645716364f075e5d234a27,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+compose.apps.yml,6144,968dedf207c05b19b97c722538f4e43e481da6cf91430f715e135d8027153288,A,Código/configuración/recurso o pruebas conservados
+compose.datos.yml,5770,704c6d56f9e81008be33ec27ef1b124340323a5415f07e6854c5b3051a16704f,A,Código/configuración/recurso o pruebas conservados
+compose.yaml,280,4dc04166a73117980e412754d091fda98b86b35e92d36d0084159673a1eb6771,A,Código/configuración/recurso o pruebas conservados
+docker/cassandra/entrypoint.sh,752,bbe517d5e7670d4d19c139ade6ac4c435832f3e97806d1ab38edda19679a045d,A,Código/configuración/recurso o pruebas conservados
+docker/clickhouse/10-academic.sh,188,03bcb177ae3bb3db72255e623341ccf589911bbe9062dcab814407a1a8fd4cb9,A,Código/configuración/recurso o pruebas conservados
+docker/clickhouse/10-academic.sql,535,59ced5bab8870d17931ee019e99c663a2735ba5c9aaca88b644d2dd023a43d73,A,Código/configuración/recurso o pruebas conservados
+docker/clickhouse/limits.xml,1038,3d23cabe4c177cf030443ae00b47bcbb3e6d5e767338bd661ff2ea1d050540cb,A,Código/configuración/recurso o pruebas conservados
+docker/clickhouse/users.xml,221,27e18fda7ed2777c9eb3e7192e63ada78c60eab4eb6c43d25e7962d47b0df83b,A,Código/configuración/recurso o pruebas conservados
+docker/mongo/10-app-user.js,313,0616124ca3e6ca7d745699ffcaa7146db0b7b0abb73dcbed008affe69dfb97fc,A,Código/configuración/recurso o pruebas conservados
+docker/recovery/compose.fase2.yaml.disabled,8431,a0a111556079c951bedfa09b16ce6e38a345ce2ea2130a747a9fa33fc1287773,A,Código/configuración/recurso o pruebas conservados
+docs/ARCHITECTURE.md,20123,7c15b923f1b25cd2ba410f7686353401ba1cf81428bca61ae6f25bd228fa357d,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/CONSOLIDACION_MAIN.md,9475,3e82707f63616e8b870f67e3b5d9d58d1c3d7db810672c73a809c48492db8875,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/CONTRATOS_EQUIPO.md,20139,a6102e800cef628ff5bde9f21cd145c26c675c3c74b9bc9996f56860f12d7e58,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/CONTRATO_API_MOBILE.md,12782,eeac49b1ca77e4e50350195e95d6977ee8b2d2cc51a8e9e7a761d994e9381f79,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/DOCUMENT_COMPATIBILITY_FIX.md,16088,a02a3bceb7215d7a359bd743dd952ca5c9b745124c0fc47556d80672d6a0ca20,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/EQUIPO_ROLES.md,8610,18513914b5b626bb76f6aef694992a9d2953a5475681303674aa9539be0abb75,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/GUIA_COLABORACION.md,4926,7fefaebf0016373fc17a7c261f69e8d7740d6eff32629c4795c6ec35e2105ce4,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H0_VERIFICACION.md,3036,d00954b6e3d2c8445e5993f1c0ed3902c1c592202ff3eb09e629130e64da2c4d,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H1_RESULTADOS.md,10977,7090730b98ec34189a057c8bc4b525646a3589ef74d30697eee1a94292a6e7a9,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2A_IDENTIDAD.md,21836,18d2d13071e7fbe09e32754456cf29d64588013cdf7e9271f034785e03881254,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2A_VALIDACION.md,8840,a4c4dd3dab7c9c514bf6dcb35d0360578f7cc5ade56eab4803084128636c1236,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B1_MFA_RECUPERACION.md,11168,dfa2f6e3297155ab16566669a02a16b744c4fd0b1b749a8c16d7a3ad37a40dc3,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B1_VALIDACION.md,12314,6a585696ba7825b6035eecbca0c13063f9862e62c0cf16a2cadf4966bd9f5e8e,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B2_GITLAB_REAL.md,6254,a93fd2f99604a0b6e36d9332c4fdf39935cbd40505ceeb2237a1459f12e08a1c,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B2_GITLAB_VALIDACION.md,7611,0705301af646ddd3a1b740fce9a0161e53c2b72d4923a72dfe1beb57d3460c4d,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B2_GOOGLE_DIAGNOSTICO.md,8788,45589248fe58d1e1f2608f8ef77e6ee5baff248de082bb5562cfbba6d3846fcf,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B2_OIDC.md,12891,de5986159fe48b994dc61771e5dfd61bb11a662d6b856b3daf00c301399a8bb3,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H2B2_VALIDACION.md,11421,d98c53f57aa2a718773a5ae1888ffd4872bcddda82a8a9356d095d8b6a0eb642,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H3_ACTIVIDADES.md,13364,35cd60aa6540ea09e56fea88597fad67b59f874b435a8f58d9a43a5151316293,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H3_VALIDACION.md,8791,5eff5df4d6a9c2f405fb13f3f47fd97d2c28dc7151cd4f4201fbfabcbc6344aa,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H4_CONTRATO_GENERACION_ML.md,5743,0e10c42a45617ebc938701fd61dcac195997c5ac3458e49dd685526f932b9f23,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H4_FRONTEND.md,4813,2917fdf7bfcbf40bf042d269059f5089840507bcb5d7d163d103309309b6ffd1,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/H4_VALIDACION.md,6223,dbd225e2b1f2a22379814fe5cc95dce6d0a9b96d9743bd843f8604066470ec5b,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/INDEX.md,16877,268ea45649c833e408c176f2fde5971898cc56cd9dfa2b41454aa1c0b10ab0aa,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/MATRIZ_REQUISITOS_EQUIPO.md,8817,27e75d581c863f84020e12a6020954029dc8173396970f076f1a8378148be337,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/MIGRACION_H1.md,8400,ae9005ca3d94e57fa4e343bb7d9d84c55b08bad1d58c64225f63f53da19efe09,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/ONBOARDING_AI.md,4596,a7b01dc87ef7ad3da13c3cd41194641839e9e9c852624496615dbe07ec7ebce5,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/ONBOARDING_ANALYTICS.md,4988,b755826af082b673bd42a6cb183642bd1d4a1e9a58b73cc21b48e0b9e3f677a2,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/ONBOARDING_MOBILE.md,10041,b97a15a9a063fb4f088c67d8209fea7d5f4902d6bc015b99af8e03326f50e409,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/PHASE1.md,6773,23a08db0145e315092bdec5ec1593be5625f86595306faf2e00b0d730ee3f440,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/PHASE2.md,14371,61e7e942dec896a3717188c946459ac8dd500a87b3a93ccf317bbb709b3b7af5,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/PLAN_ENTREGA_2026_2.md,9027,0a37130a7caeea499a21daa33c6aff509acc91aa327385f23eecc07bbb700cfd,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/VALIDATION.md,23725,b04d90debf029199bc33a3bd24504eceae2dc6f4a816c0ac4b7ec1d82ddb8935,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/capturas/h4/escritorio.png,571060,d821ff35eb43efe17aaaf55fdadc01ab97b4fe7d5fae25e340117542c411dce9,C,Evidencia H4 preexistente; conservar main
+docs/capturas/h4/movil.png,405375,e218adbd0515fea010f63e0bcad56643e73b61284cd1d9068b663578992a5166,C,Evidencia H4 preexistente; conservar main
+docs/design/H6_3_RECUPERACION_SEGURIDAD.md,7106,e1fc2e383488e87b8d05ecb65243b39410b360838c70209ad7fe2feef9fdfcef,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/design/H6_APARIENCIA_RECURSOS.md,2620,0261b4c4aab68a3913f84507b62e4bcc993ec66151ace36812ca8b354a8bc03f,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/design/H6_SORVO_SISTEMA.md,6316,07174e9f0a52868f4c46e0452c35ee11f82680864e546f3de526de8c639050f4,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/examples/h3/crossword.json,1087,79aab5dd3b6dcc791db2ad8d56d4eb5c7d0ecf0e5f0ea46a2dd4133125fa13b2,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/examples/h3/quiz.json,781,8a168949a5baac72c697afa80e0e0e1bf81ec9ae725bb4aa2fd489fba5fe32ae,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/examples/h3/result.json,946,431a4f8ea14fecead718614951c2eaad259f7dfa7f5d3c6369d5ab054c651923,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/openapi.json,140963,74c6163cd85f572aded9d1000aa132b4000a163a0bd45cf2319f90036145777b,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_AUDIT_SUMMARY.json,1189,675e5ef5d6bee93cc4bb72aafad55339520df41fe5ec64571e28ccadfbc4ce4b,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_CHANGELOG.md,2795,682e33148db63630a83f9c591ae411f72f052e88e1336220de6d5bad4d5d2423,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_CLEANUP_FINAL.md,10988,451e0874d1b2cf2dce2ff4a70cae4dd74d83403d4839c05454b78b00a05b399f,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_CLEANUP_PROPOSALS.csv,2486,afd37ad10a6d3b3aa2dac4b3a4849e4b31dcf9f8ce929f7eed3c9b9021b2185e,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_EXACT_DUPLICATES.csv,96504,2bac256f904d745e04d609338bc31d10d6d52465884f86ba01a92d3106888146,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_FILE_AUDIT.csv,1683047,ccf2925fc17f9e98ee60521df9685525be9379008f098b779bf7fbfe9c7d6b8e,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_FRONTEND_REVIEW.json,46425,04c0a8aebb0fd23e255d2815056386afa4d13c893ccbe02a234d3b9410774082,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_FUNCTIONAL_DUPLICATES.md,5868,b1741af85165a9ced9af9991b29c80b8ffa0b72bd124b775de2850add1aeff28,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_HISTORICAL_ARCHIVE.csv,952540,9858c21f540dcc8c3606be3dd0dedc3299b45ea6a080102403b3f197658c4054,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_INTEGRATION_PLAN.md,7417,b1ab5f8378fce4ff8038ca02270489b42a58fb592ebd17578c6b8194c75c435a,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_KNOWN_LIMITATIONS.md,2436,d3192a4d79e540fba4c9d1083b8ccff3d6dbe9e25c550c89579486f06447daff,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_RELEASE_CHECKLIST.md,3320,e4fc22b6c210ffaab10f6d40f260c949be983389353c343303e901a5b1e08670,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_RELEASE_MATRIX.csv,15998,b81352aafd0afae888c52cb4cb20d1b82cc6f0b4a9d6ae22c5f0964b5fe2a4f4,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_RELEASE_NOTES.md,2106,3d6d162e46e852563463af55713b2fbdf3575fa6cc065e9c2fe2d4ba8f248d1f,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_VALIDATION_SUMMARY.json,2652,e94424fe31ad4cd9a39e93573d5b3450c455f63ef6d2b6c474ead40c2ec7ae74,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+docs/release/H6_VISUAL_SIMILARITY.csv,332152,ddbfdfff05fcad2ebbbd9a29247ba5f0f1d15bf94b8856c7f78c213c6d8f2b43,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+frontend/.dockerignore,57,1c235a42546dc6996b9add669fa7fbef54ed09bf8d6f05afc5ae7b2abc874686,A,Código/configuración/recurso o pruebas conservados
+frontend/Dockerfile,756,dbfd183e4240cc77564e9befb4d8d143c4dd73016e1d1cbb9591bd115cfce9b6,A,Código/configuración/recurso o pruebas conservados
+frontend/next-env.d.ts,288,1862ac4bbbc5192d4bf562161df66ea547ed3e67173100656ab606ae9797db2b,A,Código/configuración/recurso o pruebas conservados
+frontend/next.config.ts,449,6c5614c949ced224bf9f093575b8936fdb55d92455ac16a6c79ca06ac5e538ca,A,Código/configuración/recurso o pruebas conservados
+frontend/package-lock.json,71560,9f760ed15e6cbfedfe88a10c6bcae1a34b378479ea7cafe0d5796abb77672b9b,A,Código/configuración/recurso o pruebas conservados
+frontend/package.json,1245,717cac112e01162043dc954ae0ea69cd7d1797833d9cdbe7012b4d8489e0655a,A,Código/configuración/recurso o pruebas conservados
+frontend/playwright.appearance.config.ts,757,f68472a54cbb140316cbdcd009aec245ebc0947b292a1ec57d42d00072395eb6,A,Código/configuración/recurso o pruebas conservados
+frontend/playwright.config.ts,725,83de1a6a3cb3b60ff32dac5e37495a4e27ebd2fb76f5e02bcfe578cebfd0e76e,A,Código/configuración/recurso o pruebas conservados
+frontend/playwright.release.config.ts,1300,7a14e3bb8c6052284f513cc1a449a75f23d2a28ee022d34d83b8fdb87fcf9c16,A,Código/configuración/recurso o pruebas conservados
+frontend/postcss.config.mjs,60,a1a188221f064d964dd9958c3d48b0c23252fabbeb6099d95ee8e15c764718b0,A,Código/configuración/recurso o pruebas conservados
+frontend/public/fonts/OFL-Urbanist.txt,4384,701954706522139355e4ce4032e771ed1c265fa2c7f41f53f24dcaefd6402562,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+frontend/public/fonts/urbanist-latin.woff2,27752,7981ef90c246352c7c217081b8d9337b9c95e9d17ae126bf56b0d3753d1e5ffb,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/collaborative-thumb.webp,8668,255050a9ae8ccb9df32d7c99bd04593c8c2c69e01cb275df400c1c21f917566f,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/collaborative.webp,161326,1e2b069bb718bd6a066d4e2fddff8252395e9cc5e4a13b102b914186528a5fd4,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/education-thumb.webp,6746,3b48e223e461997cbe14e7826c0a12db549bf0f1d254ae7d7c02b2b3c4ccfb9f,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/library-thumb.webp,7074,b293841f914bc1353427323ab691650de8fda91f4d623120387f8d787f5617c0,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/library.webp,78020,d670848df74bffaaa2c5ac404d62ac8c0afdf5e8745ad264399a8abe6c955f34,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/minimal-thumb.webp,8166,6ef572eb298409394df633771938211a1ed7a892b1d7ca2d5aebb6b144b62b2c,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/minimal.webp,128654,bee8a77dac4044a1efb06e08ded51141c1ebce9e4b52d6fb96d15bfe361479dd,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/reading-thumb.webp,11194,9e60640c59794c26637c7ec1c3339ef3e9741312b06d7b66c12b55988bdfb560,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/backgrounds/reading.webp,230806,0c67822eb6f6214e36ba90baf468881f5b69969220bc79e8826e80cf05303a02,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/siare-logo-clean.png,1196174,4d5ed6869d5bfa05ea7cfaf0c411b280159091e0fda52a4d146555ddc00f3bf7,A,Código/configuración/recurso o pruebas conservados
+frontend/public/images/siare-logo.png,549450,a120d94b62431789671c20307a4f34e642c5ca935ca7a51f02d2dd08396280b7,D,Logo previo sin consumidor estático; conserva bytes únicos y árbol aprobado
+frontend/public/images/study-background.webp,62294,6af6af578678e9cad019f7effc58b818e47d6e762d00a9bf3261002c8a3dcafb,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/administracion/loading.tsx,185,dc8fde02fe0731dc394da408d63de992de87aa7c7e3b7481a30801ae10b0cb9a,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/administracion/page.tsx,1502,0dc6ab9b3872ade8996878b5882eef18947b64cb2347f364b5242e6ffcaad504,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/configuracion/apariencia/page.tsx,255,67dc1bfa3faf435906e51dd35d11378ed0ea06aa85f80c2e6fe60bdc70e78405,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/inicio/page.tsx,2142,8ee2a8ab6530ab19002dad6302a7e77f655f8738fcb7b3897a5a3b89badd4e7d,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/layout.tsx,899,2081d7fa82da841e4969c53a8ea026b5a22b50d3986eeef39727b0343ef85ebd,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/materias/[id]/page.tsx,427,4c05192b7a9d718575ad278eeb11fed57966d275503acc3526f57b9e2f8e70e0,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/materias/nueva/page.tsx,536,e2a7a4f95f1adb61beb5611696109fd9d89b43c5523b6a15b2e191c5cb6495df,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/materias/page.tsx,522,55f35ebf2083209ccb3b33df5fa8abbd5d196ee699ef2b24b2c566f58eaab8e1,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/seguridad/page.tsx,1382,1bb26da06a56a3f9668fe3fb052710f70c2a31ba25a3f4688f00349bda1e92ab,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/sesiones/loading.tsx,162,378e0eb5edce9cf5c4581e82f9782aea27f2c9b14cc9d120e35eaaf148f6f1a1,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/(student)/sesiones/page.tsx,428,c0dfd1390652099658de1431506b8408e85246aa39ae011e3f2d0f66f6da1fc7,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/api/bff/[...path]/route.ts,7065,06d91da28e47cdee7b767d7b83425b37994b9ffb1ee6e9aac94e26e2ff0a0b35,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/api/files/[...path]/route.ts,5451,42b46831db12a2e8cbac6a6aa1f26bed6d43dfa5d0705077b635e2851b86d7d3,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/api/health/route.ts,341,d0ae346a6134eb1dc7952f60c77df3031c196c6594045e04a2ae0625c1ea415d,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/api/oidc/callback/[provider]/route.ts,3581,47860957455bebb93b86e96847c4c9281d01422d657a243c3393d79b5541d82e,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/api/oidc/start/route.ts,3892,fe61e101f2dac910df1cc70d5e59e6bec63f4d163cecfa785541abcad88729f3,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/error.tsx,771,729415e5212f23c0c842b96a5fb657699ab7ff83589c0cf5429a664c3e309297,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/globals.css,24017,cebe4167d5eef7accdff3e1f2d4df07f3c17aa15dbd6b3c0e5289b3697f0b330,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/layout.tsx,842,29acdcd03f78c988c01ec081ed87286ee13cdc2129382bb2ac4d2258a75ae860,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/login/mfa/page.tsx,600,564b102dae9e5bf509985c02da0bc53f79f0e337003036e4066e3ade3bace0c6,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/login/page.tsx,1847,32f643c9da2f8d85253435cdc9feeeb873f7eae530749dec0f134e8f069dd0d5,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/not-found.tsx,387,724723f36f01c1eeaf77ed9f4766606fc1637f69474f1ea8c84fc4f92ee04374,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/page.tsx,2439,4f3e7fe44a20fe6aacb68eb4da2c2c35e62cfbba8c3dfb0a105fb91d4406c88d,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/recuperar/confirmar/page.tsx,464,11a800a270e380b76feb1169e9c15c55c734af0549fd399a77a3b7661e1522a8,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/recuperar/page.tsx,404,0235ea9104b2c17d716a3d2797e8403c9b8d61d123b53ef6e13a228b38ec1a7c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/registro/page.tsx,595,4f74df1bb8443714cf5d5236662be4bd947fbb29f8f7044ba38b91cb0817af49,A,Código/configuración/recurso o pruebas conservados
+frontend/src/app/sesion/renovar/page.tsx,305,65827d9eaa08264a54117a992f13506affdf4951a6b1e6e72fd2386d6d2ce675,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/academic-provider.tsx,4880,ec656e59e0c2d4230550901216ea5814bc5a1a17f1ee2f2c610f47750d2ae2d8,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/academic-reading.tsx,1947,e77fab2fc345883efe08ab8fa11dbd96ca5696e357b0d1e19777d5ec6066947c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/academic-recovery.tsx,5955,bce2fc5b58609bbfe84cf1a7034b5db50e0ce8070f79412af84cb139e9710a12,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/activity-bank-editor.tsx,10175,56e3a7ef97f16dc3e7a3c0d5cd4ad78724c0021d50283a0f85d8e4328bf71fe1,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/activity-panel.tsx,8523,4a3147db84b6c567544f2a244ea5e439a7327a31ce7ce42174f41850d0e55bdc,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/activity-player.tsx,9525,d4fd805d7383cc33fa09173fbaadce89b368c7e0e4691549f4ba8820cc7313cb,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/administration-panel.tsx,10011,b42a6dbd3f2868decf918bc9c990d2cea8b64a45bdd52bd4f832f5fb6be7f80d,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/appearance-settings.module.css,3547,97e711de49982f355a49e43a4b980f39b780ba8211a29e82382883d56ca4b224,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/appearance-settings.tsx,5597,d2619973806cd41d1456e88d8e0fbb8ec8d53a6d6e7ee8237e7a545b2accab49,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/appearance-sync.tsx,462,533d09a2722c326e9b487d1b4403676b7512ee66e4767e92db25494d698baff6,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/auth-form.tsx,3530,96b8832b0bf11c91d7dc3fcf34dd2a696c640e35bb59d6068154728e415d1b57,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/connected-identities.tsx,3691,d18a8075d5c814778d00020da305d7e1d40b9e88f73b062d6efe0596fcd69103,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/federated-login.tsx,4028,2a758b7babb00b16d3217582d8d2908a1126869ed00226d59ff0e54a6ee4e173,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/landing-access.tsx,1959,115e1d78d921ef66b40ddac177aa2b86a6bd46397f5f8a49f3cbf404e63716c4,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/landing.module.css,8301,ec6ea0cf699f17f222ef49bc42e814e3d9fc9cb2dab2834d3dfa1948a4d85c2c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/app-shell.tsx,553,e76feada5974b7d2f1cca7c5544a131ac08ea4e3be3ad49c72bca1385d46d1ff,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/auth-shell.tsx,1479,7a645ce2c1159c49aa05bcb121ba01ca3740a493cf6ce8af0cfc3e7bde4a49fc,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/feedback-shell.tsx,454,0aa989afa36c2b50764ba6a72e1844b6616cf41bc05e0a528dc1409cfaf71be3,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/navigation.module.css,5333,c67bdbcfcaf25da18d642ec8711df89ec8185328b26ccd5762f98cac4ba0cb97,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/overview.module.css,2265,343df2d3e6c81aa36b1e5bdbae7f283550eaa3d1982924fcea0ca1b8edd2162f,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/shells.module.css,9032,94f52d46cc6d8b6812fc144911f27c6b2d9c89a99d1b18fe064d904ec733a30f,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/layout/workspace-shell.tsx,1316,d2bef205292a74689b2677b66743140261f231edf73c029319f41de113b48514,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/mfa-panel.tsx,10660,8e0976502b527034d0dad640af88c93929491cdb1c753be4d2f55e87df85e9b2,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/password-recovery-form.tsx,3762,f7f66457fba08da1ee395bb4520a4d5d046694ac77d85563bfc53a0a8934f2be,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/session-renewal.tsx,1051,bac023285421e4b265d20dcf7aaf03e743ce76ff1199f9dc4a8839316da1f10a,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/sessions-panel.tsx,5028,501cf09bd081f8fe27d46d7b7988a585c9710a863c7f1fdc23d75424469d88c7,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/student-nav.tsx,7172,59da859909e03939c5d522a590ba43d418a9a6be57e1af664933eecd45b56931,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/subject-documents.tsx,13605,6067cbfea84efa54b58eb0fc76541b59c9dd3ff4c500cb66b358a7ecfd007640,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/subject-form.tsx,2595,0e999a836ac5c5c2ebe159c73cf7fbca4d78b0e7580ffca9668ad106a2e37725,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/subject-workspace.tsx,6187,bb05b3e382cd1abeaa43f4f58236757cb1f877ec0213ca4cf59014d2be65179a,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/subjects-list.tsx,3459,0795072dd2e85f1f0c8dad2e56431a914190e8ba20e0c1a922978a76ad880984,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/confirm-dialog.tsx,768,cd3f520a768aabaca0e0463f9cb49bb564e5ed00c4aa427437ea6c48c67f494b,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/dialog.module.css,639,86cc1eae24349e8720d690af449de58f5bd705bc56b6b6a81066121b6e332ee9,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/dialog.tsx,1132,ef6b41fcb2489de65722f6c2445d1fc5b8a440a62d6f9b1b0bfad1d4ed41aeac,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/icon.tsx,1056,3da74116fdcc627dc4a9dd80f310687afb2f23857ee781bd4d39d1ecebd87ca3,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/primitives.module.css,993,e5bbf3712f9032fbec884dfb5595b322b090c3bc65966fcff8a436421b3fea3c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/primitives.tsx,4030,986f6e465d699c1783ac44f845d11b14fb8b274999af8c96c06d846dabcfb14c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/sections.module.css,2559,1b200cbad6855fe48cc093aafa11df1efe5cf0408a7222553a36e506ac886e23,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/theme-control.module.css,256,6f86bad7c07f9fcc93aed52b1dbf019fb2c24223f8b4cf021973d90347a74e78,A,Código/configuración/recurso o pruebas conservados
+frontend/src/components/ui/theme-control.tsx,1397,0f56f1ad856d2eff26981c95256a04c43aea895ae60460405b193cb303511f8c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/academic-recovery-session.ts,7713,51dddaa3e3b7a8882405a229cc32bf133c02a4813ccf86064ead0daf1a0d6ed4,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/academic-recovery.ts,15764,7eb031d89e8c26fe2e93abd78652001e796d676efaa4aa467b89a6ddf82e0f8a,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/academic-state.ts,6960,7c40a4422328a63ac86026b1ebbebdaab09306a6f1a34332288d3121f6c5f5ab,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/activities.ts,8080,9ca643cffd80006f7c478310049eb95c4c10ad8616369af9aaa50497b4a1d30a,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/activity-policy.ts,1604,0f4e02ce08a1762390f62e4c71dbb9f53e64d079661989378859fee8d6150b9b,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/api.ts,1385,2c8a56134ac96f842675b0052dca96d1a950c8ddd07fe0858394e75f031d4c29,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/appearance-store.ts,3463,5127ecb1785ac80c01628e18487acdb42e6fe2df41567fae35594b4fc940b4f5,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/appearance.ts,3286,9548adff930edcb72cbffd21997ff0d9894a839f5271b7bce69644a7b788b360,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/core-health.ts,798,a2fdbf13ea9692103a196697ac09af7f76d56424fd6b830bffb3ac42a2ec0802,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/display-date.ts,431,ba2c24f0a88c4ad51d526fcb2f318252fe842e9872b910fff38d3453f2cd48ca,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/document-policy.ts,4583,23265151c7fc1b53d19fd1d615bc2634a8cc88eb808ddd01dd3dbd90fd407177,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/oidc-policy.ts,3421,b33e3e08f69a3d23e729fa70c6501320809f593afc10d8e66940248850fc4631,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/oidc-server.ts,2915,3baf4b929cc37af0814153557134a92dc5c768f74e8614a1ed98d58a4ac7bd56,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/public-origin.ts,1024,93f0c708abc68f0e78be12c6073561fc55c397dcd8b28ddc8ba56aaf88abbaa9,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/renew-session.ts,1084,d1d6fc66d5dc16f138e898c8fa732b4be00266bddd108942af7451535176be54,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/server-health.ts,160,1143df7cdeba57145b11ecf4765f7552ba58177de2dfc6e593d376550e76f851,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/server-session.ts,1408,7391cc43a3c92e633099dd325fc677edc3b5ae6da53b00c386cafcdd7b06b37c,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/session-policy.ts,1864,b322b7419ce77c58857e6628ae4d732403b6c4887e03e3940d5c79f6f299899e,A,Código/configuración/recurso o pruebas conservados
+frontend/src/lib/theme.ts,538,ea511970e8e4664dc47872f330f241b4f66d539a75c1dbbab303dc6a2e5ba0e8,A,Código/configuración/recurso o pruebas conservados
+frontend/src/styles/tokens.css,8585,8db6060bce28429ee26811b6ac583eee1cf8893632d2ac47a2cfe1465e807f48,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/academic-state.test.mjs,9614,577e345da8b48123b4fc66bf9e3f70e67ebdfdd0b75ad22d5cd0ccc110a6360c,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/activities.test.mjs,4879,60e106c84b5bfc408db1bf3ca420bf4e8e5d009a87d37219da778c6c9752656a,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/activity-components.test.mjs,4556,ccfb27557c260c771a7f735bb255b894fc154a70fe40aaa3f5e55fc0378d5002,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/appearance-fixture.mjs,3621,ba66811457173618a6fe288d5014a707d2e34b5b2053720fe108df9c8dc32bf6,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/appearance.test.mjs,2162,344bda88d5fbffe31a8457ced74c0e2f0386aece5798ad0fcd6eed72d72a7810,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/core-health.test.mjs,1174,44091476373a2072e36ec354a2e045880c6506d2ee9a31bcbec3afcd7adc881f,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/display-date.test.mjs,712,e87bcfbd2bc1e390b907014fc7d4a9f83278756cb1a84a17b9257d9fd2d671e3,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/document-policy.test.mjs,3105,047f94ec34714d2c048d3d833fe9a63c89f827a26469510ea7f79f6059312621,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/activities.spec.ts,14339,6b555c842a683a5534805b53fc81d960a73d9a77fb8affd4f00141c783458234,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/appearance.spec.ts,22063,9a9b6805e708011764a4074ed3bd97ae014cc52a968cce40f623298384f2b9a1,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/cuaderno.spec.ts,35633,0e342355da31cc5e832da977bb20c7e0b2551dba2b8735a193f4fbc0a54f282f,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/identity.spec.ts,3069,d7ef739e43680fa394dcd0e58fb6d2bc29c838f07487f4121e885de986cf471b,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/landing.spec.ts,15079,a66831d93194e46d03a6a86b3efbf3e66b3eeee21ee8ee8aa24c1342f9ef67af,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/mfa.spec.ts,5819,443ca7d5ca457cb991d58510f3e75483d40145be19811f13ffd215eb264736d5,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/navigation.ts,1054,5c5f5dd4fbe40ee37325828765e2f182601337ab9dc11d2ff034f56590d4de48,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/nexo-academic-states.spec.ts,7762,173ae8a1d3da70d3eea58da6b60ac52e5146cb065df760b6d38454d29216e989,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/nexo-coverage.spec.ts,8833,79e70042b35fcf9cf8c023bfadcfaae26c3d78948b8a5449817339fa9e4fea48,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/nexo-interactions.spec.ts,9476,0ea8a25ed7060f45b29e858e047461c06ab38f88d3234ce44e0bd0671fd45684,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/nexo-mfa-management.spec.ts,5826,1db549799c0b809f33a2018d72f773d95a15485c68c1f864d81e307f7d148197,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/nexo-recovery.spec.ts,1326,d352a26397bba89f1a7d0c35890292501b6a0083abf26c5af9c1b20a02f3932c,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/nexo.spec.ts,13531,b6be93c20cbc5193e08587e8caaded07497cc74991ee88bd7377d380b991c6a5,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/oidc.spec.ts,4682,c32df9d30e08c2f522a35d7edadfc1cfa91534daaaf5ccba43d2ea24d0448e77,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/origin.spec.ts,3592,5ec01661bc9dc175087fad9919bd55a8dc5e2ec22d8c3dc75e60c1de1548f788,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/phase-one.spec.ts,5168,067b650bcb0c5d111d1990d12035e5ca0d556138f15630930c60b2a080b64bb7,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/phase-two.spec.ts,7364,a8d48e801a37e4831d60c76c77fafaa836a75ef16fbc83e3dc01413ebe392290,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/e2e/sorvo-glass.spec.ts,10821,05c798b20a52a42b686d64cd2734d5b4fd457a4cf48c3ffbf99429326f46a30f,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/documents/README.md,715,1b75d35339ca904841209b9e17541e126cffbb03096c9d8beb51cb3001df59eb,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/documents/academic.pdf,687,51a3da9d83a2581b655579bba4e16ab877438f3ce2067b9ecc5b3262c9202c1e,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/documents/blank.pdf,431,b37a58fb510237b6b60b1e610deecd3eb013ff71836b831faf66958f83affbe3,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/documents/scanned.pdf,14484,2df1002885cb33e6ddcb47cc96752438db214474fe8a7989a093d75cb254f5ed,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/h3/crossword.json,1087,79aab5dd3b6dcc791db2ad8d56d4eb5c7d0ecf0e5f0ea46a2dd4133125fa13b2,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/h3/quiz.json,781,8a168949a5baac72c697afa80e0e0e1bf81ec9ae725bb4aa2fd489fba5fe32ae,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/fixtures/h3/result.json,946,431a4f8ea14fecead718614951c2eaad259f7dfa7f5d3c6369d5ab054c651923,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/integration/activities-bff.mjs,5635,6f8a32a374051ae8913073e96691ad3e987fd83febf159d324d86fd848c625a2,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/integration/nexo-states.mjs,19689,4983c8448a5a9c1df464de3ad271165a001e22e7a0a7c669323e74bf782591ea,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/integration/oidc-bff.mjs,12780,f44725a29c7874a1703572d0117aa1b4113a8e65b72bd4583b931e12d188675d,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/measure-h6-idle.mjs,2997,b308642902a60cea69f297d9e1c1fac1a4608595fe14d5715600469c581cec12,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/measure-h6.mjs,7387,fc27347a76f3cbf570b8bf923c299e0a84164d8d26eb86746ecade93bab50306,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/nexo-components.test.mjs,3316,a64aeafb378a90db82ce864084f44e2b43837ecd67e8c47b9ef28509ca47acef,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/oidc-policy.test.mjs,2830,6e001074968f52394f2f4a633435b2d61567101376c57a74b3cf0536bfc6f1cc,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/public-origin.test.mjs,2519,4371dd448352f238afb0497baad8a6755bbf9b3108273396919f1dc84883a285,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/release-fixture.mjs,12651,1ba1baf39636460bf9b985c948fe6179ffbcec1215a2d0e1d2610da5a3561f52,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/session-policy.test.mjs,1715,f2268b39d4a31eaa8dca94d4d938ef4e9228c4925a58cd8c3f7e3510731be061,A,Código/configuración/recurso o pruebas conservados
+frontend/tests/upload-rejection.test.mjs,1411,1edd411e5813d4df93a438ee6c2aac4b071630b665e7353fe6e967e35b98bf3d,A,Código/configuración/recurso o pruebas conservados
+frontend/tsconfig.json,606,0172d791af1ead8bfd8b8f109386b74aa822596c2845b8379f97055279c0d98b,A,Código/configuración/recurso o pruebas conservados
+scripts/Backup-Siare.ps1,2487,636a12e495109676ddcd3aff8c9be1e99a033d3b1a8f109d95f6eb811d502c7d,A,Código/configuración/recurso o pruebas conservados
+scripts/Common.ps1,6441,f13dc27cc14c91aaa760fea6436ebc9f3ea7b91a6353edfafea2dda3f316a491,A,Código/configuración/recurso o pruebas conservados
+scripts/Get-H2AContinuity.ps1,1322,be221b14640d87fe0d6fb7cb1cccf628e32d929d42bb4d27688abfa92cf3e110,A,Código/configuración/recurso o pruebas conservados
+scripts/Get-H2B1Continuity.ps1,1281,f0de6376ceba9ef59a6234f4888e92e9fcadcca1dffe496ced1dda1dd6f905a5,A,Código/configuración/recurso o pruebas conservados
+scripts/Get-SiarePersistence.ps1,2173,c833a03b3003edcb1e0699ba2e6de6204f5237d6fd1f3d0e850a002f258d26ad,A,Código/configuración/recurso o pruebas conservados
+scripts/Initialize-H1.ps1,1409,eb3642d626afc4b3e2885ef7d3a9985635d86ddcaf1297f7be97e014f8edf49c,A,Código/configuración/recurso o pruebas conservados
+scripts/Initialize-H2B1.ps1,2274,18f32325741431311d5d0c259d460603dd8d2e1593b4b652ff257b309fdf1c92,A,Código/configuración/recurso o pruebas conservados
+scripts/Initialize-Phase2.ps1,1194,784d0a5320df975984da20abecee8a8b656334884b3e753b4c94681f1b2d0af2,A,Código/configuración/recurso o pruebas conservados
+scripts/Initialize-Siare.ps1,1660,901fa1ef5aa6d51a9479996b011b038ff3db815df36f4bf5a9e604f9ebe1b0e6,A,Código/configuración/recurso o pruebas conservados
+scripts/Initialize-SiareInfrastructure.ps1,2368,7462c2c109a68dfffd5e139587ced77a92b8fb9764b11f5e5f717574aab72376,A,Código/configuración/recurso o pruebas conservados
+scripts/Initialize-SiareKeys.ps1,1343,5a431e5d2d9f8d1b7d1ef4c79067cd4601f00cf5e62e0219a7ba1bf4cbf022ee,A,Código/configuración/recurso o pruebas conservados
+scripts/Migrate-Siare.ps1,825,0ee49e36658d47e5ce283a9a286fb47ff67679ca811a2c9ba7a804505b589f49,A,Código/configuración/recurso o pruebas conservados
+scripts/Restore-SiareBackup.ps1,4045,f1be617832cb63b63463630020b80a581b7dfcff5a11affb6b79ffff81ec21f1,A,Código/configuración/recurso o pruebas conservados
+scripts/Restore-SiarePhase2.ps1,1043,1020ec473dd736a45c9921da8bfdedfbba5731ea0497667d4900b4ee75fcc30e,A,Código/configuración/recurso o pruebas conservados
+scripts/Start-Siare.ps1,1614,961f11678bd198129d13e7b7d57c3bfd684f075911d41a27f5b3d955b23e38a3,A,Código/configuración/recurso o pruebas conservados
+scripts/Stop-Siare.ps1,442,2926f87852cefa291b1064f49758c4c5e294803a22a20ea16ada965d66aca1cd,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-ClickHouse.ps1,1598,6f283b279f01091a32ee82a73cc5d381f016bdb1e7024ecf97c1945d33dd8f8f,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-DocumentCompatibility.ps1,2514,bd317c6243bbe779e96ffebf057b0ca3bc3bf5d94ffdf9f28273aca586225f63,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-H2A.ps1,366,56ae401b9e942f31f33708a944c41edc9e2eec4959a1e0eb43294e4eb771f553,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-H2B1.ps1,368,824ca27bdd7d6c564611ad947c91fca98cf7f4a0dca5e4c276944cd91901c6ff,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-H2B2.ps1,2071,ec2711dbfa244546bb8309b7b462c09c2c8ecc0f16ed969c28682d374615c8bd,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-H3.ps1,3711,13f4cf99618cb23399a9e8fd4a2237807667b32e951bb871ec6ea876651df5f2,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-Phase1.ps1,1499,1e657ae68e2798aa95279dc196e0ab22886da81ae7dd6f0f776258b68a473e72,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-Phase2.ps1,796,a4f3c767bff04779c8873af025d67fd693f43629053a78c25882725f0a3f942f,A,Código/configuración/recurso o pruebas conservados
+scripts/Test-Siare.ps1,3350,48ebd402717a091938850e863ff99b151ad4eddaeb3340611404d728606116c6,A,Código/configuración/recurso o pruebas conservados
+scripts/compose-command.mjs,860,3323ff30170085467034885ba38d1ae6f36ebb5d8ba2d9b67c1fd5b36e116616,A,Código/configuración/recurso o pruebas conservados
+scripts/docker/document-browser.Dockerfile,243,558b47f756470fb40b5831643f806b81b8b3e65ec35be9aff1618ae38d8eef79,A,Código/configuración/recurso o pruebas conservados
+scripts/release/audit-h6.py,12899,043361ca37b934fe298464338e4856df6ece7e080b07da73687e2b283d99bac7,A,Código/configuración/recurso o pruebas conservados
+scripts/release/review-frontend.mjs,3850,aedb7fde836e62a9a23ba625600cfc416a6a88e4d9d8378a5f3f15cc98f17819,A,Código/configuración/recurso o pruebas conservados
+scripts/release/verify-h6.py,2954,e2375c81248f95fe316d0c6a0b003bf08fc08473d3595f9b80b8a14749960517,A,Código/configuración/recurso o pruebas conservados
+scripts/test-h1-continuity.mjs,3081,a4330f308a16c5ee820eb4fe680acbd809c39a8b8962558c361c8710e24d104f,A,Código/configuración/recurso o pruebas conservados
+scripts/test-h2a.mjs,5948,75c5e6782327c55499a76d1fce0199b251ac2d3ff8af3ead8fab12c82fa4d64e,A,Código/configuración/recurso o pruebas conservados
+scripts/test-h2b1.mjs,4987,c931eb55ca93def2467241fd265ac60714f4556dfa2304a34cdff7d9a6001e23,A,Código/configuración/recurso o pruebas conservados
+scripts/test-h2b2.mjs,3940,db833d3d801f58e143638d833ac56ce1cbe31098696ba282108ccdd330a7b9d5,A,Código/configuración/recurso o pruebas conservados
+scripts/test-phase1.mjs,7519,356d21829de45ddedceb69b80e6f319398d3fe1fbd0457e06ecf6d7b8b9ccc54,A,Código/configuración/recurso o pruebas conservados
+scripts/test-phase2.mjs,14440,ba6bc21913748ea04dc416d0a4e5f7087868b632c2eeb7cd765ca1989a2458e2,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/.dockerignore,50,1861a5809fd036f84e1059d8b9662aea0f3cda33a5b959b180115fe4d57084bc,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/Dockerfile,1115,f52baeabb81c3247cc24140a0e186041e50988ba8795929c02017433b48c5277,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/__init__.py,832,b1a27aa8d7b61913225eb1c0d50ba67546d903cbe79d0f55cf9efb8696525938,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/controllers/__init__.py,24,480f7917797354589d6035422e1d4640b7cc6da863b8a730bf5990046308d815,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/controllers/extraction_controller.py,2593,3890cdddb5a9829be59b4b261785496d54ae5f8c3ae0c5bdbc7c6030a9721837,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/controllers/health_controller.py,269,0eccda4e1a442c1bc09911647ad522df5cee3ae71420bb0bbdc2be4848c74d72,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/__init__.py,83,290d9f1462e837b560f29bfc683fed7362fcd62a71785dd5ae7059d542b8854b,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/extraction.py,11140,7164ca2a8809a5fb9f804d158a793ad3d2d54870b1d0836207a9b0f73932b2e0,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/extraction_model.py,2110,4ae9af95727326efa1edb01f655261e3e1e03406a435a15c420f6160dbe696db,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/extraction_worker.py,798,63f57c2282369712f82b93e1ba2c35b45183c9fbea8334041dd7663261c37592,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/health.py,1416,f992801f1354bf8c782be8e9300cb822f56ca0414c6512c10ca65aba4e5320e0,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/parser_sandbox.py,4293,3a3fa01d1a9725bb1c73f355cee063d51f427d208d1634d6f69a7806dfad14f0,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/models/pdf_policy.py,8035,52d25a61a945507da9a0b5e39f6e678a271009460b3cb774899c9e3bdd6784d6,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/views/__init__.py,54,c4eaf40b0b2aec8411a93093d32dbf1b15585703dd9a617cad7ba24492e1873d,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/views/extraction_view.py,336,8a60d592ac938c24020ad72a678a33daf932944df6c1bd8367ba8b4158f3759e,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/app/views/health_view.py,160,a2de3c68b8aea9b48cf4749d3f68a57d8e9ed227acbf3bbf519cb9a064cff604,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/requirements.lock,348,3a44d116f54ba914ec5135a1563933802c97dbc57353456724762290b8bab6bf,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/requirements.txt,163,d51ef333a436eaf129e569d6876ac933da131938c169a7c7cd8007f088de7329,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/tests/fixture_factory.py,3561,a8ffb2d98ec7770d427d24531575d285b8b3e03be073c9e957f36eae154157d3,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/tests/test_extraction.py,6882,8df5aed904ad580c0198c37a5314459135b3bac260c8e242ab220de5ebb4013c,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/tests/test_health.py,1045,2b9c2489cb6924a1c29c988a68030d17fd8c6e589d0cd6e207db8904b41a086e,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/tests/test_pdf_policy.py,9219,695491bbaaff756376337eae81a5fb1f54a51ec7ee2f7eeff8e98b274d81bf54,A,Código/configuración/recurso o pruebas conservados
+services/content-ai/wsgi.py,47,d0e730c9f0089d5c52970d5cd0beec0557567936e631f7236b13f4245b7eea2a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/.dockerignore,35,958ac9962fdb4452a010423c0e931a0a1079fa34dcfdddbcd0ee68422a726c07,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/.gitattributes,38,5775a77ad2f6d12dde053a3fb0cca4309189163f0888f4e7e984cd0ab327028b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/.gitignore,394,089382e4d7944ab6cb6900a1269678ebff93c00d441ada788cd05a8da182b22b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/.mvn/wrapper/maven-wrapper.properties,168,e475c49e0cb54793fef372f979672f56bfe7d272b981ad6f5ebd5e50e08ee1dd,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/Dockerfile,774,dd33a00730e4eb4ef6a8a369b8bef0c2d09d8cdc9d569e4d5f2ab7121ec177bf,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/docker/Healthcheck.java,691,d53a5314a94d15fbc07cd6a66266a69ad6a943d6cb00aad47c4d0b9bfffbca59,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/mvnw,11790,cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/mvnw.cmd,8292,4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/pom.xml,4515,19e8574a47222b33afaeeab0147b9d70844eee7606ccb07d7a3e15c27499e6e7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/SiareCoreApplication.java,938,6f846ac829eb9ea0dcfd9b36f6fd7e3b4a0c24d8ed98a7ebe468e32dc3adb4f7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/AccountUseCase.java,357,ac2b260a6fb29f56c842f4c38c8b996836920984ca654740803ed75824908ba9,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/ActivityUseCase.java,588,56b8cac976c61e041cbc896c239f311c327b8193b3bf9d9d3ec9d91286fbeb2c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/AssignRoleUseCase.java,257,641f6f9876dc3a0ef6e8cd66148e653d2f6861eaf65392e39b7ed4caa433d130,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/CheckHealthUseCase.java,164,fe3aa53c9122f3b9a46c891b24bd85d1129b2e3e43f08d6667bda3f93d3e5a8d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/CompletePasswordResetUseCase.java,144,5142375ca46ebf9f1e3d3f4b8475e5bf8e96dc356bf7b36269c9c961c82f51c8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/ConfirmMfaUseCase.java,449,1eb76b5238087a65424f7f3e134a341156101170c966d325b313671f6e02fa83,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/DownloadDocumentUseCase.java,310,dfe3406364e017afa392ae78129a97825b9c0149337027607e86cbd4f9de74c1,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/EnrollMfaUseCase.java,394,7080dc18404aed39fa3ccba97c68820f25ff72e8c149fb3fcb35b42d264d6e23,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/FederatedIdentityUseCase.java,497,fd95c7725620264785f80c8e4d14ddb006c470be99b8e26618636c38cbc8c42d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/GenerateActivityUseCase.java,406,7ce4a4e7b9ca697a3fdd6423a5e020f734329d18e7e8d435585faf483f74df5a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/GetDocumentUseCase.java,243,9a5d97fec816a3fc135e3613a5be19b73ab0227304b62dcfd554f6d7cea77f6c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/ListAuditEventsUseCase.java,217,5ee49a40dca63d1ab14f9ebf5269bda5f948f1794bf103581535209fe2f68429,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/ListDocumentsUseCase.java,217,35d1eb99da2799c301bc81b626170a394eb926a60bb6704fa948cefd84f0943f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/LogoutUseCase.java,143,9a3c89e2520273c9f1beda596bfe33d50860d26e20cbb1fb0cc18ded30c91f54,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/ManageAdministratorUseCase.java,328,effde911c42953b08f98e837e85ccd7b346cbd95d0f4ab0052668d639b05b493,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/ProcessDocumentUseCase.java,230,07682ae3bead215a63367b385a352e5a31126ee0539d0de78917c5832724e01a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/RecoverMfaUseCase.java,366,1f6c0f120f2991cf4e6c6ca6839ac2505cabacfe99804cc8c6c04f256c52774e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/RefreshSessionUseCase.java,195,fe19a567117e24591b9a6b77eaff86f6f722072275affee94e42d350d886e1a5,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/RequestPasswordResetUseCase.java,122,12a3dc0015e430c254d734e1bcec6326f0e3c9fbbcf71ca26e165a2b1b7fc526,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/RevokeSessionUseCase.java,242,d85940da06c99a4785db0cc6741a32ed11296923279e150a403ef6457cfe9492,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/SubjectUseCase.java,457,2012cd78218a545561d81d8ffa175acf27b2af70de1cf5a592a45176da8d867b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/UploadDocumentUseCase.java,366,e28b2e6236b44c3f1b8a7bc5cd936914b1165810fd304812311694e0c84bdb3e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/in/VerifyMfaUseCase.java,201,31a00f55de0d104d47a8699ac6a7b376b9c25464471823940531c0cf42373d26,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/ActivityFactoryProvider.java,338,dae18f20b44d9aa3c27f8e042dfe0f404d730850b7bc0e563ba4b90d4bf6e321,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/ActivityRepository.java,718,a595f313b36a3f290f010aec52de57a0acef792ed7556d741c6b4e14bfe816e0,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/AttemptEventPublisher.java,271,77f7dbb776f06b9f5acaaa6e9894cf833585f253cbd988664478a138790eb91b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/AttemptOutbox.java,414,396c920eea6933a4e2065c27d2ea4cc34f9d3d9b99ba2cbcc090e6902370465e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/AuditPort.java,236,83854c10aa1a644176a8919546fe6976b6e462477a97526ea3bef025b35f2be7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/DocumentProcessor.java,271,b9b36bed8cc0d1c8a818a35fe8ffa0c594fa0f407fac92f93b05be2e14e4c06a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/DocumentRepository.java,636,20681225013244ea8594e351224dcf33dab772ad6bef92b9fdd2cdad898b7a40,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/DocumentStorage.java,248,2c59494c207844fbbea4d88e3152027dc333fb7bac681fea43c19afe59b9a55b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/DocumentValidator.java,420,c31518cb1217810f106945967683fc56ee832586f2625bce94998aa53a759054,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/ExternalIdentityRepository.java,411,3667244b04f211ddd9293f0ed16b01a50d2dd3cbf4e7fd2fdc0db322f6bbf086,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/ExternalProviderPolicy.java,124,0016d51e28548cddd707f2c975df3be8afa1e9a1bd4dbc5f96e2126c70dfe1f7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/IdentityParameterPort.java,239,bccc429e80af8f40a7f426b783c77481c2d242784107a9ec4dee95a6f9c7ce6d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/IdentityRepository.java,497,d110aa2ac33a06e302e484ca55fb859310a96b663b3b22929619d494ac39a36f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/LoginAttemptPort.java,200,6cf51bd69e68a9eac3252ef8829e308045cd555504e1036a51eb40c9686c11a0,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/MfaRepository.java,1019,bf34593e13bc50575eb48871f338fb26a0cf29f1024f36cb00f644a312ce5014,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/PasswordPort.java,254,51a73fede5e42478c24edaf105df0968c47169fbd9156e6576c88b407889558c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/PasswordResetRepository.java,525,df83f753db62b84bf027e3968be1a61d09aba607dc21a53f30988d0d612f6d81,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/PasswordScreeningPort.java,137,bf1e09075350bc18d218379f17cc2e3c70fb2a21b27922396a0ffb7d5a19c42b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/PrivilegedAccessPolicy.java,392,e6afd57fcb341e73562839ea132759823d66197331dca11b45bf1c00f4e4d92b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/ReadinessPort.java,104,394b1bfc7204bec644c11a2b75fa1e06d4bb900eb177fdf324e71a39915a58c8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/SecurityMailPort.java,184,f81488ccd89dfff66dd119bbdc8e2980ad36cfb45c4ca1b5efc96541ce626584,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/SessionRepository.java,731,22b22a9722ac78eb6ff1f652578258bf0f169c0a92ec2058f473ac63d92bef60,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/StructuredActivityContent.java,185,88dbb56b3a5ddf931c02812bb1e79bececf1bd8ccdc59b4176b1c4a4954d412f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/SubjectRepository.java,326,9bf0c8857632ebebc27499e0de98781d365729bb081adda18c601e103dfee5cc,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/TokenPort.java,1046,62aa5a4d26c853d2942a4bf04a58cffb51e7c076e622351ffbeba26800734cd6,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/TotpPort.java,374,0a4ed0d5af6c68bc9f82a233692b3c8e9dc12f91fcaf86250d2ce60f99206057,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/TransactionPort.java,154,6bc5d712bf691aa0ec0a2f9be07f00017ba1c935a4a6488f02a49e37cf27d3b7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/port/out/UserRepository.java,286,ca9c6cf9a41d64fce0c8805b333db8c350953a1bd5e8daeb22ec85f7ab519876,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/AccountService.java,4026,4a7fe7eb3ad1790f4a785f27abb11bc13f8f93a7fad8388668eba8b00ab4beb3,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/ActivityService.java,7702,99c41c572abafaf8ce19f82fdf74c03b09af17e6ae77596441e19b3e9b844cdb,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/ActivityViews.java,3031,89f22566537eecf54c58952045c4cace5c9a8544baf920f9ab5d5bad7db0cbf8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/AdministrationService.java,5894,5f243543802ff5d111273ce8f42d0bfe388ef214ddbe9491b46721f149f93d85,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/AttemptOutboxDispatcher.java,1155,c19c41b7001bd8ccfd1ccca4c730ca8d9fd947088caeb92f09746ea3232c0a83,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/CheckHealthService.java,613,77974426e102099a07ab2f3c58fe8703141d90c857605d7585adf00b08d03adc,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/DocumentService.java,8289,ecebee32ab874e77420012982073c9cc178e531a4ea278d94308fd9941694856,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/FederatedIdentityService.java,7066,0c1d5c19c416824afe1dbc2226e617584b84471758745013542ec81c0ffea512,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/GenerateActivityService.java,619,49ab3e6c0a5ec272f86ed8ccc3d72e7a80470f100d2420911d35232d347c513d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/MfaService.java,11900,33b269b7d06d5bf1c2d7c8f9c3252caf2c11697855ce498a6caa408ac746c8d9,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/PasswordResetService.java,6002,e3c7730e8a84e30f3469bdc6c9c9b69815b550c896800826fd30f0353140bb6c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/RegisteredActivityFactories.java,1236,32374e649e3f9bf9d447dd6b572be4beff208f04aa4e27ddc1ae57e6e62b0430,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/SessionService.java,9191,91fe511f8d9957a270596b675149b8d656c26ad2ac7cab97768715368789f97a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/application/service/SubjectService.java,1712,b8096063e06900a1a10da222e88c0df3975c7d9923e8460a30486ad2e43ac512,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/account/AccountRules.java,1053,7516415fcb068299dbf4d10219ba02dd69ea2920554ed44a4d9570519e16ac4f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/account/BusinessException.java,412,cb755a22ec58fde786d89bc0d7c5b92cee271c96375405c8c175993a0bc6a51b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/account/User.java,262,ccf278bb5301b2b43f9adb3a9c6bd06eaa8bd54a6b25b565e2fdcfcf590ee01b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/Activity.java,192,1fbf9a594220fc141fd84e744e9bc3662fabbd5fa81c9e38c5e46177fc348c0c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/ActivityBank.java,3024,b80252aa5bf0dec92f2b112c00957f80f2d41df244d6ba1f26f2d3202e867b54,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/ActivityException.java,715,79b51788e5d65a01e184622c1fdbe0f374dca53287a9a759e6c82c1b0f38b98d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/ActivityFamily.java,88,7dc8bc544bc289c1925b123f10bcf0ead57782fbfb874a63f56017c038af7e98,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/ActivityRules.java,1532,65141db61df0bd68a90b4a3218324ae03555a45ed6873a20ded03dbc0acc37df,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/AttemptEvent.java,329,d2b8de02233ed801f446700f59a58df630a14c695d8ba077f542dd8fc8337f7f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/AttemptResult.java,756,e139e286a54fdcba366837e9335047fea0a8f7a944ad95539b50de44ea2810cc,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/Evaluation.java,654,bec52bdaa58e50e95001fb3695d6a437af3ba38dbf7ea5639d37a7b30a235268,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/GenerationRequest.java,483,ab9212a06d669f734eda77e72e4277f9fe1178a33cfb6d751598a8965504f9e3,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/SavedActivity.java,231,45b432b76fd8143771380f453922251058a619615e4242ed960636cbd1cb6c76,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/Submission.java,73,3d26187d42b1887d9d1db77204d87e309e1921d11efa1bd0f83560fdbc5908a2,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/Crossword.java,148,2ad0fe3928a91f32e83dcacd2b904ad28aad7a42916b1da144f95345084433c3,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordActivity.java,601,0e0198ce8d07db971d713e0bcaacb358e617e44fab79194455e9c3949c7442be,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordAnswers.java,227,38f42bc33c21e38f6fa19f080244e0aec61598645d4a0b075e720db65d12b4c3,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordEvaluator.java,884,3bdcc97a9fc9c16132c1fd008cad093b8e830bb7a76ede6243828e0d7e7979b4,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordFactory.java,243,f90bbeeeb0e0c70d71d70658eb783a07db1f214a2f9cb416fed46ca78b86e5e5,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordFeedbackPolicy.java,452,c248649ef6eaabad1473c5b4d04d91eda5fcb6c0b297ee5c32a0b775b62854a1,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordGenerator.java,5308,964ab019d7eb2631ee6b569a061daf3f14a12807324e902c2d9090fe8fc3def6,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/CrosswordSubmission.java,162,9bb8485cb8aab372efc6f885e66adc7003a9eaf9b7847feb64863e0bcf48f686,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/crossword/GridCrosswordFactory.java,851,7e716a966518675171ae536ee24358ed141187079abbbd38f03989d45a10c265,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/factory/ActivityFactory.java,625,b89f6e44467f28dc56c5adbf0fcc611c579eaf10fad6e7ff8a3f4d43e1d2350c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/factory/Evaluator.java,322,7e5629ed336e2db3fe6fa1f2806556681997f830b022014a5af264883c7fa751,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/factory/FeedbackPolicy.java,183,c029d02916d390162ccdc75256932fd2f60c43465505eb4c947f599d706a62b8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/factory/Generator.java,249,8af731809e4816d8265639979516ec97814cbfa08273bd0a95c2e07325735fe4,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/BankQuizFactory.java,781,488a2d2462a0cf4062c25faa2cc8b26a6151451faa08e79cfd8ce46728423cd5,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/Quiz.java,138,3fc6c045bdf7b8d4067659c3e40a703b7113ce48ccf035b30e26793b4b5a5945,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizActivity.java,410,ebb1aa0783e9eba97713f8ee1e87ab7b0804b4e4d1543b5d6cedb888cb215735,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizAnswers.java,207,3e7cd6583324271973e360e34a14efcb0bf33fce7090748682751fa2a6340f27,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizEvaluator.java,1021,7aa6811b29f92051f79150dc9bc09cd9ca3088da79d0c120e73e9e5bbe152a1c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizFactory.java,218,50df4f76371529e00cb180c78d4bf882e4ba71cf702a0e8f31e257371fe9be98,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizFeedbackPolicy.java,459,3a1297f06d14a02b08d29760cfeb2aa37eaa2b815fa924a1576cbfbaada2c745,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizGenerator.java,902,dc4e74f4af25d7cc57454a32119055867d6843a71166e3e2caa8d6134037f04b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/activity/quiz/QuizSubmission.java,152,4e18bd753297219e9098ceece8f68f343d8a2db5726f05e0bb1cf3104b4fab1f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/document/DocumentException.java,395,6c895b7bdd8b4a216a893956d159fe222dd63071ed259b47b64e3d138c3a84b7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/document/DocumentMetadata.java,410,aba5c7d367537b4688cb8247d0c443d0ed3cee89b3b5470d2c9fea5c394a6d03,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/document/DocumentRules.java,1103,54ade4fa823e7a998ec5d7c095abdfca260f13655d92a1217c93fdb6728da808,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/document/DocumentStatus.java,108,065bc4fd90970b15868726c193bbc96f53e3cf98b3877d26a06ab1ee4a175582,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/document/DocumentType.java,1012,f9692f84580d790d90475b383c8d386f30277ec6280ac2cc6ca97c078dc82aee,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/document/ExtractedContent.java,337,71f19dc4dc48177e2f25bd5eb0cfa7cf3296035372b03e851d520a177557833e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/health/ServiceHealth.java,179,067361c62ca9e86f02c1d8441cdf0929cfece3c11565e2a5cc992fd53bd7c0ff,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/AdministrativeScope.java,237,015bec378863dad4048c3830847d239ffa805a61839ca331bef8330497d90578,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/AuditEvent.java,235,74dc06440ff543dffb11fa44628b09cf3c2f1a5e012135964507832f4a01d010,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/ExternalIdentity.java,213,e2dd7dc5bf2829738afd39bb368d5a410276608416e23c01c4e3664ab8c778cd,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/FederatedPrincipal.java,267,86e7f953b821f5660892791fee36385a5e814235bd55244efae2fbb313f161a7,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/IdentityParameter.java,119,06f9513b77e841a01fd9aaa7319e8493f9ceb677f0e4de751ae1dee12a0f4f32,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/MfaCredential.java,527,b6b9f9953fe5c7f049e3cdd38537c56d233e64c8053835d76b6b383ef8f60461,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/OidcFailure.java,1113,34b1d2a83677c950213e174f4525afd579c06f6ca369a5cfabc87217622c8bca,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/PasswordPolicy.java,1075,05f6aa804c1abf37e29d6833dfb3c5ba91a2e0c07abd8511f87f566d92ad3e1a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/Role.java,86,d50cb8237ffbd7e1512c25cd9d7c228fb6a3a04a9e63b3c9b4b3c8016dd96f42,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/UserAccess.java,162,dda62eeabf861892722e3a0775289ce38930045cf89ba173d42c384dded67e94,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/identity/UserSession.java,987,c39efbf95bec5389c27cd80d6d94a1d7aba285d455c28ddea96538dc637d48bb,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/domain/subject/Subject.java,1353,e741b06b419d2b2fe138858dce53d86e9406e9af7ebc695c618f3463c2520ca8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/AccountController.java,2438,878eabfbdeda6b232d5168a425d564f4abedb48c97803346b0045f0af469b7c4,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/ActivityController.java,3970,595e96cad0361bb1ad2f55729763d4c8d98a10b2b7f70b71ac1eeee16760c783,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/ApiError.java,375,680425387fcbd6807b64c0bece7abe6073c3887ce84443dce4269eb4d9e58919,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/ApiExceptionHandler.java,5295,8cbd1ca5e3994552a66cfb2d79264ccc1d57fe21c57d3a833ef3f562e9ecfacd,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/DocumentController.java,4935,237201175b7d170e5357c12619840a3ce043cbe76a73ea42ba18a4287908d848,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/HealthController.java,816,0e12e86c45fa72ee1a78f22a988ca7fca7cc9862070527f7f37267dfae30877a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/IdentityController.java,4919,0ce757afdbcc092000346fffbd2125b481535294e262a62e3ae9d0f39d4dae5b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/OidcController.java,9511,6f23888f9dd3e31aee5638b3a3691c37291602cb90cb81c356ea4affd05d6e29,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/PrivateResponseAdvice.java,884,46ce5d244bbd1874f7d547245a58e4f2a0ab705f57d06300fee6af8d9dbeac85,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/RecoveryController.java,4381,d3e20ff5a42d6920cdbe2949908ee92f632fe5cdd660e2eccb21c7ffe0fd54d9,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/in/web/SubjectController.java,3440,ffd9b79a8a3cad3417a1b75bf386e5a54aa9a31940a2ab8213f5fdd9dce59b41,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/ActuatorReadinessAdapter.java,748,dc529dc10dc4883d61936d6fefafcdf709c2cc6d3b96fa563a81c752b905118e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/document/BoundedResponseSubscriber.java,1405,647911b00a0c14946a5eec4256d9fc54377f69ebe54bfbe3f8e1744693448563,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/document/GridFsDocumentStorage.java,1283,a18c352d11ed4a9d975580936465bd4d6c0b80ea9387d70397afb0b2b4ec071d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/document/HttpDocumentProcessor.java,4705,81ef31f77cc8578b855b6a994fd7ec207072586ffbbecfb063450d5def952dc2,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/document/JsonStructuredActivityContent.java,812,8c44ee63d1ca3c99cebe1153a1f1f78f93d077e1b6875f906e90cd443f4ca1fc,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/document/MongoDocumentRepository.java,6828,1da957f2d8e0afcb2fd3283d6be2c9ff725683096d378fa6999dd64c37d81d80,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/document/StructuralDocumentValidator.java,18549,c144a471d689e3b989a2f7a8e9a931b305f196b98ef5db821a92483e00bb5f51,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/AcademicActivityAdapter.java,4056,1606e7559ece3dc5007d34551cc3390b1febb74bad8affd30a75a1547f1d147a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/AcademicActivityEntity.java,940,09132715213071e926a924d4410d48b1b9bd19df6625e5a1bc0c32d670008823,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JdbcAttemptOutbox.java,2508,410ca0e296292ddf1d5995d700d2b333ad6e6775283a195864c51ab0779946af,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JdbcExternalIdentities.java,1868,d4bc1d1e1f92177eeed7f34f38909d0d28e91cc5042c8a40c66684908a4e6ba2,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JdbcIdentityAdapter.java,9199,6f670738f9dca4d1b7a1258b43c0779e073c9cbd87aca62c60d715ea3f7c62ae,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JdbcRecoveryAdapter.java,4621,9aa3f49bab79c3ddc69a9f1d99c44c13118035603d1b89a3fecc5f68e1f8ab16,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JpaAcademicActivities.java,699,3be3c816e5135541f836869a35968f69afe2706f6093a47efc10d3d08a46af13,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JpaSubjects.java,325,aa95f433ca2b2c9a170df05d1db7e56d1693ac6c4f0ccc03877b1effd1a23685,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/JpaUsers.java,299,d75b9c433c1ce3521cd5bca3ddb75e26249882b49229aae0d4378e1ee31177b0,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/SubjectEntity.java,1158,8f6dfe230255f52e587d110e467bc5a726c16d5aead5a29ef9fee5593bdad2d4,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/SubjectPersistenceAdapter.java,887,e7e28df9204960c3d389ba3f1c45876fe3a952900c1f7ceae0253386434d78c2,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/UserEntity.java,973,420f594607d9246f3e4226de249e86220e44156b8b6e3344ade8718454d5219b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/persistence/UserPersistenceAdapter.java,1655,756644162aec0fd88d6df0eda40cdb138eba3fa955deb7fbab0b6109c6ca3146,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/AesTotpAdapter.java,5060,789d30955748c49152e122e7e15534d0280e01e2d6a2c22a3eb110f4f024726d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/JdbcLoginAttempts.java,2381,c7d4a4aee31789a7cef3f1c71b3490ea6bc707ab9d61e5133f04ccb93a6ada1f,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/LocalPasswordAdapter.java,2041,49e79e0acf29b2c02286e674ee1ed1dfb9f43b7948fff7d77ed6d9995e52ae11,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/LocalPasswordScreening.java,2040,020bee14ab8ce6bd2dd6e951fe2591d63cadceb429f4df87a866e0c48fc665a8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/OidcFlowStore.java,1443,8b3478037a4ae1e1c1ef5dc90b0510737e3060582b521dd13d6cf819c9670229,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/OidcProtocol.java,7271,4177dfc1e56f9c2bae7c40ced99a4211f8f325506cc1d7878907ed759c1355a0,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/OidcProviders.java,4333,334d49681fc61292da845195a50d68179b451e0f696212d67173ef769fd389d0,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/SessionMfaPolicy.java,1494,15e340ed0a917a02d3174663b30acf02f7a007ffd75bd180ebbbf5486a293e50,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/adapter/out/security/SmtpSecurityMail.java,2497,d02a7883fd4ec56f690046e5805ca4c5c385c940cf881cc4278cc00265a6ec7a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/ActivityConfiguration.java,1226,1251aac5e9f6e8d1786c04c31802f5e8edbae40c80f008aa996bbc4067fd2d3e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/ApplicationConfiguration.java,561,b5f8bde4bf711da9d9b391f6cec786cc2ad3afc22df17cf6d7d7b55a6e9a8f70,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/AttemptDeliveryMaintenance.java,1089,1de9d2819df4cfb3a7085934ecafb511317514edb157613fb87e24365828a3ee,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/BusinessConfiguration.java,5149,27d596b9a351facb746ea6648de03530751dabbcbfec431c2b863a7059011623,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/DocumentConfiguration.java,2290,deaad292a0c682954515adef02b9bdc27d8c2778ebfa589905941104bd727b3c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/IdentityMaintenance.java,1257,264021d69386d2f0851e56f941910b58c8e4142018800f652506a89202d0eb03,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/JwtConfiguration.java,4654,b6fd4232a4fe3174568025f6844ac2c03ec9c688efec696681c747b1959e4d9b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/MongoConfiguration.java,851,b82a0da210a13df867afcc1634764953411c9de47646cb1db1150fe7822c621c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/SecurityConfiguration.java,3141,9fd5a15492c1725bfd35006ab26c42c2b5ed773c62f4272ccafe5356d98bd56a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/java/com/siare/core/infrastructure/config/SuperadminBootstrap.java,2589,2f86b3971bd1a76266dc53b7962d833acece8179fb333e934a8470daa374beee,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/application.properties,3579,4e4e65078bb892c17e039ea249b639b013035df75db65a256e487fab0db0eccc,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/db/migration/V1__users_and_subjects.sql,678,e80a8643f593cfedb71285a38d9324d7757c5d6dbb392c59550c3268da99c1da,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/db/migration/V2__identity_sessions_audit.sql,2848,af44ab3af5cd169e8a1088ffcfe6f311bc68fcc37f9cebb74de65f8a60a13e3e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/db/migration/V3__mfa_and_recovery.sql,1686,dcece5484df26548e3610bb19407b625c51efa553c42b625ca49182089ec7cb1,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/db/migration/V4__external_identities.sql,767,cf48a02ee9a2b168c165ac51bba2b0c8b820bc2cd75742e3c1aae19babc82328,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/db/migration/V5__academic_activities.sql,2389,0e1dc80d305f25fc6fe6917c28a24c9c7d41ef5d29d511d0cf9412bceefe918a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/security/README.md,892,cd9a3d7de19752c35d253c21e6a0a184cd3c69a1e8667e02ff1b7b449d9b745c,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/security/SecLists-LICENSE.txt,1072,3dbdc93d5f8829de0941744841730a09c106d0732e5ae0e98ca1d77be7ded66c,B,Documento/contrato/guía/licencia; consultar índice y corte de fase
+services/core-api/siare-core/src/main/resources/security/common-passwords.sha256,650065,95cfb7f57f448c9b351fab60c4c153c9c72532b3e718d9d36d9d77e41dc9e149,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/main/resources/security/common-passwords.txt,336,6198ba20c418af96a006c479ba0d45d0a759f07bcd5766a2a217404b139163b5,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/ActivityApiTests.java,22310,58380f162c56e8e9d197d0d8a3c419a8eb76397cd4bb7b3712234c16cdfa2d71,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/ActivityFactoryTests.java,6277,12d8ba8ca32f0a6a2f24bfd3431629b9a3aac495da9706cbe9e7a93507630071,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/ActivityFixtures.java,887,b4d6c94b5aa6083fde66955c3abbfac29b6315ab8d9bce255ca4133b42a12543,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/ActivityMigrationTests.java,1756,3a70ed6f0e89daff2b39ea220775aaea8db225b75bb70a86ed87f63ab51a4eef,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/ActivityRestartTests.java,2030,df204d93180bd95b6bb03950d14584678928d81d88c230ef88101e17c823e3ff,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/BootstrapCommandTests.java,1978,04b672acc5e59e5d1f654505da62f4186c6a700f012b3e95dcdb325487a95a66,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/ControlledOidcProvider.java,6683,d95a2bb401d39e7ca433d8cf726d5c822351baf6df64571dc45661b4be9d79d2,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/DocumentApiTests.java,7532,671bd7a5558aaa7fc8b172c8a30f1bb8db391f4a04a6085ae63af45f491f2a08,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/DocumentBrowserIntegrationTests.java,4087,7bfba59cb7a50bfa6e832797dfad93da9a5144018c2d05c5bfbfa0c01a001dd5,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/DocumentProcessorHttpTests.java,4386,1d4450a88e7611f0c014a1fc6a54046e748e49d22b840a99443a892a8e0fc4bd,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/DocumentServiceTests.java,9325,698b20373072c82b631511993e3fdbb42b5b776c07da5b7b0c7099ebe20a1a59,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/DocumentValidationTests.java,5170,19eba733e155bcca47247a9208fe6ad2231c17e2fc160dcc62c5388f695480f8,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/HealthSecurityTests.java,2038,e1af925cb0615344004e2182aed4cae56f3f047e70bb2a2e8e91901c4201b987,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/IdentityApiTests.java,14661,ed825e66bd4e05bb4cfe3c08c3340361441ad508de2fc8ea6288dc7f7f28c9cf,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/IdentityMigrationTests.java,4290,301581a184ffaf0fdea4d57caf63ff04f0afefc556461b9d1d0b3d336c52f595,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/MfaRecoveryTests.java,24566,1c3c32957c6e8156709a0f30fc59f4d565cc778184a32c4359098d3e1e01b9b0,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/OidcFederationTests.java,28820,a63fc474780652a2205b319ccc55c721be052b93fd2f1adc18cd434bf33a5a37,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/OidcMigrationTests.java,2215,df50a344f3c7e547262642d3c8208b25fe23a0fcfe4952a745368eb5bb6581d2,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/OidcRealStoresTests.java,5162,12b834233042a3b13c0c58d5bd75d06a3f9732983f3795c86590ffea7536d30e,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/OriginalPdfValidationTests.java,1803,40d2879c7a63332b6befc530d4989edd877067711489661fc4b289a262195183,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/PasswordPerformanceTests.java,1087,95aa0ce612ed09328465d92e8e183ea260f2b45da898dd221f3714b08303b067,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/PdfSecurityTests.java,6436,c40c38de18d1e7f04f3909ba1b193b39497e108fd48a6396a2146f4b511fc29b,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/PhaseOneApiTests.java,12757,e032a41ff8bff1f4e65e8854220aa2af9e26794b81b52cd22091dc9323535e91,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/SiareCoreApplicationTests.java,289,b6749fa101bc842dd87a615c8102099c44be8c517e17fe66296e4b19b0008484,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/TestDocumentsConfiguration.java,523,012b09732180bf7a7449114120f6ec99e00fdde5d1143c9127d80dcd2a863f9d,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/java/com/siare/core/TestKeysConfiguration.java,854,7d2d7cacb7feb352ca09da0cf1335a6a969677c5576985fedca2dbac275cdc9a,A,Código/configuración/recurso o pruebas conservados
+services/core-api/siare-core/src/test/resources/application-test.properties,659,039b767a8602ea140423b56f4bdceaf9f7c03b09b7431ab86980ac1620e59512,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/.dockerignore,35,a695965f44c197849f60dfec8cb71575143cb62dd51bf2633837337ab614846b,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/Dockerfile,843,e0054560dcc2bed0f0d977bfe87f20511fd44fdc4b51b0ff911b2c2ea56b9a1c,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/package-lock.json,35903,e128e7d17c8cac7ae6cf756c93b69a25f0784272db8778702b79e0a4364d6e59,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/package.json,541,f2785be98d2452580342d8cce03525f94d721382ae1201b18260325b9845fd78,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/src/app.ts,546,b4fce71cb727689db4d175dd5c2e9ef45aa38825acf66993799352b193ca9190,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/src/controllers/health.controller.ts,394,b17bc99409a1f9577c9418f32a090f7d4cea97ed61c267b797c0aee0bc5d3d66,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/src/models/health.model.ts,922,5516c8c7cf6bd788f7b3138b569c6dc7b175d3f9306c75d13987e491d1eaabdb,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/src/routes/health.routes.ts,316,ee0118f331d857f2948740c889fedeff8e0664a06f9a46cea33f09992e65794d,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/src/server.ts,594,e25da276eb1ec8dff1f167396434357bb55b4f9802ad339c5765ad4ee95f677f,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/src/views/health.view.ts,116,89d12ab9b3990c4af1f815149624b9dbafc6bf18319efd8948e27e3eec3f0316,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/test/health.test.mjs,1427,cfe726d2cce24aa5ee19a02aab2633e48292011e6ddb083e1a39558a3f6c69aa,A,Código/configuración/recurso o pruebas conservados
+services/progress-api/tsconfig.json,338,1e78e638bca35f1332cb24ea90375fbb92787fc00ce9e8f94a8e0ee2d6c21500,A,Código/configuración/recurso o pruebas conservados

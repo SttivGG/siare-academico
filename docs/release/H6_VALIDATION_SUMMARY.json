@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-21",
+  "timezone": "America/Bogota",
+  "base": "c8f934492f0cc7809282657270df34b4474915ca",
+  "sourceH6": "597d045f8bcdbc14a2e68f4d7d8cdc435267c98f",
+  "frontendTree": "d7c0ff7905bbacb98c82664ca0568bb5afafc8e0",
+  "routes": 15,
+  "acceptanceCases": 58,
+  "unitTests": 50,
+  "controlledIntegrationTests": {
+    "activities": 4,
+    "identityOIDC": 8,
+    "internalStates": 5
+  },
+  "playwright": {
+    "startTime": "2026-11-21T23:28:51.044Z",
+    "duration": 520402.67600000004,
+    "expected": 125,
+    "skipped": 5,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "checks": {
+    "unit": {
+      "status": "PASS",
+      "local_log": ".cache/h6-final-unit.txt",
+      "sha256": "3dfa5ea035fbf9533fd9f990ec3bac0395a5f3afed4cbb73d2ed70640bae13a2"
+    },
+    "build": {
+      "status": "PASS",
+      "local_log": ".cache/h6-final-build.txt",
+      "sha256": "d78d22cdbd6c98e572a866bafd9d42a92ec0205cd3ee1c53603ba48606873590"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "local_log": ".cache/h6-final-typecheck.txt",
+      "sha256": "6c04defa71b805f8e483d2972f68d1ace628bc2bbd788ccf64623772a212953a"
+    },
+    "activities": {
+      "status": "PASS",
+      "local_log": ".cache/h6-final-activities.txt",
+      "sha256": "283576455de4d6ed9cad5a1c35958b41447a0f80f6c4818f2d6c19dde8851a3c"
+    },
+    "identity": {
+      "status": "PASS",
+      "local_log": ".cache/h6-final-identity.txt",
+      "sha256": "365285613c2546a334b8bb941b8c4db44d189f15bd7bb9c0142c6c99319b35f9"
+    },
+    "nexo": {
+      "status": "PASS",
+      "local_log": ".cache/h6-final-nexo.txt",
+      "sha256": "bed4a710e5720c3dce730beec689028866caf77111cfdb882dc3026803d632a7"
+    }
+  },
+  "playwrightRawSHA256": "2ff8a1f9d08b9be5b70df9015d96aec5232df6c8b406f073553ef90e3245fd1c",
+  "scope": "Production Next/BFF and Chromium; loopback HTTP contract model, synthetic accounts/documents and memory-only stores. No Spring/OIDC/SMTP/real stores validation.",
+  "runtime": {
+    "timestamp": "2026-11-21T23:38:00.099Z",
+    "observations": [
+      {
+        "port": 3100,
+        "authenticated": false,
+        "mutations": false,
+        "error": "page.goto: Timeout 6000ms exceeded.",
+        "healthError": "apiRequestContext.get: Timeout 6000ms exceeded."
+      },
+      {
+        "port": 3107,
+        "authenticated": false,
+        "mutations": false,
+        "error": "page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:3107/",
+        "healthError": "apiRequestContext.get: connect ECONNREFUSED 127.0.0.1:3107"
+      }
+    ]
+  },
+  "decision": "MERGE NO-GO: runtime availability not verified; no deployment authorized",
+  "dockerMutation": false
+}

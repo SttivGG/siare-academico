@@ -1,0 +1,21 @@
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 32px; align-items: center; padding-block: clamp(40px, 6vw, 80px); }
+.hero h1 { font-size: clamp(2.4rem, 2rem + 2vw, 4.5rem); margin-block-end: 24px; }
+.hero p { max-inline-size: 52ch; }
+.hero :global(.actions) { margin-block-start: 28px; }
+.notebook { border: 1px solid var(--border); background: var(--glass-paint); border-radius: var(--radius-rail); padding: clamp(24px, 3vw, 40px); box-shadow: var(--shadow); transform: rotate(2deg); }
+.notebook h2 { font-size: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); margin-block: 24px; }
+.notebook > p { border-block-start: 1px solid var(--border); padding-block-start: 20px; }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; padding: 0; margin: 0; list-style: none; }
+.step { border: 1px solid var(--border); background: var(--glass-paint); box-shadow: var(--shadow); -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); border-radius: var(--radius-panel); padding: 24px; min-inline-size: 0; }
+.step h2, .step h3 { margin-block: 20px 12px; }
+.step h2 { font-size: 1.25rem; }
+.step p { color: var(--muted); }
+.step svg { inline-size: 24px; block-size: 24px; }
+.dashboard { display: grid; gap: 24px; }
+.dashboardHero { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; padding: clamp(24px, 4vw, 48px); border: 1px solid var(--border); background: var(--glass-paint); box-shadow: var(--shadow); -webkit-backdrop-filter: blur(var(--blur)); backdrop-filter: blur(var(--blur)); border-radius: var(--radius-rail); }
+.dashboardHero h2 { font-size: clamp(1.75rem, 1.4rem + 1vw, 2.5rem); margin-block: 16px; }
+.dashboardHero :global(.actions) { margin-block-start: 24px; }
+.note { background: var(--glass-secondary); border: 1px solid var(--border); padding: 24px; border-radius: 18px; align-self: stretch; display: grid; align-content: center; gap: 16px; }
+.subjects > article { border-block-start: 1px solid var(--border); }
+@media (max-width: 900px) { .hero, .dashboardHero { grid-template-columns: minmax(0, 1fr); } .notebook { transform: none; } }
+@media (max-width: 700px) { .steps { grid-template-columns: minmax(0, 1fr); } .hero { gap: 24px; } }

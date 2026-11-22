@@ -1,0 +1,39 @@
+{
+  "base": "c8f934492f0cc7809282657270df34b4474915ca",
+  "h6": "597d045f8bcdbc14a2e68f4d7d8cdc435267c98f",
+  "main_files": 420,
+  "h6_files": 2673,
+  "union_files": 2673,
+  "physical_files": 178435,
+  "physical_bytes": 13155042481,
+  "worktrees": 14,
+  "historical_excluded_files": 2170,
+  "historical_excluded_bytes": 721031916,
+  "added_h6_bytes": 723864840,
+  "exact_duplicate_groups": 111,
+  "exact_duplicate_files": 250,
+  "category_counts": {
+    "A": 453,
+    "B": 49,
+    "C": 2171
+  },
+  "protectedLocalSupplement": 12,
+  "envPreserved": true,
+  "publicableSecretScan": {
+    "tool": "Gitleaks 8.30.1",
+    "exitCode": 0,
+    "confirmedFindings": 0
+  },
+  "manifestScope": "Canonical text LF and unchanged binary bytes of final candidate; manifest itself omitted from its own rows and identified by final Git commit. Physical inventory is a separate non-atomic snapshot, retained privately.",
+  "physicalSnapshotErrors": 0,
+  "longPathsRecovered": 7,
+  "candidate": {
+    "files": 518,
+    "totalBytes": 9319693,
+    "addedFiles": 98,
+    "addedBytes": 6098666,
+    "oldTotalBytes": 727085542,
+    "oldAddedBytes": 723864840,
+    "addedReductionPercent": 99.15748553279643
+  }
+}

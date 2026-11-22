@@ -2,7 +2,7 @@ import { randomBytes } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { isAllowedMutation, cookieSettings } from "../../../../lib/session-policy";
 import { sessionName, secureCookie } from "../../../../lib/server-session";
-import { isProvider, allowedAuthorizationUrl, diagnosticCode } from "../../../../lib/oidc-policy";
+import { isProvider, allowedAuthorizationUrl, matchesOidcCallback, diagnosticCode } from "../../../../lib/oidc-policy";
 import { appOrigin, flowCookie, oidcHeaders, oidcDiagnostic } from "../../../../lib/oidc-server";
 
 export const runtime = "nodejs";
@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
     if (!data || typeof data !== "object" || Array.isArray(data)) return rejected(502, "OIDC_UPSTREAM_RESPONSE_INVALID", "No se pudo iniciar la conexión.");
     if (!upstream.ok) return rejected(upstream.status, diagnosticCode(data.code), "No se pudo iniciar la conexión. Vuelve a intentarlo.");
     if (!allowedAuthorizationUrl(data.authorizationUrl, input.provider)) return rejected(502, "OIDC_AUTHORIZATION_URL_INVALID", "No se pudo iniciar la conexión.");
+    if (!matchesOidcCallback(data.authorizationUrl, input.provider, appOrigin())) return rejected(502, "OIDC_REDIRECT_CHANGED", "El proveedor está configurado para otro entorno. Usa tu contraseña o contacta al administrador.");
     const response = NextResponse.json({ authorizationUrl: data.authorizationUrl }, { headers: oidcHeaders });
     response.cookies.set(flowCookie(input.provider), `${binding}.${link ? "link" : "login"}`, { ...cookieSettings(secureCookie()), maxAge: 300 });
     return response;
