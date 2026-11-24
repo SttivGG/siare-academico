@@ -8,3 +8,5 @@ python-pptx==1.0.2
 Pillow==13.0.0
 pytesseract==0.3.13
 defusedxml==0.7.1
+numpy==2.5.5
+scikit-learn==1.9.1

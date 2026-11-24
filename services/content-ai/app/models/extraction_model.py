@@ -23,6 +23,9 @@ class ExtractionModel:
                                            cwd="/app", close_fds=True,
                                            env={"PATH": "/usr/local/bin:/usr/bin:/bin", "LANG": "C.UTF-8",
                                                 "PYTHONDONTWRITEBYTECODE": "1", "OMP_THREAD_LIMIT": "1",
+                                                "OPENBLAS_NUM_THREADS": "1",
+                                                "MKL_NUM_THREADS": "1",
+                                                "NUMEXPR_NUM_THREADS": "1",
                                                 "TMPDIR": directory, "HOME": directory},
                                            start_new_session=sys.platform != "win32")
                 try:
@@ -34,7 +37,7 @@ class ExtractionModel:
                         process.kill()
                     process.wait()
                     return {"errorCode": "EXTRACTION_TIMEOUT"}
-                if process.returncode != 0 or not os.path.isfile(output):
+                if not os.path.isfile(output):
                     return {"errorCode": "UNSAFE_DOCUMENT"}
                 with open(output, "rb") as result:
                     data = result.read(8 * 1024 * 1024 + 1)

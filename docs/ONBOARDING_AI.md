@@ -28,7 +28,7 @@ El host omite OCR real salvo que se habilite expresamente y exista Tesseract esp
 docker compose -f compose.datos.yml -f compose.apps.yml --env-file .env exec -T -e SIARE_REAL_OCR=1 content-ai python -m unittest discover -s tests -v
 ```
 
-El servicio no publica puerto al host. Spring lo llama por `http://content-ai:5000` dentro de Docker y usa `CONTENT_SERVICE_TOKEN` para extracción. Consulta variables en `compose.apps.yml`, sin imprimir configuración expandida ni copiar `.env`. El token para el futuro contrato ML es una propuesta independiente, todavía sin aprovisionamiento.
+El servicio no publica puerto al host. Spring lo llama por `http://content-ai:5000` dentro de Docker y usa `CONTENT_SERVICE_TOKEN` para extracción. `LEARNING_SERVICE_TOKEN` es una credencial independiente para el futuro endpoint de aprendizaje y `LEARNING_MAX_BYTES` limita su carga JSON. Ambos se generan o conservan con `Initialize-Phase2.ps1`; no se reutiliza el secreto de extracción ni se envían al navegador. Consulta variables en `compose.apps.yml`, sin imprimir configuración expandida ni copiar `.env`. El token para el futuro contrato ML es una propuesta independiente, todavía sin aprovisionamiento.
 
 ## Plan de trabajo posterior
 

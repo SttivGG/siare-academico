@@ -59,7 +59,7 @@ Para una instalación existente de Fase 2 ejecuta `scripts/Migrate-Siare.ps1 -Sk
 
 `Start-Siare.ps1` valida la configuración y la identidad de los recursos, construye los servicios de uno en uno, espera hasta 900 segundos por los healthchecks y ejecuta las verificaciones. No detiene procesos ajenos para liberar puertos. Para un arranque posterior con las mismas imágenes:
 
-Antes de arrancar, el script prepara `CONTENT_SERVICE_TOKEN` para la comunicación Spring/Flask. En una instalación existente, `scripts/Initialize-Phase2.ps1` añade solo esa credencial y conserva las anteriores. `DOCUMENT_MAX_BYTES` y `DOCUMENT_REQUEST_MAX_BYTES` controlan el límite del archivo y del multipart completo.
+Antes de arrancar, el script prepara `CONTENT_SERVICE_TOKEN` para documentos y `LEARNING_SERVICE_TOKEN` para el contrato interno de aprendizaje adaptativo. Ambas credenciales son independientes y se conservan en instalaciones existentes. `LEARNING_MAX_BYTES` limita la carga JSON propuesta a 65536 bytes.
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Start-Siare.ps1 -SkipBuild
