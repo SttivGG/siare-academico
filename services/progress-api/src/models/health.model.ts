@@ -23,5 +23,5 @@ export function createCassandraHealthModel() {
       }
     },
   };
-  return { model, close: () => client.shutdown() };
+  return { client, model, close: () => client.shutdown() };
 }
