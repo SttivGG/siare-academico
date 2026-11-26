@@ -1,0 +1,38 @@
+{
+  "algorithm": "logistic_regression",
+  "coefficients": [
+    -0.10581845,
+    -0.10581845,
+    0.26060202,
+    0.08057519,
+    0.0,
+    -1.19302279
+  ],
+  "featureNames": [
+    "accuracyRate",
+    "normalizedScore",
+    "recentAccuracyTrend",
+    "attemptCount",
+    "recencyHours",
+    "consecutiveErrors"
+  ],
+  "intercept": -0.14281727,
+  "mean": [
+    0.56243172,
+    0.55933744,
+    -0.00670501,
+    58.71428571,
+    0.0,
+    0.53416149
+  ],
+  "modelVersion": "ml-v1",
+  "scale": [
+    0.04435912,
+    0.02439751,
+    0.07606068,
+    31.86899203,
+    1.0,
+    0.65494825
+  ],
+  "seed": 20261123
+}

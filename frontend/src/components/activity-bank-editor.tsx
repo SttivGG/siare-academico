@@ -50,30 +50,100 @@ export function ActivityBankEditor({ subjectId, document, onCreated }: { subject
     } catch (e) { setError(e instanceof Error ? e.message : 'JSON inválido.'); }
   }
   async function publish(e: React.FormEvent) {
-    e.preventDefault(); if (!bank || !reviewed || publishing.current || controller.getSnapshot().drafts[key]?.publishing) return;
+    e.preventDefault();
+
+    // El banco vacío ya no se envía al backend como una creación inválida.
+    if (!bank) {
+      setError(document && type === 'QUIZ'
+        ? 'Primero pulsa “Generar Quiz con Gemini”. El botón manual solo se habilita después de revisar un banco válido.'
+        : 'Primero valida y revisa un banco estructurado.');
+      return;
+    }
+
+    if (publishing.current || controller.getSnapshot().drafts[key]?.publishing) return;
+
     publishing.current = true;
-    setPending(true); setError('');
+    setPending(true);
+    setError('');
     try {
       validateGeneration(bank, type, topic.trim(), count, gridSize, document ? fragments! : undefined);
       const body = { type, topic: topic.trim(), count, gridSize, ...(document ? { documentId: document.documentId } : {}), bank: { ...bank, validated: true } };
       if (new TextEncoder().encode(JSON.stringify(body)).byteLength > 4 * 1024 * 1024) throw new Error('El banco completo supera 4 MiB.');
-      const activity = await api<Activity>(`subjects/${subjectId}/activities`, 'POST', body); controller.draft(key, { ...newDraft(), dirty: false }, false); onCreated(activity);
-    } catch (e) { setError(e instanceof Error ? e.message : 'No se pudo crear la actividad.'); }
-    finally { publishing.current = false; setPending(false); }
+      const activity = await api<Activity>(`subjects/${subjectId}/activities`, 'POST', body);
+      controller.draft(key, { ...newDraft(), dirty: false }, false);
+      onCreated(activity);
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'No se pudo crear la actividad.');
+    } finally {
+      publishing.current = false;
+      setPending(false);
+    }
   }
+
   function addEntry() {
     try {
-      const draft = JSON.parse(raw), list = type === 'QUIZ' ? 'questions' : 'words';
+      const draft = JSON.parse(raw);
+      const list = type === 'QUIZ' ? 'questions' : 'words';
       const source = document ? { reference: document.originalFilename, fragmentIndex: fragments?.[0]?.index ?? 0, quote: '' } : null;
-      const entry = type === 'QUIZ' ? { id: `q${(draft.questions?.length ?? 0) + 1}`, prompt: '', options: [{ id: 'a', text: '' }, { id: 'b', text: '' }], correctOptionId: 'a', explanation: '', topic: topic.trim(), source }
+      const entry = type === 'QUIZ'
+        ? { id: `q${(draft.questions?.length ?? 0) + 1}`, prompt: '', options: [{ id: 'a', text: '' }, { id: 'b', text: '' }], correctOptionId: 'a', explanation: '', topic: topic.trim(), source }
         : { id: `w${(draft.words?.length ?? 0) + 1}`, answer: '', clue: '', topic: topic.trim(), source };
-      draft[list] = [...(draft[list] ?? []), entry]; edit(JSON.stringify(draft, null, 2));
-    } catch { setError('Corrige el JSON antes de añadir una entrada.'); }
+      draft[list] = [...(draft[list] ?? []), entry];
+      edit(JSON.stringify(draft, null, 2));
+    } catch {
+      setError('Corrige el JSON antes de añadir una entrada.');
+    }
   }
+
+  async function generateWithGemini(e: React.FormEvent) {
+    e.preventDefault();
+    if (!document || pending || type !== 'QUIZ') return;
+
+    // Validación local antes de red: evita payloads 400 por tema o fuente ausentes.
+    if (!topic.trim()) {
+      setError('Escribe el tema exacto del banco antes de generar el Quiz.');
+      return;
+    }
+    if (!fragments || fragments.length === 0) {
+      setError('Espera a que el documento READY tenga texto extraído disponible.');
+      return;
+    }
+
+    setError('');
+    setPending(true);
+    try {
+      // Spring valida la propiedad del documento y el estado READY; Flask/Gemini genera
+      // exclusivamente el banco de esta solicitud sin exponer la clave al navegador.
+      const body = {
+        type: 'QUIZ',
+        documentId: document.documentId,
+        topic: topic.trim(),
+        count,
+        gridSize,
+      };
+      const activity = await api<Activity>(`subjects/${subjectId}/activities`, 'POST', body);
+      controller.draft(key, { ...newDraft(), dirty: false }, false);
+      onCreated(activity);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'No se pudo generar el Quiz con Gemini.');
+    } finally {
+      setPending(false);
+    }
+  }
+
   return <form className="bank-editor form-stack" onSubmit={publish} aria-busy={pending}>
-    <h3>Preparar banco</h3><p className="hint">Escribe o importa preguntas y palabras estructuradas. La generación automática desde PDF, Word o diapositivas está pendiente de integración con ML.</p>
-    <p className="source-note">{document ? `Fuente READY: ${document.originalFilename}` : 'Sin documento asociado. Puedes usar un banco revisado con fuentes externas.'}</p>
-    {document && !fragments && !sourceError && <p role="status">Cargando texto de la fuente para verificar las citas…</p>}
+    <h3>Preparar banco</h3><p className="hint">Puedes crear un Quiz revisable automáticamente desde el documento seleccionado o mantener el banco manual existente.</p>
+    <p className="source-note">{document ? `Fuente READY: ${document.originalFilename}` : 'Sin documento asociado. Selecciona un documento READY para usar Gemini.'}</p>
+    {document && type === 'QUIZ' && <section className="notice" aria-label="Generación con Gemini">
+      <h4>Crear automáticamente con Gemini</h4>
+      <p>Genera las preguntas desde el texto extraído y usa conocimiento relacionado solo para aclarar ambigüedades. Las citas siguen identificando el documento como fuente principal.</p>
+      <button className="button primary" type="button" onClick={generateWithGemini} disabled={pending || !fragments || !topic.trim()}>
+        {pending ? 'Generando con Gemini…' : 'Generar Quiz con Gemini'}
+      </button>
+      {!topic.trim() && <p className="hint">Primero escribe el tema exacto del Quiz.</p>}
+      {!fragments && <p className="hint">Espera a que termine de cargarse el texto del documento.</p>}
+    </section>}
+    {document && !fragments && !sourceError && <p role="status">Cargando texto de la fuente para generar y verificar las citas…</p>}
     {sourceError && <p className="notice error" role="alert">{sourceError}<button type="button" className="button secondary" onClick={() => setSourceRetry(sourceRetry + 1)}>Reintentar texto</button></p>}
     {document && fragments && <details><summary>Consultar fragmentos y citas</summary><div className="source-fragments">{fragments.map(f => <section key={f.index}><h4>Fragmento {f.index} · {f.unitType} {f.unitNumber}</h4><p className="preserve-lines">{f.text}</p></section>)}</div></details>}
     <fieldset disabled={pending} className="form-stack bank-fields">

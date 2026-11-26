@@ -1,0 +1,52 @@
+{
+  "attemptCount": 480,
+  "baseline": {
+    "accuracy": 0.565217,
+    "auc": null,
+    "confusionMatrix": [
+      [
+        0,
+        60
+      ],
+      [
+        0,
+        78
+      ]
+    ],
+    "f1": 0.722222,
+    "precision": 0.565217,
+    "recall": 1.0,
+    "sampleCount": 138
+  },
+  "model": {
+    "accuracy": 0.731884,
+    "auc": 0.819444,
+    "confusionMatrix": [
+      [
+        49,
+        11
+      ],
+      [
+        26,
+        52
+      ]
+    ],
+    "f1": 0.737589,
+    "precision": 0.825397,
+    "recall": 0.666667,
+    "sampleCount": 138
+  },
+  "modelVersion": "ml-v1",
+  "partition": "positional temporal synthetic rows; future attempt excluded",
+  "rowCount": 460,
+  "seed": 20261123,
+  "synthetic": true,
+  "testCount": 138,
+  "topics": [
+    "fracciones",
+    "algebra",
+    "geometria",
+    "estadistica"
+  ],
+  "trainCount": 322
+}

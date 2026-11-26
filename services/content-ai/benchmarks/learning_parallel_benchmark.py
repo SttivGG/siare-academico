@@ -1,6 +1,17 @@
-"""Benchmark sintético secuencial/paralelo de análisis por tema."""
+"""Benchmark sintético secuencial/paralelo de análisis por tema.
 
-from timeit import repeat
+Compara dos estrategias reales con lote acotado y reporta mediana, variabilidad,
+CPU y memoria. No confunde los hilos HTTP con paralelismo algorítmico.
+"""
+
+import statistics
+import time
+import tracemalloc
+
+try:
+    import resource
+except ImportError:
+    resource = None
 
 from app.ml.contracts import parse_attempts
 from app.ml.inference.inference_service import LearningInferenceService
@@ -26,19 +37,42 @@ attempts = parse_attempts(ATTEMPTS)
 service = LearningInferenceService()
 
 
-sequential_times = repeat(
-    "[service.analyze_topic(topic, attempts) for topic in TOPICS]",
-    globals=globals(), number=20, repeat=5,
-)
-parallel_times = repeat(
-    "service.analyze_topics(TOPICS, attempts)",
-    globals=globals(), number=20, repeat=5,
-)
+def measure(operation, repetitions=5):
+    """Mide tiempo, memoria Python pico y CPU disponible de forma acotada."""
+    durations = []
+    cpu_times = []
+    peak_bytes = []
+
+    for _ in range(repetitions):
+        tracemalloc.start()
+        started = time.perf_counter()
+        operation()
+        durations.append(time.perf_counter() - started)
+        _, peak = tracemalloc.get_traced_memory()
+        tracemalloc.stop()
+        peak_bytes.append(peak)
+        if resource is not None:
+            usage = resource.getrusage(resource.RUSAGE_SELF)
+            cpu_times.append(usage.ru_utime + usage.ru_stime)
+
+    return {
+        "medianSeconds": round(statistics.median(durations), 6),
+        "minSeconds": round(min(durations), 6),
+        "maxSeconds": round(max(durations), 6),
+        "medianPeakPythonBytes": int(statistics.median(peak_bytes)),
+        "cpuSecondsDeltaMedian": round(statistics.median(cpu_times), 6) if cpu_times else None,
+    }
+
+
+sequential = measure(lambda: [service.analyze_topic(topic, attempts) for topic in TOPICS])
+parallel = measure(lambda: service.analyze_topics(TOPICS, attempts))
 
 print({
     "synthetic": True,
     "topics": len(TOPICS),
     "attempts": len(attempts),
-    "sequentialSecondsMin": round(min(sequential_times), 6),
-    "parallelSecondsMin": round(min(parallel_times), 6),
+    "workers": 4,
+    "repetitions": 5,
+    "sequential": sequential,
+    "parallel": parallel,
 })

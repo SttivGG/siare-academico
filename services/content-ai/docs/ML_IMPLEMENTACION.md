@@ -91,3 +91,28 @@ Spring debe obtener y transformar datos de `academic_attempts` y `academic_activ
 ## Taxonomía temporal
 
 Mientras no exista catálogo oficial, `topicId` puede ser una cadena estable sintética. No se debe presentar como taxonomía curricular. Producción requiere UUID persistido y versionado administrado por Spring.
+
+## Integración generativa Gemini
+
+Gemini no reemplaza el baseline ni la regresión logística.
+
+```text
+Observaciones → modelo adaptativo → temas débiles → Gemini → evaluación/feedback
+```
+
+Flask expone endpoints internos para clasificación, evaluación y retroalimentación. Gemini recibe texto autorizado, devuelve JSON y no puede ejecutar código ni modificar permisos, notas o calificaciones.
+
+Configuración: `docs/GEMINI_INTEGRACION.md`.
+
+## Alcance cerrado de esta versión
+
+Esta versión entrega una demostración reproducible, no un modelo listo para decidir
+sobre estudiantes reales. El artefacto sintético `app/ml/artifacts/ml-v1.json` se
+entrena fuera de Flask con semilla fija, se exporta como JSON seguro y puede cargarse
+al iniciar el servicio mediante `LEARNING_MODEL_PATH`. Gemini y el modelo supervisado
+cumplen funciones distintas: Gemini ayuda a generar evaluaciones y retroalimentación;
+la regresión logística demuestra el análisis de dificultad a partir de características.
+
+## Modelo supervisado sintético
+
+- Algoritmo inicial: regresión logística con escalado.

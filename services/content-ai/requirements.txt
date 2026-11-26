@@ -10,3 +10,4 @@ pytesseract==0.3.13
 defusedxml==0.7.1
 numpy==2.5.5
 scikit-learn==1.9.1
+google-genai==3.6.1

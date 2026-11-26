@@ -45,4 +45,32 @@ def create_app(health_model: HealthModel | None = None) -> Flask:
     from app.controllers.learning_controller import learning_blueprint
     app.register_blueprint(learning_blueprint)
 
+    app.config["GEMINI_MODEL"] = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+    app.config["GEMINI_TIMEOUT_SECONDS"] = float(os.environ.get("GEMINI_TIMEOUT_SECONDS", "30"))
+    app.config["GEMINI_MAX_RETRIES"] = int(os.environ.get("GEMINI_MAX_RETRIES", "2"))
+    app.config["GEMINI_MAX_INPUT_CHARS"] = int(os.environ.get("GEMINI_MAX_INPUT_CHARS", "100000"))
+    app.config["GEMINI_MAX_QUESTIONS"] = int(os.environ.get("GEMINI_MAX_QUESTIONS", "20"))
+    app.config["GEMINI_MAX_REQUESTS_PER_MINUTE"] = int(os.environ.get("GEMINI_MAX_REQUESTS_PER_MINUTE", "30"))
+    app.config["GEMINI_MAX_REQUEST_BYTES"] = int(os.environ.get("GEMINI_MAX_REQUEST_BYTES", "131072"))
+
+    # Gemini es opcional: una clave ausente no deshabilita OCR, salud o ML local.
+    api_key = os.environ.get("GEMINI_API_KEY", "")
+    if api_key:
+        try:
+            from app.generative.gemini_service import GeminiService
+            app.extensions["gemini_service"] = GeminiService(
+                api_key=api_key,
+                model=app.config["GEMINI_MODEL"],
+                timeout_seconds=app.config["GEMINI_TIMEOUT_SECONDS"],
+                max_retries=app.config["GEMINI_MAX_RETRIES"],
+                max_input_chars=app.config["GEMINI_MAX_INPUT_CHARS"],
+                max_requests_per_minute=app.config["GEMINI_MAX_REQUESTS_PER_MINUTE"],
+            )
+        except (ImportError, ValueError, RuntimeError):
+            app.extensions.pop("gemini_service", None)
+            app.logger.error("Gemini no pudo inicializarse; los endpoints generativos quedarán no disponibles.")
+
+    from app.controllers.generative_learning_controller import generative_learning_blueprint
+    app.register_blueprint(generative_learning_blueprint)
+
     return app

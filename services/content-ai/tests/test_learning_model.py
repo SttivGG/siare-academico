@@ -80,6 +80,21 @@ class LearningModelTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             LogisticRiskModel.from_parameters(parameters)
 
+    def test_synthetic_artifact_is_loadable_and_used_for_inference(self):
+        """Carga el artefacto sintético versionado sin entrenamiento ni código externo."""
+        from pathlib import Path
+        from app.ml.inference.model_registry import ModelRegistry
+
+        artifact = Path(__file__).resolve().parents[1] / "app" / "ml" / "artifacts" / "ml-v1.json"
+        registry = ModelRegistry(str(artifact))
+        model = registry.load_artifact()
+
+        self.assertEqual(model.model_version, "ml-v1")
+        self.assertIs(registry.resolve("ml-v1"), model)
+        risk = model.predict_risk([0.4, 0.4, -0.1, 15, 12, 2])
+        self.assertGreaterEqual(risk, 0.0)
+        self.assertLessEqual(risk, 1.0)
+
     def test_inference_service_uses_loaded_model_without_training(self):
         """Verifica inferencia supervisada usando un modelo ya reconstruido."""
         train_rows, _ = split_by_position(self.rows, 0.7)

@@ -313,3 +313,19 @@ Las decisiones de dependencia y las fuentes oficiales consultadas están en [doc
 ## H2-B2: Google y GitLab.com OIDC
 
 Inicio federado con Authorization Code + PKCE, identidades MySQL, estado efímero Redis y el mismo MFA/sesiones revocables. Configuración independiente y desactivada por defecto. Ver [configuración y callbacks](docs/H2B2_OIDC.md) y [resultados y pendientes](docs/H2B2_VALIDACION.md). Google conserva el login y alta reales confirmados históricamente. GitLab.com sustituye a Microsoft Entra y tiene validación manual exitosa reportada por el usuario el 18/11/2026, con alcance documentado en [GitLab real](docs/H2B2_GITLAB_REAL.md). La entrega real SMTP continúa pendiente de H2-B1.
+
+## Integración con Gemini
+
+Gemini se ejecuta exclusivamente en `content-ai`. Configure `GEMINI_API_KEY` únicamente en `.env` local o el gestor de secretos del entorno. Spring nunca recibe ni publica esa clave.
+
+Variables soportadas:
+
+- `GEMINI_MODEL`
+- `GEMINI_TIMEOUT_SECONDS`
+- `GEMINI_MAX_RETRIES`
+- `GEMINI_MAX_INPUT_CHARS`
+- `GEMINI_MAX_QUESTIONS`
+- `GEMINI_MAX_REQUESTS_PER_MINUTE`
+- `GEMINI_MAX_REQUEST_BYTES`
+
+La documentación completa está en `docs/GEMINI_INTEGRACION.md`.
