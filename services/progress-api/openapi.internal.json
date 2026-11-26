@@ -1,0 +1,1040 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SIARE · API interna de progreso y analítica",
+    "version": "1.0.0",
+    "description": "Contrato de las operaciones implementadas en Express. Spring verifica la identidad y el acceso del estudiante a la materia antes de llamar al servicio por la red interna de Docker."
+  },
+  "servers": [
+    {
+      "url": "http://progress-api:3001",
+      "description": "Red interna de SIARE"
+    }
+  ],
+  "security": [
+    {
+      "ServiceBearer": []
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "checkHealth",
+        "summary": "Comprobar la conectividad de Express con Cassandra",
+        "description": "Este chequeo no mide el estado de Redis ni de ClickHouse.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Cassandra disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                },
+                "example": {
+                  "service": "progress-api",
+                  "status": "UP"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Cassandra no disponible.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                },
+                "example": {
+                  "service": "progress-api",
+                  "status": "DOWN"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/internal/v1/attempts": {
+      "post": {
+        "operationId": "recordAttempt",
+        "summary": "Registrar un intento evaluado",
+        "description": "Acepta JSON UTF-8 sin compresión, de hasta 1 MiB. El acuse confirma el intento y su proyección de progreso. La entrega a ClickHouse es asíncrona. Cuando la respuesta sea ambigua, conserva el mismo eventId, attemptId y contenido al reintentar.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RequestId"
+          },
+          {
+            "$ref": "#/components/parameters/IdempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttemptEvent"
+              },
+              "example": {
+                "schemaVersion": 1,
+                "eventId": "00000000-0000-4000-8000-000000000005",
+                "attemptId": "00000000-0000-4000-8000-000000000004",
+                "studentId": "00000000-0000-4000-8000-000000000002",
+                "subjectId": "00000000-0000-4000-8000-000000000003",
+                "activityId": "00000000-0000-4000-8000-000000000006",
+                "activityType": "QUIZ",
+                "eventType": "ATTEMPT_EVALUATED",
+                "score": 0.8,
+                "durationMs": 45000,
+                "occurredAt": "2026-11-18T19:00:00.123456Z",
+                "source": "core-api"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reenvío idéntico. Devuelve el mismo recordedAt y el requestId de la solicitud actual.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptReceipt"
+                },
+                "example": {
+                  "schemaVersion": 1,
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "eventId": "00000000-0000-4000-8000-000000000005",
+                  "attemptId": "00000000-0000-4000-8000-000000000004",
+                  "status": "RECORDED",
+                  "recordedAt": "2026-11-18T19:00:01Z",
+                  "analyticsStatus": "PENDING"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Intento nuevo confirmado en Cassandra.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttemptReceipt"
+                },
+                "example": {
+                  "schemaVersion": 1,
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "eventId": "00000000-0000-4000-8000-000000000005",
+                  "attemptId": "00000000-0000-4000-8000-000000000004",
+                  "status": "RECORDED",
+                  "recordedAt": "2026-11-18T19:00:01Z",
+                  "analyticsStatus": "PENDING"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "description": "Conflicto por eventId reutilizado con otro contenido, o por attemptId con otro eventId.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                },
+                "examples": {
+                  "idempotency": {
+                    "value": {
+                      "requestId": "00000000-0000-4000-8000-000000000001",
+                      "status": 409,
+                      "code": "IDEMPOTENCY_CONFLICT",
+                      "message": "El evento ya existe con otros datos."
+                    }
+                  },
+                  "attempt": {
+                    "value": {
+                      "requestId": "00000000-0000-4000-8000-000000000001",
+                      "status": 409,
+                      "code": "ATTEMPT_CONFLICT",
+                      "message": "El intento ya está registrado con otro evento."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "El cuerpo supera 1 MiB.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                },
+                "example": {
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "status": 413,
+                  "code": "PAYLOAD_TOO_LARGE",
+                  "message": "El JSON supera 1 MiB."
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Contenido, codificación o compresión no admitidos.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InternalError"
+                },
+                "example": {
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "status": 415,
+                  "code": "UNSUPPORTED_MEDIA_TYPE",
+                  "message": "Se requiere JSON UTF-8 sin compresión."
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/internal/v1/students/{studentId}/progress": {
+      "get": {
+        "operationId": "getStudentProgress",
+        "summary": "Consultar progreso por actividad",
+        "description": "Orden ascendente por activityId. La última nota se elige por occurredAt y, en empate, por attemptId. Cada página lee el estado disponible; el cursor no congela una captura global.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RequestId"
+          },
+          {
+            "$ref": "#/components/parameters/StudentId"
+          },
+          {
+            "$ref": "#/components/parameters/SubjectId"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 147,
+              "maxLength": 147,
+              "description": "Usar el nextCursor entregado para el mismo estudiante y materia."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Página de progreso. Sin resultados devuelve items vacío y nextCursor nulo.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProgressPage"
+                },
+                "example": {
+                  "schemaVersion": 1,
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "studentId": "00000000-0000-4000-8000-000000000002",
+                  "subjectId": "00000000-0000-4000-8000-000000000003",
+                  "items": [
+                    {
+                      "activityId": "00000000-0000-4000-8000-000000000006",
+                      "attemptCount": 1,
+                      "bestScore": 0.8,
+                      "lastScore": 0.8,
+                      "lastAttemptAt": "2026-11-18T19:00:00.123456Z"
+                    }
+                  ],
+                  "nextCursor": null,
+                  "asOf": "2026-11-18T19:00:01Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/internal/v1/students/{studentId}/indicators": {
+      "get": {
+        "operationId": "getStudentIndicators",
+        "summary": "Consultar agregados deduplicados de ClickHouse",
+        "description": "Intervalo [from,to) de hasta 31 días. El resultado tiene consistencia eventual. El retraso se mide entre la escritura en Cassandra y la primera ingesta del evento que fija el watermark.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RequestId"
+          },
+          {
+            "$ref": "#/components/parameters/StudentId"
+          },
+          {
+            "$ref": "#/components/parameters/SubjectId"
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "required": true,
+            "description": "Inicio inclusivo.",
+            "schema": {
+              "$ref": "#/components/schemas/UtcMilliseconds"
+            },
+            "example": "2026-11-18T00:00:00Z"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "description": "Fin exclusivo. Debe ser posterior al inicio.",
+            "schema": {
+              "$ref": "#/components/schemas/UtcMilliseconds"
+            },
+            "example": "2026-11-19T00:00:00Z"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agregados por ámbito en el intervalo solicitado.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Indicators"
+                },
+                "example": {
+                  "schemaVersion": 1,
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "studentId": "00000000-0000-4000-8000-000000000002",
+                  "subjectId": "00000000-0000-4000-8000-000000000003",
+                  "from": "2026-11-18T00:00:00Z",
+                  "to": "2026-11-19T00:00:00Z",
+                  "attemptCount": 1,
+                  "averageScore": 0.8,
+                  "totalDurationMs": 45000,
+                  "asOf": "2026-11-18T19:00:03Z",
+                  "ingestionLagMs": 2000
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/internal/v1/cache/metrics": {
+      "get": {
+        "operationId": "getCacheMetrics",
+        "summary": "Consultar las métricas de caché de Express",
+        "description": "Contadores y tiempos acumulados por vista, en memoria del proceso. Se reinician al recrear Express.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/RequestId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Estado y métricas de Redis para progreso e indicadores.",
+            "headers": {
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "const": "no-store"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CacheMetrics"
+                },
+                "example": {
+                  "schemaVersion": 1,
+                  "requestId": "00000000-0000-4000-8000-000000000001",
+                  "redisReady": true,
+                  "ttlSeconds": 60,
+                  "progress": {
+                    "hits": 8,
+                    "misses": 4,
+                    "coalesced": 2,
+                    "fallbacks": 1,
+                    "errors": 0,
+                    "invalidations": 1,
+                    "hitTimeMs": 32.8,
+                    "sourceReads": 3,
+                    "sourceTimeMs": 281.4
+                  },
+                  "indicators": {
+                    "hits": 8,
+                    "misses": 4,
+                    "coalesced": 2,
+                    "fallbacks": 1,
+                    "errors": 0,
+                    "invalidations": 1,
+                    "hitTimeMs": 32.8,
+                    "sourceReads": 3,
+                    "sourceTimeMs": 281.4
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/ValidationError"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ServiceBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Credencial de servicio PROGRESS_SERVICE_TOKEN. Mínimo 32 caracteres ASCII visibles. No es el JWT del estudiante."
+      }
+    },
+    "parameters": {
+      "RequestId": {
+        "name": "X-Request-Id",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/CanonicalUuid"
+        },
+        "description": "UUID de correlación de esta solicitud. En los errores con cabecera ausente o inválida, Express asigna otro UUID."
+      },
+      "IdempotencyKey": {
+        "name": "Idempotency-Key",
+        "in": "header",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/CanonicalUuid"
+        },
+        "description": "Debe coincidir exactamente con eventId y conservarse al reintentar."
+      },
+      "StudentId": {
+        "name": "studentId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/CanonicalUuid"
+        }
+      },
+      "SubjectId": {
+        "name": "subjectId",
+        "in": "query",
+        "required": true,
+        "schema": {
+          "$ref": "#/components/schemas/CanonicalUuid"
+        }
+      }
+    },
+    "responses": {
+      "ValidationError": {
+        "description": "Cabeceras, argumentos, fechas, JSON o versión inválidos. La versión de evento no admitida devuelve UNSUPPORTED_SCHEMA_VERSION.",
+        "headers": {
+          "Cache-Control": {
+            "schema": {
+              "type": "string",
+              "const": "no-store"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InternalError"
+            },
+            "example": {
+              "requestId": "00000000-0000-4000-8000-000000000001",
+              "status": 400,
+              "code": "VALIDATION",
+              "message": "Entrada inválida."
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Bearer de servicio ausente o inválido.",
+        "headers": {
+          "Cache-Control": {
+            "schema": {
+              "type": "string",
+              "const": "no-store"
+            }
+          },
+          "WWW-Authenticate": {
+            "schema": {
+              "type": "string",
+              "const": "Bearer"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InternalError"
+            },
+            "example": {
+              "requestId": "00000000-0000-4000-8000-000000000001",
+              "status": 401,
+              "code": "UNAUTHORIZED",
+              "message": "Credencial de servicio inválida."
+            }
+          }
+        }
+      },
+      "Unavailable": {
+        "description": "No se pudo confirmar la operación o una dependencia requerida está indisponible.",
+        "headers": {
+          "Cache-Control": {
+            "schema": {
+              "type": "string",
+              "const": "no-store"
+            }
+          },
+          "Retry-After": {
+            "schema": {
+              "type": "string",
+              "const": "1"
+            }
+          }
+        },
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InternalError"
+            },
+            "example": {
+              "requestId": "00000000-0000-4000-8000-000000000001",
+              "status": 503,
+              "code": "DEPENDENCY_UNAVAILABLE",
+              "message": "Servicio interno no disponible."
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "CanonicalUuid": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        "description": "UUID textual en minúsculas."
+      },
+      "UtcMilliseconds": {
+        "type": "string",
+        "format": "date-time",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?Z$",
+        "description": "Fecha UTC terminada en Z, entre los años 1900 y 2299."
+      },
+      "NormalizedScore": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      },
+      "AttemptEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "eventId",
+          "attemptId",
+          "studentId",
+          "subjectId",
+          "activityId",
+          "activityType",
+          "eventType",
+          "score",
+          "durationMs",
+          "occurredAt",
+          "source"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "integer",
+            "const": 1
+          },
+          "eventId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "attemptId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "studentId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "subjectId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "activityId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "activityType": {
+            "enum": [
+              "QUIZ",
+              "CROSSWORD"
+            ]
+          },
+          "eventType": {
+            "const": "ATTEMPT_EVALUATED"
+          },
+          "score": {
+            "$ref": "#/components/schemas/NormalizedScore"
+          },
+          "durationMs": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 86400000
+          },
+          "occurredAt": {
+            "type": "string",
+            "format": "date-time",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,9})?Z$"
+          },
+          "source": {
+            "const": "core-api"
+          }
+        }
+      },
+      "AttemptReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "requestId",
+          "eventId",
+          "attemptId",
+          "status",
+          "recordedAt",
+          "analyticsStatus"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "integer",
+            "const": 1
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "eventId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "attemptId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "status": {
+            "const": "RECORDED"
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "analyticsStatus": {
+            "const": "PENDING"
+          }
+        }
+      },
+      "ActivityProgress": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "activityId",
+          "attemptCount",
+          "bestScore",
+          "lastScore",
+          "lastAttemptAt"
+        ],
+        "properties": {
+          "activityId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "attemptCount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "bestScore": {
+            "$ref": "#/components/schemas/NormalizedScore"
+          },
+          "lastScore": {
+            "$ref": "#/components/schemas/NormalizedScore"
+          },
+          "lastAttemptAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProgressPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "requestId",
+          "studentId",
+          "subjectId",
+          "items",
+          "nextCursor",
+          "asOf"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "integer",
+            "const": 1
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "studentId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "subjectId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "items": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/ActivityProgress"
+            }
+          },
+          "nextCursor": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 147,
+                "maxLength": 147
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Indicators": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "requestId",
+          "studentId",
+          "subjectId",
+          "from",
+          "to",
+          "attemptCount",
+          "averageScore",
+          "totalDurationMs",
+          "asOf",
+          "ingestionLagMs"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "integer",
+            "const": 1
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "studentId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "subjectId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "from": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "to": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "attemptCount": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "averageScore": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NormalizedScore"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "totalDurationMs": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "asOf": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "ingestionLagMs": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "CacheMetrics": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "requestId",
+          "redisReady",
+          "ttlSeconds",
+          "progress",
+          "indicators"
+        ],
+        "properties": {
+          "schemaVersion": {
+            "type": "integer",
+            "const": 1
+          },
+          "requestId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "redisReady": {
+            "type": "boolean"
+          },
+          "ttlSeconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 300
+          },
+          "progress": {
+            "$ref": "#/components/schemas/CacheCounters"
+          },
+          "indicators": {
+            "$ref": "#/components/schemas/CacheCounters"
+          }
+        }
+      },
+      "CacheCounters": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "hits",
+          "misses",
+          "coalesced",
+          "fallbacks",
+          "errors",
+          "invalidations",
+          "hitTimeMs",
+          "sourceReads",
+          "sourceTimeMs"
+        ],
+        "properties": {
+          "hits": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "misses": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "coalesced": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "fallbacks": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "errors": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "invalidations": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "hitTimeMs": {
+            "type": "number",
+            "minimum": 0
+          },
+          "sourceReads": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "sourceTimeMs": {
+            "type": "number",
+            "minimum": 0
+          }
+        }
+      },
+      "Health": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "service",
+          "status"
+        ],
+        "properties": {
+          "service": {
+            "const": "progress-api"
+          },
+          "status": {
+            "enum": [
+              "UP",
+              "DOWN"
+            ]
+          }
+        }
+      },
+      "InternalError": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requestId",
+          "status",
+          "code",
+          "message"
+        ],
+        "properties": {
+          "requestId": {
+            "$ref": "#/components/schemas/CanonicalUuid"
+          },
+          "status": {
+            "type": "integer",
+            "enum": [
+              400,
+              401,
+              409,
+              413,
+              415,
+              503
+            ]
+          },
+          "code": {
+            "enum": [
+              "VALIDATION",
+              "UNSUPPORTED_SCHEMA_VERSION",
+              "UNAUTHORIZED",
+              "IDEMPOTENCY_CONFLICT",
+              "ATTEMPT_CONFLICT",
+              "PAYLOAD_TOO_LARGE",
+              "UNSUPPORTED_MEDIA_TYPE",
+              "DEPENDENCY_UNAVAILABLE"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
