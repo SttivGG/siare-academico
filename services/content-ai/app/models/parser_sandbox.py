@@ -14,7 +14,32 @@ import sys
 def restrict(source: str, scratch: str) -> None:
     if sys.platform != "linux" or os.getuid() == 0 or os.uname().machine not in ("x86_64", "aarch64"):
         raise RuntimeError("Linux unprivileged parser sandbox required")
-    resource.setrlimit(resource.RLIMIT_AS, (384 * 1024 * 1024,) * 2)
+    # Cargar libseccomp y preparar el contexto antes de reducir la dirección
+    # virtual disponible. De otro modo el loader intenta mapear la librería
+    # después del límite y devuelve "failed to map segment".
+    seccomp = ctypes.CDLL("libseccomp.so.2", use_errno=True)
+    seccomp.seccomp_init.argtypes = [ctypes.c_uint32]
+    seccomp.seccomp_init.restype = ctypes.c_void_p
+    seccomp.seccomp_rule_add.argtypes = [ctypes.c_void_p, ctypes.c_uint32, ctypes.c_int, ctypes.c_uint]
+    seccomp.seccomp_syscall_resolve_name.argtypes = [ctypes.c_char_p]
+    seccomp.seccomp_load.argtypes = [ctypes.c_void_p]
+    seccomp.seccomp_release.argtypes = [ctypes.c_void_p]
+
+    context = seccomp.seccomp_init(0x7FFF0000)  # SCMP_ACT_ALLOW
+    if not context:
+        raise RuntimeError("seccomp unavailable")
+    try:
+        for name in ("socket", "socketpair", "connect", "bind", "listen", "accept", "accept4", "sendto", "sendmsg",
+                     "ptrace", "process_vm_readv", "process_vm_writev", "pidfd_getfd", "mount", "unshare", "setns", "bpf", "keyctl"):
+            number = seccomp.seccomp_syscall_resolve_name(name.encode())
+            if number >= 0 and seccomp.seccomp_rule_add(context, 0x00050000 | errno.EPERM, number, 0) != 0:
+                raise RuntimeError("seccomp rule")
+        if seccomp.seccomp_load(context) != 0:
+            raise RuntimeError("seccomp load")
+    finally:
+        seccomp.seccomp_release(context)
+
+    resource.setrlimit(resource.RLIMIT_AS, (768 * 1024 * 1024,) * 2)
     resource.setrlimit(resource.RLIMIT_CPU, (20, 20))
     resource.setrlimit(resource.RLIMIT_FSIZE, (8 * 1024 * 1024,) * 2)
     resource.setrlimit(resource.RLIMIT_NOFILE, (64, 64))
@@ -60,30 +85,13 @@ def restrict(source: str, scratch: str) -> None:
             allow(path, 1 | 4 | 8)
         allow(source, 4)
         allow(scratch, rights & ~1)  # temporary files cannot be executed
+        source_parent = os.path.dirname(source)
+        scratch_parent = os.path.dirname(scratch)
+        allow(source_parent, 1 | 4 | 8)
+        allow(scratch_parent, 1 | 4 | 8)
         allow("/dev/null", 2 | 4)
         allow("/dev/urandom", 4)
         if libc.syscall(446, fd, 0) != 0:
             raise OSError(ctypes.get_errno(), "Landlock restrict")
     finally:
         os.close(fd)
-
-    seccomp = ctypes.CDLL("libseccomp.so.2", use_errno=True)
-    seccomp.seccomp_init.argtypes = [ctypes.c_uint32]
-    seccomp.seccomp_init.restype = ctypes.c_void_p
-    seccomp.seccomp_rule_add.argtypes = [ctypes.c_void_p, ctypes.c_uint32, ctypes.c_int, ctypes.c_uint]
-    seccomp.seccomp_syscall_resolve_name.argtypes = [ctypes.c_char_p]
-    seccomp.seccomp_load.argtypes = [ctypes.c_void_p]
-    seccomp.seccomp_release.argtypes = [ctypes.c_void_p]
-    context = seccomp.seccomp_init(0x7FFF0000)  # SCMP_ACT_ALLOW
-    if not context:
-        raise RuntimeError("seccomp unavailable")
-    try:
-        for name in ("socket", "socketpair", "connect", "bind", "listen", "accept", "accept4", "sendto", "sendmsg",
-                     "ptrace", "process_vm_readv", "process_vm_writev", "pidfd_getfd", "mount", "unshare", "setns", "bpf", "keyctl"):
-            number = seccomp.seccomp_syscall_resolve_name(name.encode())
-            if number >= 0 and seccomp.seccomp_rule_add(context, 0x00050000 | errno.EPERM, number, 0) != 0:
-                raise RuntimeError("seccomp rule")
-        if seccomp.seccomp_load(context) != 0:
-            raise RuntimeError("seccomp load")
-    finally:
-        seccomp.seccomp_release(context)

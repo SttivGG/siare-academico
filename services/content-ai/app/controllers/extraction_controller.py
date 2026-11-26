@@ -14,6 +14,15 @@ MIMES = {"PDF": "application/pdf", "DOCX": "application/vnd.openxmlformats-offic
 
 @extraction_blueprint.post("/internal/v1/extractions")
 def extract_document():
+    """Controlador para la extracción de documentos.
+
+    Este controlador maneja las solicitudes de extracción de documentos. Valida la autorización,
+    el tipo de documento y el tamaño del archivo. Luego, utiliza el modelo de extracción para
+    procesar el archivo y devolver el resultado.
+
+    Returns:
+        Response: La respuesta de la extracción en formato JSON.
+    """
     secret = current_app.config["CONTENT_SERVICE_TOKEN"]
     authorization = request.headers.get("Authorization", "")
     if not secret or len(secret) < 32 or not hmac.compare_digest(authorization.encode(), ("Bearer " + secret).encode()):

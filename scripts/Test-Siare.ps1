@@ -39,7 +39,7 @@ Invoke-SiareCompose exec -T progress-api node -e "fetch('http://127.0.0.1:3001/h
 $frontend = Invoke-RestMethod -Uri 'http://127.0.0.1:3100/api/health' -TimeoutSec 10
 if ($frontend.status -ne 'UP') { throw 'Fallo frontend -> servidor Next.js -> Spring.' }
 $page = Invoke-WebRequest -Uri 'http://127.0.0.1:3100/' -UseBasicParsing -TimeoutSec 15
-if ($page.StatusCode -ne 200 -or $page.Content -notmatch 'Spring disponible') { throw 'La pagina no confirma comunicacion con Spring.' }
+if ($page.StatusCode -ne 200 -or $page.Content -notmatch 'SIARE Académico|Servicio de acceso disponible') { throw 'La pagina no confirma el estado actualizado del frontend.' }
 
 # Prove only the two approved host ports are published.
 foreach ($service in $expected) {

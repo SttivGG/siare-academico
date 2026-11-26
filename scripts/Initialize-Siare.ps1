@@ -20,9 +20,11 @@ function New-LocalSecret {
 $content = [IO.File]::ReadAllText((Join-Path $repoRoot '.env.example'))
 $content = $content.Replace('COMPOSE_PROJECT_NAME=siare-academico', "COMPOSE_PROJECT_NAME=$ProjectName")
 $content = $content.Replace('SIARE_INSTANCE_ID=', ('SIARE_INSTANCE_ID=' + [Guid]::NewGuid().ToString('N')))
-foreach ($key in @('MYSQL_PASSWORD', 'MYSQL_ROOT_PASSWORD', 'MONGO_PASSWORD', 'MONGO_ROOT_PASSWORD', 'REDIS_PASSWORD', 'CONTENT_SERVICE_TOKEN', 'CLICKHOUSE_PASSWORD')) {
+foreach ($key in @('MYSQL_PASSWORD', 'MYSQL_ROOT_PASSWORD', 'MONGO_PASSWORD', 'MONGO_ROOT_PASSWORD', 'REDIS_PASSWORD', 'CONTENT_SERVICE_TOKEN', 'LEARNING_SERVICE_TOKEN', 'CLICKHOUSE_PASSWORD')) {
     $content = [regex]::Replace($content, "(?m)^${key}=\r?$", ($key + '=' + (New-LocalSecret)))
 }
+# GEMINI_API_KEY se conserva vacío en nuevas instalaciones. Debe configurarse
+# manualmente en .env y nunca se genera ni registra por scripts.
 # CreateNew also prevents a concurrent initialization from replacing an existing .env.
 $stream = [IO.File]::Open($envPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write)
 try {

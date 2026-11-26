@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0",
+  "seed": 20261123,
+  "synthetic": true,
+  "topics": ["fracciones", "algebra", "geometria"],
+  "minimumSamplesByTopic": 5,
+  "subjects": [
+    {
+      "subjectId": "00000000-0000-4000-8000-000000000101",
+      "students": [
+        {
+          "userId": "00000000-0000-4000-8000-000000000201",
+          "attempts": [
+            {"activityId": "00000000-0000-4000-8000-000000000301", "topicId": "fracciones", "correct": false, "score": 1, "maxScore": 5, "occurredAt": "2026-10-01T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000302", "topicId": "fracciones", "correct": false, "score": 2, "maxScore": 5, "occurredAt": "2026-10-02T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000303", "topicId": "fracciones", "correct": true, "score": 4, "maxScore": 5, "occurredAt": "2026-10-03T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000304", "topicId": "fracciones", "correct": false, "score": 2, "maxScore": 5, "occurredAt": "2026-10-04T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000305", "topicId": "fracciones", "correct": false, "score": 1, "maxScore": 5, "occurredAt": "2026-10-05T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000306", "topicId": "fracciones", "correct": true, "score": 5, "maxScore": 5, "occurredAt": "2026-10-06T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000307", "topicId": "algebra", "correct": false, "score": 2, "maxScore": 5, "occurredAt": "2026-10-07T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000308", "topicId": "algebra", "correct": true, "score": 4, "maxScore": 5, "occurredAt": "2026-10-08T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000309", "topicId": "algebra", "correct": false, "score": 1, "maxScore": 5, "occurredAt": "2026-10-09T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000310", "topicId": "algebra", "correct": true, "score": 5, "maxScore": 5, "occurredAt": "2026-10-10T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000311", "topicId": "algebra", "correct": false, "score": 2, "maxScore": 5, "occurredAt": "2026-10-11T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000312", "topicId": "geometria", "correct": true, "score": 5, "maxScore": 5, "occurredAt": "2026-10-12T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000313", "topicId": "geometria", "correct": true, "score": 4, "maxScore": 5, "occurredAt": "2026-10-13T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000314", "topicId": "geometria", "correct": false, "score": 2, "maxScore": 5, "occurredAt": "2026-10-14T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000315", "topicId": "geometria", "correct": true, "score": 5, "maxScore": 5, "occurredAt": "2026-10-15T09:00:00Z"},
+            {"activityId": "00000000-0000-4000-8000-000000000316", "topicId": "geometria", "correct": true, "score": 4, "maxScore": 5, "occurredAt": "2026-10-16T09:00:00Z"}
+          ]
+        }
+      ]
+    }
+  ]
+}

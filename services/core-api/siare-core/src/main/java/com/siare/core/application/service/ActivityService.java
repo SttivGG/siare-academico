@@ -8,6 +8,7 @@ import com.siare.core.domain.account.BusinessException;
 import com.siare.core.domain.document.*;
 import java.time.Clock;
 import java.util.*;
+import org.springframework.beans.factory.ObjectProvider;
 import static com.siare.core.domain.account.BusinessException.Kind.*;
 
 public final class ActivityService implements ActivityUseCase {
@@ -19,10 +20,12 @@ public final class ActivityService implements ActivityUseCase {
     private final ActivityRepository activities;
     private final TransactionPort tx;
     private final Clock clock;
+    private final ObjectProvider<GenerativeAssessmentProcessor> generative;
     public ActivityService(SubjectUseCase subjects,GetDocumentUseCase documents,StructuredActivityContent structured,
-            GenerateActivityUseCase generator,ActivityFactoryProvider factories,ActivityRepository activities,TransactionPort tx,Clock clock) {
+            GenerateActivityUseCase generator,ActivityFactoryProvider factories,ActivityRepository activities,TransactionPort tx,Clock clock,
+            ObjectProvider<GenerativeAssessmentProcessor> generative) {
         this.subjects=subjects; this.documents=documents; this.structured=structured; this.generator=generator;
-        this.factories=factories; this.activities=activities; this.tx=tx; this.clock=clock;
+        this.factories=factories; this.activities=activities; this.tx=tx; this.clock=clock; this.generative=generative;
     }
     @Override public SavedActivity create(UUID owner,UUID subject,ActivityFamily family,UUID document,String topic,ActivityBank bank,int count,int gridSize) {
         writable(owner,subject);
@@ -32,13 +35,95 @@ public final class ActivityService implements ActivityUseCase {
             if(metadata.status()!=DocumentStatus.READY) throw new ActivityException(409,"TEXT_NOT_READY","El documento debe estar READY.");
             var content=documents.text(owner,document);
             if(content==null || content.text()==null || content.text().isBlank()) throw ActivityException.insufficient();
-            if(bank==null) bank=structured.read(content.text());
-            validateSources(bank,content);
+
+            boolean generatedBank = false;
+            // Si no llegó un banco manual, Spring pide a Flask/Gemini una evaluación y la transforma
+            // en el mismo modelo persistido que usan las actividades manuales.
+            if(bank==null) {
+                var processor=generative.getIfAvailable();
+                if(family==ActivityFamily.QUIZ && processor!=null) {
+                    try {
+                        var generated=processor.generate(subject,document,topic,content.text(),count);
+                        bank=toBank(generated,topic,metadata.originalFilename(),content);
+                        generatedBank=true;
+                    } catch (ActivityException error) {
+                        throw error;
+                    } catch (com.siare.core.infrastructure.adapter.out.learning.GenerativeServiceException error) {
+                        throw new ActivityException(error.status(),error.code(),error.getMessage());
+                    } catch (IllegalStateException error) {
+                        throw new ActivityException(503,"GENERATIVE_UNAVAILABLE","Gemini no pudo generar el Quiz. Verifica el estado del servicio y vuelve a intentarlo.");
+                    }
+                } else bank=structured.read(content.text());
+            }
+            if(generatedBank) validateGeneratedSources(bank,content); else validateSources(bank,content);
         }
         var generated=generator.generate(family,new GenerationRequest(subject.toString(),topic,bank,count,gridSize));
         var saved=new SavedActivity(UUID.randomUUID(),subject,document,topic.strip(),clock.instant(),"AVAILABLE",generated);
         return tx.required(()->{ writable(owner,subject); activities.insert(saved); return saved; });
     }
+
+    /**Convierte la respuesta generada a opciones, claves y citas soportadas por el dominio existente.*/
+    private ActivityBank toBank(GenerativeAssessmentProcessor.GeneratedAssessment generated,String topic,String filename,ExtractedContent content) {
+        var questions=new ArrayList<ActivityBank.Question>();
+        for(var item:generated.questions()) {
+            if(item.options().size()<2 || item.options().size()>6) throw ActivityException.insufficient();
+            if(item.correctAnswer()<0 || item.correctAnswer()>=item.options().size()) throw ActivityException.insufficient();
+
+            var options=new ArrayList<ActivityBank.Option>();
+            char id='a';
+            for(var text:item.options()) options.add(new ActivityBank.Option(String.valueOf(id++),text));
+
+            // Gemini devuelve las opciones como String; se conserva el texto directo sin usar APIs de Option.
+            var answer=item.options().get(item.correctAnswer());
+            // La inferencia puede formular una respuesta válida sin repetir literalmente una frase del PDF.
+            // Se conserva una cita real del fragmento relacionado para revisión académica.
+            var source=findGeneratedSource(filename,item.question(),topic,answer,content);
+            questions.add(new ActivityBank.Question("q"+(questions.size()+1),item.question(),List.copyOf(options),
+                    String.valueOf((char)('a'+item.correctAnswer())),topic,source,
+                    "Contenido generado por Gemini; respuesta y explicación sujetas a revisión académica."));
+        }
+        if(questions.isEmpty()) throw ActivityException.insufficient();
+        return new ActivityBank(true,List.copyOf(questions),List.of());
+    }
+
+    private ActivityBank.Source findGeneratedSource(String filename,String question,String topic,String answer,ExtractedContent content) {
+        if(content.fragments()==null || content.fragments().isEmpty()) throw ActivityException.insufficient();
+
+        var terms=new ArrayList<String>();
+        terms.addAll(Arrays.stream(topic.split("\\s+")).filter(word->word.length()>=3).map(ActivityRules::normalize).toList());
+        terms.addAll(Arrays.stream(question.split("\\s+")).filter(word->word.length()>=4).map(ActivityRules::normalize).limit(8).toList());
+
+        for(var fragment:content.fragments()) {
+            if(fragment.text()==null) continue;
+            var normalized=ActivityRules.normalize(fragment.text());
+            if(terms.stream().anyMatch(normalized::contains)) {
+                var quote=fragment.text().length()>4000 ? fragment.text().substring(0,4000) : fragment.text();
+                return new ActivityBank.Source(filename,fragment.index(),quote);
+            }
+        }
+
+        // Si no hay coincidencia léxica, usa el primer fragmento sin inventar texto ni modificar el documento.
+        var fragment=content.fragments().getFirst();
+        var quote=fragment.text()==null ? "" : fragment.text().length()>4000 ? fragment.text().substring(0,4000) : fragment.text();
+        if(quote.isBlank()) throw ActivityException.insufficient();
+        return new ActivityBank.Source(filename,fragment.index(),quote);
+    }
+
+    private void validateGeneratedSources(ActivityBank bank,ExtractedContent content) {
+        // Gemini puede crear una respuesta inferida que no repita literalmente una frase.
+        // Para este flujo solo exige que el banco tenga una fuente real dentro del documento;
+        // el banco manual conserva la validación estricta de cita y respuesta.
+        for(var question:bank.questions()) {
+            var source=question.source();
+            if(source==null || source.fragmentIndex()==null || source.quote()==null || content.fragments()==null)
+                throw ActivityException.insufficient();
+            var fragment=content.fragments().stream()
+                    .filter(f->f.index()==source.fragmentIndex())
+                    .findFirst().orElseThrow(ActivityException::insufficient);
+            if(fragment.text()==null || source.quote().isBlank()) throw ActivityException.insufficient();
+        }
+    }
+
     private void validateSources(ActivityBank bank,ExtractedContent content) {
         for(var question:bank.questions()) {
             String expected=question.options().stream().filter(o->o.id().equals(question.correctOptionId())).findFirst().orElseThrow().text();

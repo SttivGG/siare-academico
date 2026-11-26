@@ -52,8 +52,18 @@ test('DT-02: only valid evaluation dates render, consistently in America/Bogota'
   const html = renderToStaticMarkup(React.createElement(EvaluationView, { result: { ...result, occurredAt: '2026-11-20T02:30:00Z' } }));
   assert.match(html, /19\/11\/2026/);
 });
-test('an empty bank starts with publication disabled and no automatic-generation promise', () => {
+test('an empty bank starts with publication disabled and offers the Gemini-ready state', () => {
   owner();
   const html = renderToStaticMarkup(React.createElement(ActivityBankEditor, { subjectId: 'subject', document: null, onCreated() {} }));
-  assert.match(html, /pendiente de integración con ML/); assert.match(html, /disabled=""[^>]*>Crear Quiz revisado/);
+  assert.match(html, /banco manual existente/);
+  assert.match(html, /Sin documento asociado\. Selecciona un documento READY para usar Gemini/);
+  assert.match(html, /disabled=""[^>]*>Crear Quiz revisado/);
+});
+
+test('a READY document and Quiz expose the automatic Gemini action', () => {
+  owner();
+  const document = { documentId: '00000000-0000-4000-8000-000000000999', originalFilename: 'synthetic.pdf' };
+  const html = renderToStaticMarkup(React.createElement(ActivityBankEditor, { subjectId: 'subject', document, onCreated() {} }));
+  assert.match(html, /Crear automáticamente con Gemini/);
+  assert.match(html, /Generar Quiz con Gemini/);
 });

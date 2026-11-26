@@ -59,7 +59,7 @@ Para una instalación existente de Fase 2 ejecuta `scripts/Migrate-Siare.ps1 -Sk
 
 `Start-Siare.ps1` valida la configuración y la identidad de los recursos, construye los servicios de uno en uno, espera hasta 900 segundos por los healthchecks y ejecuta las verificaciones. No detiene procesos ajenos para liberar puertos. Para un arranque posterior con las mismas imágenes:
 
-Antes de arrancar, el script prepara `CONTENT_SERVICE_TOKEN` para la comunicación Spring/Flask. En una instalación existente, `scripts/Initialize-Phase2.ps1` añade solo esa credencial y conserva las anteriores. `DOCUMENT_MAX_BYTES` y `DOCUMENT_REQUEST_MAX_BYTES` controlan el límite del archivo y del multipart completo.
+Antes de arrancar, el script prepara `CONTENT_SERVICE_TOKEN` para documentos y `LEARNING_SERVICE_TOKEN` para el contrato interno de aprendizaje adaptativo. Ambas credenciales son independientes y se conservan en instalaciones existentes. `LEARNING_MAX_BYTES` limita la carga JSON propuesta a 65536 bytes.
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Start-Siare.ps1 -SkipBuild
@@ -313,3 +313,19 @@ Las decisiones de dependencia y las fuentes oficiales consultadas están en [doc
 ## H2-B2: Google y GitLab.com OIDC
 
 Inicio federado con Authorization Code + PKCE, identidades MySQL, estado efímero Redis y el mismo MFA/sesiones revocables. Configuración independiente y desactivada por defecto. Ver [configuración y callbacks](docs/H2B2_OIDC.md) y [resultados y pendientes](docs/H2B2_VALIDACION.md). Google conserva el login y alta reales confirmados históricamente. GitLab.com sustituye a Microsoft Entra y tiene validación manual exitosa reportada por el usuario el 18/11/2026, con alcance documentado en [GitLab real](docs/H2B2_GITLAB_REAL.md). La entrega real SMTP continúa pendiente de H2-B1.
+
+## Integración con Gemini
+
+Gemini se ejecuta exclusivamente en `content-ai`. Configure `GEMINI_API_KEY` únicamente en `.env` local o el gestor de secretos del entorno. Spring nunca recibe ni publica esa clave.
+
+Variables soportadas:
+
+- `GEMINI_MODEL`
+- `GEMINI_TIMEOUT_SECONDS`
+- `GEMINI_MAX_RETRIES`
+- `GEMINI_MAX_INPUT_CHARS`
+- `GEMINI_MAX_QUESTIONS`
+- `GEMINI_MAX_REQUESTS_PER_MINUTE`
+- `GEMINI_MAX_REQUEST_BYTES`
+
+La documentación completa está en `docs/GEMINI_INTEGRACION.md`.
