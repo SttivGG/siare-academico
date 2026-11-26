@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "requestId": "00000000-0000-4000-8000-000000000001",
+  "status": 422,
+  "code": "CONTENT_QUALITY_FAILED",
+  "message": "No se puede generar la cantidad solicitada con evidencia suficiente.",
+  "details": {
+    "reasonCodes": [
+      "AMBIGUOUS_QUESTION"
+    ]
+  }
+}

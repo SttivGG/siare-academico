@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "requestId": "00000000-0000-4000-8000-000000000001",
+  "documentId": "00000000-0000-4000-8000-000000000002",
+  "extractionVersion": "operation:00000000-0000-4000-8000-000000000003",
+  "type": "QUIZ",
+  "topic": "Astronomía",
+  "count": 1,
+  "status": "DRAFT",
+  "generatorVersion": "synthetic-fixture-v1",
+  "draft": {
+    "validated": false,
+    "questions": [
+      {
+        "id": "q1",
+        "prompt": "Según el texto, ¿qué astro es la estrella del sistema solar?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Sol"
+          },
+          {
+            "id": "b",
+            "text": "Luna"
+          }
+        ],
+        "correctOptionId": "a",
+        "topic": "Astronomía",
+        "source": {
+          "reference": "Página 1",
+          "fragmentIndex": 0,
+          "unitType": "page",
+          "unitNumber": 1,
+          "quote": "El Sol es la estrella del sistema solar."
+        },
+        "explanation": "El texto identifica al Sol como la estrella del sistema solar."
+      }
+    ],
+    "words": []
+  },
+  "warnings": [
+    "PROVENANCE_UNVERIFIED",
+    "ASSOCIATED_FILES_IGNORED"
+  ],
+  "quality": {
+    "requiresHumanReview": true,
+    "checks": {
+      "evidenceSupported": true,
+      "answerSupported": true,
+      "explanationSupported": true,
+      "unambiguous": true,
+      "topicAligned": true,
+      "noDuplicates": true
+    }
+  }
+}

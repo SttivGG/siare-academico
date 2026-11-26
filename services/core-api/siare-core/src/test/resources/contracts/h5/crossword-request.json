@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "requestId": "00000000-0000-4000-8000-000000000004",
+  "documentId": "00000000-0000-4000-8000-000000000002",
+  "extractionVersion": "operation:00000000-0000-4000-8000-000000000003",
+  "type": "CROSSWORD",
+  "topic": "Astronomía",
+  "count": 2,
+  "gridSize": 15,
+  "language": "es",
+  "extractionWarnings": [
+    "PROVENANCE_UNVERIFIED",
+    "ASSOCIATED_FILES_IGNORED"
+  ],
+  "fragments": [
+    {
+      "index": 0,
+      "reference": "Página 1",
+      "unitType": "page",
+      "unitNumber": 1,
+      "text": "El Sol es la estrella del sistema solar. La Luna es el satélite natural de la Tierra."
+    }
+  ]
+}

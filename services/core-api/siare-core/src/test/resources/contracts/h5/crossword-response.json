@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "requestId": "00000000-0000-4000-8000-000000000004",
+  "documentId": "00000000-0000-4000-8000-000000000002",
+  "extractionVersion": "operation:00000000-0000-4000-8000-000000000003",
+  "type": "CROSSWORD",
+  "topic": "Astronomía",
+  "count": 2,
+  "status": "DRAFT",
+  "generatorVersion": "synthetic-fixture-v1",
+  "draft": {
+    "validated": false,
+    "questions": [],
+    "words": [
+      {
+        "id": "w1",
+        "answer": "SOL",
+        "clue": "Estrella del sistema solar.",
+        "topic": "Astronomía",
+        "source": {
+          "reference": "Página 1",
+          "fragmentIndex": 0,
+          "unitType": "page",
+          "unitNumber": 1,
+          "quote": "El Sol es la estrella del sistema solar."
+        },
+        "explanation": "La fuente identifica al Sol como estrella."
+      },
+      {
+        "id": "w2",
+        "answer": "LUNA",
+        "clue": "Satélite natural de la Tierra.",
+        "topic": "Astronomía",
+        "source": {
+          "reference": "Página 1",
+          "fragmentIndex": 0,
+          "unitType": "page",
+          "unitNumber": 1,
+          "quote": "La Luna es el satélite natural de la Tierra."
+        },
+        "explanation": "La fuente identifica a la Luna como satélite natural de la Tierra."
+      }
+    ]
+  },
+  "warnings": [
+    "PROVENANCE_UNVERIFIED",
+    "ASSOCIATED_FILES_IGNORED"
+  ],
+  "quality": {
+    "requiresHumanReview": true,
+    "checks": {
+      "evidenceSupported": true,
+      "answerSupported": true,
+      "explanationSupported": true,
+      "unambiguous": true,
+      "topicAligned": true,
+      "noDuplicates": true
+    }
+  }
+}
